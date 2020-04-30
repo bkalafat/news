@@ -6,7 +6,6 @@ function News () {
         <div>NewsPage
             <Slider></Slider>
         </div>
-
     )
 }
 
