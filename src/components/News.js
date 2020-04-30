@@ -5,6 +5,7 @@ function News () {
     return (
         <div>NewsPage
             <Slider></Slider>
+            under slide
         </div>
 
     )
