@@ -7,11 +7,14 @@ code {
     monospace;
 }
 
+
+
 .App {
   padding: 10px 40px;
 }
 
 .slider {
+
   align-items: center;
   margin: 5px;
 }
@@ -27,12 +30,20 @@ code {
   text-align: center;
 }
 
+.center-item {
+  margin: auto;
+}
+
 .banner {
   border-radius: 4px;
 }
 
 .navigator {
   width: 100%;
+}
+
+.news{
+  margin: 0 2%;
 }
 
 .subNews {
@@ -55,7 +66,7 @@ code {
 }
 
 .detailImg {
-  width: 100%;
+  margin: 20px 0;
 }
 
 .spaceAround {
@@ -66,5 +77,7 @@ code {
 .logo {
   letter-spacing: 3px;
   font-family: "Playfair Display", serif;
+  font-size: 60px;
   cursor: pointer;
 }
+
