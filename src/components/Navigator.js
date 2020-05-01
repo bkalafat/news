@@ -11,11 +11,12 @@ const Navigator = () => {
         onClick={()  => history.push("/")}
         className="logo"
         src="https://via.placeholder.com/399x132.png/000000/FFFFFF/?text=AJANS"
+        alt="LogoAjans"
       />
       <nav>
         <ul>
           <li>
-            <Link to="/NewsDetail">Test Detay</Link>
+            <Link to="/">ANA SAYFA</Link>
           </li>
         </ul>
       </nav>

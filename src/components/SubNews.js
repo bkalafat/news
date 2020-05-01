@@ -1,12 +1,22 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
-const SubNews = () => {
+const SubNews = (props) => {
+
+  const history = useHistory()
+
+  const navigateDetail = (news) => history.push({
+    pathname: '/NewsDetail',
+    state: { news: news }
+  })
+
   return (
     <div className="subNews clickable-image">
-      <img
-       className="subNews-child" src="https://via.placeholder.com/384x216/000000/FFFFFF/?text=Alt Haber1" />
-      <img className="subNews-child" src="https://via.placeholder.com/384x216/000000/FFFFFF/?text=Alt Haber2" />
-      <img className="subNews-child" src="https://via.placeholder.com/384x216/000000/FFFFFF/?text=Alt Haber3" />
+      {props.newsList.map((news) => (
+        <div onClick={() => navigateDetail(news)} key={news.id}>
+          <img className="subNews-child" alt={news.imgAlt} src={news.imgPath} />
+        </div>
+      ))}
     </div>
   );
 };

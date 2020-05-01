@@ -8,6 +8,7 @@ const newsList = [
     caption: "Korona vaka sayısı",
     summary: "Türkiyede vaka sayısı azalıyor.",
     imgPath: "https://via.placeholder.com/600x300?text=KORONA",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem,eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -24,6 +25,7 @@ const newsList = [
     caption: "Libya'da Hafter milislerine ikmal yapan yakıt tankeri ile iki askeri araç vuruldu",
     summary: "Libya karışık aga",
     imgPath: "https://via.placeholder.com/600x300?text=LİBYA",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -40,6 +42,7 @@ const newsList = [
     caption: "İran'da ölü sayısı fena",
     summary: "Nolacak iranın hali derken olanlara bakkk",
     imgPath: "https://via.placeholder.com/600x300?text=IRAN",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -56,6 +59,7 @@ const newsList = [
     caption: "Cem ve Setenay",
     summary: "Okey oynadılar",
     imgPath: "https://via.placeholder.com/600x300?text=HABER 4",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -72,6 +76,7 @@ const newsList = [
     caption: "Korona vaka sayısı",
     summary: "Haberim yoktu",
     imgPath: "https://via.placeholder.com/600x300?text=HABER 5",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -88,6 +93,7 @@ const newsList = [
     caption: "Korona vaka sayısı",
     summary: "Türkiyede vaka sayısı azalıyor.",
     imgPath: "https://via.placeholder.com/600x300?text=KORONA",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -104,6 +110,7 @@ const newsList = [
     caption: "Korona vaka sayısı",
     summary: "Türkiyede vaka sayısı azalıyor.",
     imgPath: "https://via.placeholder.com/600x300?text=KORONA",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -120,6 +127,7 @@ const newsList = [
     caption: "Korona vaka sayısı",
     summary: "Türkiyede vaka sayısı azalıyor.",
     imgPath: "https://via.placeholder.com/600x300?text=KORONA",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -136,6 +144,7 @@ const newsList = [
     caption: "Korona vaka sayısı",
     summary: "Türkiyede vaka sayısı azalıyor.",
     imgPath: "https://via.placeholder.com/600x300?text=KORONA",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -152,6 +161,7 @@ const newsList = [
     caption: "Korona vaka sayısı",
     summary: "Türkiyede vaka sayısı azalıyor.",
     imgPath: "https://via.placeholder.com/600x300?text=KORONA",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -168,6 +178,7 @@ const newsList = [
     caption: "İptal edilen haber",
     summary: "Silinmesi gerekirdi",
     imgPath: "https://via.placeholder.com/600x300?text=KORONA",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -183,7 +194,8 @@ const newsList = [
     type: "subNews",
     caption: "Trabzonspor'un liderliği tescillenecek.",
     summary: "Her ligde olduğu gibi trabzonspor'un da liderliği tescillendi.",
-    imgPath: "https://via.placeholder.com/600x300?text=SÜPER LİG",
+    imgPath: "https://via.placeholder.com/384x216/000000/FFFFFF/?text=TRABZONSPOR_IMG",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -199,7 +211,8 @@ const newsList = [
     type: "subNews",
     caption: "Sürmene'de sessizlik hakim",
     summary: "Sürmene evde kalıyor",
-    imgPath: "https://via.placeholder.com/600x300?text=SÜRMENE",
+    imgPath: "https://via.placeholder.com/384x216/000000/FFFFFF/?text=SÜRMENE_IMG",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -215,7 +228,8 @@ const newsList = [
     type: "subNews",
     caption: "Alt'ta görünen haberlederden 3.sü",
     summary: "bu haberi görenler şokta",
-    imgPath: "https://via.placeholder.com/600x300?text=ALT+HABER+3",
+    imgPath: "https://via.placeholder.com/384x216/000000/FFFFFF/?text=ALT+HABER+3_IMG",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],
@@ -228,10 +242,45 @@ const newsList = [
   {
     id: 15,
     category: "Alt Haber 4",
-    type: "news",
+    type: "subNews",
     caption: "İptal edilen haber",
     summary: "Silinmesi gerekirdi",
-    imgPath: "https://via.placeholder.com/600x300?text=KORONA",
+    imgPath: "https://via.placeholder.com/384x216/000000/FFFFFF/?text=ALT+HABER+4_IMG",
+    imgAlt: "test haber img",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
+    subjects: ["Covid", "Türkiye"],
+    authors: ["Mustafa Çolakoğlu", "Burak Kalafat"],
+    createdDate: "2020-04-23T18:25:43.511Z",
+    updateDate: "2020-05-01T14:35:43.511Z",
+    priority: 15,
+    isActive: true,
+  },
+  {
+    id: 16,
+    category: "Alt Haber 5",
+    type: "subNews",
+    caption: "İptal edilen haber",
+    summary: "Silinmesi gerekirdi",
+    imgPath: "https://via.placeholder.com/384x216/000000/FFFFFF/?text=ALT+HABER+5_IMG",
+    imgAlt: "test haber img",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
+    subjects: ["Covid", "Türkiye"],
+    authors: ["Mustafa Çolakoğlu", "Burak Kalafat"],
+    createdDate: "2020-04-23T18:25:43.511Z",
+    updateDate: "2020-05-01T14:35:43.511Z",
+    priority: 15,
+    isActive: true,
+  },
+  {
+    id: 17,
+    category: "Alt Haber 6",
+    type: "subNews",
+    caption: "İptal edilen haber",
+    summary: "Silinmesi gerekirdi",
+    imgPath: "https://via.placeholder.com/384x216/000000/FFFFFF/?text=ALT+HABER+6_IMG",
+    imgAlt: "test haber img",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem, eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
     subjects: ["Covid", "Türkiye"],

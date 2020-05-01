@@ -59,14 +59,16 @@ code {
 
 .subNews {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .subNews-child {
   flex: 33.33%;
   padding: 5px;
+  align-content: space-between;
 }
 
-.clickable-image
-{
-    cursor: pointer;
+.clickable-image {
+  cursor: pointer;
 }
