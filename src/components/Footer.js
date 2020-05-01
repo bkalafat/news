@@ -21,16 +21,16 @@ const Footer = () => {
             <h5 className="title">Bağlantılar</h5>
             <ul>
               <li className="list-unstyled">
-                <a href="#!">Bir link</a>
+                <a href="https://github.com/bkalafat">GitHub</a>
               </li>
               <li className="list-unstyled">
-                <a href="#!">Bir link</a>
+                <a href="#!">LinkedIn</a>
               </li>
               <li className="list-unstyled">
-                <a href="#!">Birşey linki</a>
+                <a href="#!">Instagram</a>
               </li>
               <li className="list-unstyled">
-                <a href="#!">Birşey linki</a>
+                <a href="#!">Xyz</a>
               </li>
             </ul>
           </MDBCol>
@@ -38,7 +38,7 @@ const Footer = () => {
       </MDBContainer>
       <div className="footer-copyright text-center py-3">
         <MDBContainer fluid>
-          &copy; {new Date().getFullYear()} Copyright: <a href="https://www.mdbootstrap.com"> bkalafat </a>
+          &copy; {new Date().getFullYear()} Copyright: <a href="https://github.com/bkalafat"> bkalafat </a>
         </MDBContainer>
       </div>
     </MDBFooter>

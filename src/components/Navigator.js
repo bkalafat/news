@@ -13,10 +13,9 @@ const Navigator = () => {
         alt="LogoAjans"
       />
       <nav className="navigator navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" >
-          <ul className="navbar-nav navbar-right ml-auto">
-
-            <li className="nav-item active">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
               <Link className="nav-link" to="/">
                 Ana Sayfa
               </Link>
