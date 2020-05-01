@@ -11,7 +11,7 @@ const News = () => {
   const subNewsList = newsList.filter(news => news.isActive && news.type === constant.SUB_NEWS_TYPE).sort(function(a, b){return a.priority - b.priority}).slice(0,9);
 
   return (
-    <div className="container" >
+    <div >
       <Slider newsList={sliderNewsList} ></Slider>
       <SubNews newsList ={subNewsList} ></SubNews>
     </div>

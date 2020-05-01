@@ -5,13 +5,7 @@ const Navigator = () => {
   let history = useHistory();
 
   return (
-    <div className="banner">
-      <img
-        onClick={() => history.push("/")}
-        className="logo"
-        src="https://via.placeholder.com/399x132.png/45b6fe/FFFFFF/?text=AJANS"
-        alt="LogoAjans"
-      />
+    <div>
       <nav className="navigator navbar navbar-expand-lg navbar-light bg-light">
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
@@ -33,6 +27,10 @@ const Navigator = () => {
           </ul>
         </div>
       </nav>
+      <div className="center">
+        <h1 onClick={() => history.push("/")} className="logo">GARDİYAN</h1>
+        <p>SİZİN GAZETENİZ</p>
+      </div>
     </div>
   );
 };
