@@ -1,9 +1,11 @@
 import React from "react";
-import Slider from "./Slider";
+import Banner from "./Banner"
+import Slider from "./Slider"
 
-function News() {
+const News = () => {
   return (
-    <div>
+    <div className="container" >
+      <Banner></Banner>
       <Slider></Slider>
     </div>
   );
