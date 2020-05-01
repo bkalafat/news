@@ -1,11 +1,18 @@
-import React from 'react';
+import React from "react";
 import { useLocation } from "react-router-dom";
 
 const NewsDetail = () => {
+  let location = useLocation();
+  const { news } = location.state;
 
-    let location = useLocation();
-
-    return ( <div>sonuç {JSON.stringify(location.state.news)} </div> );
-}
+  return (
+    <div className="newsDetail">
+      <h1 className="spaceAround" >{news.caption}</h1>
+      <p className="lead spaceAround">{news.summary}</p>
+      <img className="spaceAround" src={news.imgPath} alt={news.imgAlt} />
+      <p className="spaceAround" >{news.content}</p>
+    </div>
+  );
+};
 
 export default NewsDetail;
