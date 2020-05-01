@@ -19,7 +19,6 @@ code {
 .slider {
   align-items: center;
 
-
   margin: 5px;
 }
 
@@ -53,7 +52,6 @@ code {
   width: 100%;
 }
 
-
 .subNews {
   display: flex;
   flex-wrap: wrap;
@@ -73,7 +71,11 @@ code {
   text-align: center;
 }
 
-.spaceAround{
-  padding: 10px;
+.detailImg {
+  width: 100%;
+}
+
+.spaceAround {
+  padding: 7px;
   border-radius: 4px;
 }
