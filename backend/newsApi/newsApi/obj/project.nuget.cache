@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "VXfMDV0J2iWgBXo0KrScBbl73z9Gyz0DHIHItqfafJhvIlcDQum/3CMatWjfzEwb3HmSKDgHr689QgEbZKwAcA==",
+  "success": true,
+  "projectFilePath": "D:\\dev\\projects\\news\\backend\\newsApi\\newsApi\\newsApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\burak\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.8\\microsoft.visualstudio.azure.containers.tools.targets.1.10.8.nupkg.sha512"
+  ],
+  "logs": []
+}
