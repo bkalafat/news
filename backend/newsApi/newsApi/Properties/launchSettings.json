@@ -20,7 +20,7 @@
     "newsApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "ap/news",
+      "launchUrl": "api/news",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

@@ -5,41 +5,49 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using newsApi.Data;
 
-namespace newsApi
-{
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
+namespace newsApi {
+    public class Startup {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+        public Startup (IConfiguration configuration) {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
+        public void ConfigureServices (IServiceCollection services) {
+            services.AddCors (options => {
+                options.AddPolicy (MyAllowSpecificOrigins,
+                    builder => {
+                        builder.WithOrigins ("http://localhost:3000",
+                                "https://news-26417.web.app")
+                            .AllowAnyHeader ()
+                            .AllowAnyMethod ();
+                    });
+            });
+
+            //TODO burak.kalafat add firebase other site
+
             services.AddControllers();
-            services.AddScoped<INewsRepo, MockNewsRepo>();
+            services.AddScoped<INewsRepo, MockNewsRepo> ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+        public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
+            if (env.IsDevelopment ()) {
+                app.UseDeveloperExceptionPage ();
             }
 
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection ();
 
-            app.UseRouting();
+            app.UseRouting ();
+            app.UseCors(MyAllowSpecificOrigins);
 
-            app.UseAuthorization();
+            app.UseAuthorization ();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
+            app.UseEndpoints (endpoints => {
+                endpoints.MapControllers ();
             });
         }
     }

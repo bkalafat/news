@@ -1,10 +1,14 @@
 import React from "react";
 import Slider from "./Slider";
 import SubNews from "./SubNews";
-import newsList from "../utils/dummyData";
 import * as constant from "../utils/constant";
 
-const News = () => {
+const News = (props) => {
+
+  const {newsList} = props
+
+  if (!newsList && newsList.length !== 0) return <div/>
+
   const sliderNewsList = newsList
     .filter((news) => news.isActive && news.type === constant.NEWS_TYPE)
     .sort(function (a, b) {
@@ -18,9 +22,11 @@ const News = () => {
     })
     .slice(0, 9);
 
+  console.log(subNewsList);
+
   return (
-    <div >
-      <div className="col-md-8 col-xl-8 center-item">
+    <div>
+      <div className="col-md-10 col-xl-10 center-item">
         <Slider newsList={sliderNewsList}></Slider>
       </div>
       <SubNews newsList={subNewsList}></SubNews>
