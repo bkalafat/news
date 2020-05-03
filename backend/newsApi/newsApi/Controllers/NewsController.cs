@@ -19,16 +19,16 @@ namespace newsApi.Controllers
 
         // GET: api/News
         [HttpGet]
-        public ActionResult<IEnumerable<News>> Get()
+        public IEnumerable<News> Get()
         {
-            return Ok(_repository.GetNewsList());
+            return _repository.GetNewsList();
         }
 
         // GET: api/News/5
         [HttpGet("{id}", Name = "Get")]
-        public ActionResult<News> Get(Guid id)
+        public News Get(Guid id)
         {
-            return Ok(_repository.GetNewsById(id));
+            return _repository.GetNewsById(id);
         }
 
         // POST: api/News

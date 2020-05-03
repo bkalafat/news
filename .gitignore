@@ -37,6 +37,7 @@ yarn-error.log*
 **/*.*proj.user
 **/*.dbmdl
 **/*.jfm
+**/*.dll
 **/azds.yaml
 **/bin
 **/charts
@@ -51,3 +52,4 @@ LICENSE
 README.md
 bin\
 obj\
+**.dll

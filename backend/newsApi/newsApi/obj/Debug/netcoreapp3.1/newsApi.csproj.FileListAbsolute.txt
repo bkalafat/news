@@ -24,3 +24,4 @@ D:\dev\projects\news\backend\newsApi\newsApi\obj\Debug\netcoreapp3.1\newsApi.Mvc
 D:\dev\projects\news\backend\newsApi\newsApi\obj\Debug\netcoreapp3.1\newsApi.dll
 D:\dev\projects\news\backend\newsApi\newsApi\obj\Debug\netcoreapp3.1\newsApi.pdb
 D:\dev\projects\news\backend\newsApi\newsApi\obj\Debug\netcoreapp3.1\newsApi.genruntimeconfig.cache
+D:\dev\projects\news\backend\newsApi\newsApi\obj\Debug\netcoreapp3.1\newsApi.csprojAssemblyReference.cache
