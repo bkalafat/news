@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>63b90c45-207e-4876-9627-7c6c4d9989ee</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileTag>bkalafat/newsapi</DockerfileTag>
   </PropertyGroup>
 
   <ItemGroup>
