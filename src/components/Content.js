@@ -6,8 +6,17 @@ const Content = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [newsList, setNewsList] = useState([]);
 
+  const prodUrl = "http://haberibul.northeurope.azurecontainer.io/api/"
+  const devUrl = "https://localhost:5001/api/news"
+  let url = devUrl
+
+  if (process.env.NODE_ENV === 'production') {
+    url = prodUrl
+  }
+
+
   useEffect(() => {
-    fetch("https://localhost:5001/api/news")
+    fetch(url)
       .then((res) => res.json())
       .then(
         (result) => {
