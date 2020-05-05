@@ -28,7 +28,7 @@ const Navigator = () => {
         </div>
       </nav>
       <div className="center">
-        <h1 onClick={() => history.push("/")} className="logo">GARDİYAN</h1>
+        <h1 onClick={() => history.push("/")} className="logo">HABERİ BUL</h1>
         <p>SİZİN GAZETENİZ</p>
       </div>
     </div>
