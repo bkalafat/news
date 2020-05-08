@@ -83,7 +83,7 @@ namespace newsApi.Data
                     CreatedDate = DateTime.Parse("2020-04-23T18:25:43.511Z"),
                     UpdateDate = DateTime.Parse("2020-05-01T14:35:43.511Z"),
                     ExpressDate = DateTime.Parse("2020-05-01T14:35:43.511Z"),
-                    Priority = 1,
+                    Priority = 3,
                     IsActive = true,
                 },
                 new News
@@ -94,6 +94,45 @@ namespace newsApi.Data
                     Caption = "Trabzonspor'da Nwakaeme teklifi.",
                     Summary = "Her ligde olduğu gibi trabzonspor'un da liderliği tescillendi.",
                     ImgPath = "https://i12.haber7.net//haber/haber7/photos/2019/39/karamandan_nwakaemeye_ozel_gorev_1569743374_9174.jpg",
+                    ImgAlt = "test haber img",
+                    Content =
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem,eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
+                    Subjects = new[] {"Covid", "Türkiye"},
+                    Authors = new[] {"Mustafa Çolakoğlu", "Burak Kalafat"},
+                    CreatedDate = DateTime.Parse("2020-04-23T18:25:43.511Z"),
+                    UpdateDate = DateTime.Parse("2020-05-01T14:35:43.511Z"),
+                    ExpressDate = DateTime.Parse("2020-05-01T14:35:43.511Z"),
+                    Priority = 2,
+                    IsActive = true,
+                },
+                new News
+                {
+                    Id = Guid.NewGuid(),
+                    Category = "Covid",
+                    Type = "subNews",
+                    Caption = "Sokağa Çıkma Yasağı",
+                    Summary = "Çankırı'da 335 kişiye ceza kesildi",
+                    ImgPath = "https://icdn.ensonhaber.com/resimler/diger//kok/2020/05/08/koronavirus_3102.jpg",
+                    ImgAlt = "test haber img",
+                    Content =
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem,eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
+                    Subjects = new[] {"Covid", "Türkiye"},
+                    Authors = new[] {"Mustafa Çolakoğlu", "Burak Kalafat"},
+                    CreatedDate = DateTime.Parse("2020-04-23T18:25:43.511Z"),
+                    UpdateDate = DateTime.Parse("2020-05-01T14:35:43.511Z"),
+                    ExpressDate = DateTime.Parse("2020-05-01T14:35:43.511Z"),
+                    Priority = 1,
+                    IsActive = true,
+                }
+                ,
+                new News
+                {
+                    Id = Guid.NewGuid(),
+                    Category = "KYK",
+                    Type = "subNews",
+                    Caption = "Kyk'dan Çıktılar",
+                    Summary = "Kyk karantinası sona erdi mutlular",
+                    ImgPath = "https://icdn.ensonhaber.com/resimler/diger/kok/2020/05/08/koronavirus_6087.jpg",
                     ImgAlt = "test haber img",
                     Content =
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at nisi ex. Nullam et elit elementum, consequat risus ut, aliquet metus. Phasellus pharetra, urna non mollis auctor, dui erat fermentum lorem, sed egestas sem nisl ut augue. Duis vitae turpis non dui luctus congue. Donec iaculis, diam in consequat dapibus, tortor mauris rhoncus ex, sit amet rutrum augue arcu a lacus. Vestibulum porta, orci vitae ultrices blandit, dolor metus tristique lorem,eget placerat nisl nulla in turpis. Maecenas vel aliquam leo. Vivamus eleifend sapien vel mauris mollis imperdiet.",
