@@ -13,8 +13,8 @@ const SubNews = (props) => {
   return (
     <div className="subNews clickable-image">
       {props.newsList.map((news) => (
-        <div onClick={() => navigateDetail(news)} key={news.id}>
-          <img className="col-sm-12 col-xs-12 subNews-child" alt={news.imgAlt} src={news.imgPath} />
+        <div className="col-xs-12 col-sm-12 col-md-4 subNews-child" onClick={() => navigateDetail(news)} key={news.id}>
+          <img className="shadow resize" alt={news.imgAlt} src={news.imgPath} />
         </div>
       ))}
     </div>

@@ -25,8 +25,8 @@ const News = (props) => {
   console.log(subNewsList);
 
   return (
-    <div>
-      <div className="col-md-10 col-xl-10 center-item">
+    <div className="centerFlex">
+      <div className="col-md-10 col-xl-10 noPadding">
         <Slider newsList={sliderNewsList}></Slider>
       </div>
       <SubNews newsList={subNewsList}></SubNews>
