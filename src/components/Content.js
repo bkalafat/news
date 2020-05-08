@@ -6,7 +6,7 @@ const Content = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [newsList, setNewsList] = useState([]);
 
-  const prodUrl = "https://20.191.46.109/api/news"
+  const prodUrl = "https://haberibul.azurewebsites.net/api/news"
   const devUrl = "https://localhost:5001/api/news"
   let url = devUrl
 
