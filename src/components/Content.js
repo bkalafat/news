@@ -1,28 +1,19 @@
 import React, { useState, useEffect } from "react";
 import News from "./News"
+import { getEnvironmentUrl } from "../utils/helper";
 
 const Content = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [newsList, setNewsList] = useState([]);
 
-  const prodUrl = "https://haberibul.azurewebsites.net/api/news"
-  const devUrl = "https://localhost:5001/api/news"
-  let url = devUrl
-
-  if (process.env.NODE_ENV === 'production') {
-    url = prodUrl
-  }
-
-
   useEffect(() => {
-    fetch(url)
+    fetch(getEnvironmentUrl() + "news")
       .then((res) => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
           setNewsList(result);
-          console.log(result);
         },
         (error) => {
           setIsLoaded(true);

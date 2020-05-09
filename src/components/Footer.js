@@ -24,13 +24,13 @@ const Footer = () => {
                 <a href="https://github.com/bkalafat">GitHub</a>
               </li>
               <li className="list-unstyled">
-                <a href="#!">LinkedIn</a>
+                <a href="#!">Ana Sayfa</a>
               </li>
               <li className="list-unstyled">
-                <a href="#!">Instagram</a>
+                <a href="#!">İletişim</a>
               </li>
               <li className="list-unstyled">
-                <a href="#!">Xyz</a>
+                <a href="#!">Biz Kimiz</a>
               </li>
             </ul>
           </MDBCol>
