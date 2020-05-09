@@ -4,9 +4,9 @@ using newsApi.Models;
 
 namespace newsApi.Data
 {
-    public class MockNewsRepo : INewsRepo
+    public class MockNewsService : INewsService
     {
-        public IEnumerable<News> GetNewsList()
+        public List<News> Get()
         {
             return new List<News>
             {
@@ -109,7 +109,7 @@ namespace newsApi.Data
             };
         }
 
-        public News GetNewsById(Guid id)
+        public News Get(Guid id)
         {
             return new News
             {
@@ -130,6 +130,26 @@ namespace newsApi.Data
                 Priority = 1,
                 IsActive = true,
             };
+        }
+
+        public News Create(News news)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Guid id, News newsIn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(News newsIn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

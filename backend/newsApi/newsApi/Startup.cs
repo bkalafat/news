@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using newsApi.Data;
+using newsApi.Models;
 
 namespace newsApi {
     public class Startup {
@@ -29,10 +31,15 @@ namespace newsApi {
                     });
             });
 
-            //TODO burak.kalafat add firebase other site
+
+            services.Configure<NewsDatabaseSettings>(
+                Configuration.GetSection(nameof(NewsDatabaseSettings)));
+
+            services.AddSingleton<INewsDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<NewsDatabaseSettings>>().Value);
 
             services.AddControllers();
-            services.AddScoped<INewsRepo, MockNewsRepo> ();
+            services.AddScoped<INewsService, NewsService> ();//TODO prod'da mongo lokalde bakcaz.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

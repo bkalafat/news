@@ -10,31 +10,32 @@ namespace newsApi.Controllers
     [ApiController]
     public class NewsController : ControllerBase
     {
-        private readonly INewsRepo _repository;
+        private readonly INewsService _newsService;
 
-        public NewsController(INewsRepo repository)
+        public NewsController(INewsService newsService)
         {
-            _repository = repository;
+            _newsService = newsService;
         }
 
         // GET: api/News
         [HttpGet]
         public IEnumerable<News> Get()
         {
-            return _repository.GetNewsList();
+            return _newsService.Get();
         }
 
         // GET: api/News/5
         [HttpGet("{id}", Name = "Get")]
         public News Get(Guid id)
         {
-            return _repository.GetNewsById(id);
+            return _newsService.Get(id);
         }
 
         // POST: api/News
         [HttpPost]
-        public void Post([FromBody] string value)
+        public News Post([FromBody] News news)
         {
+            return _newsService.Create(news);
         }
 
         // PUT: api/News/5
