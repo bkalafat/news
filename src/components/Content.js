@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import News from "./News"
+import News from "./News";
 import { getEnvironmentUrl } from "../utils/helper";
+import ReactLoading from "react-loading";
 
 const Content = () => {
   const [error, setError] = useState(null);
@@ -24,9 +25,14 @@ const Content = () => {
   }, []);
 
   if (error) {
-    return <div>Sayfa Yüklenemedi: {error.message}</div>;
+    console.log(error.message);
+    return <div className="centerFlex">Haberler getirilemedi.</div>;
   } else if (!isLoaded) {
-    return <div>Sayfa Yükleniyor</div>;
+    return (
+      <div className="centerFlex">
+        <ReactLoading type="spokes" color="#099FEF" />
+      </div>
+    );
   } else {
     return <News newsList={newsList} />;
   }
