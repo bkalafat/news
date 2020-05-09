@@ -21,7 +21,9 @@ namespace newsApi {
                 options.AddPolicy (MyAllowSpecificOrigins,
                     builder => {
                         builder.WithOrigins ("http://localhost:3000",
-                                "https://news-26417.web.app")
+                                "https://news-26417.web.app",
+                                "https://haberibul.web.app",
+                                "https://haberibul.firebaseapp.com")
                             .AllowAnyHeader ()
                             .AllowAnyMethod ();
                     });
