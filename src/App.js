@@ -5,6 +5,7 @@ import NewsDetail from "./components/NewsDetail";
 import Navigator from "./components/Navigator";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
+import NewsEditor from "./components/Admin/NewsEditor";
 
 function App() {
   return (
@@ -13,10 +14,16 @@ function App() {
         <Navigator />
         <Switch>
           <Route exact path="/">
-            <Content />
+            <Content isAdmin={false} />
           </Route>
           <Route path="/NewsDetail">
             <NewsDetail />
+          </Route>
+          <Route path="/AdminPanel">
+            <Content isAdmin={true} />
+          </Route>
+          <Route path="/NewsEditor">
+            <NewsEditor />
           </Route>
         </Switch>
         <Footer />

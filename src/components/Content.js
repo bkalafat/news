@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import News from "./News";
+import NewsList from "./Admin/NewsList"
 import { getEnvironmentUrl } from "../utils/helper";
 import ReactLoading from "react-loading";
 
-const Content = () => {
+const Content = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [newsList, setNewsList] = useState([]);
@@ -34,7 +35,8 @@ const Content = () => {
       </div>
     );
   } else {
-    return <News newsList={newsList} />;
+    if (props.isAdmin) return  <NewsList newsList={newsList} />
+    else return <News newsList={newsList} />
   }
 };
 
