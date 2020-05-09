@@ -1,24 +1,68 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { NEWS_TYPE, SUB_NEWS_TYPE } from "../../utils/constant";
+import { getEnvironmentUrl } from "../../utils/helper"
 
 const NewsEditor = () => {
   const [type, setType] = useState("news");
   const [category, setCategory] = useState("");
   const [caption, setCaption] = useState("");
   const [summary, setSummary] = useState("");
+  const [content, setContent] = useState("");
   const [isActive, setIsActive] = useState(true);
   const [priority, setPriority] = useState(888);
 
   const handleSubmit = (event) => {
-    alert(
-      "Seçilen Tip " +
-        type +
-        " Yazılan Kategori " +
-        category +
-        " Aktif mi " +
-        isActive
-    );
     event.preventDefault();
+
+    const imgSize = type === NEWS_TYPE ? "600x300" : "500x250";
+
+    const state = {
+      category,
+      type,
+      caption,
+      summary,
+      imgPath: "https://via.placeholder.com/" + imgSize + "?text=" + caption,
+      imgAlt: caption,
+      subjects: ["Covid", "Türkiye"],
+      createDate: new Date().toISOString(),
+      updateDate: new Date().toISOString(),
+      expireDate: new Date().toISOString(),
+      authors: ["Mustafa Çolakoğlu", "Burak Kalafat"],
+      content,
+      isActive,
+      priority,
+    };
+
+    console.log(JSON.stringify(state));
+
+    // fetch(getEnvironmentUrl() + "news")
+    //   .then((res) => res.json())
+    //   .then(
+    //     (result) => {
+    //       setIsLoaded(true);
+    //       setNewsList(result);
+    //     },
+    //     (error) => {
+    //       setIsLoaded(true);
+    //       setError(error);
+    //       console.log(error);
+    //     }
+    //   );
+
+    fetch(getEnvironmentUrl() + "news",{
+        method: 'POST',
+        headers: {
+            Accept: '*/*',
+                    'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(state)
+    }).then(response => {
+            console.log(response)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
   };
 
   return (
@@ -33,7 +77,6 @@ const NewsEditor = () => {
           />
         </Form.Group>
 
-
         <Form.Group>
           <Form.Label>Tip</Form.Label>
           <Form.Control
@@ -41,8 +84,8 @@ const NewsEditor = () => {
             onChange={(e) => setType(e.target.value)}
             as="select"
           >
-            <option value="news">Ana Haber</option>
-            <option value="subNews">Alt Haber</option>
+            <option value={NEWS_TYPE}>Ana Haber</option>
+            <option value={SUB_NEWS_TYPE}>Alt Haber</option>
           </Form.Control>
         </Form.Group>
 
@@ -60,13 +103,19 @@ const NewsEditor = () => {
           <Form.Control
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
-            as="textarea" rows="2"
+            as="textarea"
+            rows="2"
           />
         </Form.Group>
 
         <Form.Group>
           <Form.Label>İçerik</Form.Label>
-          <Form.Control as="textarea" rows="5" />
+          <Form.Control
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            as="textarea"
+            rows="5"
+          />
         </Form.Group>
 
         <Form.Group>

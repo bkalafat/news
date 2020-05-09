@@ -32,8 +32,7 @@ namespace newsApi {
             });
 
 
-            services.Configure<NewsDatabaseSettings>(
-                Configuration.GetSection(nameof(NewsDatabaseSettings)));
+            services.Configure<NewsDatabaseSettings>(Configuration.GetSection(nameof(NewsDatabaseSettings)));
 
             services.AddSingleton<INewsDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<NewsDatabaseSettings>>().Value);
