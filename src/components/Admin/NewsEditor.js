@@ -49,7 +49,6 @@ const NewsEditor = () => {
           <Form.Control
             value={newNews.category}
             onChange={(e) => setNews({ ...newNews, category: e.target.value })}
-            placeholder="Kategori giriniz"
           />
         </Form.Group>
 
@@ -70,7 +69,6 @@ const NewsEditor = () => {
           <Form.Control
             value={newNews.caption}
             onChange={(e) => setNews({ ...newNews, caption: e.target.value })}
-            placeholder="Başlık giriniz"
           />
         </Form.Group>
 
