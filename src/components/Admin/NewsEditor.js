@@ -1,55 +1,56 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { NEWS_TYPE, SUB_NEWS_TYPE } from "../../utils/constant";
-import { getEnvironmentUrl } from "../../utils/helper"
+import { createNews, updateNews } from "../../utils/api";
 
 const NewsEditor = () => {
-  const [type, setType] = useState("news");
-  const [category, setCategory] = useState("");
-  const [caption, setCaption] = useState("");
-  const [summary, setSummary] = useState("");
-  const [content, setContent] = useState("");
-  const [isActive, setIsActive] = useState(true);
-  const [priority, setPriority] = useState(888);
+  let location = useLocation();
+
+  const isUpdate = location.state
+    ? location.state.news
+      ? true
+      : false
+    : false;
+
+  const { news } = isUpdate
+    ? location.state
+    : {
+        news: {
+          type: "news",
+          category: "",
+          caption: "",
+          summary: "",
+          content: "",
+          isActive: true,
+          priority: 888,
+        },
+      };
+
+  const [newNews, setNews] = useState(news);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const imgSize = type === NEWS_TYPE ? "600x300" : "500x250";
-    const imgText = caption.split(' ').join('+');
+    console.log(JSON.stringify(newNews));
 
-    const state = {
-      category,
-      type,
-      caption,
-      summary,
-      imgPath: "https://via.placeholder.com/" + imgSize + "?text=" + imgText,
-      imgAlt: caption,
-      subjects: ["Covid", "Türkiye"],
-      createDate: new Date().toISOString(),
-      updateDate: new Date().toISOString(),
-      expireDate: new Date().toISOString(),
-      authors: ["Mustafa Çolakoğlu", "Burak Kalafat"],
-      content,
-      isActive,
-      priority,
-    };
+    if("id" in newNews)
+    {
+      updateNews(newNews)
+      return;
+    }
 
-    console.log(JSON.stringify(state));
+    const imgSize = newNews.type === NEWS_TYPE ? "600x300" : "500x250";
+    const imgText = newNews.caption.split(" ").join("+");
 
-    fetch(getEnvironmentUrl() + "news",{
-        method: 'POST',
-        headers: {
-            Accept: '*/*',
-                    'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(state)
-    }).then(response => {
-            console.log(response)
-        })
-        .catch(error =>{
-            console.log(error)
-        })
+    newNews.imgPath = "https://via.placeholder.com/" + imgSize + "?text=" + imgText;
+    newNews.imgAlt = newNews.caption
+    newNews.subjects = ["Covid", "Türkiye"]
+    newNews.authors = ["Mustafa Çolakoğlu", "Burak Kalafat"]
+
+    createNews(newNews).then(function(res) {
+      setNews(res)
+    });
   };
 
   return (
@@ -58,8 +59,8 @@ const NewsEditor = () => {
         <Form.Group>
           <Form.Label>Kategori</Form.Label>
           <Form.Control
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            value={newNews.category}
+            onChange={(e) => setNews({ ...newNews, category: e.target.value })}
             placeholder="Kategori giriniz"
           />
         </Form.Group>
@@ -67,8 +68,8 @@ const NewsEditor = () => {
         <Form.Group>
           <Form.Label>Tip</Form.Label>
           <Form.Control
-            value={type}
-            onChange={(e) => setType(e.target.value)}
+            value={newNews.type}
+            onChange={(e) => setNews({ ...newNews, type: e.target.value })}
             as="select"
           >
             <option value={NEWS_TYPE}>Ana Haber</option>
@@ -79,8 +80,8 @@ const NewsEditor = () => {
         <Form.Group>
           <Form.Label>Başlık</Form.Label>
           <Form.Control
-            value={caption}
-            onChange={(e) => setCaption(e.target.value)}
+            value={newNews.caption}
+            onChange={(e) => setNews({ ...newNews, caption: e.target.value })}
             placeholder="Başlık giriniz"
           />
         </Form.Group>
@@ -88,8 +89,8 @@ const NewsEditor = () => {
         <Form.Group>
           <Form.Label>Özet</Form.Label>
           <Form.Control
-            value={summary}
-            onChange={(e) => setSummary(e.target.value)}
+            value={newNews.summary}
+            onChange={(e) => setNews({ ...newNews, summary: e.target.value })}
             as="textarea"
             rows="2"
           />
@@ -98,8 +99,8 @@ const NewsEditor = () => {
         <Form.Group>
           <Form.Label>İçerik</Form.Label>
           <Form.Control
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+            value={newNews.content}
+            onChange={(e) => setNews({ ...newNews, content: e.target.value })}
             as="textarea"
             rows="5"
           />
@@ -108,8 +109,8 @@ const NewsEditor = () => {
         <Form.Group>
           <Form.Label>Durum</Form.Label>
           <Form.Control
-            value={isActive}
-            onChange={(e) => setIsActive(e.target.value)}
+            value={newNews.isActive}
+            onChange={(e) => setNews({ ...newNews, isActive: e.target.value })}
             as="select"
           >
             <option value={true}>Aktif</option>
@@ -120,8 +121,10 @@ const NewsEditor = () => {
         <Form.Group>
           <Form.Label>Öncelik</Form.Label>
           <Form.Control
-            value={priority}
-            onChange={(e) => setPriority(Number.parseInt(e.target.value))}
+            value={newNews.priority}
+            onChange={(e) =>
+              setNews({ ...newNews, priority: Number.parseInt(e.target.value) })
+            }
           />
         </Form.Group>
 
