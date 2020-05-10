@@ -2,10 +2,12 @@ import React, { useState } from "react"
 import { useLocation } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
 import { NEWS_TYPE, SUB_NEWS_TYPE } from "../../utils/constant"
-import { createNews, updateNews } from "../../utils/api"
+import { createNews, updateNews, deleteNews } from "../../utils/api"
+import { useHistory } from "react-router-dom"
 
 const NewsEditor = () => {
   let location = useLocation()
+  const history = useHistory()
 
   const isUpdate = location.state ? (location.state.news ? true : false) : false
 
@@ -28,16 +30,18 @@ const NewsEditor = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    console.log(JSON.stringify(newNews))
-
     if ("id" in newNews) {
-      updateNews(newNews)
-      return
+      updateNews(newNews).then(function (res) {
+        history.push({
+          pathname: "/NewsEditor",
+          state: { news: newNews },
+        })
+      })
+    } else {
+      createNews(newNews).then(function (res) {
+        history.push("/AdminPanel")
+      })
     }
-
-    createNews(newNews).then(function (res) {
-      setNews(res)
-    })
   }
 
   return (
@@ -110,14 +114,34 @@ const NewsEditor = () => {
           <Form.Control
             value={newNews.priority}
             onChange={(e) =>
-              setNews({ ...newNews, priority: Number.parseInt(e.target.value) })
+              setNews({
+                ...newNews,
+                priority: Number.parseInt(e.target.value),
+              })
             }
           />
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Submit
+          {isUpdate ? "Güncelle" : "Ekle"}
         </Button>
+
+        <Button variant="primary" onClick={() => history.push("/AdminPanel")}>
+          Geri
+        </Button>
+
+        {isUpdate && (
+          <Button
+            variant="danger"
+            onClick={() =>
+              deleteNews(newNews.id).then(function (res) {
+                history.push("/AdminPanel")
+              })
+            }
+          >
+            Sil
+          </Button>
+        )}
       </Form>
     </div>
   )

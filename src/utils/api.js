@@ -23,12 +23,25 @@ export function createNews(news) {
 export function updateNews(news) {
   news.updateDate = new Date().toISOString()
 
-  fetch(getEnvironmentUrl() + "news/" + news.id, {
+  return fetch(getEnvironmentUrl() + "news/" + news.id, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(news),
+  })
+    .then((response) => {
+      return response
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+export function deleteNews(id) {
+
+  return fetch(getEnvironmentUrl() + "news/" + id, {
+    method: "DELETE"
   })
     .then((response) => {
       return response

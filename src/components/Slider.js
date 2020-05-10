@@ -19,7 +19,7 @@ function Slider(props) {
         {props.newsList.map((news) => (
           <div
             onClick={() => navigateDetail(news)}
-            className="clickable-image"
+            className="clickable"
             key={news.id}
           >
             <img src={news.imgPath} alt="placeholder"></img>
