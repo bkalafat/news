@@ -135,7 +135,7 @@ const NewsEditor = () => {
           <Form.Label>Öncelik</Form.Label>
           <Form.Control
             value={priority}
-            onChange={(e) => setPriority(e.target.value)}
+            onChange={(e) => setPriority(Number.parseInt(e.target.value))}
           />
         </Form.Group>
 
