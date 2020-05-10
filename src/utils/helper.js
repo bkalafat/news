@@ -7,3 +7,17 @@ export function getEnvironmentUrl() {
 
   return url;
 }
+
+export function setDefaultValues(news) {
+  const imgSize = news.type === NEWS_TYPE ? "600x300" : "500x250";
+  const imgText = news.caption.split(" ").join("+");
+  news.imgPath = "https://via.placeholder.com/" + imgSize + "?text=" + imgText;
+  news.imgAlt = news.caption;
+  news.subjects = ["Covid", "Türkiye"];
+  news.authors = ["Mustafa Çolakoğlu", "Burak Kalafat"];
+  news.createDate = new Date().toISOString();
+  news.updateDate = new Date().toISOString();
+  news.expireDate = new Date().toISOString();
+
+  return news;
+}

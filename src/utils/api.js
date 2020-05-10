@@ -1,9 +1,7 @@
-import { getEnvironmentUrl } from "./helper";
+import { getEnvironmentUrl, setDefaultValues } from "./helper";
 
 export function createNews(news) {
-  news.createDate = new Date().toISOString();
-  news.updateDate = new Date().toISOString();
-  news.expireDate = new Date().toISOString();
+  setDefaultValues(news);
 
   return fetch(getEnvironmentUrl() + "news", {
     method: "POST",

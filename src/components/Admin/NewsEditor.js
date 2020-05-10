@@ -34,22 +34,13 @@ const NewsEditor = () => {
 
     console.log(JSON.stringify(newNews));
 
-    if("id" in newNews)
-    {
-      updateNews(newNews)
+    if ("id" in newNews) {
+      updateNews(newNews);
       return;
     }
 
-    const imgSize = newNews.type === NEWS_TYPE ? "600x300" : "500x250";
-    const imgText = newNews.caption.split(" ").join("+");
-
-    newNews.imgPath = "https://via.placeholder.com/" + imgSize + "?text=" + imgText;
-    newNews.imgAlt = newNews.caption
-    newNews.subjects = ["Covid", "Türkiye"]
-    newNews.authors = ["Mustafa Çolakoğlu", "Burak Kalafat"]
-
-    createNews(newNews).then(function(res) {
-      setNews(res)
+    createNews(newNews).then(function (res) {
+      setNews(res);
     });
   };
 
