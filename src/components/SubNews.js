@@ -1,5 +1,5 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React from "react"
+import { useHistory } from "react-router-dom"
 
 const SubNews = (props) => {
 
@@ -18,7 +18,7 @@ const SubNews = (props) => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default SubNews;
+export default SubNews

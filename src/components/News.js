@@ -1,7 +1,7 @@
-import React from "react";
-import Slider from "./Slider";
-import SubNews from "./SubNews";
-import * as constant from "../utils/constant";
+import React from "react"
+import Slider from "./Slider"
+import SubNews from "./SubNews"
+import * as constant from "../utils/constant"
 
 const News = (props) => {
 
@@ -12,17 +12,17 @@ const News = (props) => {
   const sliderNewsList = newsList
     .filter((news) => news.isActive && news.type === constant.NEWS_TYPE)
     .sort(function (a, b) {
-      return a.priority - b.priority;
+      return a.priority - b.priority
     })
-    .slice(0, 10);
+    .slice(0, 10)
   const subNewsList = newsList
     .filter((news) => news.isActive && news.type === constant.SUB_NEWS_TYPE)
     .sort(function (a, b) {
-      return a.priority - b.priority;
+      return a.priority - b.priority
     })
-    .slice(0, 9);
+    .slice(0, 9)
 
-  console.log(subNewsList);
+  console.log(subNewsList)
 
   return (
     <div className="centerFlex">
@@ -31,7 +31,7 @@ const News = (props) => {
       </div>
       <SubNews newsList={subNewsList}></SubNews>
     </div>
-  );
-};
+  )
+}
 
-export default News;
+export default News

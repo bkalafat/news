@@ -1,17 +1,13 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
-import { NEWS_TYPE, SUB_NEWS_TYPE } from "../../utils/constant";
-import { createNews, updateNews } from "../../utils/api";
+import React, { useState } from "react"
+import { useLocation } from "react-router-dom"
+import { Form, Button } from "react-bootstrap"
+import { NEWS_TYPE, SUB_NEWS_TYPE } from "../../utils/constant"
+import { createNews, updateNews } from "../../utils/api"
 
 const NewsEditor = () => {
-  let location = useLocation();
+  let location = useLocation()
 
-  const isUpdate = location.state
-    ? location.state.news
-      ? true
-      : false
-    : false;
+  const isUpdate = location.state ? (location.state.news ? true : false) : false
 
   const { news } = isUpdate
     ? location.state
@@ -25,24 +21,24 @@ const NewsEditor = () => {
           isActive: true,
           priority: 888,
         },
-      };
+      }
 
-  const [newNews, setNews] = useState(news);
+  const [newNews, setNews] = useState(news)
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    console.log(JSON.stringify(newNews));
+    console.log(JSON.stringify(newNews))
 
     if ("id" in newNews) {
-      updateNews(newNews);
-      return;
+      updateNews(newNews)
+      return
     }
 
     createNews(newNews).then(function (res) {
-      setNews(res);
-    });
-  };
+      setNews(res)
+    })
+  }
 
   return (
     <div className="centerFlex">
@@ -124,7 +120,7 @@ const NewsEditor = () => {
         </Button>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default NewsEditor;
+export default NewsEditor

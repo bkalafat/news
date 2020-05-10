@@ -1,8 +1,8 @@
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import React from "react"
+import { Link, useHistory } from "react-router-dom"
 
 const Navigator = () => {
-  let history = useHistory();
+  let history = useHistory()
 
   return (
     <div>
@@ -32,7 +32,7 @@ const Navigator = () => {
         <p>SİZİN GAZETENİZ</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Navigator;
+export default Navigator

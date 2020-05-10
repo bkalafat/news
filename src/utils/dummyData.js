@@ -291,6 +291,6 @@ const newsList = [
     priority: 15,
     isActive: true,
   },
-];
+]
 
-export default newsList;
+export default newsList

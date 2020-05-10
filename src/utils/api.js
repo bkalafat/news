@@ -1,7 +1,7 @@
-import { getEnvironmentUrl, setDefaultValues } from "./helper";
+import { getEnvironmentUrl, setDefaultValues } from "./helper"
 
 export function createNews(news) {
-  setDefaultValues(news);
+  setDefaultValues(news)
 
   return fetch(getEnvironmentUrl() + "news", {
     method: "POST",
@@ -13,15 +13,15 @@ export function createNews(news) {
   })
     .then((res) => res.json())
     .then((response) => {
-      return response;
+      return response
     })
     .catch((error) => {
-      console.log(error);
-    });
+      console.log(error)
+    })
 }
 
 export function updateNews(news) {
-  news.updateDate = new Date().toISOString();
+  news.updateDate = new Date().toISOString()
 
   fetch(getEnvironmentUrl() + "news/" + news.id, {
     method: "PUT",
@@ -31,9 +31,9 @@ export function updateNews(news) {
     body: JSON.stringify(news),
   })
     .then((response) => {
-      return response;
+      return response
     })
     .catch((error) => {
-      console.log(error);
-    });
+      console.log(error)
+    })
 }

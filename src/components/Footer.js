@@ -1,8 +1,8 @@
-import React from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
+import React from "react"
+import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact"
+import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'bootstrap-css-only/css/bootstrap.min.css'
+import 'mdbreact/dist/css/mdb.css'
 
 const Footer = () => {
   return (
@@ -38,11 +38,11 @@ const Footer = () => {
       </MDBContainer>
       <div className="footer-copyright text-center py-3">
         <MDBContainer fluid>
-          &copy; {new Date().getFullYear()} Copyright: <a href="https://github.com/bkalafat"> bkalafat </a>
+          &copy {new Date().getFullYear()} Copyright: <a href="https://github.com/bkalafat"> bkalafat </a>
         </MDBContainer>
       </div>
     </MDBFooter>
-  );
+  )
 }
 
-export default Footer;
+export default Footer
