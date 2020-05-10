@@ -32,10 +32,7 @@ const NewsEditor = () => {
 
     if ("id" in newNews) {
       updateNews(newNews).then(function (res) {
-        history.push({
-          pathname: "/NewsEditor",
-          state: { news: newNews },
-        })
+        alert("Güncellendi.")
       })
     } else {
       createNews(newNews).then(function (res) {
