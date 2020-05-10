@@ -37,20 +37,6 @@ const NewsEditor = () => {
 
     console.log(JSON.stringify(state));
 
-    // fetch(getEnvironmentUrl() + "news")
-    //   .then((res) => res.json())
-    //   .then(
-    //     (result) => {
-    //       setIsLoaded(true);
-    //       setNewsList(result);
-    //     },
-    //     (error) => {
-    //       setIsLoaded(true);
-    //       setError(error);
-    //       console.log(error);
-    //     }
-    //   );
-
     fetch(getEnvironmentUrl() + "news",{
         method: 'POST',
         headers: {
