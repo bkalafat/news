@@ -16,13 +16,14 @@ const NewsEditor = () => {
     event.preventDefault();
 
     const imgSize = type === NEWS_TYPE ? "600x300" : "500x250";
+    const imgText = caption.split(' ').join('+');
 
     const state = {
       category,
       type,
       caption,
       summary,
-      imgPath: "https://via.placeholder.com/" + imgSize + "?text=" + caption,
+      imgPath: "https://via.placeholder.com/" + imgSize + "?text=" + imgText,
       imgAlt: caption,
       subjects: ["Covid", "Türkiye"],
       createDate: new Date().toISOString(),
