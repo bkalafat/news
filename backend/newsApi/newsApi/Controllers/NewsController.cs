@@ -40,14 +40,16 @@ namespace newsApi.Controllers
 
         // PUT: api/News/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(Guid id, [FromBody] News news)
         {
+            _newsService.Update(id, news);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            _newsService.Remove(id);
         }
     }
 }
