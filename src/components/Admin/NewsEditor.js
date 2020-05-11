@@ -4,6 +4,7 @@ import { Form, Button } from "react-bootstrap"
 import { NEWS_TYPE, SUB_NEWS_TYPE } from "../../utils/constant"
 import { createNews, updateNews, deleteNews } from "../../utils/api"
 import { useHistory } from "react-router-dom"
+import axios from "axios"
 
 const NewsEditor = () => {
   let location = useLocation()
@@ -22,10 +23,13 @@ const NewsEditor = () => {
           content: "",
           isActive: true,
           priority: 888,
+          imgPath: "https://via.placeholder.com/500x250?text=HABER",
+          imgAlt:"haber"
         },
       }
 
   const [newNews, setNews] = useState(news)
+  const [selectedFile, setSelectedFile] = useState(null)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -41,8 +45,26 @@ const NewsEditor = () => {
     }
   }
 
+  const fileSelectorHandler = (event) => {
+    setSelectedFile(event.target.files[0])
+  }
+
+  const fileUploadHandler = (event) => {
+    const fd = new FormData()
+    fd.append("image", selectedFile, selectedFile.name)
+
+    axios
+      .post("https://us-central1-news-26417.cloudfunctions.net/uploadFile", fd)
+      .then((res) => {
+        setNews({ ...newNews, imgPath: res.data.fileUrl })
+        setNews({ ...newNews, imgAlt: selectedFile.name })
+      })
+  }
+
   return (
     <div className="centerFlex">
+      <input type="file" onChange={fileSelectorHandler} />
+      <button onClick={fileUploadHandler}>Yükle</button>
       <Form onSubmit={handleSubmit} className="col-md-10 col-xl-10">
         <Form.Group>
           <Form.Label>Kategori</Form.Label>
@@ -81,6 +103,8 @@ const NewsEditor = () => {
             rows="2"
           />
         </Form.Group>
+
+        <br />
 
         <Form.Group>
           <Form.Label>İçerik</Form.Label>

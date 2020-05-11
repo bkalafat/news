@@ -50,3 +50,23 @@ export function deleteNews(id) {
       console.log(error)
     })
 }
+
+export function uploadImage(news) {
+  setDefaultValues(news)
+
+  return fetch(getEnvironmentUrl() + "news", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(news),
+  })
+    .then((res) => res.json())
+    .then((response) => {
+      return response
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
