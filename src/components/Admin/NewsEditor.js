@@ -57,7 +57,6 @@ const NewsEditor = () => {
       .post("https://us-central1-news-26417.cloudfunctions.net/uploadFile", fd)
       .then((res) => {
         setNews({ ...newNews, imgPath: res.data.fileUrl })
-        setNews({ ...newNews, imgAlt: selectedFile.name })
       })
   }
 
