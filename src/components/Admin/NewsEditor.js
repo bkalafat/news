@@ -5,12 +5,34 @@ import { NEWS_TYPE, SUB_NEWS_TYPE } from "../../utils/constant"
 import { createNews, updateNews, deleteNews } from "../../utils/api"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
+import Resizer from "react-image-file-resizer"
 
 const NewsEditor = () => {
   let location = useLocation()
   const history = useHistory()
 
   const isUpdate = location.state ? (location.state.news ? true : false) : false
+
+  function urlToFile(url, filename, mimeType) {
+    return fetch(url)
+      .then(function (res) {
+        return res.arrayBuffer()
+      })
+      .then(function (buf) {
+        const img = new File([buf], filename, { type: mimeType })
+
+        const fd = new FormData()
+        fd.append("image", img, selectedFile.name)
+        axios
+          .post(
+            "https://us-central1-news-26417.cloudfunctions.net/uploadFile",
+            fd
+          )
+          .then((res) => {
+            setNews({ ...newNews, imgPath: res.data.fileUrl })
+          })
+      })
+  }
 
   const { news } = isUpdate
     ? location.state
@@ -24,7 +46,7 @@ const NewsEditor = () => {
           isActive: true,
           priority: 888,
           imgPath: "https://via.placeholder.com/500x250?text=HABER",
-          imgAlt:"haber"
+          imgAlt: "haber",
         },
       }
 
@@ -49,15 +71,20 @@ const NewsEditor = () => {
     setSelectedFile(event.target.files[0])
   }
 
-  const fileUploadHandler = (event) => {
-    const fd = new FormData()
-    fd.append("image", selectedFile, selectedFile.name)
-
-    axios
-      .post("https://us-central1-news-26417.cloudfunctions.net/uploadFile", fd)
-      .then((res) => {
-        setNews({ ...newNews, imgPath: res.data.fileUrl })
-      })
+  const fileUploadHandler = () => {
+    Resizer.imageFileResizer(
+      selectedFile,
+      500,
+      400,
+      "JPEG",
+      100,
+      0,
+      (uri) => {
+        console.log(uri)
+        urlToFile(uri, selectedFile.name,"image/jpeg")
+      },
+      "base64"
+    )
   }
 
   return (
