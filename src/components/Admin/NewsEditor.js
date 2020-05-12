@@ -1,73 +1,53 @@
 import React, { useState } from "react"
 import { useLocation } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
-import { NEWS_TYPE, SUB_NEWS_TYPE } from "../../utils/constant"
-import { createNews, updateNews, deleteNews } from "../../utils/api"
+import * as Const from "../../utils/constant"
+import * as API from "../../utils/api"
 import { useHistory } from "react-router-dom"
-import axios from "axios"
 import Resizer from "react-image-file-resizer"
 
 const NewsEditor = () => {
-  let location = useLocation()
+  const location = useLocation()
   const history = useHistory()
 
   const isUpdate = location.state ? (location.state.news ? true : false) : false
 
   function urlToFile(url, filename, mimeType) {
     return fetch(url)
-      .then(function (res) {
+      .then(res => {
         return res.arrayBuffer()
       })
-      .then(function (buf) {
-        const img = new File([buf], filename, { type: mimeType })
-
-        const fd = new FormData()
-        fd.append("image", img, selectedFile.name)
-        axios
-          .post(
-            "https://us-central1-news-26417.cloudfunctions.net/uploadFile",
-            fd
-          )
-          .then((res) => {
-            setNews({ ...newNews, imgPath: res.data.fileUrl })
-          })
+      .then(buf => {
+        return new File([buf], filename, { type: mimeType })
+      })
+      .then(file => {
+        return API.uploadFile(file)
+      })
+      .then(res => {
+        setNews({ ...newNews, imgPath: res.data.fileUrl })
       })
   }
 
-  const { news } = isUpdate
-    ? location.state
-    : {
-        news: {
-          type: "news",
-          category: "",
-          caption: "",
-          summary: "",
-          content: "",
-          isActive: true,
-          priority: 888,
-          imgPath: "https://via.placeholder.com/500x250?text=HABER",
-          imgAlt: "haber",
-        },
-      }
+  const { news } = isUpdate ? location.state : Const.DEFAULT_NEWS
 
   const [newNews, setNews] = useState(news)
   const [selectedFile, setSelectedFile] = useState(null)
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault()
 
     if ("id" in newNews) {
-      updateNews(newNews).then(function (res) {
-        alert("Güncellendi.")
+      API.updateNews(newNews).then(res => {
+        history.push("/AdminPanel")
       })
     } else {
-      createNews(newNews).then(function (res) {
+      API.createNews(newNews).then(res => {
         history.push("/AdminPanel")
       })
     }
   }
 
-  const fileSelectorHandler = (event) => {
+  const fileSelectorHandler = event => {
     setSelectedFile(event.target.files[0])
   }
 
@@ -79,9 +59,9 @@ const NewsEditor = () => {
       "JPEG",
       100,
       0,
-      (uri) => {
+      uri => {
         console.log(uri)
-        urlToFile(uri, selectedFile.name,"image/jpeg")
+        urlToFile(uri, selectedFile.name, "image/jpeg")
       },
       "base64"
     )
@@ -96,7 +76,7 @@ const NewsEditor = () => {
           <Form.Label>Kategori</Form.Label>
           <Form.Control
             value={newNews.category}
-            onChange={(e) => setNews({ ...newNews, category: e.target.value })}
+            onChange={e => setNews({ ...newNews, category: e.target.value })}
           />
         </Form.Group>
 
@@ -104,11 +84,11 @@ const NewsEditor = () => {
           <Form.Label>Tip</Form.Label>
           <Form.Control
             value={newNews.type}
-            onChange={(e) => setNews({ ...newNews, type: e.target.value })}
+            onChange={e => setNews({ ...newNews, type: e.target.value })}
             as="select"
           >
-            <option value={NEWS_TYPE}>Ana Haber</option>
-            <option value={SUB_NEWS_TYPE}>Alt Haber</option>
+            <option value={Const.NEWS_TYPE}>Ana Haber</option>
+            <option value={Const.SUB_NEWS_TYPE}>Alt Haber</option>
           </Form.Control>
         </Form.Group>
 
@@ -116,7 +96,7 @@ const NewsEditor = () => {
           <Form.Label>Başlık</Form.Label>
           <Form.Control
             value={newNews.caption}
-            onChange={(e) => setNews({ ...newNews, caption: e.target.value })}
+            onChange={e => setNews({ ...newNews, caption: e.target.value })}
           />
         </Form.Group>
 
@@ -124,7 +104,7 @@ const NewsEditor = () => {
           <Form.Label>Özet</Form.Label>
           <Form.Control
             value={newNews.summary}
-            onChange={(e) => setNews({ ...newNews, summary: e.target.value })}
+            onChange={e => setNews({ ...newNews, summary: e.target.value })}
             as="textarea"
             rows="2"
           />
@@ -136,7 +116,7 @@ const NewsEditor = () => {
           <Form.Label>İçerik</Form.Label>
           <Form.Control
             value={newNews.content}
-            onChange={(e) => setNews({ ...newNews, content: e.target.value })}
+            onChange={e => setNews({ ...newNews, content: e.target.value })}
             as="textarea"
             rows="5"
           />
@@ -146,7 +126,7 @@ const NewsEditor = () => {
           <Form.Label>Durum</Form.Label>
           <Form.Control
             value={newNews.isActive}
-            onChange={(e) => setNews({ ...newNews, isActive: e.target.value })}
+            onChange={e => setNews({ ...newNews, isActive: e.target.value })}
             as="select"
           >
             <option value={true}>Aktif</option>
@@ -157,11 +137,12 @@ const NewsEditor = () => {
         <Form.Group>
           <Form.Label>Öncelik</Form.Label>
           <Form.Control
+            type="number"
             value={newNews.priority}
-            onChange={(e) =>
+            onChange={e =>
               setNews({
                 ...newNews,
-                priority: Number.parseInt(e.target.value),
+                priority: Number.parseInt(e.target.value)
               })
             }
           />
@@ -179,7 +160,7 @@ const NewsEditor = () => {
           <Button
             variant="danger"
             onClick={() =>
-              deleteNews(newNews.id).then(function (res) {
+              API.deleteNews(newNews.id).then(function (res) {
                 history.push("/AdminPanel")
               })
             }
