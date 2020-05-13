@@ -5,6 +5,9 @@ import * as Const from "../../utils/constant"
 import * as API from "../../utils/api"
 import { useHistory } from "react-router-dom"
 import Resizer from "react-image-file-resizer"
+import CKEditor from "@ckeditor/ckeditor5-react"
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
+import UploadAdapter from "./UploadAdapter"
 
 const NewsEditor = () => {
   const location = useLocation()
@@ -54,8 +57,8 @@ const NewsEditor = () => {
   const fileUploadHandler = () => {
     Resizer.imageFileResizer(
       selectedFile,
-      500,
-      400,
+      600,
+      300,
       "JPEG",
       100,
       0,
@@ -65,6 +68,10 @@ const NewsEditor = () => {
       },
       "base64"
     )
+  }
+
+  const handleContentChange = (e, editor) => {
+    console.log(editor.getData())
   }
 
   return (
@@ -119,6 +126,23 @@ const NewsEditor = () => {
             onChange={e => setNews({ ...newNews, content: e.target.value })}
             as="textarea"
             rows="5"
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>İçerik</Form.Label>
+          <CKEditor
+            editor={ClassicEditor}
+            onInit={editor => {
+              editor.plugins.get(
+                "FileRepository"
+              ).createUploadAdapter = loader => {
+                return new UploadAdapter(loader)
+              }
+
+              console.log("Editor is ready to use!", editor)
+            }}
+            onChange={handleContentChange}
           />
         </Form.Group>
 
