@@ -1,9 +1,11 @@
 import React from "react"
 import {
   FacebookShareButton,
+  TelegramShareButton,
   TwitterShareButton,
   WhatsappShareButton,
   FacebookIcon,
+  TelegramIcon,
   TwitterIcon,
   WhatsappIcon
 } from "react-share"
@@ -19,12 +21,15 @@ const Share = props => {
         >
           <FacebookIcon size="2.5rem" logoFillColor="white" />
         </FacebookShareButton>
-        <TwitterShareButton title={props.news.caption}>
+        <TwitterShareButton url={"https://haberibul.web.app/"} title={props.news.caption}>
           <TwitterIcon size="2.5rem" />
         </TwitterShareButton>
-        <WhatsappShareButton title={props.news.caption}>
+        <WhatsappShareButton url={"https://haberibul.web.app/"} title={props.news.caption}>
           <WhatsappIcon size="2.5rem" />
         </WhatsappShareButton>
+        <TelegramShareButton url={"https://haberibul.web.app/"} title={props.news.caption}>
+          <TelegramIcon size="2.5rem" />
+        </TelegramShareButton>
       </div>
     )
   } else return <div />
