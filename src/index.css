@@ -37,6 +37,11 @@ code {
   width: 90%;
 }
 
+.buttonCenter {
+  position: relative;
+  margin: 0 auto;
+}
+
 .centerFlex {
   display: flex;
   flex-wrap: wrap;
@@ -55,6 +60,13 @@ code {
   margin: 0 2%;
 }
 
+.content img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .subNews {
   display: flex;
   flex-wrap: wrap;
@@ -64,7 +76,6 @@ code {
 .subNews-child {
   margin: 8px;
 }
-
 
 .clickable {
   cursor: pointer;
@@ -92,10 +103,32 @@ img.shadow {
   padding: 7px;
   border-radius: 4px;
 }
+.centered {
+  position: absolute;
+  top: 30%;
+  left: 1.8%;
+  right: auto;
+  width: 96.66666666666666%;
+  color: #fff;
+}
 
 .logo {
-  letter-spacing: 3px;
-  font-family: "Playfair Display", serif;
-  font-size: 60px;
   cursor: pointer;
+  width: 100%;
+  height: fit-content;
+}
+
+.header-text {
+  position: absolute;
+  bottom: 10%;
+  left: 1.8%;
+  right: auto;
+  width: 96.66666666666666%;
+  color: #fff;
+  background-color: black;
+  opacity: 0.7;
+}
+
+.text-center {
+  text-align: center;
 }

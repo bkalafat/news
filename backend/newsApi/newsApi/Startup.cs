@@ -7,27 +7,34 @@ using Microsoft.Extensions.Options;
 using newsApi.Data;
 using newsApi.Models;
 
-namespace newsApi {
-    public class Startup {
+namespace newsApi
+{
+    public class Startup
+    {
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-        public Startup (IConfiguration configuration) {
+        public Startup(IConfiguration configuration)
+        {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices (IServiceCollection services) {
-            services.AddCors (options => {
-                options.AddPolicy (MyAllowSpecificOrigins,
-                    builder => {
-                        builder.WithOrigins ("http://localhost:3000",
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000",
+                            "http://localhost:3000",
                                 "https://news-26417.web.app",
                                 "https://haberibul.web.app",
                                 "https://haberibul.firebaseapp.com")
-                            .AllowAnyHeader ()
-                            .AllowAnyMethod ();
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
                     });
             });
 
@@ -38,24 +45,27 @@ namespace newsApi {
                 sp.GetRequiredService<IOptions<NewsDatabaseSettings>>().Value);
 
             services.AddControllers();
-            services.AddScoped<INewsService, NewsService> ();//TODO prod'da mongo lokalde bakcaz.
+            services.AddScoped<INewsService, NewsService>();//TODO prod'da mongo lokalde bakcaz.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
-            if (env.IsDevelopment ()) {
-                app.UseDeveloperExceptionPage ();
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection ();
+            app.UseHttpsRedirection();
 
-            app.UseRouting ();
+            app.UseRouting();
             app.UseCors(MyAllowSpecificOrigins);
 
-            app.UseAuthorization ();
+            app.UseAuthorization();
 
-            app.UseEndpoints (endpoints => {
-                endpoints.MapControllers ();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
         }
     }

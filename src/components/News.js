@@ -1,6 +1,7 @@
 import React from "react"
 import Slider from "./Slider"
 import SubNews from "./SubNews"
+import Share from "./Share"
 import * as constant from "../utils/constant"
 
 const News = (props) => {
@@ -30,8 +31,10 @@ const News = (props) => {
         <Slider newsList={sliderNewsList}></Slider>
       </div>
       <SubNews newsList={subNewsList}></SubNews>
+      <Share news={sliderNewsList ? sliderNewsList[0] : null } ></Share>
     </div>
   )
 }
 
 export default News
+

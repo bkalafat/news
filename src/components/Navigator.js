@@ -28,8 +28,8 @@ const Navigator = () => {
         </div>
       </nav>
       <div className="center">
-        <h1 onClick={() => history.push("/")} className="logo">HABERİ BUL</h1>
-        <p>SİZİN GAZETENİZ</p>
+        <img className="logo" onClick={() => history.push("/")} alt="haberi bul logo" src={`${process.env.PUBLIC_URL}/haberibul.png`}></img>
+        <p>Haberi bulmanın en kolay yolu</p>
       </div>
     </div>
   )
