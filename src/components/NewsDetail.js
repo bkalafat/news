@@ -1,5 +1,7 @@
 import React from "react"
 import { useLocation } from "react-router-dom"
+import Share from "./Share"
+
 
 const NewsDetail = () => {
   let location = useLocation()
@@ -8,6 +10,7 @@ const NewsDetail = () => {
   return (
     <div>
       <div className="newsDetail">
+        <Share news={news} ></Share>
         <h1 className="spaceAround">{news.caption}</h1>
         <p className="lead spaceAround">{news.summary}</p>
         <img
@@ -22,6 +25,7 @@ const NewsDetail = () => {
           __html: "<div class='container content'" + news.content + "</div>"
         }}
       />
+      <Share news={news} ></Share>
     </div>
   )
 }
