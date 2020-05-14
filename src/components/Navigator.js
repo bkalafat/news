@@ -28,7 +28,7 @@ const Navigator = () => {
         </div>
       </nav>
       <div className="center">
-        <img onClick={() => history.push("/")} alt="haberi bul logo" src={`${process.env.PUBLIC_URL}/haberibul.png`}></img>
+        <img className="logo" onClick={() => history.push("/")} alt="haberi bul logo" src={`${process.env.PUBLIC_URL}/haberibul.png`}></img>
         <p>Haberi bulmanın en kolay yolu</p>
       </div>
     </div>
