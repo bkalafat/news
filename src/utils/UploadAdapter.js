@@ -1,5 +1,6 @@
-import * as API from "./api"
 import Resizer from "react-image-file-resizer"
+import axios from "axios"
+import * as Const from "./constant"
 
 export default class UploadAdapter {
   constructor(loader) {
@@ -32,6 +33,21 @@ export default class UploadAdapter {
     console.log("aborted")
   }
 
+  uploadFile = file => {
+    const formData = new FormData()
+    formData.append("image", file, file.name)
+    return axios
+      .post(Const.UPLOAD_FILE_PATH, formData, {
+        onUploadProgress: progressEvent => {
+          this.loader.uploadTotal = progressEvent.total
+          this.loader.uploaded = progressEvent.loaded
+        }
+      })
+      .then(res => {
+        return res
+      })
+  }
+
   urlToFile(resolve, url, filename, mimeType) {
     fetch(url)
       .then(res => {
@@ -41,7 +57,7 @@ export default class UploadAdapter {
         return new File([buf], filename, { type: mimeType })
       })
       .then(file => {
-        return API.uploadFile(file)
+        return this.uploadFile(file)
       })
       .then(res => {
         resolve({

@@ -14,6 +14,7 @@ code {
 .slider {
   align-items: center;
   margin: 5px;
+  background-color:black;
 }
 
 .noPadding {
@@ -37,6 +38,12 @@ code {
   width: 90%;
 }
 
+.buttonCenter {
+  position: relative;
+
+  margin: 0 auto;
+}
+
 .centerFlex {
   display: flex;
   flex-wrap: wrap;
@@ -55,6 +62,13 @@ code {
   margin: 0 2%;
 }
 
+.content  img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .subNews {
   display: flex;
   flex-wrap: wrap;
@@ -64,7 +78,6 @@ code {
 .subNews-child {
   margin: 8px;
 }
-
 
 .clickable {
   cursor: pointer;
