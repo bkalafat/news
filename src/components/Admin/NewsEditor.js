@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
 import * as Const from "../../utils/constant"
@@ -12,8 +12,8 @@ import UploadAdapter from "./UploadAdapter"
 const NewsEditor = () => {
   const location = useLocation()
   const history = useHistory()
-
   const isUpdate = location.state ? (location.state.news ? true : false) : false
+
 
   function urlToFile(url, filename, mimeType) {
     return fetch(url)
@@ -28,33 +28,36 @@ const NewsEditor = () => {
       })
       .then(res => {
         setNews({ ...newNews, imgPath: res.data.fileUrl })
+        setUploaded(true)
       })
   }
 
   const { news } = isUpdate ? location.state : Const.DEFAULT_NEWS
 
+  const [isUploaded,setUploaded] = useState(false)
   const [newNews, setNews] = useState(news)
   const [selectedFile, setSelectedFile] = useState(null)
 
+  useEffect(() => {
+    if (isUploaded) {
+      if ("id" in newNews) {
+        API.updateNews(newNews).then(res => {
+          history.push("/AdminPanel")
+        })
+      } else {
+        API.createNews(newNews).then(res => {
+          history.push("/AdminPanel")
+        })
+      }
+    }
+  })
+
   const handleSubmit = event => {
     event.preventDefault()
-
-    if ("id" in newNews) {
-      API.updateNews(newNews).then(res => {
-        history.push("/AdminPanel")
-      })
-    } else {
-      API.createNews(newNews).then(res => {
-        history.push("/AdminPanel")
-      })
+    if (!selectedFile) {
+      alert("Lütfen ana fotoğrafı seçiniz")
+      return
     }
-  }
-
-  const fileSelectorHandler = event => {
-    setSelectedFile(event.target.files[0])
-  }
-
-  const fileUploadHandler = () => {
     Resizer.imageFileResizer(
       selectedFile,
       600,
@@ -63,21 +66,24 @@ const NewsEditor = () => {
       100,
       0,
       uri => {
-        console.log(uri)
-        urlToFile(uri, selectedFile.name, "image/jpeg")
+        urlToFile(uri, selectedFile.name, "image/jpeg").then(() => {})
       },
       "base64"
     )
   }
 
+  const fileSelectorHandler = event => {
+    setSelectedFile(event.target.files[0])
+  }
+
   const handleContentChange = (e, editor) => {
-    console.log(editor.getData())
+    setNews({ ...newNews, content: editor.getData() })
   }
 
   return (
     <div className="centerFlex">
       <input type="file" onChange={fileSelectorHandler} />
-      <button onClick={fileUploadHandler}>Yükle</button>
+
       <Form onSubmit={handleSubmit} className="col-md-10 col-xl-10">
         <Form.Group>
           <Form.Label>Kategori</Form.Label>
@@ -121,18 +127,9 @@ const NewsEditor = () => {
 
         <Form.Group>
           <Form.Label>İçerik</Form.Label>
-          <Form.Control
-            value={newNews.content}
-            onChange={e => setNews({ ...newNews, content: e.target.value })}
-            as="textarea"
-            rows="5"
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>İçerik</Form.Label>
           <CKEditor
             editor={ClassicEditor}
+            data={newNews.content}
             onInit={editor => {
               editor.plugins.get(
                 "FileRepository"

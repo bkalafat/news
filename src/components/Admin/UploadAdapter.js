@@ -9,16 +9,19 @@ export default class UploadAdapter {
 
   // Starts the upload process.
   upload() {
-    return this.loader.file.then(file => new Promise( ( resolve, reject ) => {
-      this.uploadJpeg(resolve, file)
-    }))
+    return this.loader.file.then(
+      file =>
+        new Promise(resolve => {
+          this.uploadJpeg(resolve, file)
+        })
+    )
   }
 
   uploadJpeg(resolve, file) {
     Resizer.imageFileResizer(
       file,
-      500,
-      400,
+      600,
+      300,
       "JPEG",
       100,
       0,
@@ -100,7 +103,7 @@ export default class UploadAdapter {
         return API.uploadFile(file)
       })
       .then(res => {
-        resolve ({
+        resolve({
           default: res.data.fileUrl
         })
       })
