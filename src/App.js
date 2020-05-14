@@ -6,7 +6,6 @@ import Navigator from "./components/Navigator"
 import Footer from "./components/Footer"
 import "bootstrap/dist/css/bootstrap.min.css"
 import NewsEditor from "./components/Admin/NewsEditor"
-import ContentEditor from "./components/Admin/ContentEditor"
 
 function App() {
   return (
@@ -25,9 +24,6 @@ function App() {
           </Route>
           <Route path="/NewsEditor">
             <NewsEditor />
-          </Route>
-          <Route path="/ContentEditor">
-            <ContentEditor />
           </Route>
         </Switch>
         <Footer />

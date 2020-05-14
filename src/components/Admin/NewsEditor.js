@@ -7,13 +7,12 @@ import { useHistory } from "react-router-dom"
 import Resizer from "react-image-file-resizer"
 import CKEditor from "@ckeditor/ckeditor5-react"
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
-import UploadAdapter from "./UploadAdapter"
+import UploadAdapter from "../../utils/UploadAdapter"
 
 const NewsEditor = () => {
   const location = useLocation()
   const history = useHistory()
   const isUpdate = location.state ? (location.state.news ? true : false) : false
-
 
   function urlToFile(url, filename, mimeType) {
     return fetch(url)
@@ -33,29 +32,32 @@ const NewsEditor = () => {
   }
 
   const { news } = isUpdate ? location.state : Const.DEFAULT_NEWS
-
-  const [isUploaded,setUploaded] = useState(false)
+  const [isUploaded, setUploaded] = useState(false)
   const [newNews, setNews] = useState(news)
   const [selectedFile, setSelectedFile] = useState(null)
 
   useEffect(() => {
     if (isUploaded) {
-      if ("id" in newNews) {
-        API.updateNews(newNews).then(res => {
-          history.push("/AdminPanel")
-        })
-      } else {
-        API.createNews(newNews).then(res => {
-          history.push("/AdminPanel")
-        })
-      }
+      saveNews()
     }
   })
+
+  const saveNews = () => {
+    if ("id" in newNews) {
+      API.updateNews(newNews).then(res => {
+        history.push("/AdminPanel")
+      })
+    } else {
+      API.createNews(newNews).then(res => {
+        history.push("/AdminPanel")
+      })
+    }
+  }
 
   const handleSubmit = event => {
     event.preventDefault()
     if (!selectedFile) {
-      alert("Lütfen ana fotoğrafı seçiniz")
+      alert("Lütfen fotoğraf seçiniz")
       return
     }
     Resizer.imageFileResizer(
@@ -74,10 +76,6 @@ const NewsEditor = () => {
 
   const fileSelectorHandler = event => {
     setSelectedFile(event.target.files[0])
-  }
-
-  const handleContentChange = (e, editor) => {
-    setNews({ ...newNews, content: editor.getData() })
   }
 
   return (
@@ -123,8 +121,6 @@ const NewsEditor = () => {
           />
         </Form.Group>
 
-        <br />
-
         <Form.Group>
           <Form.Label>İçerik</Form.Label>
           <CKEditor
@@ -136,10 +132,10 @@ const NewsEditor = () => {
               ).createUploadAdapter = loader => {
                 return new UploadAdapter(loader)
               }
-
-              console.log("Editor is ready to use!", editor)
             }}
-            onChange={handleContentChange}
+            onChange={(_e, editor) => {
+              setNews({ ...newNews, content: editor.getData() })
+            }}
           />
         </Form.Group>
 
