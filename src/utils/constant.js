@@ -9,7 +9,7 @@ export const DEFAULT_NEWS = {
       summary: "",
       content: "<h2>(Başlık)</h2<p></p><p></p><p>İçerik oluştur...</p><p>(Kopyala yapıştır ile direk sayfa alabilirsin)</p><p></p><p></p>",
       isActive: true,
-      priority: 88,
+      priority: 1,
       imgPath: "https://via.placeholder.com/500x250?text=HABER",
       imgAlt: "haber"
     }

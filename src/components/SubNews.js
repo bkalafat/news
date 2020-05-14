@@ -6,7 +6,7 @@ const SubNews = props => {
 
   const navigateDetail = news =>
     history.push({
-      pathname: "/NewsDetail",
+      pathname: "/detay/" + news.id,
       state: { news: news }
     })
 

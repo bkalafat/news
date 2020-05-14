@@ -2,6 +2,14 @@ import { getEnvironmentUrl, setDefaultValues } from "./helper"
 import axios from "axios"
 import * as Const from "./constant"
 
+export const getNewsList = () => {
+  return fetch(getEnvironmentUrl() + "news").then(res => res.json())
+}
+
+export const getNews = id => {
+  return fetch(getEnvironmentUrl() + "news/" + id).then(res => res.json())
+}
+
 export function createNews(news) {
   setDefaultValues(news)
 
@@ -9,9 +17,9 @@ export function createNews(news) {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(news),
+    body: JSON.stringify(news)
   })
     .then(res => res.json())
     .then(response => {
@@ -28,9 +36,9 @@ export function updateNews(news) {
   return fetch(getEnvironmentUrl() + "news/" + news.id, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(news),
+    body: JSON.stringify(news)
   })
     .then(response => {
       return response
@@ -42,7 +50,7 @@ export function updateNews(news) {
 
 export function deleteNews(id) {
   return fetch(getEnvironmentUrl() + "news/" + id, {
-    method: "DELETE",
+    method: "DELETE"
   })
     .then(response => {
       return response
@@ -59,9 +67,9 @@ export function uploadImage(news) {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(news),
+    body: JSON.stringify(news)
   })
     .then(res => res.json())
     .then(response => {

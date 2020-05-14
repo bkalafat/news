@@ -16,7 +16,7 @@ function App() {
           <Route exact path="/">
             <Content isAdmin={false} />
           </Route>
-          <Route path="/NewsDetail">
+          <Route path="/detay">
             <NewsDetail />
           </Route>
           <Route path="/AdminPanel">

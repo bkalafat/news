@@ -15,19 +15,28 @@ const Share = props => {
     return (
       <div>
         <FacebookShareButton
-          url={"https://haberibul.web.app/"}
+          url={"https://haberibul.web.app/detay/" + props.news.id}
           quote={props.news.caption}
           hashtag={"#" + props.news.categories}
         >
           <FacebookIcon size="2.5rem" logoFillColor="white" />
         </FacebookShareButton>
-        <TwitterShareButton url={"https://haberibul.web.app/"} title={props.news.caption}>
+        <TwitterShareButton
+          url={"https://haberibul.web.app/detay/" + props.news.id}
+          title={props.news.caption}
+        >
           <TwitterIcon size="2.5rem" />
         </TwitterShareButton>
-        <WhatsappShareButton url={"https://haberibul.web.app/"} title={props.news.caption}>
+        <WhatsappShareButton
+          url={"https://haberibul.web.app/detay/" + props.news.id}
+          title={props.news.caption}
+        >
           <WhatsappIcon size="2.5rem" />
         </WhatsappShareButton>
-        <TelegramShareButton url={"https://haberibul.web.app/"} title={props.news.caption}>
+        <TelegramShareButton
+          url={"https://haberibul.web.app/detay/" + props.news.id}
+          title={props.news.caption}
+        >
           <TelegramIcon size="2.5rem" />
         </TelegramShareButton>
       </div>

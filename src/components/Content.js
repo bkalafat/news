@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from "react"
 import News from "./News"
 import NewsList from "./Admin/NewsList"
-import { getEnvironmentUrl } from "../utils/helper"
 import ReactLoading from "react-loading"
+import * as API from "../utils/api"
 
-const Content = (props) => {
+const Content = props => {
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [newsList, setNewsList] = useState([])
 
   useEffect(() => {
-    fetch(getEnvironmentUrl() + "news")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true)
-          setNewsList(result)
-        },
-        (error) => {
-          setIsLoaded(true)
-          setError(error)
-          console.log(error)
-        }
-      )
+    API.getNewsList().then(
+      result => {
+        setIsLoaded(true)
+        setNewsList(result)
+      },
+      error => {
+        setIsLoaded(true)
+        setError(error)
+        console.log(error)
+      }
+    )
   }, [])
 
   if (error) {
@@ -35,7 +33,7 @@ const Content = (props) => {
       </div>
     )
   } else {
-    if (props.isAdmin) return  <NewsList newsList={newsList} />
+    if (props.isAdmin) return <NewsList newsList={newsList} />
     else return <News newsList={newsList} />
   }
 }
