@@ -30,11 +30,18 @@ const NewsDetail = () => {
     return (
       <div>
         <Helmet>
-          <title>Page 2</title>
+          <title>{news.caption} haber haberler detay bul</title>
+          <meta charSet="utf-8" />
+
           <meta
-            name="description"
-            content={news.caption}
+            property="og:url"
+            content={"https://haberibul.web.app/detay/" + news.id}
           />
+          <meta property="og:description" content={news.caption} />
+          <meta property="og:image" content="%PUBLIC_URL%/haberibul.png" />
+
+          <meta content={news.imgPath}></meta>
+          <meta name="description" content={news.caption} />
         </Helmet>
         <div className="newsDetail">
           <h1 className="spaceAround">{news.caption}</h1>
