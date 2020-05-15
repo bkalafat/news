@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import Share from "./Share"
 import * as API from "../utils/api"
+import { Helmet } from "react-helmet"
 
 const NewsDetail = () => {
   let location = useLocation()
@@ -28,6 +29,13 @@ const NewsDetail = () => {
   if (news) {
     return (
       <div>
+        <Helmet>
+          <title>Page 2</title>
+          <meta
+            name="description"
+            content={news.caption}
+          />
+        </Helmet>
         <div className="newsDetail">
           <h1 className="spaceAround">{news.caption}</h1>
           <p className="lead spaceAround">{news.summary}</p>

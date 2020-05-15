@@ -17,6 +17,7 @@
     "react-bootstrap-table-next": "^4.0.1",
     "react-dom": "^16.13.1",
     "react-elastic-carousel": "^0.4.1",
+    "react-helmet": "^6.0.0",
     "react-image-file-resizer": "^0.2.3",
     "react-loading": "^2.0.3",
     "react-responsive-carousel": "^3.2.5",
