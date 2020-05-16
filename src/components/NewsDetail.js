@@ -38,10 +38,14 @@ const NewsDetail = () => {
             content={"https://haberibul.web.app/detay/" + news.id}
           />
           <meta property="og:description" content={news.caption} />
-          <meta property="og:image" content={`${process.env.PUBLIC_URL}/haberibul.png`} />
+          <meta property="og:image" content={news.imgPath} />
 
-          <meta content={news.imgPath}></meta>
-          <meta name="description" content={news.caption} />
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:title"
+            content={news.caption + "haber haberler detay bul"}
+          />
+          <meta property="og:description" content={news.caption} />
         </Helmet>
         <div className="newsDetail">
           <h1 className="spaceAround">{news.caption}</h1>
@@ -55,6 +59,7 @@ const NewsDetail = () => {
         </div>
         <div
           className="container"
+          onContextMenu={e => e.preventDefault()}
           dangerouslySetInnerHTML={{
             __html: "<div class='container content'" + news.content + "</div>"
           }}

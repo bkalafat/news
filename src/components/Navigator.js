@@ -1,9 +1,7 @@
 import React from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const Navigator = () => {
-  let history = useHistory()
-
   return (
     <div>
       <nav className="navigator navbar navbar-expand-lg navbar-light bg-light">
@@ -11,24 +9,35 @@ const Navigator = () => {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Ana Sayfa
+                Haberler
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/spor">
+                Spor
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Hakkımızda
+                Magazin
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                İletişim
+                Teknoloji
               </Link>
             </li>
           </ul>
         </div>
       </nav>
       <div className="center">
-        <img className="logo" onClick={() => history.push("/")} alt="haberi bul logo" src={`${process.env.PUBLIC_URL}/haberibul.png`}></img>
+        <Link to="/">
+          <img
+            className="logo"
+            alt="haberi bul logo"
+            src={`${process.env.PUBLIC_URL}/haberibul.png`}
+          ></img>
+        </Link>
         <p>Haberi bulmanın en kolay yolu</p>
       </div>
     </div>

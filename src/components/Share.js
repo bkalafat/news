@@ -18,7 +18,8 @@ const Share = props => {
           url={"https://haberibul.web.app/detay/" + props.news.id}
           quote={props.news.caption}
           imageURL={props.news.imgPath}
-          hashtag={"#" + props.news.categories}
+          hashtag={"#" + props.news.caption}
+          media={props.news.imgPath}
         >
           <FacebookIcon size="2.5rem" logoFillColor="white" />
         </FacebookShareButton>
