@@ -14,7 +14,7 @@ function App() {
     <Router>
       <div className="App">
         <Navigator />
-        <SWRConfig value={{dedupingInterval:100000, fetcher:(url)=> axios(url).then(r=>r.data)}}>
+        <SWRConfig value={{dedupingInterval:1000000, fetcher:(url)=> axios(url).then(r=>r.data)}}>
           <Switch>
             <Route exact path="/">
               <Content isAdmin={false} />
