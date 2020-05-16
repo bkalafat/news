@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { BrowserView, MobileView } from "react-device-detect"
 
 const SubNews = props => {
   return (
@@ -25,9 +26,16 @@ const SubNews = props => {
 
           <div class="sub-header-text">
             <div class="col-md-12 col-sm-8 col-xs-8 text-center">
-              <h4>
-                <span>{news.caption}</span>
-              </h4>
+              <BrowserView>
+                <h2>
+                  <span>{news.caption}</span>
+                </h2>
+              </BrowserView>
+              <MobileView>
+                <h5>
+                  <span>{news.caption}</span>
+                </h5>
+              </MobileView>
             </div>
           </div>
         </div>
