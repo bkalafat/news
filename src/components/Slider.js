@@ -2,6 +2,7 @@ import React from "react"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from "react-responsive-carousel"
 import { Link } from "react-router-dom"
+import { BrowserView, MobileView } from "react-device-detect"
 
 function Slider(props) {
   return (
@@ -23,9 +24,16 @@ function Slider(props) {
               ></img>
               <div class="header-text">
                 <div class="col-md-12 col-sm-8 col-xs-8 text-center">
-                  <h2>
-                    <span className="beyaz-manset">{news.caption}</span>
-                  </h2>
+                  <BrowserView>
+                    <h1>
+                      <span className="beyaz-manset">{news.caption}</span>
+                    </h1>
+                  </BrowserView>
+                  <MobileView>
+                    <h5>
+                      <span className="beyaz-manset">{news.caption}</span>
+                    </h5>
+                  </MobileView>
                 </div>
               </div>
             </div>
