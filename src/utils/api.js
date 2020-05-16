@@ -2,9 +2,6 @@ import { getEnvironmentUrl, setDefaultValues } from "./helper"
 import axios from "axios"
 import * as Const from "./constant"
 
-export const getNewsList = () => {
-  return fetch(getEnvironmentUrl() + "news").then(res => res.json())
-}
 
 export const getNews = id => {
   return fetch(getEnvironmentUrl() + "news/" + id).then(res => res.json())
