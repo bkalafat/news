@@ -38,7 +38,7 @@ const NewsDetail = () => {
             content={"https://haberibul.web.app/detay/" + news.id}
           />
           <meta property="og:description" content={news.caption} />
-          <meta property="og:image" content="%PUBLIC_URL%/haberibul.png" />
+          <meta property="og:image" content={`${process.env.PUBLIC_URL}/haberibul.png`} />
 
           <meta content={news.imgPath}></meta>
           <meta name="description" content={news.caption} />
