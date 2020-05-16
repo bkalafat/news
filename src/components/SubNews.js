@@ -20,11 +20,11 @@ const SubNews = props => {
         >
           <img className="shadow resize" alt={news.imgAlt} src={news.imgPath} />
 
-          <div class="header-text">
+          <div class="sub-header-text">
             <div class="col-md-12 col-sm-8 col-xs-8 text-center">
-              <h2>
+              <h4>
                 <span>{news.caption}</span>
-              </h2>
+              </h4>
             </div>
           </div>
         </div>

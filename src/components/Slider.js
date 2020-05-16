@@ -22,7 +22,13 @@ function Slider(props) {
             key={news.id}
           >
             <img src={news.imgPath} alt="placeholder"></img>
-            <p className="legend">{news.caption}</p>
+              <div class="header-text">
+                <div class="col-md-12 col-sm-8 col-xs-8 text-center">
+                  <h2>
+                    <span className="beyaz-manset" >{news.caption}</span>
+                  </h2>
+                </div>
+              </div>
           </div>
         ))}
       </Carousel>
