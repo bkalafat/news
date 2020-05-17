@@ -17,3 +17,19 @@ export function setDefaultValues(news) {
 
   return news
 }
+
+export const deviceBaseStyle = (
+  isMobile,
+  wideStyle,
+  mobileStyle,
+  commonStyle
+) => {
+  let style = commonStyle + " "
+  if (isMobile) {
+    style = style + mobileStyle
+  } else {
+    style = style + wideStyle
+  }
+
+  return style
+}

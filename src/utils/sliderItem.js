@@ -25,7 +25,7 @@ export const Dots = dots => {
     </div>
   )
 }
-export const Paging = (index, currentSlide, testSettings) => {
+export const Paging = (index, currentSlide) => {
   return (
     <button style={index === currentSlide ? testSettings : null}>
       {index + 1}

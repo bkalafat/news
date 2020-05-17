@@ -8,12 +8,9 @@ import "slick-carousel/slick/slick-theme.css"
 import { Arrow, Dots, Paging } from "../utils/sliderItem"
 
 const SliderPage = props => {
-  const testSettings = {
-    backgroundColor: "rgba(155, 155, 155, 0.8)",
-    outline: "3"
-  }
 
-  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   var settings = {
     dots: true,
@@ -24,8 +21,8 @@ const SliderPage = props => {
     slidesToScroll: 1,
     nextArrow: <Arrow direction="right" />,
     prevArrow: <Arrow direction="left" />,
-    beforeChange: (prev, next) => {
-      setCurrentSlide(next)
+    beforeChange: (_prev, next) => {
+      setCurrentIndex(next)
     },
     // afterChange: (index) => this.setState({ currentSlide: index }),
     appendDots: dots => {
@@ -40,7 +37,7 @@ const SliderPage = props => {
       )
     },
     customPaging: index => {
-      return Paging(index, currentSlide, testSettings)
+      return Paging(index, currentIndex)
     }
   }
 

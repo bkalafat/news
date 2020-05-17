@@ -7,7 +7,7 @@ const SubNews = props => {
     <div className="subNews clickable">
       {props.newsList.map(news => (
         <div
-          className="col-xs-12 col-sm-12 col-md-4 subNews-child"
+          className="col-xs-12 col-sm-12 col-md-3 subNews-child relativeDiv"
           key={news.id}
         >
           <Link
@@ -18,7 +18,8 @@ const SubNews = props => {
             key={news.id}
           >
             <img
-              className="shadow resize"
+
+              className="stretchImg shadow"
               alt={news.imgAlt}
               src={news.imgPath}
             />
