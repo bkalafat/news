@@ -1,8 +1,8 @@
 import React from "react"
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact"
-import '@fortawesome/fontawesome-free/css/all.min.css'
-import 'bootstrap-css-only/css/bootstrap.min.css'
-import 'mdbreact/dist/css/mdb.css'
+import "@fortawesome/fontawesome-free/css/all.min.css"
+import "bootstrap-css-only/css/bootstrap.min.css"
+import "mdbreact/dist/css/mdb.css"
 
 const Footer = () => {
   return (
@@ -10,35 +10,15 @@ const Footer = () => {
       <MDBContainer fluid className="text-center text-md-left">
         <MDBRow>
           <MDBCol md="6">
-            <h5 className="title">Ajans Haber</h5>
-            <p>
-            Dünyadan en son haberler, Türkiye'den son dakika gelişmeleri, günün öne çıkan gündem haberleri,
-             dünya ekonomi piyasalarından flaş haberler, en yeni spor haberleri ve magazin dünyasından
-             son olaylar Ajansımızda.
-            </p>
-          </MDBCol>
-          <MDBCol md="6">
-            <h5 className="title">Bağlantılar</h5>
-            <ul>
-              <li className="list-unstyled">
-                <a href="https://github.com/bkalafat">GitHub</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Ana Sayfa</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">İletişim</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Biz Kimiz</a>
-              </li>
-            </ul>
+            <h5 className="title">Haberi bul</h5>
+            <p>Haber bulmanın en kolay yolu.</p>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
       <div className="footer-copyright text-center py-3">
         <MDBContainer fluid>
-          &copy {new Date().getFullYear()} Copyright: <a href="https://github.com/bkalafat"> bkalafat </a>
+          &copy {new Date().getFullYear()} Copyright:{" "}
+          <a href="https://github.com/bkalafat"> bkalafat </a>
         </MDBContainer>
       </div>
     </MDBFooter>
