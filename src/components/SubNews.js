@@ -1,13 +1,13 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { BrowserView, MobileView } from "react-device-detect"
+import { BrowserView, MobileView, isMobile } from "react-device-detect"
 
 const SubNews = props => {
   return (
     <div className="subNews clickable">
       {props.newsList.map(news => (
         <div
-          className="col-xs-12 col-sm-12 col-md-4 subNews-child"
+          className="col-xs-12 col-sm-12 col-md-3 subNews-child relativeDiv"
           key={news.id}
         >
           <Link
@@ -18,18 +18,19 @@ const SubNews = props => {
             key={news.id}
           >
             <img
-              className="shadow resize"
+
+              className="stretchImg shadow"
               alt={news.imgAlt}
               src={news.imgPath}
             />
           </Link>
 
-          <div class="sub-header-text">
-            <div class="col-md-12 col-sm-8 col-xs-8 text-center">
+          <div className="sub-header-text">
+            <div className={isMobile ? "text-center" : "col-md-12 text-center"}>
               <BrowserView>
-                <h2>
+                <h3>
                   <span>{news.caption}</span>
-                </h2>
+                </h3>
               </BrowserView>
               <MobileView>
                 <h5>

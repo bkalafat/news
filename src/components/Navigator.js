@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const Navigator = () => {
   return (
     <div>
-      <nav className="navigator navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navigator navbar navbar-expand-sm navbar-light bg-light">
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">

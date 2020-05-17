@@ -1,5 +1,5 @@
 import React from "react"
-import Slider from "./Slider"
+import SliderPage from "./SliderPage"
 import SubNews from "./SubNews"
 import Share from "./Share"
 import * as constant from "../utils/constant"
@@ -21,7 +21,7 @@ const News = props => {
     .sort(function (a, b) {
       return a.priority - b.priority
     })
-    .slice(0, 18)
+    .slice(0, 32)
 
   console.log(subNewsList)
 
@@ -43,7 +43,7 @@ const News = props => {
         />
       </Helmet>
       <div className="col-md-10 col-xl-10 noPadding">
-        <Slider newsList={sliderNewsList}></Slider>
+        <SliderPage newsList={sliderNewsList} />
       </div>
       <SubNews newsList={subNewsList}></SubNews>
       <Share news={sliderNewsList ? sliderNewsList[0] : null}></Share>
