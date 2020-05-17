@@ -1,5 +1,5 @@
 import React from "react"
-import Slider from "./Slider"
+import SliderPage from "./SliderPage"
 import SubNews from "./SubNews"
 import Share from "./Share"
 import * as constant from "../utils/constant"
@@ -43,7 +43,7 @@ const News = props => {
         />
       </Helmet>
       <div className="col-md-10 col-xl-10 noPadding">
-        <Slider newsList={sliderNewsList}></Slider>
+        <SliderPage newsList={sliderNewsList}/>
       </div>
       <SubNews newsList={subNewsList}></SubNews>
       <Share news={sliderNewsList ? sliderNewsList[0] : null}></Share>

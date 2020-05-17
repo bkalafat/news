@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { BrowserView, MobileView } from "react-device-detect"
+import { BrowserView, MobileView, isMobile } from "react-device-detect"
 
 const SubNews = props => {
   return (
@@ -24,8 +24,8 @@ const SubNews = props => {
             />
           </Link>
 
-          <div class="sub-header-text">
-            <div class="col-md-12 col-sm-8 col-xs-8 text-center">
+          <div className="sub-header-text">
+            <div className={isMobile ? "text-center" : "col-md-12 text-center"}>
               <BrowserView>
                 <h2>
                   <span>{news.caption}</span>
