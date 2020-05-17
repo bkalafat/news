@@ -15,13 +15,13 @@ const News = props => {
     .sort(function (a, b) {
       return a.priority - b.priority
     })
-    .slice(0, 14)
+    .slice(0, 13)
   const subNewsList = newsList
     .filter(news => news.isActive && news.type === constant.SUB_NEWS_TYPE)
     .sort(function (a, b) {
       return a.priority - b.priority
     })
-    .slice(0, 25)
+    .slice(0, 32)
 
   console.log(subNewsList)
 
