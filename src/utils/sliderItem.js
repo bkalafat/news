@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserView, MobileView } from "react-device-detect"
+import Pagination from "react-bootstrap/Pagination"
 
 export const Arrow = props => {
   const { className, style, onClick, direction } = props
@@ -14,26 +14,20 @@ export const Arrow = props => {
   )
 }
 
-export const Dots = dots => {
-  return (
-    <div>
-      <ul>
-        {dots.map((item, index) => {
-          return <li key={index}>{item.props.children}</li>
-        })}
-      </ul>
-    </div>
-  )
-}
-export const Paging = (index, currentSlide) => {
-  return (
-    <button style={index === currentSlide ? testSettings : null}>
-      {index + 1}
-    </button>
-  )
+export function Dots() {
+  return dots => {
+    return (
+      <div  >
+        <Pagination className="centerFlex" size="sm">{dots}</Pagination>
+      </div>
+    )
+  }
 }
 
-const testSettings = {
-  backgroundColor: "rgba(255, 255, 255, 0.8)",
-  outline: "0"
+export const Paging = (index, currentSlide) => {
+  return (
+    <Pagination.Item key={index} active={index === currentSlide}>
+      {index + 1}
+    </Pagination.Item>
+  )
 }

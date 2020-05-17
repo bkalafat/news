@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: "Playfair Display", serif;
 }
@@ -164,4 +169,20 @@ code {
 .beyaz-manset {
   font-family: GothamNarrow-Black;
   font-weight: 900;
+}
+
+.currentDot {
+  background-color: blueviolet;
+  color: crimson;
+}
+
+.defaultStyle {
+  background-color: blueviolet;
+  color: crimson;
+}
+
+.dotsClass {
+  top: -45px;
+  width: fit-content;
+  margin: auto;
 }

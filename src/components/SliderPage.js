@@ -8,12 +8,11 @@ import "slick-carousel/slick/slick-theme.css"
 import { Arrow, Dots, Paging } from "../utils/sliderItem"
 
 const SliderPage = props => {
-
-
   const [currentIndex, setCurrentIndex] = useState(0)
 
   var settings = {
     dots: true,
+    dotsClass: "dotsClass",
     arrows: !isMobile,
     infinite: true,
     speed: 500,
@@ -24,18 +23,7 @@ const SliderPage = props => {
     beforeChange: (_prev, next) => {
       setCurrentIndex(next)
     },
-    // afterChange: (index) => this.setState({ currentSlide: index }),
-    appendDots: dots => {
-      return (
-        <div>
-          <ul>
-            {dots.map((item, index) => {
-              return <li key={index}>{item.props.children}</li>
-            })}
-          </ul>
-        </div>
-      )
-    },
+    appendDots: Dots(),
     customPaging: index => {
       return Paging(index, currentIndex)
     }
@@ -77,4 +65,3 @@ const SliderPage = props => {
 }
 
 export default SliderPage
-

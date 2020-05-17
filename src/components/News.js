@@ -15,13 +15,13 @@ const News = props => {
     .sort(function (a, b) {
       return a.priority - b.priority
     })
-    .slice(0, 13)
+    .slice(0, 14)
   const subNewsList = newsList
     .filter(news => news.isActive && news.type === constant.SUB_NEWS_TYPE)
     .sort(function (a, b) {
       return a.priority - b.priority
     })
-    .slice(0, 18)
+    .slice(0, 25)
 
   console.log(subNewsList)
 
@@ -43,7 +43,7 @@ const News = props => {
         />
       </Helmet>
       <div className="col-md-10 col-xl-10 noPadding">
-        <SliderPage newsList={sliderNewsList}/>
+        <SliderPage newsList={sliderNewsList} />
       </div>
       <SubNews newsList={subNewsList}></SubNews>
       <Share news={sliderNewsList ? sliderNewsList[0] : null}></Share>

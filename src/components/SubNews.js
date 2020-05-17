@@ -28,14 +28,14 @@ const SubNews = props => {
           <div className="sub-header-text">
             <div className={isMobile ? "text-center" : "col-md-12 text-center"}>
               <BrowserView>
-                <h2>
+                <h4>
                   <span>{news.caption}</span>
-                </h2>
+                </h4>
               </BrowserView>
               <MobileView>
-                <h5>
+                <h7>
                   <span>{news.caption}</span>
-                </h5>
+                </h7>
               </MobileView>
             </div>
           </div>
