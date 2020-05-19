@@ -9,6 +9,7 @@ import NewsEditor from "./components/Admin/NewsEditor"
 import { SWRConfig } from "swr"
 import axios from 'axios'
 import { Helmet } from "react-helmet"
+import { isMobile } from "react-device-detect"
 
 function App() {
   return (
@@ -23,16 +24,16 @@ function App() {
           property="og:url"
           content={"https://haberibul.web.app/"}
         />
-        <meta property="og:image" content={`${process.env.PUBLIC_URL}/haberibul.png`}/>
+        <meta property="og:image" content={`${process.env.PUBLIC_URL}/haberibul.png`} />
         <meta property="og:site_name" content="Haberibul"></meta>
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
           content={"haber haberler haberibul haberbul detay bul son dakika"}
         />
-        <meta property="og:description" content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"/>
+        <meta property="og:description" content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com" />
       </Helmet>
-      <div className="App">
+      <div className={!isMobile ? "App" : ""} >
         <Navigator />
         <SWRConfig value={{ dedupingInterval: 1000000, fetcher: (url) => axios(url).then(r => r.data) }}>
           <Switch>
@@ -52,7 +53,7 @@ function App() {
         </SWRConfig>
         <Footer />
       </div>
-    </Router>
+    </Router >
   )
 }
 

@@ -96,6 +96,7 @@ code {
   padding: 7px;
   border-radius: 4px;
 }
+
 .centered {
   position: absolute;
   top: 30%;
@@ -151,6 +152,7 @@ code {
   opacity: 0.7;
   letter-spacing: -1px;
 }
+
 .sub-header-text {
   position: absolute;
   bottom: 3%;
@@ -185,4 +187,16 @@ code {
   top: -45px;
   width: fit-content;
   margin: auto;
+}
+
+
+.App {
+  width: 1200px;
+  margin: auto;
+  padding: 0 10px;
+  background: #fff;
+}
+
+#root {
+  background: #f8f8f8;
 }

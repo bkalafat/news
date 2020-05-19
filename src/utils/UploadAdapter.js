@@ -18,8 +18,8 @@ export default class UploadAdapter {
   uploadJpeg(resolve, file) {
     Resizer.imageFileResizer(
       file,
-      600,
-      300,
+      900,
+      500,
       "JPEG",
       100,
       0,
