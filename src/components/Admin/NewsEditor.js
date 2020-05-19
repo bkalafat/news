@@ -57,8 +57,8 @@ const NewsEditor = () => {
     if (selectedFile) {
       Resizer.imageFileResizer(
         selectedFile,
-        600,
-        300,
+        900,
+        500,
         "JPEG",
         100,
         0,
