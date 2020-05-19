@@ -61,12 +61,14 @@ const NewsDetail = () => {
           className="container"
           onContextMenu={e => e.preventDefault()}
           dangerouslySetInnerHTML={{
-            __html: "<div class='container content'" + news.content + "</div>"
+            __html: "<div class='container content center-item  text-center'" + news.content + "</div>"
           }}
         />
       </div>
     )
   } else return <div />
 }
+
+//TODO bkalafat detay sayfada resimler ortada yazılar sola yaslı kalsın.
 
 export default NewsDetail
