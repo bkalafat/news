@@ -39,11 +39,11 @@ const NewsDetail = () => {
           />
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />
-
+          <meta property="og:site_name" content="Haberibul"></meta>
           <meta property="og:type" content="website" />
           <meta
             property="og:title"
-            content={news.caption + "haber haberler detay bul"}
+            content={news.caption + "haber haberler haberibul haberbul detay bul son dakika"}
           />
           <meta property="og:description" content={news.caption} />
         </Helmet>
