@@ -34,7 +34,6 @@ const SliderPage = props => {
       <Slider {...settings}>
         {props.newsList.map(news => (
           <div className="ratio">
-            <img className="imgRatio" src={news.imgPath} alt="placeholder" />
             <Link
               to={{
                 pathname: "/detay/" + news.id,
@@ -42,6 +41,7 @@ const SliderPage = props => {
               }}
               key={news.id}
             >
+              <img className="imgRatio" src={news.imgPath} alt="placeholder" />
               <div class="header-text">
                 <div class="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
                   <BrowserView>
