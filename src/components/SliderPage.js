@@ -17,6 +17,8 @@ const SliderPage = props => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2400,
     slidesToScroll: 1,
     nextArrow: <Arrow direction="right" />,
     prevArrow: <Arrow direction="left" />,

@@ -22,7 +22,7 @@ function App() {
 
         <meta
           property="og:url"
-          content={"https://haberibul.web.app/"}
+          content={"https://haberibul.com/"}
         />
         <meta property="og:image" content={`${process.env.PUBLIC_URL}/haberibul.png`} />
         <meta property="og:site_name" content="Haberibul"></meta>

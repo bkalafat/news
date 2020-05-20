@@ -37,13 +37,17 @@ const NewsDetail = () => {
             property="og:url"
             content={"https://haberibul.com/detay/" + news.id}
           />
+          <meta property="description" content={news.caption} />
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />
           <meta property="og:site_name" content="Haberibul"></meta>
           <meta property="og:type" content="website" />
           <meta
             property="og:title"
-            content={news.caption + "haber haberler haberibul haberbul detay bul son dakika"}
+            content={
+              news.caption +
+              "haber haberler haberibul haberbul detay bul son dakika"
+            }
           />
           <meta property="og:description" content={news.caption} />
         </Helmet>
@@ -61,7 +65,10 @@ const NewsDetail = () => {
           className="container"
           onContextMenu={e => e.preventDefault()}
           dangerouslySetInnerHTML={{
-            __html: "<div class='container content center-item  text-center'" + news.content + "</div>"
+            __html:
+              "<div class='container content center-item  text-center'" +
+              news.content +
+              "</div>"
           }}
         />
       </div>
