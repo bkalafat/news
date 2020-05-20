@@ -14,6 +14,7 @@ const SliderPage = props => {
     dots: true,
     dotsClass: "dotsClass",
     arrows: !isMobile,
+    lazyLoad: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -31,6 +32,7 @@ const SliderPage = props => {
     }
   }
 
+
   return (
     <div style={{ marginBottom: 40 }}>
       <Slider {...settings}>
@@ -38,12 +40,12 @@ const SliderPage = props => {
           <div key={news.id} className="ratio">
             <Link
               to={{
-                pathname: "/detay/" + news.id,
+                pathname: "/detay/" + news.caption.split(" ").join("-").toLowerCase(),
                 state: { news: news }
               }}
               key={news.id}
             >
-              <img className="imgRatio" src={news.imgPath} alt="placeholder" />
+              <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
               <div className="header-text">
                 <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
                   <BrowserView>

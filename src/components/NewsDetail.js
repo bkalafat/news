@@ -13,9 +13,9 @@ const NewsDetail = () => {
       setNews(location.state.news)
     } else {
       const urlItems = location.pathname.split("/")
-      const id = urlItems[urlItems.length - 1]
+      const dashCaption = urlItems[urlItems.length - 1]
 
-      API.getNews(id).then(
+      API.getNewsByDashCaption(dashCaption).then(
         result => {
           setNews(result)
         },
@@ -35,7 +35,10 @@ const NewsDetail = () => {
 
           <meta
             property="og:url"
-            content={"https://haberibul.com/detay/" + news.id}
+            content={
+              "https://haberibul.com/detay/" +
+              news.caption.split(" ").join("-").toLowerCase()
+            }
           />
           <meta property="description" content={news.caption} />
           <meta property="og:description" content={news.caption} />
