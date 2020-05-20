@@ -17,9 +17,9 @@ export const Arrow = props => {
 export function Dots() {
   return dots => {
     return (
-      <div  >
-        <Pagination className="centerFlex" size="sm">{dots}</Pagination>
-      </div>
+      <Pagination className="centerFlex" size="sm">
+        {dots}
+      </Pagination>
     )
   }
 }

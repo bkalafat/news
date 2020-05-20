@@ -23,8 +23,6 @@ const News = props => {
     })
     .slice(0, 32)
 
-  console.log(subNewsList)
-
   return (
     <div className="centerFlex">
       <Helmet>

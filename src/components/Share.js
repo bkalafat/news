@@ -17,13 +17,14 @@ const Share = props => {
         <FacebookShareButton
           url={"https://haberibul.com/detay/" + props.news.id}
           quote={props.news.caption}
-          imageURL={props.news.imgPath}
+          imageurl={props.news.imgPath}
           hashtag={"#" + props.news.caption}
           media={props.news.imgPath}
         >
           <FacebookIcon size="2.5rem" logoFillColor="white" />
         </FacebookShareButton>
         <TwitterShareButton
+          imageurl={props.news.imgPath}
           url={"https://haberibul.com/detay/" + props.news.id}
           title={props.news.caption}
           media={props.news.imgPath}
@@ -31,6 +32,7 @@ const Share = props => {
           <TwitterIcon size="2.5rem" />
         </TwitterShareButton>
         <WhatsappShareButton
+          imageurl={props.news.imgPath}
           url={"https://haberibul.com/detay/" + props.news.id}
           title={props.news.caption}
           media={props.news.imgPath}
@@ -38,6 +40,7 @@ const Share = props => {
           <WhatsappIcon size="2.5rem" />
         </WhatsappShareButton>
         <TelegramShareButton
+          imageurl={props.news.imgPath}
           url={"https://haberibul.com/detay/" + props.news.id}
           title={props.news.caption}
           media={props.news.imgPath}

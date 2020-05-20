@@ -14,7 +14,8 @@ import { isMobile } from "react-device-detect"
 function App() {
   return (
     <Router>
-      <Helmet>
+      <Helmet titleTemplate="%s - Haberi bul" defaultTitle="Haberi bul">
+
         <title>Haberi Bul</title>
         <meta name="description"
           content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com" />

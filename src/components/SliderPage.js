@@ -35,7 +35,7 @@ const SliderPage = props => {
     <div style={{ marginBottom: 40 }}>
       <Slider {...settings}>
         {props.newsList.map(news => (
-          <div className="ratio">
+          <div key={news.id} className="ratio">
             <Link
               to={{
                 pathname: "/detay/" + news.id,
@@ -44,8 +44,8 @@ const SliderPage = props => {
               key={news.id}
             >
               <img className="imgRatio" src={news.imgPath} alt="placeholder" />
-              <div class="header-text">
-                <div class="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
+              <div className="header-text">
+                <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
                   <BrowserView>
                     <h1>
                       <span className="beyaz-manset">{news.caption}</span>
