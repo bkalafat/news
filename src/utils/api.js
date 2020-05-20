@@ -7,8 +7,8 @@ export const getNews = id => {
   return fetch(getEnvironmentUrl() + "news/" + id).then(res => res.json())
 }
 
-export const getNewsByDashCaption = dashCaption => {
-  return fetch(getEnvironmentUrl() + "news/"  + dashCaption).then(res => res.json())
+export const getNewsByUrl = url => {
+  return fetch(getEnvironmentUrl() + "news/"  + url).then(res => res.json())
 }
 
 export function createNews(news) {

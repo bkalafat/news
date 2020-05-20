@@ -132,7 +132,7 @@ namespace newsApi.Data
             };
         }
 
-        public News Get(string dashCaption)
+        public News Get(string url)
         {
             throw new NotImplementedException();
         }

@@ -32,7 +32,6 @@ const SliderPage = props => {
     }
   }
 
-
   return (
     <div style={{ marginBottom: 40 }}>
       <Slider {...settings}>
@@ -40,7 +39,7 @@ const SliderPage = props => {
           <div key={news.id} className="ratio">
             <Link
               to={{
-                pathname: "/detay/" + news.caption.split(" ").join("-").toLowerCase(),
+                pathname: "/detay/" + news.url,
                 state: { news: news }
               }}
               key={news.id}

@@ -13,7 +13,7 @@ const SubNews = props => {
           <Link
             to={{
               pathname:
-                "/detay/" + news.caption.split(" ").join("-").toLowerCase(),
+                "/detay/" + news.url,
               state: { news: news }
             }}
             key={news.id}

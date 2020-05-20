@@ -10,7 +10,7 @@ namespace newsApi.Data
 
         public News Get(Guid id);
 
-        public News Get(string dashCaption);
+        public News Get(string url);
 
         public News Create(News news);
 

@@ -15,7 +15,7 @@ const NewsDetail = () => {
       const urlItems = location.pathname.split("/")
       const dashCaption = urlItems[urlItems.length - 1]
 
-      API.getNewsByDashCaption(dashCaption).then(
+      API.getNewsByUrl(dashCaption).then(
         result => {
           setNews(result)
         },
