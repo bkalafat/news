@@ -19,18 +19,57 @@ export function setDefaultValues(news) {
   return news
 }
 
-export const deviceBaseStyle = (
-  isMobile,
-  wideStyle,
-  mobileStyle,
-  commonStyle
-) => {
-  let style = commonStyle + " "
-  if (isMobile) {
-    style = style + mobileStyle
-  } else {
-    style = style + wideStyle
+export const getDummyNews = () => {
+
+  let news = []
+
+  for (var index = 0; index < 13; index++) {
+    news.push(
+      {
+        id: index,
+        category: "Placeholder",
+        type: "news",
+        caption: "Haberibul.com",
+        summary: "Haberibul.com",
+        imgPath: "https://via.placeholder.com/30x18?text=Haberibul.com",
+        imgAlt: "Haberi bul",
+        content:
+          "Haberi bul",
+        subjects: ["haberi bul"],
+        authors: ["Mustafa Çolakoğlu", "Burak Kalafat"],
+        createdDate: "2020-04-23T18:25:43.511Z",
+        updateDate: "2020-05-01T14:35:43.511Z",
+        expressDate: "2020-05-01T14:35:43.511Z",
+        priority: 1,
+        isActive: true,
+        url: "haberibul"
+      }
+    )
   }
 
-  return style
+  for (var subIndex = 0; subIndex < 12; subIndex++) {
+    news.push(
+      {
+        id: subIndex,
+        category: "Placeholder",
+        type: "subNews",
+        caption: "Haberibul.com",
+        summary: "Haberibul.com",
+        imgPath: "https://via.placeholder.com/30x18?text=Haberibul.com",
+        imgAlt: "Haberi bul",
+        content:
+          "Haberi bul",
+        subjects: ["haberi bul"],
+        authors: ["Mustafa Çolakoğlu", "Burak Kalafat"],
+        createdDate: "2020-04-23T18:25:43.511Z",
+        updateDate: "2020-05-01T14:35:43.511Z",
+        expressDate: "2020-05-01T14:35:43.511Z",
+        priority: 1,
+        isActive: true,
+        url: "haberibul"
+      }
+    )
+  }
+
+  return news
 }
