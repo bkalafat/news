@@ -31,7 +31,7 @@ export const getDummyNews = () => {
         type: "news",
         caption: "Haberibul.com",
         summary: "Haberibul.com",
-        imgPath: "https://via.placeholder.com/30x18?text=Haberibul.com",
+        imgPath: "https://via.placeholder.com/300x180?text=Haberibul.com",
         imgAlt: "Haberi bul",
         content:
           "Haberi bul",
@@ -55,7 +55,7 @@ export const getDummyNews = () => {
         type: "subNews",
         caption: "Haberibul.com",
         summary: "Haberibul.com",
-        imgPath: "https://via.placeholder.com/30x18?text=Haberibul.com",
+        imgPath: "https://via.placeholder.com/300x180?text=Haberibul.com",
         imgAlt: "Haberi bul",
         content:
           "Haberi bul",

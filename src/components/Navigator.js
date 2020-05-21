@@ -36,7 +36,7 @@ const Navigator = () => {
             className="logo"
             alt="haberi bul logo"
             src={`${process.env.PUBLIC_URL}/haberibul.png`}
-          ></img>
+          />
         </Link>
         <p>Haberi bulmanın en kolay yolu</p>
       </div>
