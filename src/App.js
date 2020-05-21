@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <Helmet titleTemplate="%s - Haberi bul" defaultTitle="Haberi bul">
-        <meta http-equiv="content-language" content="tr"/>
+        <meta http-equiv="content-language" content="tr" />
         <meta property="og:type" content="website" />
         <meta charSet="utf-8" />
       </Helmet>

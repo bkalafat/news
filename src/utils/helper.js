@@ -19,6 +19,7 @@ export function setDefaultValues(news) {
   return news
 }
 
+
 export const getDummyNews = () => {
 
   let news = []
