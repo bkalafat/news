@@ -16,7 +16,6 @@ const SubNews = props => {
                 "/detay/" + news.url,
               state: { news: news }
             }}
-            key={news.id}
           >
             <img
               className="stretchImg shadow"
