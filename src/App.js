@@ -7,7 +7,7 @@ import Footer from "./components/Footer"
 import "bootstrap/dist/css/bootstrap.min.css"
 import NewsEditor from "./components/Admin/NewsEditor"
 import { SWRConfig } from "swr"
-import axios from 'axios'
+import axios from "axios"
 import { Helmet } from "react-helmet"
 import { isMobile } from "react-device-detect"
 
@@ -15,28 +15,18 @@ function App() {
   return (
     <Router>
       <Helmet titleTemplate="%s - Haberi bul" defaultTitle="Haberi bul">
-
-        <title>Haberi Bul</title>
-        <meta name="description"
-          content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com" />
-        <meta charSet="utf-8" />
-
-        <meta
-          property="og:url"
-          content={"https://haberibul.com/"}
-        />
-        <meta property="og:image" content={`${process.env.PUBLIC_URL}/haberibul.png`} />
-        <meta property="og:site_name" content="Haberibul"></meta>
+        <meta http-equiv="content-language" content="tr"/>
         <meta property="og:type" content="website" />
-        <meta
-          property="og:title"
-          content={"haber haberler haberibul haberbul detay bul son dakika"}
-        />
-        <meta property="og:description" content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com" />
+        <meta charSet="utf-8" />
       </Helmet>
-      <div className={!isMobile ? "App" : ""} >
+      <div className={!isMobile ? "App" : ""}>
         <Navigator />
-        <SWRConfig value={{ dedupingInterval: 1000000, fetcher: (url) => axios(url).then(r => r.data) }}>
+        <SWRConfig
+          value={{
+            dedupingInterval: 1000000,
+            fetcher: url => axios(url).then(r => r.data)
+          }}
+        >
           <Switch>
             <Route exact path="/">
               <Content isAdmin={false} />
@@ -54,7 +44,7 @@ function App() {
         </SWRConfig>
         <Footer />
       </div>
-    </Router >
+    </Router>
   )
 }
 
