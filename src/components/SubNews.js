@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { BrowserView, MobileView, isMobile } from "react-device-detect"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 const SubNews = props => {
   return (
@@ -12,12 +13,11 @@ const SubNews = props => {
         >
           <Link
             to={{
-              pathname:
-                "/detay/" + news.url,
+              pathname: "/detay/" + news.url,
               state: { news: news }
             }}
           >
-            <img
+            <LazyLoadImage
               className="stretchImg shadow"
               alt={news.imgAlt}
               src={news.imgPath}

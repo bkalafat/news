@@ -21,6 +21,7 @@
     "react-elastic-carousel": "^0.4.1",
     "react-helmet": "^6.0.0",
     "react-image-file-resizer": "^0.2.3",
+    "react-lazy-load-image-component": "^1.4.3",
     "react-loading": "^2.0.3",
     "react-responsive-carousel": "^3.2.5",
     "react-router-dom": "^5.1.2",
