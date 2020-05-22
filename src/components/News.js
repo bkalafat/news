@@ -1,7 +1,6 @@
 import React from "react"
 import SliderPage from "./SliderPage"
 import SubNews from "./SubNews"
-import Share from "./Share"
 import * as constant from "../utils/constant"
 import { Helmet } from "react-helmet"
 
@@ -54,7 +53,6 @@ const News = props => {
         <SliderPage newsList={sliderNewsList} />
       </div>
       <SubNews newsList={subNewsList}></SubNews>
-      <Share news={sliderNewsList ? sliderNewsList[0] : null}></Share>
     </div>
   )
 }

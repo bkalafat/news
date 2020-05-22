@@ -189,11 +189,23 @@ code {
   margin: auto;
 }
 
-
-.App {
+article {
+  height: 150;
+  text-align: center;
 }
 
+footer {
+  padding: 5px;
+  background-color: #001f3f;
+  color: #fff;
+}
+
+.App {
+  width: 1200px;
+  margin: auto;
+  padding: 0 10px;
+  background: #fff;
+}
 #root {
   background: #f8f8f8;
 }
-
