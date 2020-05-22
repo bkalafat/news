@@ -30,10 +30,16 @@ const NewsDetail = () => {
     return (
       <div>
         <Helmet>
-          <title>{news.caption} haber haberler detay bul</title>
-
+          <title>{news.caption} haber haberler haberi bul haberibul.com</title>
           <meta
             property="og:url"
+            content={
+              "https://haberibul.com/detay/" +
+              news.caption.split(" ").join("-").toLowerCase()
+            }
+          />
+          <meta
+            property="url"
             content={
               "https://haberibul.com/detay/" +
               news.caption.split(" ").join("-").toLowerCase()
@@ -42,7 +48,7 @@ const NewsDetail = () => {
           <meta property="description" content={news.caption} />
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />
-          <meta property="og:site_name" content="Haberibul"></meta>
+          <meta property="og:site_name" content="Haberibul" />
 
           <meta
             property="og:title"
