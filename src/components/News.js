@@ -1,5 +1,6 @@
 import React from "react"
 import SliderPage from "./SliderPage"
+import SubSliderPage from "./SubSliderPage"
 import SubNews from "./SubNews"
 import * as constant from "../utils/constant"
 import { Helmet } from "react-helmet"
@@ -21,7 +22,8 @@ const News = props => {
     .sort(function (a, b) {
       return a.priority - b.priority
     })
-    .slice(0, 32).concat(mainNews.slice(13, mainNews.length))
+    .slice(0, 32)
+  const extraNews = mainNews.slice(13, 26)
 
   return (
     <div className="centerFlex">
@@ -51,6 +53,7 @@ const News = props => {
       </Helmet>
       <div className="col-md-10 col-xl-10 noPadding">
         <SliderPage newsList={sliderNewsList} />
+        <SubSliderPage newsList={extraNews} />
       </div>
       <SubNews newsList={subNewsList}></SubNews>
     </div>
