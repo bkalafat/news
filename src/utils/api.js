@@ -33,7 +33,6 @@ export function createNews(news) {
 
 export function updateNews(news) {
   news.updateDate = new Date().toISOString()
-  news.url = news.caption.toLowerCase();
 
   return fetch(getEnvironmentUrl() + "news/" + news.id, {
     method: "PUT",
