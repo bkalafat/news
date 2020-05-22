@@ -9,18 +9,19 @@ const News = props => {
 
   if (!newsList && newsList.length !== 0) return <div />
 
-  const sliderNewsList = newsList
+  const mainNews = newsList
     .filter(news => news.isActive && news.type === constant.NEWS_TYPE)
     .sort(function (a, b) {
       return a.priority - b.priority
     })
-    .slice(0, 13)
+  const sliderNewsList = mainNews.slice(0, 13)
+
   const subNewsList = newsList
     .filter(news => news.isActive && news.type === constant.SUB_NEWS_TYPE)
     .sort(function (a, b) {
       return a.priority - b.priority
     })
-    .slice(0, 32)
+    .slice(0, 32).concat(mainNews.slice(13, mainNews.length))
 
   return (
     <div className="centerFlex">
@@ -47,7 +48,6 @@ const News = props => {
           name="og:keywords"
           content="Güncel,en son,son dakika,haberibul.com,haberi,bul,haberibul,canlı,gündem,spor,magazin,flash,haber,trabzon,sürmene,karamba"
         />
-
       </Helmet>
       <div className="col-md-10 col-xl-10 noPadding">
         <SliderPage newsList={sliderNewsList} />
