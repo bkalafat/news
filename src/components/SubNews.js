@@ -16,6 +16,7 @@ const SubNews = props => {
               pathname: "/detay/" + news.url,
               state: { news: news }
             }}
+            target={isMobile ? "_self" : "_blank"}
           >
             <LazyLoadImage
               className="stretchImg shadow"

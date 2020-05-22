@@ -42,6 +42,7 @@ const SliderPage = props => {
                 pathname: "/detay/" + news.url,
                 state: { news: news }
               }}
+              target={isMobile ? "_self" : "_blank"}
               key={news.id}
             >
               <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
