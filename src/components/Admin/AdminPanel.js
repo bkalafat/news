@@ -3,24 +3,23 @@ import { useHistory } from "react-router-dom"
 import BootstrapTable from "react-bootstrap-table-next"
 import { NEWS_TYPE } from "../../utils/constant"
 
-const NewsList = (props) => {
+const AdminPanel = props => {
   const history = useHistory()
   const navigateForCreate = () =>
     history.push({
-      pathname: "/NewsEditor",
+      pathname: "/NewsEditor"
     })
 
-  const navigateForUpdate = (news) =>
+  const navigateForUpdate = news =>
     history.push({
       pathname: "/NewsEditor",
-      state: { news: news },
+      state: { news: news }
     })
 
   function typeFormatter(cell, row) {
-    if (cell===NEWS_TYPE) {
+    if (cell === NEWS_TYPE) {
       return "Ana Haber"
-    }
-    else {
+    } else {
       return "Alt Haber"
     }
   }
@@ -29,43 +28,48 @@ const NewsList = (props) => {
     {
       dataField: "caption",
       text: "Başık",
-      sort: true,
+      sort: true
     },
     {
       dataField: "type",
       text: "Tip",
-      formatter: typeFormatter,
+      formatter: typeFormatter
     },
     {
       dataField: "category",
-      text: "Kategori",
+      text: "Kategori"
     },
     {
       dataField: "priority",
       text: "Öncelik",
-      sort: true,
+      sort: true
     },
     {
       dataField: "isActive",
-      text: "Durum",
-    },
+      text: "Durum"
+    }
   ]
 
   const defaultSorted = [
     {
       dataField: "priority",
-      order: "asc",
-    },
+      order: "asc"
+    }
   ]
 
   const rowEvents = {
     onClick: (e, row) => {
       navigateForUpdate(row)
-    },
+    }
   }
 
   return (
     <div className="center-item">
+      <input
+        onClick={navigateForCreate}
+        type="submit"
+        value="Yeni Haber Ekle"
+      />
       <BootstrapTable
         bootstrap4
         keyField="id"
@@ -77,13 +81,8 @@ const NewsList = (props) => {
         hover
         condensed
       />
-      <input
-        onClick={navigateForCreate}
-        type="submit"
-        value="Yeni Haber Ekle"
-      />
     </div>
   )
 }
 
-export default NewsList
+export default AdminPanel

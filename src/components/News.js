@@ -23,15 +23,13 @@ const News = props => {
     })
     .slice(0, 32)
 
-  console.log(subNewsList)
-
   return (
     <div className="centerFlex">
       <Helmet>
         <title>Haberi Bul</title>
         <meta charSet="utf-8" />
 
-        <meta property="og:url" content={"https://haberibul.web.app/"} />
+        <meta property="og:url" content={"https://haberibul.com/"} />
         <meta
           property="og:description"
           content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"

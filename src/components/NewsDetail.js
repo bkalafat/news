@@ -13,9 +13,9 @@ const NewsDetail = () => {
       setNews(location.state.news)
     } else {
       const urlItems = location.pathname.split("/")
-      const id = urlItems[urlItems.length - 1]
+      const dashCaption = urlItems[urlItems.length - 1]
 
-      API.getNews(id).then(
+      API.getNewsByUrl(dashCaption).then(
         result => {
           setNews(result)
         },
@@ -31,19 +31,25 @@ const NewsDetail = () => {
       <div>
         <Helmet>
           <title>{news.caption} haber haberler detay bul</title>
-          <meta charSet="utf-8" />
 
           <meta
             property="og:url"
-            content={"https://haberibul.com/detay/" + news.id}
+            content={
+              "https://haberibul.com/detay/" +
+              news.caption.split(" ").join("-").toLowerCase()
+            }
           />
+          <meta property="description" content={news.caption} />
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />
           <meta property="og:site_name" content="Haberibul"></meta>
-          <meta property="og:type" content="website" />
+
           <meta
             property="og:title"
-            content={news.caption + "haber haberler haberibul haberbul detay bul son dakika"}
+            content={
+              news.caption +
+              "haber haberler haberibul haberbul detay bul son dakika"
+            }
           />
           <meta property="og:description" content={news.caption} />
         </Helmet>
@@ -61,7 +67,10 @@ const NewsDetail = () => {
           className="container"
           onContextMenu={e => e.preventDefault()}
           dangerouslySetInnerHTML={{
-            __html: "<div class='container content center-item  text-center'" + news.content + "</div>"
+            __html:
+              "<div class='container content center-item  text-center'" +
+              news.content +
+              "</div>"
           }}
         />
       </div>

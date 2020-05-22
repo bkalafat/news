@@ -21,6 +21,7 @@ namespace newsApi.Models
         public DateTime UpdateDate { get; set; }
         public int Priority { get; set; }
         public bool IsActive { get; set; }
+        public string Url { get; set; }
     }
 
     public class NewsDatabaseSettings : INewsDatabaseSettings

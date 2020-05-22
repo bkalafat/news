@@ -14,9 +14,12 @@ const SliderPage = props => {
     dots: true,
     dotsClass: "dotsClass",
     arrows: !isMobile,
+    lazyLoad: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 4500,
     slidesToScroll: 1,
     nextArrow: <Arrow direction="right" />,
     prevArrow: <Arrow direction="left" />,
@@ -33,17 +36,17 @@ const SliderPage = props => {
     <div style={{ marginBottom: 40 }}>
       <Slider {...settings}>
         {props.newsList.map(news => (
-          <div className="ratio">
+          <div key={news.id} className="ratio">
             <Link
               to={{
-                pathname: "/detay/" + news.id,
+                pathname: "/detay/" + news.url,
                 state: { news: news }
               }}
               key={news.id}
             >
-              <img className="imgRatio" src={news.imgPath} alt="placeholder" />
-              <div class="header-text">
-                <div class="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
+              <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
+              <div className="header-text">
+                <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
                   <BrowserView>
                     <h1>
                       <span className="beyaz-manset">{news.caption}</span>

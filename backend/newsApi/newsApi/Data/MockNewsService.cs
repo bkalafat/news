@@ -132,6 +132,11 @@ namespace newsApi.Data
             };
         }
 
+        public News Get(string url)
+        {
+            throw new NotImplementedException();
+        }
+
         public News Create(News news)
         {
             throw new NotImplementedException();

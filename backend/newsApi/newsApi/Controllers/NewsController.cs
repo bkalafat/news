@@ -24,11 +24,15 @@ namespace newsApi.Controllers
             return _newsService.Get();
         }
 
+
         // GET: api/News/5
-        [HttpGet("{id}", Name = "Get")]
-        public News Get(Guid id)
+        [HttpGet("{dashCaption}", Name = "Get")]
+        public News Get(string dashCaption)
         {
-            return _newsService.Get(id);
+
+            var news = _newsService.Get(dashCaption);
+
+            return news;
         }
 
         // POST: api/News
