@@ -11,7 +11,7 @@ export function getEnvironmentUrl() {
 export function setDefaultValues(news) {
   news.subjects = ["Covid", "Türkiye"]
   news.authors = ["Mustafa Çolakoğlu", "Burak Kalafat"]
-  news.url = replaceNonWordsAsDash(news.caption,"-")
+  news.url = replaceNonWordsWith(news.caption,"-")
   news.createDate = new Date().toISOString()
   news.updateDate = new Date().toISOString()
   news.expireDate = new Date().toISOString()
