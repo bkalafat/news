@@ -35,15 +35,13 @@ const NewsDetail = () => {
           <meta
             property="og:url"
             content={
-              "https://haberibul.com/detay/" +
-              news.caption.split(" ").join("-").toLowerCase()
+              news.url
             }
           />
           <meta
             property="url"
             content={
-              "https://haberibul.com/detay/" +
-              news.caption.split(" ").join("-").toLowerCase()
+              news.url
             }
           />
           <meta property="description" content={news.caption} />
