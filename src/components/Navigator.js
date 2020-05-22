@@ -8,22 +8,22 @@ const Navigator = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <Link style={{ color: "black" }} className="nav-link" to="/">
                 Haberler
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/spor">
+              <Link style={{ color: "black" }} className="nav-link" to="/spor">
                 Spor
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <Link style={{ color: "black" }} className="nav-link" to="/">
                 Magazin
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <Link style={{ color: "black" }} className="nav-link" to="/">
                 Teknoloji
               </Link>
             </li>
