@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet"
 
 const NewsDetail = () => {
   let location = useLocation()
-  const [news, setNews] = useState()
+  const [news, setNews] = useState([])
 
   useEffect(() => {
     if (location.state && location.state.news) {
@@ -31,19 +31,12 @@ const NewsDetail = () => {
     return (
       <div>
         <Helmet>
-          <title>{news.caption} haber haberler haberi bul haberibul.com</title>
-          <meta
-            property="og:url"
-            content={
-              news.url
-            }
-          />
-          <meta
-            property="url"
-            content={
-              news.url
-            }
-          />
+          <title>
+            {news.caption ? news.caption : ""} haber haberler haberi bul
+            haberibul.com
+          </title>
+          <meta property="og:url" content={news.url} />
+          <meta property="url" content={news.url} />
           <meta property="description" content={news.caption} />
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />

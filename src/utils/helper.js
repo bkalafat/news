@@ -11,7 +11,7 @@ export function getEnvironmentUrl() {
 export function setDefaultValues(news) {
   news.subjects = ["Covid", "Türkiye"]
   news.authors = ["Mustafa Çolakoğlu", "Burak Kalafat"]
-  news.url = replaceNonWordsWith(news.caption,"-")
+  news.url = replaceNonWordsWith(news.caption, "-")
   news.createDate = new Date().toISOString()
   news.updateDate = new Date().toISOString()
   news.expireDate = new Date().toISOString()
@@ -21,21 +21,23 @@ export function setDefaultValues(news) {
 
 export const replaceNonWordsWith = (text, char) => {
   return text
-    .replace(/Ğ/gim, "g")
-    .replace(/Ü/gim, "u")
-    .replace(/Ş/gim, "s")
-    .replace(/I/gim, "i")
-    .replace(/İ/gim, "i")
-    .replace(/Ö/gim, "o")
-    .replace(/Ç/gim, "c")
-    .replace(/ğ/gim, "g")
-    .replace(/ü/gim, "u")
-    .replace(/ş/gim, "s")
-    .replace(/ı/gim, "i")
-    .replace(/ö/gim, "o")
-    .replace(/ç/gim, "c")
-    .replace(/[^A-Za-z0-9]/g, char)
-    .toLowerCase()
+    ? text
+        .replace(/Ğ/gim, "g")
+        .replace(/Ü/gim, "u")
+        .replace(/Ş/gim, "s")
+        .replace(/I/gim, "i")
+        .replace(/İ/gim, "i")
+        .replace(/Ö/gim, "o")
+        .replace(/Ç/gim, "c")
+        .replace(/ğ/gim, "g")
+        .replace(/ü/gim, "u")
+        .replace(/ş/gim, "s")
+        .replace(/ı/gim, "i")
+        .replace(/ö/gim, "o")
+        .replace(/ç/gim, "c")
+        .replace(/[^A-Za-z0-9]/g, char)
+        .toLowerCase()
+    : ""
 }
 
 export const getDummyNews = () => {
