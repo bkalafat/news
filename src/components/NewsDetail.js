@@ -31,10 +31,7 @@ const NewsDetail = () => {
     return (
       <div>
         <Helmet>
-          <title>
-            {news.caption ? news.caption : ""} haber haberler haberi bul
-            haberibul.com
-          </title>
+          <title>{news.caption ? news.caption : ""} haberi haberibul.com</title>
           <meta property="og:url" content={news.url} />
           <meta property="url" content={news.url} />
           <meta property="description" content={news.caption} />
@@ -49,13 +46,7 @@ const NewsDetail = () => {
             property="og:keywords"
             content={replaceNonWordsWith(news.caption, ",")}
           />
-          <meta
-            property="og:title"
-            content={
-              news.caption +
-              "haber haberler haberibul haberbul detay bul son dakika"
-            }
-          />
+          <meta property="og:title" content={news.caption + " haberibul.com"} />
           <meta property="og:description" content={news.caption} />
         </Helmet>
         <div className="newsDetail">

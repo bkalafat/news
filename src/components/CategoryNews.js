@@ -67,27 +67,39 @@ const CategoryNews = () => {
     return (
       <div className="centerFlex">
         <Helmet>
-          <title>haberibul.com</title>
+          <title>{category.value ? category.value : "Haberibul.com"}</title>
           <meta
             name="description"
-            content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
+            content={
+              category.value +
+              " Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
+            }
           />
           <meta charSet="utf-8" />
-          <meta property="url" content={"https://haberibul.com"} />
-          <meta property="og:url" content={"https://haberibul.com"} />
+          <meta
+            property="url"
+            content={"https://haberibul.com" + category.to}
+          />
+          <meta
+            property="og:url"
+            content={"https://haberibul.com" + category.to}
+          />
           <meta
             property="og:description"
-            content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
+            content={
+              category.value +
+              " Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
+            }
           />
 
           <meta
             name="keywords"
-            content="Güncel,en son,son dakika,haberibul.com,haberi,bul,haberibul,canlı,gündem,spor,magazin,flash,haber,trabzon,sürmene,karamba"
+            content="Güncel,en son,son dakika,haberibul.com,haberi,bul,haberibul,canlı,gündem,spor,magazin,flash,haber,trabzon"
           />
 
           <meta
             name="og:keywords"
-            content="Güncel,en son,son dakika,haberibul.com,haberi,bul,haberibul,canlı,gündem,spor,magazin,flash,haber,trabzon,sürmene,karamba"
+            content="Güncel,en son,son dakika,haberibul.com,haberi,bul,haberibul,canlı,gündem,spor,magazin,flash,haber,trabzon"
           />
         </Helmet>
         <div className="col-md-10 col-xl-10 noPadding">

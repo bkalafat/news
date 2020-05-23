@@ -6,7 +6,7 @@ import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap"
 const Navigator = () => {
   return (
     <div>
-      <Navbar collapseOnSelect = {true} bg="dark" variant="dark" expand="lg">
+      <Navbar collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -31,7 +31,7 @@ const Navigator = () => {
             src={`${process.env.PUBLIC_URL}/haberibul.png`}
           />
         </Link>
-        <p>Haberi bulmanın en kolay yolu</p>
+        <p> Haber ve haberleri bul haberibul.com </p>
       </div>
     </div>
   )
