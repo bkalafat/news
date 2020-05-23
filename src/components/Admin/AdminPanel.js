@@ -11,7 +11,7 @@ const AdminPanel = () => {
     API.getNewsList().then(result => {
       setNewsList(result)
     })
-  })
+  },[])
 
   const history = useHistory()
   const navigateForCreate = () =>

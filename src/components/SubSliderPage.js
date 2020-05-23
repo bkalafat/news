@@ -41,18 +41,22 @@ const SubSliderPage = props => {
               target={isMobile ? "_self" : "_blank"}
               key={news.id}
             >
-              <img className="imgRatio spaceAround" src={news.imgPath} alt={news.imgAlt} />
+              <img
+                className="imgRatio spaceAround"
+                src={news.imgPath}
+                alt={news.imgAlt}
+              />
               <div className="header-text">
                 <div className="col-md-12 col-sm-8 col-xs-8 text-center">
                   <BrowserView>
-                    <h4>
+                    <h5>
                       <span className="beyaz-manset">{news.caption}</span>
-                    </h4>
+                    </h5>
                   </BrowserView>
                   <MobileView>
-                    <h9>
+                    <h10>
                       <span className="beyaz-manset">{news.caption}</span>
-                    </h9>
+                    </h10>
                   </MobileView>
                 </div>
               </div>

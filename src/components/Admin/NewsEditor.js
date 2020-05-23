@@ -76,8 +76,6 @@ const NewsEditor = () => {
     setSelectedFile(event.target.files[0])
   }
 
-  console.log(Object.values(Const.Categories))
-
   return (
     <div>
       <div className="center">
@@ -130,9 +128,10 @@ const NewsEditor = () => {
               onChange={e =>
                 setNews({
                   ...newNews,
-                  isSecondPageNews: Number.parseInt(e.target.value)
+                  isSecondPageNews: e.target.checked
                 })
               }
+              checked={newNews.isSecondPageNews}
               type="checkbox"
               label="İkinci sayfa haberi"
             />
