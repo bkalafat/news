@@ -1,4 +1,5 @@
 export const NEWS_TYPE = "news"
+export const HEADLINE = "headline"
 export const SUB_NEWS_TYPE = "subNews"
 export const UPLOAD_FILE_PATH =
   "https://us-central1-news-26417.cloudfunctions.net/uploadFile"

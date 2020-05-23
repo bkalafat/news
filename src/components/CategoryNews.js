@@ -2,7 +2,12 @@ import React from "react"
 import SubSliderPage from "./SubSliderPage"
 import { useLocation } from "react-router-dom"
 import SubNews from "./SubNews"
-import { Categories, NEWS_TYPE, SUB_NEWS_TYPE } from "../utils/constant"
+import {
+  Categories,
+  HEADLINE,
+  NEWS_TYPE,
+  SUB_NEWS_TYPE
+} from "../utils/constant"
 import { getEnvironmentUrl, getDummyNews } from "../utils/helper"
 import { Helmet } from "react-helmet"
 import useSWR from "swr"
@@ -26,7 +31,10 @@ const CategoryNews = () => {
     const category = Object.values(Categories).find(c => c.to === to)
     const newsList = data.filter(news => news.category === category.key)
     const mainNews = newsList
-      .filter(news => news.isActive && news.type === NEWS_TYPE)
+      .filter(
+        news =>
+          news.isActive && (news.type === NEWS_TYPE || news.type === HEADLINE)
+      )
       .sort(function (a, b) {
         return a.priority - b.priority
       })

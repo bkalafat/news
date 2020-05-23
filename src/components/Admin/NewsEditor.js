@@ -119,9 +119,23 @@ const NewsEditor = () => {
               onChange={e => setNews({ ...newNews, type: e.target.value })}
               as="select"
             >
-              <option value={Const.NEWS_TYPE}>Ana Haber</option>
+              <option value={Const.NEWS_TYPE}>Manşet</option>
+              <option value={Const.HEADLINE}>Alt Manşet</option>
               <option value={Const.SUB_NEWS_TYPE}>Alt Haber</option>
             </Form.Control>
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Check
+              onChange={e =>
+                setNews({
+                  ...newNews,
+                  isSecondPageNews: Number.parseInt(e.target.value)
+                })
+              }
+              type="checkbox"
+              label="İkinci sayfa haberi"
+            />
           </Form.Group>
 
           <Form.Group>

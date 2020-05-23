@@ -33,7 +33,7 @@ const SliderPage = props => {
   }
 
   return (
-    <div style={{ marginBottom: 40 }}>
+    <div style={{ marginBottom: 5 }}>
       <Slider {...settings}>
         {props.newsList.map(news => (
           <div key={news.id} className="ratio">
