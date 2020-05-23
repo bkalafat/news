@@ -19,6 +19,7 @@ function App() {
       <Helmet titleTemplate="%s - Haberi bul" defaultTitle="Haberi bul">
         <meta http-equiv="content-language" content="tr" />
         <meta property="og:type" content="website" />
+        <meta property="fb:app_id" content={3316757751690015} />
         <meta charSet="utf-8" />
       </Helmet>
       <div className={!isMobile ? "App" : ""}>

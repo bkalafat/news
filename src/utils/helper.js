@@ -60,7 +60,7 @@ export const getDummyNews = () => {
       expressDate: "2020-05-01T14:35:43.511Z",
       priority: 1,
       isActive: true,
-      url: "haberibul"
+      url: "#"
     })
   }
 
@@ -81,7 +81,7 @@ export const getDummyNews = () => {
       expressDate: "2020-05-01T14:35:43.511Z",
       priority: 1,
       isActive: true,
-      url: "haberibul"
+      url: "#"
     })
   }
 
