@@ -57,5 +57,12 @@
   },
   "devDependencies": {
     "terser-brunch": "^4.0.0"
+  },
+  "reactSnap": {
+    "fixWebpackChunksIssue": false,
+    "puppeteerArgs": [
+      "--no-sandbox"
+    ],
+    "port": 45680
   }
 }

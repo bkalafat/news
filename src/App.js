@@ -4,6 +4,7 @@ import CategoryNews from "./components/CategoryNews"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import NewsDetail from "./components/NewsDetail"
 import Navigator from "./components/Navigator"
+import AdminPanel from "./components/Admin/AdminPanel"
 import Footer from "./components/Footer"
 import "bootstrap/dist/css/bootstrap.min.css"
 import NewsEditor from "./components/Admin/NewsEditor"
@@ -11,7 +12,6 @@ import { SWRConfig } from "swr"
 import axios from "axios"
 import { Helmet } from "react-helmet"
 import { isMobile } from "react-device-detect"
-import { Categories } from "./utils/constant"
 
 function App() {
   return (
@@ -37,16 +37,33 @@ function App() {
               <NewsDetail />
             </Route>
             <Route path="/AdminPanel">
-              <Content isAdmin={true} />
+              <AdminPanel />
             </Route>
             <Route path="/NewsEditor">
               <NewsEditor />
             </Route>
-            {Object.values(Categories).map(c => (
-              <Route path={c.to}>
-                <CategoryNews />
-              </Route>
-            ))}
+            <Route path="/ekonomi">
+              <CategoryNews />
+            </Route>
+            <Route path="/spor">
+              <CategoryNews />
+            </Route>
+            <Route path="/magazin">
+              <CategoryNews />
+            </Route>
+            <Route path="/teknoloji">
+              <CategoryNews />
+            </Route>
+            <Route path="/saglik">
+              <CategoryNews />
+            </Route>
+            <Route path="/tarif">
+              <CategoryNews />
+            </Route>
+            <Route path="/yoresel">
+              <CategoryNews />
+            </Route>
+            <Route path="*" component={NoMatchPage} />
           </Switch>
         </SWRConfig>
         <Footer />
@@ -56,3 +73,11 @@ function App() {
 }
 
 export default App
+
+const NoMatchPage = () => {
+  return (
+    <div className="center">
+      <h3>404 - Sayfa Bulunamadı.</h3>
+    </div>
+  )
+}

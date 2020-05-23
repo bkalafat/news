@@ -1,9 +1,18 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import BootstrapTable from "react-bootstrap-table-next"
 import { NEWS_TYPE } from "../../utils/constant"
+import * as API from "../../utils/api"
 
-const AdminPanel = props => {
+const AdminPanel = () => {
+  const [newsList, setNewsList] = useState([])
+
+  useEffect(() => {
+    API.getNewsList().then(result => {
+      setNewsList(result)
+    })
+  })
+
   const history = useHistory()
   const navigateForCreate = () =>
     history.push({
@@ -62,27 +71,28 @@ const AdminPanel = props => {
       navigateForUpdate(row)
     }
   }
-
-  return (
-    <div className="center-item">
-      <input
-        onClick={navigateForCreate}
-        type="submit"
-        value="Yeni Haber Ekle"
-      />
-      <BootstrapTable
-        bootstrap4
-        keyField="id"
-        data={props.newsList}
-        columns={columns}
-        defaultSorted={defaultSorted}
-        rowEvents={rowEvents}
-        striped
-        hover
-        condensed
-      />
-    </div>
-  )
+  if (newsList) {
+    return (
+      <div className="center-item">
+        <input
+          onClick={navigateForCreate}
+          type="submit"
+          value="Yeni Haber Ekle"
+        />
+        <BootstrapTable
+          bootstrap4
+          keyField="id"
+          data={newsList}
+          columns={columns}
+          defaultSorted={defaultSorted}
+          rowEvents={rowEvents}
+          striped
+          hover
+          condensed
+        />
+      </div>
+    )
+  }
 }
 
 export default AdminPanel
