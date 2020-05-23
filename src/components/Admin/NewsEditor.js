@@ -76,6 +76,8 @@ const NewsEditor = () => {
     setSelectedFile(event.target.files[0])
   }
 
+  console.log(Object.values(Const.Categories))
+
   return (
     <div>
       <div className="center">
@@ -102,7 +104,12 @@ const NewsEditor = () => {
             <Form.Control
               value={newNews.category}
               onChange={e => setNews({ ...newNews, category: e.target.value })}
-            />
+              as="select"
+            >
+              {Object.values(Const.Categories).map(c => (
+                <option value={c.key}>{c.value}</option>
+              ))}
+            </Form.Control>
           </Form.Group>
 
           <Form.Group>
