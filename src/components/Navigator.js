@@ -6,7 +6,7 @@ import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap"
 const Navigator = () => {
   return (
     <div>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar collapseOnSelect = {true} bg="dark" variant="dark" expand="lg">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
