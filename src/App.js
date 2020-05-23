@@ -1,5 +1,6 @@
 import React from "react"
 import Content from "./components/Content"
+import CategoryNews from "./components/CategoryNews"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import NewsDetail from "./components/NewsDetail"
 import Navigator from "./components/Navigator"
@@ -10,6 +11,7 @@ import { SWRConfig } from "swr"
 import axios from "axios"
 import { Helmet } from "react-helmet"
 import { isMobile } from "react-device-detect"
+import { Categories } from "./utils/constant"
 
 function App() {
   return (
@@ -40,6 +42,11 @@ function App() {
             <Route path="/NewsEditor">
               <NewsEditor />
             </Route>
+            {Object.values(Categories).map(c => (
+              <Route path={c.to}>
+                <CategoryNews />
+              </Route>
+            ))}
           </Switch>
         </SWRConfig>
         <Footer />

@@ -1,23 +1,28 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { Categories } from "../utils/constant"
+import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap"
 
 const Navigator = () => {
   return (
     <div>
-      <nav className="navigator navbar navbar-expand-sm navbar-light bg-light">
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
+      <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
             {Object.values(Categories).map(c => (
-              <li className="nav-item">
-                <Link style={{ color: "black" }} className="nav-link" to={c.to}>
-                  {c.value}
-                </Link>
-              </li>
+              <Link className="nav-link" to={c.to}>
+                {c.value}
+              </Link>
             ))}
-          </ul>
-        </div>
-      </nav>
+          </Nav>
+          <Form inline>
+            <FormControl type="text" placeholder="Ara" className="mr-sm-2" />
+            <Button variant="outline-success">Ara</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Navbar>
+
       <div className="center">
         <Link to="/">
           <img

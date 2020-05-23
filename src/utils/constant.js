@@ -18,11 +18,11 @@ export const DEFAULT_NEWS = {
 }
 
 export const Categories = Object.freeze({
-  GENERAL: { key: "General", value: "Son Dakika", to:"/" },
-  SPORT: { key: "Sport", value: "Spor", to:"/spor"  },
-  MAGAZINE: { key: "magazine", value: "Magazin", to:"/magazin"  },
-  TECH: { key: "Tech", value: "Teknoloji", to:"/teknoloji"  },
-  HEALTH: { key: "Health", value: "Sağlık", to:"/saglik"  },
-  RECIPE: { key: "Recipe", value: "Tarif", to:"/tarif"  },
-  LOCAL: { key: "Local", value: "Yöresel", to:"/yoresel"  }
+  GENERAL: { key: "General", value: "Son Dakika", to: "/" },
+  SPORT: { key: "Sport", value: "Spor", to: "/spor" },
+  MAGAZINE: { key: "magazine", value: "Magazin", to: "/magazin" },
+  TECH: { key: "Tech", value: "Teknoloji", to: "/teknoloji" },
+  HEALTH: { key: "Health", value: "Sağlık", to: "/saglik" },
+  RECIPE: { key: "Recipe", value: "Tarif", to: "/tarif" },
+  LOCAL: { key: "Local", value: "Yöresel", to: "/yoresel" }
 })

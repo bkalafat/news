@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet"
 const News = props => {
   const { newsList } = props
 
-  if (!newsList && newsList.length !== 0) return <div />
+  if (!newsList && newsList.length === 0) return <div />
 
   const mainNews = newsList
     .filter(news => news.isActive && news.type === constant.NEWS_TYPE)
