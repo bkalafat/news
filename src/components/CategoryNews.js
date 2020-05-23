@@ -92,15 +92,6 @@ const CategoryNews = () => {
             }
           />
 
-          <meta
-            name="keywords"
-            content="Güncel,en son,son dakika,haberibul.com,haberi,bul,haberibul,canlı,gündem,spor,magazin,flash,haber,trabzon"
-          />
-
-          <meta
-            name="og:keywords"
-            content="Güncel,en son,son dakika,haberibul.com,haberi,bul,haberibul,canlı,gündem,spor,magazin,flash,haber,trabzon"
-          />
         </Helmet>
         <div className="col-md-10 col-xl-10 noPadding">
           <SubSliderPage newsList={sliderNewsList.slice(0, 13)} />

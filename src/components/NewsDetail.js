@@ -46,14 +46,6 @@ const NewsDetail = () => {
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />
           <meta property="og:site_name" content="Haberibul" />
-          <meta
-            property="keywords"
-            content={replaceNonWordsWith(news.caption, ",")}
-          />
-          <meta
-            property="og:keywords"
-            content={replaceNonWordsWith(news.caption, ",")}
-          />
           <meta property="og:title" content={news.caption + " haberibul.com"} />
           <meta property="og:description" content={news.caption} />
           <meta property="fb:app_id" content={3316757751690015} />

@@ -17,10 +17,33 @@ function App() {
   return (
     <Router>
       <Helmet titleTemplate="%s - Haberi bul" defaultTitle="Haberi bul">
+        <meta name="title" content="Haberibul.com" />
+        <meta
+          name="description"
+          content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
+        />
         <meta http-equiv="content-language" content="tr" />
         <meta property="og:type" content="website" />
         <meta property="fb:app_id" content={3316757751690015} />
         <meta charSet="utf-8" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@HaberibulCom" />
+        <meta name="twitter:creator" content="@HaberibulCom" />
+        <meta property="og:url" content="https://haberibul.com" />
+        <meta property="url" content="https://haberibul.com" />
+        <meta
+          property="description"
+          content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
+        />
+        <meta
+          property="og:description"
+          content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.PUBLIC_URL}/logo512.png`}
+        />
+        <meta property="og:site_name" content="Haberibul" />
       </Helmet>
       <div className={!isMobile ? "App" : ""}>
         <Navigator />

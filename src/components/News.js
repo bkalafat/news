@@ -61,15 +61,6 @@ const News = props => {
           content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
         />
 
-        <meta
-          name="keywords"
-          content="Güncel,en son,son dakika,haberibul.com,haberi,bul,haberibul,canlı,gündem,spor,magazin,flash,haber,trabzon,sürmene,karamba"
-        />
-
-        <meta
-          name="og:keywords"
-          content="Güncel,en son,son dakika,haberibul.com,haberi,bul,haberibul,canlı,gündem,spor,magazin,flash,haber,trabzon,sürmene,karamba"
-        />
       </Helmet>
       <div className="col-md-10 col-xl-10 noPadding">
         <SliderPage newsList={sliderNewsList} />
