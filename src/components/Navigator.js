@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { Categories } from "../utils/constant"
 
 const Navigator = () => {
   return (
@@ -7,26 +8,13 @@ const Navigator = () => {
       <nav className="navigator navbar navbar-expand-sm navbar-light bg-light">
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link style={{ color: "black" }} className="nav-link" to="/">
-                Haberler
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link style={{ color: "black" }} className="nav-link" to="/spor">
-                Spor
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link style={{ color: "black" }} className="nav-link" to="/">
-                Magazin
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link style={{ color: "black" }} className="nav-link" to="/">
-                Teknoloji
-              </Link>
-            </li>
+            {Object.values(Categories).map(c => (
+              <li className="nav-item">
+                <Link style={{ color: "black" }} className="nav-link" to={c.to}>
+                  {c.value}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
