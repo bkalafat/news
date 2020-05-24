@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="spaceAround">
             <a
               href="https://www.facebook.com/haberibul"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               target="_blank"
             >
               <SocialIcon
@@ -24,7 +24,7 @@ const Footer = () => {
           <div className="spaceAround">
             <a
               href="https://twitter.com/haberibulcom"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               target="_blank"
             >
               <SocialIcon
@@ -36,7 +36,7 @@ const Footer = () => {
           <div className="spaceAround">
             <a
               href="https://www.instagram.com/haberibulcom"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               target="_blank"
             >
               <SocialIcon
