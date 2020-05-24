@@ -1,31 +1,22 @@
-import React, { useState } from "react"
+import React from "react"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Link } from "react-router-dom"
 import { isMobile, BrowserView, MobileView } from "react-device-detect"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { Arrow, Dots, Paging } from "../utils/sliderItem"
+import { Arrow } from "../utils/sliderItem"
 
 const SubSliderPage = props => {
-  const [currentIndex, setCurrentIndex] = useState(0)
   var settings = {
     dots: true,
-    dotsClass: "dotsClass",
     arrows: !isMobile,
     lazyLoad: true,
     infinite: true,
     slidesToShow: isMobile ? 2 : 3,
     slidesToScroll: 1,
     nextArrow: <Arrow direction="right" />,
-    prevArrow: <Arrow direction="left" />,
-    beforeChange: (_prev, next) => {
-      setCurrentIndex(next)
-    },
-    appendDots: Dots(),
-    customPaging: index => {
-      return Paging(index, currentIndex)
-    }
+    prevArrow: <Arrow direction="left" />
   }
 
   return (
