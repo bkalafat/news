@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { Categories } from "../utils/constant"
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap"
+import { isMobile } from "react-device-detect"
 
 const Navigator = () => {
   return (
@@ -11,7 +12,7 @@ const Navigator = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {Object.values(Categories).map(c => (
-              <Link className="nav-link" to={c.to}>
+              <Link target={isMobile ? "_self" : "_blank"} className="nav-link" to={c.to}>
                 {c.value}
               </Link>
             ))}

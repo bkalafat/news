@@ -49,9 +49,9 @@ const SliderPage = props => {
               <div className="header-text">
                 <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
                   <BrowserView>
-                    <h2 className="h4">
+                    <h4 className="h4">
                       <span className="beyaz-manset">{news.caption}</span>
-                    </h2>
+                    </h4>
                   </BrowserView>
                   <MobileView>
                     <h7>

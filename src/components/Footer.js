@@ -5,7 +5,8 @@ const size = 33
 const Footer = () => {
   return (
     <article>
-      <h2>"Doğru" haberi bulmanın en kolay yolu</h2>
+      <h1>Haberibul.com</h1>
+      <h3>"Doğru" haberi bulmanın en kolay yolu</h3>
       <footer>
         <div className="centerFlex ">
           <div className="spaceAround">

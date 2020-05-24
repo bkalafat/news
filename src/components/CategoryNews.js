@@ -65,38 +65,43 @@ const CategoryNews = () => {
           )
 
     return (
-      <div className="centerFlex">
-        <Helmet>
-          <title>{category.value ? category.value : "Haberibul.com"}</title>
-          <meta
-            name="description"
-            content={
-              category.value +
-              " Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
-            }
-          />
-          <meta charSet="utf-8" />
-          <meta
-            property="url"
-            content={"https://haberibul.com" + category.to}
-          />
-          <meta
-            property="og:url"
-            content={"https://haberibul.com" + category.to}
-          />
-          <meta
-            property="og:description"
-            content={
-              category.value +
-              " Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
-            }
-          />
-
-        </Helmet>
-        <div className="col-md-10 col-xl-10 noPadding">
-          <SubSliderPage newsList={sliderNewsList.slice(0, 13)} />
+      <div>
+        <div className = "center">
+          <h2>{category.value}</h2>
         </div>
-        <SubNews newsList={subNewsList.slice(0, 32)}></SubNews>
+        <div className="centerFlex">
+          <Helmet>
+            <title>{category.value ? category.value : "Haberibul.com"}</title>
+            <meta
+              name="description"
+              content={
+                category.value +
+                " Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
+              }
+            />
+            <meta charSet="utf-8" />
+            <meta
+              property="url"
+              content={"https://haberibul.com" + category.to}
+            />
+            <meta
+              property="og:url"
+              content={"https://haberibul.com" + category.to}
+            />
+            <meta
+              property="og:description"
+              content={
+                category.value +
+                " Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
+              }
+            />
+          </Helmet>
+
+          <div className="col-md-10 col-xl-10 noPadding">
+            <SubSliderPage newsList={sliderNewsList.slice(0, 13)} />
+          </div>
+          <SubNews newsList={subNewsList.slice(0, 32)}></SubNews>
+        </div>
       </div>
     )
   }

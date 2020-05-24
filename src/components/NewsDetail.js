@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import Share from "./Share"
 import * as API from "../utils/api"
-import { replaceNonWordsWith } from "../utils/helper"
 import { Helmet } from "react-helmet"
 
 const NewsDetail = () => {
@@ -36,15 +35,13 @@ const NewsDetail = () => {
             name="title"
             content={news.caption ? news.caption : "haberi haberibul.com"}
           />
-          <meta
-            name="description"
-            content={news.summary}
-          />
+          <meta name="description" content={news.summary} />
           <meta property="og:url" content={news.url} />
           <meta property="url" content={news.url} />
           <meta property="description" content={news.summary} />
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />
+          <meta property="og:image:secure_url" content={news.imgPath} />
           <meta property="og:site_name" content="Haberibul" />
           <meta property="og:title" content={news.caption + " haberibul.com"} />
           <meta property="og:description" content={news.caption} />
