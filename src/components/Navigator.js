@@ -8,11 +8,24 @@ const Navigator = () => {
   return (
     <div>
       <Navbar collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
+        <Navbar.Brand className="navbar-brand">
+          <a href="/">
+            <img
+              src={`${process.env.PUBLIC_URL}/circleLogo.png`}
+              alt="haberibul"
+              style={{ width: 50, height: 40, marginTop: -7 }}
+            />
+          </a>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {Object.values(Categories).map(c => (
-              <Link target={isMobile ? "_self" : "_blank"} className="nav-link" to={c.to}>
+              <Link
+                target={isMobile ? "_self" : "_blank"}
+                className="nav-link"
+                to={"/" + c.to}
+              >
                 {c.value}
               </Link>
             ))}

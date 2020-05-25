@@ -1,5 +1,7 @@
+import * as Const from "./constant"
+
 export function getEnvironmentUrl() {
-  let url = "https://localhost:5001/api/"
+  let url = "https://haberibul.azurewebsites.net/api/"
 
   if (process.env.NODE_ENV === "production") {
     url = "https://haberibul.azurewebsites.net/api/"
@@ -11,7 +13,7 @@ export function getEnvironmentUrl() {
 export function setDefaultValues(news) {
   news.subjects = ["Covid", "Türkiye"]
   news.authors = ["Mustafa Çolakoğlu", "Burak Kalafat"]
-  news.url = replaceNonWordsWith(news.caption, "-")
+  news.url = getCategory(news).to + "/" + replaceNonWordsWith(news.caption, "-")
   news.createDate = new Date().toISOString()
   news.updateDate = new Date().toISOString()
   news.expireDate = new Date().toISOString()
@@ -86,4 +88,12 @@ export const getDummyNews = () => {
   }
 
   return news
+}
+
+const getCategory = news => {
+  return Object.values(Const.Categories).find(c => c.key === news.category)
+}
+
+export const getCategoryByTo = to => {
+  return Object.values(Const.Categories).find(c => c.to === to)
 }

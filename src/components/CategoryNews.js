@@ -3,12 +3,11 @@ import SubSliderPage from "./SubSliderPage"
 import { useLocation } from "react-router-dom"
 import SubNews from "./SubNews"
 import {
-  Categories,
   HEADLINE,
   NEWS_TYPE,
   SUB_NEWS_TYPE
 } from "../utils/constant"
-import { getEnvironmentUrl, getDummyNews } from "../utils/helper"
+import { getEnvironmentUrl, getDummyNews, getCategoryByTo } from "../utils/helper"
 import { Helmet } from "react-helmet"
 import useSWR from "swr"
 
@@ -27,8 +26,8 @@ const CategoryNews = () => {
     )
   } else {
     if (!data && data.length === 0) return <div />
-    const to = "/" + location.pathname.split("/")[1]
-    const category = Object.values(Categories).find(c => c.to === to)
+    const to = location.pathname.split("/")[1]
+    const category = getCategoryByTo(to)
     const newsList = data.filter(news => news.category === category.key)
     const mainNews = newsList
       .filter(
@@ -82,11 +81,11 @@ const CategoryNews = () => {
             <meta charSet="utf-8" />
             <meta
               property="url"
-              content={"https://haberibul.com" + category.to}
+              content={"https://haberibul.com/" + category.to}
             />
             <meta
               property="og:url"
-              content={"https://haberibul.com" + category.to}
+              content={"https://haberibul.com/" + category.to}
             />
             <meta
               property="og:description"

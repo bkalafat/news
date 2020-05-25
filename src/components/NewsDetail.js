@@ -13,9 +13,13 @@ const NewsDetail = () => {
       setNews(location.state.news)
     } else {
       const urlItems = location.pathname.split("/")
-      const dashCaption = urlItems[urlItems.length - 1]
+      let firstPart = ""
+      if (urlItems[urlItems.length - 2] !== "detay")
+        firstPart = urlItems[urlItems.length - 2] + "%2F"
+      const concatUrl = firstPart + urlItems[urlItems.length - 1]
+      //TODO bkalafat url daha güzel alınacak pathname'den
 
-      API.getNewsByUrl(dashCaption).then(
+      API.getNewsByUrl(concatUrl).then(
         result => {
           setNews(result)
         },

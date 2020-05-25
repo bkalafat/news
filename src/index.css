@@ -217,3 +217,11 @@ footer {
   margin-right: 0;
   font-weight: bold;
 }
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-brand>img {
+  padding: 7px 14px;
+}

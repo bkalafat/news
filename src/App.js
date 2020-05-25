@@ -55,10 +55,10 @@ function App() {
         >
           <Switch>
             <Route exact path="/">
-              <Content isAdmin={false} />
+              <Content/>
             </Route>
-            <Route path="/detay">
-              <NewsDetail />
+            <Route exact path="/gundem">
+              <Content/>
             </Route>
             <Route path="/AdminPanel">
               <AdminPanel />
@@ -66,26 +66,47 @@ function App() {
             <Route path="/NewsEditor">
               <NewsEditor />
             </Route>
-            <Route path="/ekonomi">
+            <Route exact path="/ekonomi">
               <CategoryNews />
             </Route>
-            <Route path="/spor">
+            <Route exact path="/spor">
               <CategoryNews />
             </Route>
-            <Route path="/magazin">
+            <Route exact path="/magazin">
               <CategoryNews />
             </Route>
-            <Route path="/teknoloji">
+            <Route exact path="/teknoloji">
               <CategoryNews />
             </Route>
-            <Route path="/saglik">
+            <Route exact path="/saglik">
               <CategoryNews />
             </Route>
-            <Route path="/tarif">
+            <Route exact path="/tarif">
               <CategoryNews />
             </Route>
-            <Route path="/yoresel">
-              <CategoryNews />
+            <Route path="/detay/:url">
+              <NewsDetail />
+            </Route>
+            <Route path="/ekonomi/:url">
+              <NewsDetail />
+            </Route>
+            <Route path="/spor/:url">
+              <NewsDetail />
+            </Route>
+            <Route path="/magazin/:url">
+              <NewsDetail />
+            </Route>
+            <Route path="/teknoloji/:url">
+              <NewsDetail />
+            </Route>
+            <Route path="/saglik/:url">
+              <NewsDetail />
+            </Route>
+            <Route path="/tarif/:url">
+              <NewsDetail />
+            </Route>
+            <Route path="/yerel/:url">
+              <NewsDetail />
             </Route>
             <Route path="*" component={NoMatchPage} />
           </Switch>

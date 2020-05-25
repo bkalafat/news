@@ -25,7 +25,8 @@ namespace newsApi.Data
 
         public News Get(string url)
         {
-            return _newsList.Find(news => news.Url == url).FirstOrDefault();
+            string decodedUrl = Uri.UnescapeDataString(url);
+            return _newsList.Find(news => news.Url == decodedUrl).FirstOrDefault();
         }
 
         public News Create(News news)

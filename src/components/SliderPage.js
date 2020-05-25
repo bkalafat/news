@@ -39,7 +39,7 @@ const SliderPage = props => {
           <div key={news.id} className="ratio">
             <Link
               to={{
-                pathname: "/detay/" + news.url,
+                pathname: news.url.includes("/") ? news.url : "detay/" + news.url,
                 state: { news: news }
               }}
               target={isMobile ? "_self" : "_blank"}
