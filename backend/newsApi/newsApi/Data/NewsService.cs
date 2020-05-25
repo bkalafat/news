@@ -25,7 +25,9 @@ namespace newsApi.Data
 
         public News Get(string url)
         {
-            string decodedUrl = Uri.UnescapeDataString(url);
+            string tempUrl = url.Replace('>', '/');
+
+            string decodedUrl = Uri.UnescapeDataString(tempUrl);
             return _newsList.Find(news => news.Url == decodedUrl).FirstOrDefault();
         }
 

@@ -15,7 +15,7 @@ const NewsDetail = () => {
       const urlItems = location.pathname.split("/")
       let firstPart = ""
       if (urlItems[urlItems.length - 2] !== "detay")
-        firstPart = urlItems[urlItems.length - 2] + "%2F"
+        firstPart = urlItems[urlItems.length - 2] + ">"
       const concatUrl = firstPart + urlItems[urlItems.length - 1]
       //TODO bkalafat url daha güzel alınacak pathname'den
 
