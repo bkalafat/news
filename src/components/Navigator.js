@@ -9,13 +9,13 @@ const Navigator = () => {
     <div>
       <Navbar collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
         <Navbar.Brand className="navbar-brand">
-          <a href="/">
+          <Link to="/">
             <img
               src={`${process.env.PUBLIC_URL}/circleLogo.png`}
               alt="haberibul"
               style={{ width: 50, height: 40, marginTop: -7 }}
             />
-          </a>
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
