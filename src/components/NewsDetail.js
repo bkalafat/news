@@ -6,16 +6,20 @@ import { Helmet } from "react-helmet"
 
 const NewsDetail = () => {
   let location = useLocation()
-  const [news, setNews] = useState()
+  const [news, setNews] = useState([])
 
   useEffect(() => {
     if (location.state && location.state.news) {
       setNews(location.state.news)
     } else {
       const urlItems = location.pathname.split("/")
-      const dashCaption = urlItems[urlItems.length - 1]
+      let firstPart = ""
+      if (urlItems[urlItems.length - 2] !== "detay")
+        firstPart = urlItems[urlItems.length - 2] + ">"
+      const concatUrl = firstPart + urlItems[urlItems.length - 1]
+      //TODO bkalafat url daha güzel alınacak pathname'den
 
-      API.getNewsByUrl(dashCaption).then(
+      API.getNewsByUrl(concatUrl).then(
         result => {
           setNews(result)
         },
@@ -30,28 +34,30 @@ const NewsDetail = () => {
     return (
       <div>
         <Helmet>
-          <title>{news.caption} haber haberler detay bul</title>
-
+          <title>{news.caption ? news.caption : ""} haberi haberibul.com</title>
           <meta
-            property="og:url"
-            content={
-              "https://haberibul.com/detay/" +
-              news.caption.split(" ").join("-").toLowerCase()
-            }
+            name="title"
+            content={news.caption ? news.caption : "haberi haberibul.com"}
           />
-          <meta property="description" content={news.caption} />
+          <meta name="description" content={news.summary} />
+          <meta property="og:url" content={news.url} />
+          <meta property="url" content={news.url} />
+          <meta property="description" content={news.summary} />
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />
-          <meta property="og:site_name" content="Haberibul"></meta>
-
-          <meta
-            property="og:title"
-            content={
-              news.caption +
-              "haber haberler haberibul haberbul detay bul son dakika"
-            }
-          />
+          <meta property="og:image:secure_url" content={news.imgPath} />
+          <meta property="og:site_name" content="Haberibul" />
+          <meta property="og:title" content={news.caption + " haberibul.com"} />
           <meta property="og:description" content={news.caption} />
+          <meta property="fb:app_id" content={3316757751690015} />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@HaberibulCom" />
+          <meta name="twitter:creator" content="@HaberibulCom" />
+          <meta name="twitter:title" content={news.caption} />
+          <meta name="twitter:description" content={news.summary} />
+          <meta name="twitter:image" content={news.imgPath} />
+          <meta name="twitter:image:alt" content={news.imgAlt} />
         </Helmet>
         <div className="newsDetail">
           <h1 className="spaceAround">{news.caption}</h1>

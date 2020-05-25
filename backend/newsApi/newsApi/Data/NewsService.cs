@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using MongoDB.Driver;
 using newsApi.Models;
 
@@ -26,7 +25,10 @@ namespace newsApi.Data
 
         public News Get(string url)
         {
-            return _newsList.Find(news => news.Url == url).FirstOrDefault();
+            string tempUrl = url.Replace('>', '/');
+
+            string decodedUrl = Uri.UnescapeDataString(tempUrl);
+            return _newsList.Find(news => news.Url == decodedUrl).FirstOrDefault();
         }
 
         public News Create(News news)

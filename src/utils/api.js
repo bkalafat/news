@@ -2,13 +2,16 @@ import { getEnvironmentUrl, setDefaultValues } from "./helper"
 import axios from "axios"
 import * as Const from "./constant"
 
+export const getNewsList = () => {
+  return fetch(getEnvironmentUrl() + "news").then(res => res.json())
+}
 
 export const getNews = id => {
   return fetch(getEnvironmentUrl() + "news/" + id).then(res => res.json())
 }
 
 export const getNewsByUrl = url => {
-  return fetch(getEnvironmentUrl() + "news/"  + url).then(res => res.json())
+  return fetch(getEnvironmentUrl() + "news/" + url).then(res => res.json())
 }
 
 export function createNews(news) {
@@ -33,7 +36,6 @@ export function createNews(news) {
 
 export function updateNews(news) {
   news.updateDate = new Date().toISOString()
-  news.url = news.caption.replace(/[^A-Za-z0-9]/g, '-').toLowerCase();
 
   return fetch(getEnvironmentUrl() + "news/" + news.id, {
     method: "PUT",

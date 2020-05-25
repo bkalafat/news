@@ -108,7 +108,7 @@ code {
 
 .logo {
   cursor: pointer;
-  width: 100%;
+  width: 90%;
   width: auto;
   height: auto;
   max-width: 100%;
@@ -189,6 +189,16 @@ code {
   margin: auto;
 }
 
+article {
+  height: 150;
+  text-align: center;
+}
+
+footer {
+  padding: 5px;
+  background-color: #001f3f;
+  color: #fff;
+}
 
 .App {
   width: 1200px;
@@ -196,8 +206,22 @@ code {
   padding: 0 10px;
   background: #fff;
 }
-
 #root {
   background: #f8f8f8;
 }
 
+.h4 {
+  display: block;
+  font-size: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-brand>img {
+  padding: 7px 14px;
+}

@@ -22,6 +22,8 @@ namespace newsApi.Models
         public int Priority { get; set; }
         public bool IsActive { get; set; }
         public string Url { get; set; }
+
+        public bool IsSecondPageNews { get; set; }
     }
 
     public class NewsDatabaseSettings : INewsDatabaseSettings

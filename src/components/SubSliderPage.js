@@ -1,39 +1,26 @@
-import React, { useState } from "react"
+import React from "react"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Link } from "react-router-dom"
 import { isMobile, BrowserView, MobileView } from "react-device-detect"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { Arrow, Dots, Paging } from "../utils/sliderItem"
+import { Arrow } from "../utils/sliderItem"
 
-const SliderPage = props => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
+const SubSliderPage = props => {
   var settings = {
     dots: true,
-    dotsClass: "dotsClass",
     arrows: !isMobile,
     lazyLoad: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    autoplay: true,
-    autoplaySpeed: 4500,
+    slidesToShow: isMobile ? 2 : 3,
     slidesToScroll: 1,
     nextArrow: <Arrow direction="right" />,
-    prevArrow: <Arrow direction="left" />,
-    beforeChange: (_prev, next) => {
-      setCurrentIndex(next)
-    },
-    appendDots: Dots(),
-    customPaging: index => {
-      return Paging(index, currentIndex)
-    }
+    prevArrow: <Arrow direction="left" />
   }
 
   return (
-    <div style={{ marginBottom: 5 }}>
+    <div style={{ marginBottom: 40 }}>
       <Slider {...settings}>
         {props.newsList.map(news => (
           <div key={news.id} className="ratio">
@@ -45,18 +32,22 @@ const SliderPage = props => {
               target={isMobile ? "_self" : "_blank"}
               key={news.id}
             >
-              <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
+              <img
+                className="imgRatio spaceAround"
+                src={news.imgPath}
+                alt={news.imgAlt}
+              />
               <div className="header-text">
-                <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
+                <div className="col-md-12 col-sm-8 col-xs-8 text-center">
                   <BrowserView>
-                    <h4 className="h4">
+                    <h5>
                       <span className="beyaz-manset">{news.caption}</span>
-                    </h4>
+                    </h5>
                   </BrowserView>
                   <MobileView>
-                    <h7>
+                    <h10>
                       <span className="beyaz-manset">{news.caption}</span>
-                    </h7>
+                    </h10>
                   </MobileView>
                 </div>
               </div>
@@ -68,4 +59,4 @@ const SliderPage = props => {
   )
 }
 
-export default SliderPage
+export default SubSliderPage
