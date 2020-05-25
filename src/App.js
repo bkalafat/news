@@ -20,7 +20,7 @@ function App() {
         <meta name="title" content="Haberibul.com" />
         <meta
           name="description"
-          content="Türküye'nin en güncel, en tarafsız, en doğru haberin adresi haberibul.com. Siyasetten, ekonomiye, tekonoliden, sağlığa en flaş haberleri bul, magazinden, yerel son dakika haberlere kadar en canlı gündem haberleri bul"
+          content="Türkiye'nin en güncel, en tarafsız, en doğru haberin adresi haberibul.com. Siyasetten, ekonomiye, tekonoliden, sağlığa en flaş haberleri bul, magazinden, yerel son dakika haberlere kadar en canlı gündem haberleri bul"
         />
         <meta http-equiv="content-language" content="tr" />
         <meta property="og:type" content="website" />
@@ -33,11 +33,11 @@ function App() {
         <meta property="url" content="https://haberibul.com" />
         <meta
           property="description"
-          content="Türküye'nin en güncel, en tarafsız, en doğru haberin adresi haberibul.com. Siyasetten, ekonomiye, tekonoliden, sağlığa en flaş haberleri bul, magazinden, yerel son dakika haberlere kadar en canlı gündem haberleri bul"
+          content="Türkiye'nin en güncel, en tarafsız, en doğru haberin adresi haberibul.com. Siyasetten, ekonomiye, tekonoliden, sağlığa en flaş haberleri bul, magazinden, yerel son dakika haberlere kadar en canlı gündem haberleri bul"
         />
         <meta
           property="og:description"
-          content="Türküye'nin en güncel, en tarafsız, en doğru haberin adresi haberibul.com. Siyasetten, ekonomiye, tekonoliden, sağlığa en flaş haberleri bul, magazinden, yerel son dakika haberlere kadar en canlı gündem haberleri bul"
+          content="Türkiye'nin en güncel, en tarafsız, en doğru haberin adresi haberibul.com. Siyasetten, ekonomiye, tekonoliden, sağlığa en flaş haberleri bul, magazinden, yerel son dakika haberlere kadar en canlı gündem haberleri bul"
         />
         <meta
           property="og:image"
