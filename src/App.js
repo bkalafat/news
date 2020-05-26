@@ -90,6 +90,9 @@ function App() {
             <Route path="/detay/:url">
               <NewsDetail />
             </Route>
+            <Route path="/gundem/:url">
+              <NewsDetail />
+            </Route>
             <Route path="/ekonomi/:url">
               <NewsDetail />
             </Route>
