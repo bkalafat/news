@@ -7,16 +7,19 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["newsApi/newsApi.csproj", "newsApi/"]
-RUN dotnet restore "newsApi/newsApi.csproj"
+COPY *.sln .
+COPY newsApi/*.csproj newsApi/
+RUN dotnet restore
 COPY . .
-WORKDIR "/src/newsApi"
-RUN dotnet build "newsApi.csproj" -c Release -o /app/build
+
+WORKDIR /src/newsApi
+RUN dotnet build
 
 FROM build AS publish
-RUN dotnet publish "newsApi.csproj" -c Release -o /app/publish
+WORKDIR /src/newsApi
+RUN dotnet publish -c Release -o /src/publish
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "newsApi.dll"]
+COPY --from=publish /src/publish .
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet newsApi.dll
