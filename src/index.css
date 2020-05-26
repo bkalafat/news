@@ -225,3 +225,8 @@ footer {
 .navbar-brand>img {
   padding: 7px 14px;
 }
+
+.time {
+  font-weight: 100;
+  font-size: smaller;
+}

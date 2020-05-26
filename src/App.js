@@ -55,10 +55,10 @@ function App() {
         >
           <Switch>
             <Route exact path="/">
-              <Content/>
+              <Content />
             </Route>
             <Route exact path="/gundem">
-              <Content/>
+              <Content />
             </Route>
             <Route path="/AdminPanel">
               <AdminPanel />
@@ -84,7 +84,13 @@ function App() {
             <Route exact path="/tarif">
               <CategoryNews />
             </Route>
+            <Route exact path="/yerel">
+              <CategoryNews />
+            </Route>
             <Route path="/detay/:url">
+              <NewsDetail />
+            </Route>
+            <Route path="/gundem/:url">
               <NewsDetail />
             </Route>
             <Route path="/ekonomi/:url">

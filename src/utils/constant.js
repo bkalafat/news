@@ -6,7 +6,7 @@ export const UPLOAD_FILE_PATH =
 export const DEFAULT_NEWS = {
   news: {
     type: "news",
-    category: "",
+    category: "General",
     caption: "",
     summary: "",
     content:
@@ -26,5 +26,5 @@ export const Categories = Object.freeze({
   TECH: { key: "Tech", value: "Teknoloji", to: "teknoloji" },
   HEALTH: { key: "Health", value: "Sağlık", to: "saglik" },
   RECIPE: { key: "Recipe", value: "Tarif", to: "tarif" },
-  LOCAL: { key: "Local", value: "Yöresel", to: "yerel" }
+  LOCAL: { key: "Local", value: "Yerel", to: "yerel" }
 })
