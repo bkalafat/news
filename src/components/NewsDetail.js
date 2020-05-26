@@ -30,7 +30,11 @@ const NewsDetail = () => {
     }
   }, [location.state, location.pathname])
 
-  if (news) {
+  if (news && news.createDate) {
+    let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
+    let date = new Date(Date.UTC(y, m - 1, d, hh, mm, ss, ms))
+    let formatted = date.toLocaleString()
+
     return (
       <div>
         <Helmet>
@@ -60,6 +64,7 @@ const NewsDetail = () => {
           <meta name="twitter:image:alt" content={news.imgAlt} />
         </Helmet>
         <div className="newsDetail">
+          <time className="time" datetime={news.createDate}>Haber Giriş:{formatted}</time>
           <h1 className="spaceAround">{news.caption}</h1>
           <p className="lead spaceAround">{news.summary}</p>
           <img
