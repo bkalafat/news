@@ -37,14 +37,7 @@ const CategoryNews = () => {
       .sort(function (a, b) {
         return a.priority - b.priority
       })
-    const sliderNewsList =
-      mainNews.length > 2
-        ? mainNews
-        : mainNews.concat(
-            dummyNews
-              .filter(n => n.type === NEWS_TYPE)
-              .slice(0, 3 - mainNews.length)
-          )
+    const sliderNewsList = mainNews
 
     const extraNews = mainNews.slice(13, 26)
 
@@ -54,14 +47,7 @@ const CategoryNews = () => {
       .sort(function (a, b) {
         return a.priority - b.priority
       })
-    const subNewsList =
-      tempNewsList > 3
-        ? tempNewsList
-        : tempNewsList.concat(
-            dummyNews
-              .filter(n => n.type === SUB_NEWS_TYPE)
-              .slice(0, 4 - tempNewsList.length)
-          )
+    const subNewsList = tempNewsList
 
     return (
       <div>
@@ -70,7 +56,7 @@ const CategoryNews = () => {
         </div>
         <div className="centerFlex">
           <Helmet>
-            <title>{category.value ? category.value : "Haberibul.com"}</title>
+            <title>{category.value ? category.value : " Haberibul.com"}</title>
             <meta
               name="description"
               content={
