@@ -44,8 +44,8 @@ const NewsDetail = () => {
             content={news.caption ? news.caption : "haberi haberibul.com"}
           />
           <meta name="description" content={news.summary} />
-          <meta property="og:url" content={news.url} />
-          <meta property="url" content={news.url} />
+          <meta property="og:url" content={"https://haberibul.com/" +news.url} />
+          <meta property="url" content={"https://haberibul.com/" +news.url} />
           <meta property="description" content={news.summary} />
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />
