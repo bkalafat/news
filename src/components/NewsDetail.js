@@ -20,8 +20,8 @@ const NewsDetail = () => {
       //TODO bkalafat url daha güzel alınacak pathname'den
 
       API.getNewsByUrl(concatUrl).then(
-        result => {
-          setNews(result)
+        news => {
+          setNews(news)
         },
         error => {
           console.log(error)
@@ -31,6 +31,7 @@ const NewsDetail = () => {
   }, [location.state, location.pathname])
 
   if (news && news.createDate) {
+    //clicked++
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(y, m - 1, d, hh, mm, ss, ms))
     let formatted = date.toLocaleString()
@@ -44,15 +45,19 @@ const NewsDetail = () => {
             content={news.caption ? news.caption : "haberi haberibul.com"}
           />
           <meta name="description" content={news.summary} />
-          <meta property="og:url" content={news.url} />
-          <meta property="url" content={news.url} />
+          <meta
+            name="title"
+            content={news.caption ? news.caption : "haberi haberibul.com"}
+          />
+          <meta name="description" content={news.summary} />
+          <meta property="og:url" content={"https://haberibul.com/" +news.url} />
+          <meta property="url" content={"https://haberibul.com/" +news.url} />
           <meta property="description" content={news.summary} />
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />
           <meta property="og:image:secure_url" content={news.imgPath} />
           <meta property="og:site_name" content="Haberibul" />
           <meta property="og:title" content={news.caption + " haberibul.com"} />
-          <meta property="og:description" content={news.caption} />
           <meta property="fb:app_id" content={3316757751690015} />
 
           <meta name="twitter:card" content="summary_large_image" />
