@@ -70,7 +70,6 @@ const NewsDetail = () => {
           <meta name="twitter:image:alt" content={news.imgAlt} />
         </Helmet>
         <div className="newsDetail">
-          <time className="time" datetime={news.createDate}>Haber Giriş:{formatted} - Görüntülenme Sayısı:{news.viewCount ? news.viewCount : 1}</time>
 
           <h1 className="spaceAround">{news.caption}</h1>
           <p className="lead spaceAround">{news.summary}</p>
@@ -91,7 +90,12 @@ const NewsDetail = () => {
               "</div>"
           }}
         />
+        <div class='container content center-item  text-center'>
+          <time className="time" datetime={news.createDate}>Haber Giriş:{formatted} - Görüntülenme Sayısı:{news.viewCount ? news.viewCount : 1}</time>
+        </div>
+
       </div>
+
     )
   } else return <div />
 }
