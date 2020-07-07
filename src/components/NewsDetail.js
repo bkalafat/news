@@ -18,10 +18,10 @@ const NewsDetail = () => {
         firstPart = urlItems[urlItems.length - 2] + ">"
       const concatUrl = firstPart + urlItems[urlItems.length - 1]
       //TODO bkalafat url daha güzel alınacak pathname'den
-
       API.getNewsByUrl(concatUrl).then(
         news => {
           setNews(news)
+          API.increaseViewCount(news)
         },
         error => {
           console.log(error)
@@ -31,7 +31,8 @@ const NewsDetail = () => {
   }, [location.state, location.pathname])
 
   if (news && news.createDate) {
-    //clicked++
+
+
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(y, m - 1, d, hh, mm, ss, ms))
     let formatted = date.toLocaleString()
@@ -50,8 +51,8 @@ const NewsDetail = () => {
             content={news.caption ? news.caption : "haberi haberibul.com"}
           />
           <meta name="description" content={news.summary} />
-          <meta property="og:url" content={"https://haberibul.com/" +news.url} />
-          <meta property="url" content={"https://haberibul.com/" +news.url} />
+          <meta property="og:url" content={"https://haberibul.com/" + news.url} />
+          <meta property="url" content={"https://haberibul.com/" + news.url} />
           <meta property="description" content={news.summary} />
           <meta property="og:description" content={news.caption} />
           <meta property="og:image" content={news.imgPath} />
@@ -69,7 +70,8 @@ const NewsDetail = () => {
           <meta name="twitter:image:alt" content={news.imgAlt} />
         </Helmet>
         <div className="newsDetail">
-          <time className="time" datetime={news.createDate}>Haber Giriş:{formatted}</time>
+          <time className="time" datetime={news.createDate}>Haber Giriş:{formatted} - Görüntülenme Sayısı:{news.viewCount ? news.viewCount : 1}</time>
+
           <h1 className="spaceAround">{news.caption}</h1>
           <p className="lead spaceAround">{news.summary}</p>
           <img
