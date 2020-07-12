@@ -35,6 +35,11 @@ const AdminPanel = () => {
 
   const columns = [
     {
+      dataField: "viewCount",
+      text: "Görüntülenme",
+      sort: true
+    },
+    {
       dataField: "caption",
       text: "Başık",
       sort: true

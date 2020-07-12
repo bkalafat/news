@@ -1,7 +1,7 @@
 import * as Const from "./constant"
 
 export function getEnvironmentUrl() {
-  let url = "https://haberibul-api.herokuapp.com/api/"
+  let url = "https://localhost:5001/api/"
 
   if (process.env.NODE_ENV === "production") {
     url = "https://haberibul-api.herokuapp.com/api/"
@@ -17,6 +17,7 @@ export function setDefaultValues(news) {
   news.createDate = new Date().toISOString()
   news.updateDate = new Date().toISOString()
   news.expireDate = new Date().toISOString()
+  news.viewCount = 0
 
   return news
 }
@@ -61,6 +62,7 @@ export const getDummyNews = () => {
       updateDate: "2020-05-01T14:35:43.511Z",
       expressDate: "2020-05-01T14:35:43.511Z",
       priority: 1,
+      viewCount: 5,
       isActive: true,
       url: "#"
     })
@@ -81,6 +83,7 @@ export const getDummyNews = () => {
       createdDate: "2020-04-23T18:25:43.511Z",
       updateDate: "2020-05-01T14:35:43.511Z",
       expressDate: "2020-05-01T14:35:43.511Z",
+      viewCount:1,
       priority: 1,
       isActive: true,
       url: "#"
