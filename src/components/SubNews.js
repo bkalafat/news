@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import  Link  from "next/link"
 import { BrowserView, MobileView, isMobile } from "react-device-detect"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 
@@ -11,18 +11,17 @@ const SubNews = props => {
           className="col-xs-12 col-sm-12 col-md-3 subNews-child relativeDiv"
           key={news.id}
         >
-          <Link
-            to={{
-              pathname: news.url.includes("/") ? news.url : "detay/" + news.url,
-              state: { news: news }
-            }}
-            target={isMobile ? "_self" : "_blank"}
-          >
-            <LazyLoadImage
+          <LazyLoadImage
               className="stretchImg shadow"
               alt={news.imgAlt}
               src={news.imgPath}
             />
+          <Link
+            href={news.url.includes("/") ? news.url : "detay/" + news.url}
+
+          >
+            <a>
+            </a>
           </Link>
 
           <div className="sub-header-text">

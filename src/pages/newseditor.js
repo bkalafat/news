@@ -1,19 +1,16 @@
 import React, { useState, useEffect, useRef } from "react"
-import { useLocation } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
-import * as Const from "../../utils/constant"
-import * as API from "../../utils/api"
-import { useHistory } from "react-router-dom"
+import * as Const from "../utils/constant"
+import * as API from "../utils/api"
 import Resizer from "react-image-file-resizer"
-import CKEditor from "@ckeditor/ckeditor5-react"
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
-import UploadAdapter from "../../utils/UploadAdapter"
+import UploadAdapter from "../utils/UploadAdapter"
 
 const NewsEditor = () => {
   const fileInput = useRef(null)
-  const location = useLocation()
-  const history = useHistory()
-  const isUpdate = location.state ? (location.state.news ? true : false) : false
+  //const location = useLocation()
+  //const history = useHistory()
+  //const isUpdate = location.state ? (location.state.news ? true : false) : false
+  const isUpdate = false
 
   function urlToFile(url, filename, mimeType) {
     return fetch(url)
@@ -32,25 +29,32 @@ const NewsEditor = () => {
       })
   }
 
-  const { news } = isUpdate ? location.state : Const.DEFAULT_NEWS
+
+  //TODO bkalafat next taşıma const { news } = isUpdate ? location.state : Const.DEFAULT_NEWS
+  const { news } = Const.DEFAULT_NEWS
   const [isSubmitting, setSubmitting] = useState(false)
   const [newNews, setNews] = useState(news)
   const [selectedFile, setSelectedFile] = useState(null)
+  let CKEditor = null
+  let ClassicEditor = null
 
   useEffect(() => {
+
+    CKEditor = require("@ckeditor/ckeditor5-react")
+    ClassicEditor = require("@ckeditor/ckeditor5-build-classic")
     if (isSubmitting) {
       if ("id" in newNews) {
         API.updateNews(newNews).then(res => {
-          history.push("/AdminPanel")
+          //TODO bkalafat history.push("/AdminPanel")
         })
       } else {
         API.createNews(newNews).then(res => {
-          history.push("/AdminPanel")
+          //TODO bkalafat history.push("/AdminPanel")
         })
       }
     }
     if (isSubmitting) setSubmitting(false)
-  }, [isSubmitting, newNews, history])
+  }, [isSubmitting, newNews])
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -203,7 +207,7 @@ const NewsEditor = () => {
             {isUpdate ? "Güncelle" : "Ekle"}
           </Button>
 
-          <Button variant="warning" onClick={() => history.push("/AdminPanel")}>
+          <Button variant="warning" onClick={() => console.log("/AdminPanel e yönlendir")}>
             Geri
           </Button>
 
@@ -212,7 +216,7 @@ const NewsEditor = () => {
               variant="danger"
               onClick={() =>
                 API.deleteNews(newNews.id).then(function (res) {
-                  history.push("/AdminPanel")
+                  console.log("/AdminPanel e yönlendir")
                 })
               }
             >

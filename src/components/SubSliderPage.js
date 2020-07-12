@@ -1,10 +1,7 @@
 import React from "react"
-import "react-responsive-carousel/lib/styles/carousel.min.css"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import { isMobile, BrowserView, MobileView } from "react-device-detect"
 import Slider from "react-slick"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
 import { Arrow } from "../utils/sliderItem"
 
 const SubSliderPage = props => {
@@ -24,33 +21,33 @@ const SubSliderPage = props => {
       <Slider {...settings}>
         {props.newsList.map(news => (
           <div key={news.id} className="ratio">
+            <img
+              className="imgRatio spaceAround"
+              src={news.imgPath}
+              alt={news.imgAlt}
+            />
             <Link
-              to={{
-                pathname: news.url.includes("/") ? news.url : "detay/" + news.url,
-                state: { news: news }
-              }}
-              target={isMobile ? "_self" : "_blank"}
+              href={news.url.includes("/") ? news.url : "detay/" + news.url}
+
               key={news.id}
             >
-              <img
-                className="imgRatio spaceAround"
-                src={news.imgPath}
-                alt={news.imgAlt}
-              />
-              <div className="header-text">
-                <div className="col-md-12 col-sm-8 col-xs-8 text-center">
-                  <BrowserView>
-                    <h5>
-                      <span className="beyaz-manset">{news.caption}</span>
-                    </h5>
-                  </BrowserView>
-                  <MobileView>
-                    <h10>
-                      <span className="beyaz-manset">{news.caption}</span>
-                    </h10>
-                  </MobileView>
+              <a>
+
+                <div className="header-text">
+                  <div className="col-md-12 col-sm-8 col-xs-8 text-center">
+                    <BrowserView>
+                      <h5>
+                        <span className="beyaz-manset">{news.caption}</span>
+                      </h5>
+                    </BrowserView>
+                    <MobileView>
+                      <h10>
+                        <span className="beyaz-manset">{news.caption}</span>
+                      </h10>
+                    </MobileView>
+                  </div>
                 </div>
-              </div>
+              </a>
             </Link>
           </div>
         ))}

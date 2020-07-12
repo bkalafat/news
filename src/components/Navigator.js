@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import { Categories } from "../utils/constant"
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap"
 import { isMobile } from "react-device-detect"
@@ -9,12 +9,11 @@ const Navigator = () => {
     <div>
       <Navbar collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
         <Navbar.Brand className="navbar-brand">
-          <Link to="/">
-            <img
-              src={`${process.env.PUBLIC_URL}/circleLogo.png`}
-              alt="haberibul"
-              style={{ width: 50, height: 40, marginTop: -7 }}
-            />
+          <Link href="/">
+            <a>
+              haberibul
+
+            </a>
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -22,11 +21,12 @@ const Navigator = () => {
           <Nav className="mr-auto">
             {Object.values(Categories).map(c => (
               <Link
-                target={isMobile ? "_self" : "_blank"}
-                className="nav-link"
-                to={"/" + c.to}
+                key={c.key}
+                href={"/" + c.to}
               >
-                {c.value}
+                <a>
+                  {c.value}
+                </a>
               </Link>
             ))}
           </Nav>
@@ -38,13 +38,12 @@ const Navigator = () => {
       </Navbar>
 
       <div className="center">
-        <Link to="/">
-          <img
-            className="logo"
-            alt="haberi bul logo"
-            src={`${process.env.PUBLIC_URL}/haberibul.png`}
-          />
+        <Link href="/">
+          <a>
+            <p>test</p>
+          </a>
         </Link>
+
         <p> Haber ve haberleri bul haberibul.com </p>
       </div>
     </div>

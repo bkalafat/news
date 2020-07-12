@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { useHistory } from "react-router-dom"
 import BootstrapTable from "react-bootstrap-table-next"
-import { NEWS_TYPE } from "../../utils/constant"
-import * as API from "../../utils/api"
+import { NEWS_TYPE } from "../utils/constant"
+import * as API from "../utils/api"
 
 const AdminPanel = () => {
   const [newsList, setNewsList] = useState([])
@@ -13,17 +12,17 @@ const AdminPanel = () => {
     })
   },[])
 
-  const history = useHistory()
-  const navigateForCreate = () =>
-    history.push({
-      pathname: "/NewsEditor"
-    })
+  const navigateForCreate = () => console.log("navigated")
+    // history.push({
+    //   pathname: "/NewsEditor"
+    // })
 
-  const navigateForUpdate = news =>
-    history.push({
-      pathname: "/NewsEditor",
-      state: { news: news }
-    })
+  const navigateForUpdate = news => console.log("navigated")
+
+    // history.push({
+    //   pathname: "/NewsEditor",
+    //   state: { news: news }
+    // })
 
   function typeFormatter(cell, row) {
     if (cell === NEWS_TYPE) {

@@ -1,10 +1,7 @@
 import React, { useState } from "react"
-import "react-responsive-carousel/lib/styles/carousel.min.css"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import { isMobile, BrowserView, MobileView } from "react-device-detect"
 import Slider from "react-slick"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
 import { Arrow, Dots, Paging } from "../utils/sliderItem"
 
 const SliderPage = props => {
@@ -37,15 +34,14 @@ const SliderPage = props => {
       <Slider {...settings}>
         {props.newsList.map(news => (
           <div key={news.id} className="ratio">
+            <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
             <Link
-              to={{
-                pathname: news.url.includes("/") ? news.url : "detay/" + news.url,
-                state: { news: news }
-              }}
-              target={isMobile ? "_self" : "_blank"}
+              href={news.url.includes("/") ? news.url : "detay/" + news.url}
+
               key={news.id}
             >
-              <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
+              <a>
+
               <div className="header-text">
                 <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
                   <BrowserView>
@@ -60,6 +56,7 @@ const SliderPage = props => {
                   </MobileView>
                 </div>
               </div>
+              </a>
             </Link>
           </div>
         ))}
