@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import Share from "../../components/Share"
 import * as API from "../../utils/api"
+import Layout from "../../components/Layout"
+import Head from "next/head"
 
 const NewsDetail = () => {
   const [news, setNews] = useState([])
@@ -32,7 +34,10 @@ const NewsDetail = () => {
     let formatted = date.toLocaleString()
 
     return (
-      <div>
+      <Layout>
+        <Head>
+          <title>{news.caption}</title>
+        </Head>
         <div className="newsDetail">
 
           <h1 className="spaceAround">{news.caption}</h1>
@@ -58,12 +63,18 @@ const NewsDetail = () => {
           <time className="time" datetime={news.createDate}>Haber Giriş:{formatted} - Görüntülenme Sayısı:{news.viewCount ? news.viewCount : 1}</time>
         </div>
 
-      </div>
+      </Layout>
 
     )
-  } else return <div />
+  } else return <Layout>
+    <Head>
+      <title>Detay</title>
+    </Head>
+  </Layout>
 }
 
 //TODO bkalafat detay sayfada resimler ortada yazılar sola yaslı kalsın.
 
 export default NewsDetail
+
+//TODO get path props and o propertyler ile useSwr'dan gelen datanın içinde id ve category eşleşmesine göre haberi bul göster

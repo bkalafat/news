@@ -71,3 +71,6 @@ const CategoryNews = () => {
 }
 
 export default CategoryNews
+
+
+//TODO get path props and o propertyler ile useSwr'dan gelen datanın içinde  category eşleşmesine göre haberi bul göster
