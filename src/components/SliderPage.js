@@ -34,13 +34,12 @@ const SliderPage = props => {
       <Slider {...settings}>
         {props.newsList.map(news => (
           <div key={news.id} className="ratio">
-            <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
             <Link
               href={news.url.includes("/") ? news.url : "detay/" + news.url}
-
               key={news.id}
             >
               <a>
+            <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
 
               <div className="header-text">
                 <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">

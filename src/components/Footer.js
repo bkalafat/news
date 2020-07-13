@@ -10,40 +10,31 @@ const Footer = () => {
       <footer>
         <div className="centerFlex ">
           <div className="spaceAround">
-            <a
-              href="https://www.facebook.com/haberibul"
+            <SocialIcon
               rel="noopener noreferrer nofollow"
+              url="https://www.facebook.com/haberibul"
               target="_blank"
-            >
-              <SocialIcon
-                style={{ height: size, width: size }}
-                network="facebook"
-              />
-            </a>
+              style={{ height: size, width: size }}
+              network="facebook"
+            />
           </div>
           <div className="spaceAround">
-            <a
+            <SocialIcon
               href="https://twitter.com/haberibulcom"
               rel="noopener noreferrer nofollow"
               target="_blank"
-            >
-              <SocialIcon
-                style={{ height: size, width: size }}
-                network="twitter"
-              />
-            </a>
+              style={{ height: size, width: size }}
+              network="twitter"
+            />
           </div>
           <div className="spaceAround">
-            <a
+            <SocialIcon
               href="https://www.instagram.com/haberibulcom"
               rel="noopener noreferrer nofollow"
               target="_blank"
-            >
-              <SocialIcon
-                style={{ height: size, width: size }}
-                network="instagram"
-              />
-            </a>
+              style={{ height: size, width: size }}
+              network="instagram"
+            />
           </div>
         </div>
         <p>

@@ -1,49 +1,39 @@
-import React from "react"
 import Link from "next/link"
 import { Categories } from "../utils/constant"
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap"
 import { isMobile } from "react-device-detect"
 
 const Navigator = () => {
   return (
     <div>
-      <Navbar collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
-        <Navbar.Brand className="navbar-brand">
-          <Link href="/">
-            <a>
-              haberibul
-
-            </a>
-          </Link>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+      <nav className="navbar navbar-dark bg-dark navbar-expand-lg" >
+        <Link href="/"><a className="navbar-brand" >
+          <img
+            src={`/circleLogo.png`}
+            alt="haberibul"
+            style={{ width: 80, height: 50, marginTop: -7 }}
+          />
+        </a></Link>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
             {Object.values(Categories).map(c => (
-              <Link
-                key={c.key}
-                href={"/" + c.to}
-              >
-                <a>
-                  {c.value}
-                </a>
-              </Link>
+              <li key={c.key} className="nav-item">
+                <Link href={"/" + c.to}><a className="nav-link" >{c.value}</a></Link>
+              </li>
             ))}
-          </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Ara" className="mr-sm-2" />
-            <Button variant="outline-success">Ara</Button>
-          </Form>
-        </Navbar.Collapse>
-      </Navbar>
-
+          </ul>
+          <form className="form-inline my-2 my-lg-0">
+            <input className="form-control mr-sm-2" type="search" placeholder="Haberi" aria-label="Search" />
+            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Bul</button>
+          </form>
+        </div>
+      </nav>
       <div className="center">
         <Link href="/">
-          <a>
-            <p>test</p>
-          </a>
+          <a><img src="/haberibul.png" alt="image" /></a>
         </Link>
-
         <p> Haber ve haberleri bul haberibul.com </p>
       </div>
     </div>

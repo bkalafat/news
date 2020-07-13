@@ -1,22 +1,25 @@
-import Navigator from "../components/Navigator"
-import Footer from "../components/Footer"
+
 import { SWRConfig } from "swr"
 import axios from "axios"
-import { isMobile } from "react-device-detect"
+import Content from "../components/Content"
+import Layout from "../components/Layout"
+import Head from 'next/head'
 
 function Index() {
   return (
-    <div className={!isMobile ? "App" : ""}>
-      <Navigator />
+    <Layout>
+      <Head>
+        <title>Ana Sayfa</title>
+      </Head>
       <SWRConfig
         value={{
           dedupingInterval: 1000000,
           fetcher: url => axios(url).then(r => r.data)
         }}
       >
+        <Content />
       </SWRConfig>
-      <Footer />
-    </div>
+    </Layout>
   )
 }
 

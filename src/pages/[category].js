@@ -8,18 +8,25 @@ import {
 } from "../utils/constant"
 import { getEnvironmentUrl, getDummyNews, getCategoryByTo } from "../utils/helper"
 import useSWR from "swr"
+import Layout from "../components/Layout"
+import Head from "next/head"
 
 const CategoryNews = () => {
   const { data, error } = useSWR(getEnvironmentUrl() + "news")
   const dummyNews = getDummyNews()
   if (error || !data) {
     return (
-      <div>
-        <div className="col-md-10 col-xl-10 noPadding">
-          <SubSliderPage newsList={dummyNews.slice(0, 13)} />
+      <Layout>
+        <Head>
+          <title>Kategori</title>
+        </Head>
+        <div>
+          <div className="col-md-10 col-xl-10 noPadding">
+            <SubSliderPage newsList={dummyNews.slice(0, 13)} />
+          </div>
+          <SubNews newsList={dummyNews.slice(0, 13)}></SubNews>
         </div>
-        <SubNews newsList={dummyNews.slice(0, 13)}></SubNews>
-      </div>
+      </Layout>
     )
   }
   // else {
