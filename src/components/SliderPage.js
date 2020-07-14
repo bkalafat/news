@@ -35,7 +35,8 @@ const SliderPage = props => {
         {props.newsList.map(news => (
           <div key={news.id} className="ratio">
             <Link
-              href={news.url.includes("/") ? news.url : "detay/" + news.url}
+              href="/[category]/[id]"
+              as={news.url.includes("/") ? news.url : "detay/" + news.url}
               key={news.id}
             >
               <a>

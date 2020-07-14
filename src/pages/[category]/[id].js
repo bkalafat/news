@@ -3,27 +3,27 @@ import Share from "../../components/Share"
 import * as API from "../../utils/api"
 import Layout from "../../components/Layout"
 import Head from "next/head"
+import { useRouter } from 'next/router'
 
 const NewsDetail = () => {
   const [news, setNews] = useState([])
-
-
-  //const urlItems = location.pathname.split("/")
-  // const urlItems = "haberibul.com/gundem/nakit-deste-inde-3--faza-ge-ildi".split("/")
-  // let firstPart = ""
-  // if (urlItems[urlItems.length - 2] !== "detay")
-  //   firstPart = urlItems[urlItems.length - 2] + ">"
-  // const concatUrl = firstPart + urlItems[urlItems.length - 1]
-  // //TODO bkalafat url daha güzel alınacak pathname'den
-  // API.getNewsByUrl(concatUrl).then(
-  //   news => {
-  //     setNews(news)
-  //     API.increaseViewCount(news)
-  //   },
-  //   error => {
-  //     console.log(error)
-  //   }
-  // )
+  const router = useRouter()
+  const { id, category } = router.query
+  let firstPart = ""
+  if(!category) return <div>Haberibul</div>
+  if (category !== "detay") firstPart = category + ">"
+  const concatUrl = firstPart + id
+  //TODO bkalafat url daha güzel alınacak pathname'den
+  API.getNewsByUrl(concatUrl).then(
+    news => {
+      setNews(news)
+      debugger
+      //API.increaseViewCount(news)
+    },
+    error => {
+      console.log(error)
+    }
+  )
 
 
   if (news && news.createDate) {
@@ -60,7 +60,7 @@ const NewsDetail = () => {
           }}
         />
         <div class='container content center-item  text-center'>
-          <time className="time" datetime={news.createDate}>Haber Giriş:{formatted} - Görüntülenme Sayısı:{news.viewCount ? news.viewCount : 1}</time>
+          <time className="time" dateTime={news.createDate}>Haber Giriş:{formatted} - Görüntülenme Sayısı:{news.viewCount ? news.viewCount : 1}</time>
         </div>
 
       </Layout>

@@ -3,7 +3,6 @@ import SliderPage from "./SliderPage"
 import SubSliderPage from "./SubSliderPage"
 import SubNews from "./SubNews"
 import * as constant from "../utils/constant"
-import { Helmet } from "react-helmet"
 
 const News = props => {
   const { newsList } = props
@@ -47,21 +46,6 @@ const News = props => {
 
   return (
     <div className="centerFlex">
-      <Helmet>
-        <title>haberibul.com</title>
-        <meta
-          name="description"
-          content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
-        />
-        <meta charSet="utf-8" />
-        <meta property="url" content={"https://haberibul.com"} />
-        <meta property="og:url" content={"https://haberibul.com"} />
-        <meta
-          property="og:description"
-          content="Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
-        />
-
-      </Helmet>
       <div className="col-md-10 col-xl-10 noPadding">
         <SliderPage newsList={sliderNewsList} />
         <SubSliderPage newsList={subSliderNews} />

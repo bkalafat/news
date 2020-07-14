@@ -11,7 +11,7 @@ export const getNews = id => {
 }
 
 export const getNewsByUrl = url => {
-  return fetch(getEnvironmentUrl() + "news/" + url).then(res => res.json())
+    return fetch(getEnvironmentUrl() + "news/" + url).then(res => res.json())
 }
 
 export function createNews(news) {

@@ -17,8 +17,8 @@ const SubNews = props => {
               src={news.imgPath}
             />
           <Link
-            href={news.url.includes("/") ? news.url : "detay/" + news.url}
-
+            href="/[category]/[id]"
+            as={news.url.includes("/") ? news.url : "detay/" + news.url}
           >
             <a>
             </a>

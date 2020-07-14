@@ -27,7 +27,8 @@ const SubSliderPage = props => {
               alt={news.imgAlt}
             />
             <Link
-              href={news.url.includes("/") ? news.url : "detay/" + news.url}
+              href="/[category]/[id]"
+              as={news.url.includes("/") ? news.url : "detay/" + news.url}
 
               key={news.id}
             >
