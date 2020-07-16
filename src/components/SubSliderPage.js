@@ -21,19 +21,17 @@ const SubSliderPage = props => {
       <Slider {...settings}>
         {props.newsList.map(news => (
           <div key={news.id} className="ratio">
-            <img
-              className="imgRatio spaceAround"
-              src={news.imgPath}
-              alt={news.imgAlt}
-            />
             <Link
               href="/[category]/[id]"
               as={news.url.includes("/") ? news.url : "detay/" + news.url}
-
               key={news.id}
             >
               <a>
-
+                <img
+                  className="imgRatio spaceAround"
+                  src={news.imgPath}
+                  alt={news.imgAlt}
+                />
                 <div className="header-text">
                   <div className="col-md-12 col-sm-8 col-xs-8 text-center">
                     <BrowserView>
