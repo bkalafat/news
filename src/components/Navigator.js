@@ -20,7 +20,7 @@ const Navigator = () => {
           <ul className="navbar-nav mr-auto">
             {Object.values(Categories).map(c => (
               <li key={c.key} className="nav-item">
-                <Link href="/[category]"  as={"/" + c.to}><a className="nav-link" >{c.value}</a></Link>
+                <Link href="/[category]" as={"/" + c.to}><a className="nav-link" >{c.value}</a></Link>
               </li>
             ))}
           </ul>
@@ -32,7 +32,7 @@ const Navigator = () => {
       </nav>
       <div className="center">
         <Link href="/">
-          <a><img src="/haberibul.png" alt="image" /></a>
+          <a><img className="logo" src="/haberibul.png" alt="image" /></a>
         </Link>
         <p> Haber ve haberleri bul haberibul.com </p>
       </div>

@@ -47,7 +47,6 @@ const CategoryNews = () => {
       .sort(function (a, b) {
         return a.priority - b.priority
       })
-    debugger
     const subNewsList = tempNewsList
     return (
       <div>

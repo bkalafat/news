@@ -5,7 +5,7 @@ import { SWRConfig } from "swr"
 import axios from "axios"
 
 function Layout({ children }) {
-  return <div className={!isMobile ? "App" : ""}>
+  return <div>
     <Navigator />
     <SWRConfig
       value={{

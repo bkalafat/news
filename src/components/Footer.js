@@ -20,7 +20,7 @@ const Footer = () => {
           </div>
           <div className="spaceAround">
             <SocialIcon
-              href="https://twitter.com/haberibulcom"
+              url="https://twitter.com/haberibulcom"
               rel="noopener noreferrer nofollow"
               target="_blank"
               style={{ height: size, width: size }}
@@ -29,7 +29,7 @@ const Footer = () => {
           </div>
           <div className="spaceAround">
             <SocialIcon
-              href="https://www.instagram.com/haberibulcom"
+              url="https://www.instagram.com/haberibulcom"
               rel="noopener noreferrer nofollow"
               target="_blank"
               style={{ height: size, width: size }}
