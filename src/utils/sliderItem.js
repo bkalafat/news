@@ -25,8 +25,10 @@ export function Dots() {
 
 export const Paging = (index, currentSlide) => {
   return (
-    <Pagination.Item key={index} active={index === currentSlide}>
-      {index + 1}
-    </Pagination.Item>
+    <ul style={{ listStyle: "none" }} >
+      <Pagination.Item key={index} active={index === currentSlide}>
+        {index + 1}
+      </Pagination.Item>
+    </ul>
   )
 }

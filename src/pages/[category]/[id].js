@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState } from "react"
 import Share from "../../components/Share"
 import * as API from "../../utils/api"
 import Layout from "../../components/Layout"
@@ -10,36 +10,29 @@ const NewsDetail = () => {
   const router = useRouter()
   const { id, category } = router.query
   let firstPart = ""
-  if(!category) return <div>Haberibul</div>
+  if (!category || category == undefined) return <div>Haberibul</div>
   if (category !== "detay") firstPart = category + ">"
   const concatUrl = firstPart + id
-  //TODO bkalafat url daha güzel alınacak pathname'den
-  API.getNewsByUrl(concatUrl).then(
-    news => {
-      setNews(news)
-      debugger
-      //API.increaseViewCount(news)
-    },
-    error => {
-      console.log(error)
-    }
-  )
-
-
+  if (news == null || news.length < 1)
+    API.getNewsByUrl(concatUrl).then(
+      news => {
+        setNews(news)
+        API.increaseViewCount(news)
+      },
+      error => {
+        console.log(error)
+      }
+    )
   if (news && news.createDate) {
-
-
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(y, m - 1, d, hh, mm, ss, ms))
     let formatted = date.toLocaleString()
-
     return (
       <Layout>
         <Head>
           <title>{news.caption}</title>
         </Head>
         <div className="newsDetail">
-
           <h1 className="spaceAround">{news.caption}</h1>
           <p className="lead spaceAround">{news.summary}</p>
           <img
@@ -59,12 +52,10 @@ const NewsDetail = () => {
               "</div>"
           }}
         />
-        <div class='container content center-item  text-center'>
+        <div className='container content center-item  text-center'>
           <time className="time" dateTime={news.createDate}>Haber Giriş:{formatted} - Görüntülenme Sayısı:{news.viewCount ? news.viewCount : 1}</time>
         </div>
-
       </Layout>
-
     )
   } else return <Layout>
     <Head>
@@ -72,9 +63,5 @@ const NewsDetail = () => {
     </Head>
   </Layout>
 }
-
-//TODO bkalafat detay sayfada resimler ortada yazılar sola yaslı kalsın.
-
 export default NewsDetail
-
-//TODO get path props and o propertyler ile useSwr'dan gelen datanın içinde id ve category eşleşmesine göre haberi bul göster
+//TODO bkalafat detay sayfada resimler ortada yazılar sola yaslı kalsın.

@@ -11,14 +11,8 @@ function Index() {
       <Head>
         <title>Ana Sayfa</title>
       </Head>
-      <SWRConfig
-        value={{
-          dedupingInterval: 1000000,
-          fetcher: url => axios(url).then(r => r.data)
-        }}
-      >
         <Content />
-      </SWRConfig>
+
     </Layout>
   )
 }

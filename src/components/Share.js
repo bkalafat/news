@@ -24,7 +24,7 @@ const Share = props => {
           hashtag={"#" + props.news.caption}
           media={props.news.imgPath}
         >
-          <FacebookIcon size="2.5rem" logoFillColor="white" />
+          <FacebookIcon size="2.5rem" />
         </FacebookShareButton>
         <TwitterShareButton
           imageurl={props.news.imgPath}
