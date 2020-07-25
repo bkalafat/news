@@ -65,3 +65,4 @@ const NewsDetail = () => {
 }
 export default NewsDetail
 //TODO bkalafat detay sayfada resimler ortada yazılar sola yaslı kalsın.
+

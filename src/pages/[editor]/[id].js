@@ -1,18 +1,19 @@
 import { useState, useEffect, useRef } from "react"
 import { Form, Button } from "react-bootstrap"
-import * as Const from "../utils/constant"
-import * as API from "../utils/api"
+import * as Const from "../../utils/constant"
+import * as API from "../../utils/api"
 import Resizer from "react-image-file-resizer"
-import UploadAdapter from "../utils/UploadAdapter"
-import Router from 'next/router'
+import UploadAdapter from "../../utils/UploadAdapter"
+import Router, { useRouter } from 'next/router'
 
-const NewsEditor = () => {
+const NewsEditor = (props) => {
 
   const fileInput = useRef(null)
-  //const location = useLocation()
-  //const history = useHistory()
-  //const isUpdate = location.state ? (location.state.news ? true : false) : false
-  const isUpdate = false
+  const router = useRouter()
+  const { id } = router.query
+  const isUpdate = id != 'new';
+  const [news, setNews] = useState(isUpdate ? props.news : CONST.DEFAULT_NEWS)
+
 
   function urlToFile(url, filename, mimeType) {
     return fetch(url)
@@ -32,10 +33,7 @@ const NewsEditor = () => {
   }
 
 
-  //TODO bkalafat next taşıma const { news } = isUpdate ? location.state : Const.DEFAULT_NEWS
-  const { news } = Const.DEFAULT_NEWS
   const [isSubmitting, setSubmitting] = useState(false)
-  const [newNews, setNews] = useState(news)
   const [selectedFile, setSelectedFile] = useState(null)
   let CKEditor = require("@ckeditor/ckeditor5-react")
   let ClassicEditor = require("@ckeditor/ckeditor5-build-classic")
