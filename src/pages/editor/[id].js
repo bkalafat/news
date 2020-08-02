@@ -12,7 +12,7 @@ const NewsEditor = (props) => {
   const router = useRouter()
   const { id } = router.query
   const isUpdate = id != 'new';
-  const [news, setNews] = useState(isUpdate ? props.news : CONST.DEFAULT_NEWS)
+  const [newNews, setNews] = useState(isUpdate ? props.news ? props.news : Const.DEFAULT_NEWS : Const.DEFAULT_NEWS)
 
 
   function urlToFile(url, filename, mimeType) {
@@ -227,6 +227,33 @@ const NewsEditor = (props) => {
       </div>
     </div>
   )
+}
+
+export async function getStaticPaths() {
+
+  const newsList = await API.getNewsList()
+
+  // Get the paths we want to pre-render based on posts
+  const paths = newsList.map((news) => ({
+    params: { id: news.id },
+  }))
+  paths.push({ params: { id: 'new' } })
+
+  return { paths, fallback: true }
+}
+
+export const getStaticProps = async ({ params }) => {
+  let news = Const.DEFAULT_NEWS;
+  if (params.id != 'new') {
+    const res = await API.getNews(params.id)
+    news = await res.json()
+  }
+  return {
+    revalidate: 1,
+    props: {
+      news
+    }
+  }
 }
 
 export default NewsEditor
