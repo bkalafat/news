@@ -5,15 +5,21 @@ import * as API from "../../utils/api"
 import Resizer from "react-image-file-resizer"
 import UploadAdapter from "../../utils/UploadAdapter"
 import Router, { useRouter } from 'next/router'
+import useSWR from 'swr'
 
-const NewsEditor = (props) => {
+const NewsEditor = () => {
 
   const fileInput = useRef(null)
   const router = useRouter()
   const { id } = router.query
+  let news = Const.DEFAULT_NEWS;
   const isUpdate = id != 'new';
-  const [newNews, setNews] = useState(isUpdate ? props.news ? props.news : Const.DEFAULT_NEWS : Const.DEFAULT_NEWS)
-
+  if (isUpdate) {
+    const { data, error } = useSWR(getEnvironmentUrl() + "news")
+    if (error) console.log(error.message)
+    news = data.filter(news => news.id === id)
+  }
+  const [newNews, setNews] = useState(isUpdate ? news ? news : Const.DEFAULT_NEWS : Const.DEFAULT_NEWS)
 
   function urlToFile(url, filename, mimeType) {
     return fetch(url)
@@ -31,7 +37,6 @@ const NewsEditor = (props) => {
         setSubmitting(true)
       })
   }
-
 
   const [isSubmitting, setSubmitting] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
@@ -227,33 +232,6 @@ const NewsEditor = (props) => {
       </div>
     </div>
   )
-}
-
-export async function getStaticPaths() {
-
-  const newsList = await API.getNewsList()
-
-  // Get the paths we want to pre-render based on posts
-  const paths = newsList.map((news) => ({
-    params: { id: news.id },
-  }))
-  paths.push({ params: { id: 'new' } })
-
-  return { paths, fallback: true }
-}
-
-export const getStaticProps = async ({ params }) => {
-  let news = Const.DEFAULT_NEWS;
-  if (params.id != 'new') {
-    const res = await API.getNews(params.id)
-    news = await res.json()
-  }
-  return {
-    revalidate: 1,
-    props: {
-      news
-    }
-  }
 }
 
 export default NewsEditor
