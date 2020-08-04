@@ -11,37 +11,17 @@ export function getEnvironmentUrl() {
 }
 
 export function setDefaultValues(news) {
-  news.subjects = ["Covid", "Türkiye"]
-  news.authors = ["Mustafa Çolakoğlu", "Burak Kalafat"]
-  news.url = getCategory(news).to + "/" + replaceNonWordsWith(news.caption, "-")
+  news.subjects = ["haber"]
+  news.authors = ["Mustafa Çolakoğlu"]
   news.createDate = new Date().toISOString()
   news.updateDate = new Date().toISOString()
   news.expireDate = new Date().toISOString()
+  news.url= "#"
   news.viewCount = 0
 
   return news
 }
 
-export const replaceNonWordsWith = (text, char) => {
-  return text
-    ? text
-        .replace(/Ğ/gim, "g")
-        .replace(/Ü/gim, "u")
-        .replace(/Ş/gim, "s")
-        .replace(/I/gim, "i")
-        .replace(/İ/gim, "i")
-        .replace(/Ö/gim, "o")
-        .replace(/Ç/gim, "c")
-        .replace(/ğ/gim, "g")
-        .replace(/ü/gim, "u")
-        .replace(/ş/gim, "s")
-        .replace(/ı/gim, "i")
-        .replace(/ö/gim, "o")
-        .replace(/ç/gim, "c")
-        .replace(/[^A-Za-z0-9]/g, char)
-        .toLowerCase()
-    : ""
-}
 
 export const getDummyNews = () => {
   let news = []
@@ -93,9 +73,6 @@ export const getDummyNews = () => {
   return news
 }
 
-const getCategory = news => {
-  return Object.values(Const.Categories).find(c => c.key === news.category)
-}
 
 export const getCategoryByTo = to => {
   return Object.values(Const.Categories).find(c => c.to === to)

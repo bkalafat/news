@@ -60,11 +60,11 @@ const NewsEditor = () => {
     if (isSubmitting) {
       if ("id" in newNews) {
         API.updateNews(newNews).then(res => {
-          Router.push("/AdminPanel")
+          Router.push("/adminpanel")
         })
       } else {
         API.createNews(newNews).then(res => {
-          Router.push("/AdminPanel")
+          Router.push("/adminpanel")
         })
       }
     }
@@ -229,7 +229,7 @@ const NewsEditor = () => {
             {isUpdate ? "Güncelle" : "Ekle"}
           </Button>
 
-          <Button variant="warning" onClick={() => Router.push('/AdminPanel')}>
+          <Button variant="warning" onClick={() => Router.push('/adminpanel')}>
             Geri
           </Button>
 
@@ -238,7 +238,7 @@ const NewsEditor = () => {
               variant="danger"
               onClick={() =>
                 API.deleteNews(newNews.id).then(function (res) {
-                  Router.push("/AdminPanel")
+                  Router.push("/adminpanel")
                 })
               }
             >
