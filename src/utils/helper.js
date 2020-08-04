@@ -1,7 +1,13 @@
 import * as Const from "./constant"
 
 export function getEnvironmentUrl() {
-  return process.env.NEXT_PUBLIC_API_PATH
+  let url = "https://localhost:5001/api/"
+  //let url = "https://haberibul-api.herokuapp.com/api/"
+  if (process.env.NODE_ENV === "production") {
+    url = "https://haberibul-api.herokuapp.com/api/"
+  }
+
+  return url
 }
 
 export function setDefaultValues(news) {

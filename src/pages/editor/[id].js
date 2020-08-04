@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import { Form, Button } from "react-bootstrap"
 import * as Const from "../../utils/constant"
 import * as API from "../../utils/api"
+import * as Helper from "../../utils/helper"
 import Resizer from "react-image-file-resizer"
 import UploadAdapter from "../../utils/UploadAdapter"
 import Router, { useRouter } from 'next/router'
@@ -13,11 +14,16 @@ const NewsEditor = () => {
   const router = useRouter()
   const { id } = router.query
   let news = Const.DEFAULT_NEWS;
-  const isUpdate = id != 'new';
+  const isUpdate = id && id != 'new';
   if (isUpdate) {
-    const { data, error } = useSWR(getEnvironmentUrl() + "news")
+    const { data, error } = useSWR(Helper.getEnvironmentUrl() + "news")
     if (error) console.log(error.message)
-    news = data.filter(news => news.id === id)
+    else if (!data) {
+      news = Const.DEFAULT_NEWS
+    }
+    else {
+      news = data.filter(news => news.id === id)
+    }
   }
   const [newNews, setNews] = useState(isUpdate ? news ? news : Const.DEFAULT_NEWS : Const.DEFAULT_NEWS)
 
@@ -40,13 +46,17 @@ const NewsEditor = () => {
 
   const [isSubmitting, setSubmitting] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
-  let CKEditor = require("@ckeditor/ckeditor5-react")
-  let ClassicEditor = require("@ckeditor/ckeditor5-build-classic")
+
+  const editorRef = useRef()
+  const [editorLoaded, setEditorLoaded] = useState(false)
+  const { CKEditor, ClassicEditor } = editorRef.current || {}
 
   useEffect(() => {
-
-    CKEditor = require("@ckeditor/ckeditor5-react")
-    ClassicEditor = require("@ckeditor/ckeditor5-build-classic")
+    editorRef.current = {
+      CKEditor: require('@ckeditor/ckeditor5-react'),
+      ClassicEditor: require('@ckeditor/ckeditor5-build-classic')
+    }
+    setEditorLoaded(true)
     if (isSubmitting) {
       if ("id" in newNews) {
         API.updateNews(newNews).then(res => {
@@ -166,7 +176,7 @@ const NewsEditor = () => {
 
           <Form.Group>
             <Form.Label>İçerik</Form.Label>
-            <CKEditor
+            {editorLoaded ? (<CKEditor
               editor={ClassicEditor}
               data={newNews.content}
               onInit={editor => {
@@ -179,7 +189,14 @@ const NewsEditor = () => {
               onChange={(_e, editor) => {
                 setNews({ ...newNews, content: editor.getData() })
               }}
-            />
+            />) : (
+                <Form.Control
+                  value={newNews.content}
+                  onChange={e => setNews({ ...newNews, content: e.target.value })}
+                  as="textarea"
+                  rows="2"
+                />
+              )}
           </Form.Group>
 
           <Form.Group>
