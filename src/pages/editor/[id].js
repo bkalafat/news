@@ -225,11 +225,11 @@ const NewsEditor = () => {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button style={{ marginRight: 7 }} variant="primary" type="submit">
             {isUpdate ? "Güncelle" : "Ekle"}
           </Button>
 
-          <Button variant="warning" onClick={() => Router.push('/adminpanel')}>
+          <Button style={{ marginRight: 7 }} variant="warning" onClick={() => Router.push('/adminpanel')}>
             Geri
           </Button>
 
