@@ -1,16 +1,15 @@
 import { useState } from "react"
-import Share from "../../components/Share"
-import * as API from "../../utils/api"
-import * as Const from "../../utils/constant"
-import Layout from "../../components/Layout"
+import Share from "../../../components/Share"
+import * as API from "../../../utils/api"
+import * as Const from "../../../utils/constant"
+import Layout from "../../../components/Layout"
 import Head from "next/head"
 import { useRouter } from 'next/router'
 
 const NewsDetail = (props) => {
   const [news, setNews] = useState(props.news)
   const router = useRouter()
-  const { id, category } = router.query
-  if (!category || category == undefined) return <div>Haberibul</div>
+  const { id } = router.query
   if (news == null || news.length < 1)
     API.getNews(id).then(
       news => {
@@ -63,25 +62,20 @@ const NewsDetail = (props) => {
 }
 
 export async function getStaticPaths() {
-
-  //TODO get news from url as slug not id.
-
-  const res = await API.getNewsList()
-  const newsList = await res.json()
-
-  const paths = newsList.map((news) => ({
-    params: { id: news.id, category: news.category, url: news.url },
-  }))
-  paths.push({ params: { id: 'new', category: 'new', url: 'new' } })
-
+  const newsList = await API.getNewsList()
+  let paths = []
+  if (newsList && newsList.id && newsList.category && newsList.caption)
+    paths = newsList.map((news) => ({
+      params: { category: 'new', slug:'Test', id: news.id }
+    }))
+  paths.push({ params: {  category: 'new', slug:'Test', id: 'new' } })
   return { paths, fallback: true }
 }
 
 export const getStaticProps = async ({ params }) => {
   let news = Const.DEFAULT_NEWS;
-  if (params.id != 'new') {
-    const res = await API.getNews(params.id)
-    news = await res.json()
+  if (params.id && params.id != 'new') {
+    news = await API.getNews(params.id)
   }
   return {
     revalidate: 1,
@@ -91,7 +85,4 @@ export const getStaticProps = async ({ params }) => {
   }
 }
 
-
 export default NewsDetail
-//TODO bkalafat detay sayfada resimler ortada yazılar sola yaslı kalsın.
-

@@ -2,6 +2,8 @@ import React from "react"
 import Link from "next/link"
 import { BrowserView, MobileView, isMobile } from "react-device-detect"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import * as Helper from '../utils/helper'
+import slugify from 'slugify'
 
 const SubNews = props => {
   return (
@@ -12,8 +14,8 @@ const SubNews = props => {
           key={news.id}
         >
           <Link
-            href="/[category]/[id]"
-            as={news.url.includes("/") ? news.url : "detay/" + news.url}
+            href="[category]/[slug]/[id]"
+            as={Helper.getCategoryByKey(news.category)+ '/' + slugify(news.caption) + '/' + news.id }
           >
             <a>
               <LazyLoadImage

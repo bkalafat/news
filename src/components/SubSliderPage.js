@@ -3,6 +3,8 @@ import Link from "next/link"
 import { isMobile, BrowserView, MobileView } from "react-device-detect"
 import Slider from "react-slick"
 import { Arrow } from "../utils/sliderItem"
+import * as Helper from '../utils/helper'
+import slugify from 'slugify'
 
 const SubSliderPage = props => {
   var settings = {
@@ -22,8 +24,8 @@ const SubSliderPage = props => {
         {props.newsList.map(news => (
           <div key={news.id} className="ratio">
             <Link
-              href="/[category]/[id]"
-              as={news.url.includes("/") ? news.url : "detay/" + news.url}
+              href="[category]/[slug]/[id]"
+              as={Helper.getCategoryByKey(news.category)+ '/' + slugify(news.caption) + '/' + news.id }
               key={news.id}
             >
               <a>

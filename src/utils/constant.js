@@ -7,14 +7,15 @@ export const DEFAULT_NEWS = {
   news: {
     type: "news",
     category: "General",
-    caption: "",
-    summary: "",
+    caption: "new",
+    summary: "new",
     content:
       "<h2>(Başlık)</h2<p></p><p></p><p>İçerik oluştur...</p><p>(Kopyala yapıştır ile direk sayfa alabilirsin)</p><p></p><p></p>",
     isActive: true,
     priority: 1,
     imgPath: "https://via.placeholder.com/500x250?text=HABER",
-    imgAlt: "haber"
+    imgAlt: "haber",
+    url: "new/new"
   }
 }
 
