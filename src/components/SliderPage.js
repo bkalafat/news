@@ -30,7 +30,6 @@ const SliderPage = props => {
       return Paging(index, currentIndex)
     }
   }
-  debugger
   return (
 
     <div style={{ marginBottom: 5 }}>

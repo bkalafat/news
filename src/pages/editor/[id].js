@@ -13,19 +13,19 @@ const NewsEditor = () => {
   const fileInput = useRef(null)
   const router = useRouter()
   const { id } = router.query
-  let news = Const.DEFAULT_NEWS;
+  let dummyNews = Const.DEFAULT_NEWS;
   const isUpdate = id && id != 'new';
+  const [newNews, setNews] = useState(dummyNews)
   if (isUpdate) {
-    const { data, error } = useSWR(Helper.getEnvironmentUrl() + "news")
-    if (error) console.log(error.message)
-    else if (!data) {
-      news = Const.DEFAULT_NEWS
-    }
-    else {
-      news = data.filter(news => news.id === id)
-    }
+    API.getNews(id).then(
+      res => {
+        setNews(res)
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
-  const [newNews, setNews] = useState(isUpdate ? news ? news : Const.DEFAULT_NEWS : Const.DEFAULT_NEWS)
 
   function urlToFile(url, filename, mimeType) {
     return fetch(url)

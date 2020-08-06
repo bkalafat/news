@@ -8,7 +8,6 @@ export const getNewsList = () => {
 }
 
 export const getNews = id => {
-  debugger
   return fetch(getEnvironmentUrl() + "news/" + id).then(res => res.json())
 }
 

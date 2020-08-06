@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react"
 import BootstrapTable from "react-bootstrap-table-next"
 import { NEWS_TYPE } from "../utils/constant"
 import * as API from "../utils/api"
+import Router from 'next/router'
 
-const AdminPanel = () => {
-  const [newsList, setNewsList] = useState([])
+const AdminPanel = (props) => {
+  const [newsList, setNewsList] = useState(props.newsList)
 
   useEffect(() => {
     API.getNewsList().then(result => {
@@ -12,19 +13,10 @@ const AdminPanel = () => {
     })
   },[])
 
-  const navigateForCreate = () => console.log("navigated")
-    // history.push({
-    //   pathname: "/NewsEditor"
-    // })
+  const navigateForCreate = () => Router.push("/editor/new")
+  const navigateForUpdate = news => Router.push("/editor/" + news.id)
 
-  const navigateForUpdate = news => console.log("navigated")
-
-    // history.push({
-    //   pathname: "/NewsEditor",
-    //   state: { news: news }
-    // })
-
-  function typeFormatter(cell, row) {
+  function typeFormatter(cell) {
     if (cell === NEWS_TYPE) {
       return "Ana Haber"
     } else {
@@ -71,7 +63,7 @@ const AdminPanel = () => {
   ]
 
   const rowEvents = {
-    onClick: (e, row) => {
+    onClick: (_e, row) => {
       navigateForUpdate(row)
     }
   }
@@ -96,6 +88,16 @@ const AdminPanel = () => {
         />
       </div>
     )
+  }
+}
+
+export const getStaticProps = async () => {
+  const newsList = await API.getNewsList()
+  return {
+    revalidate: 5,
+    props: {
+      newsList
+    }
   }
 }
 
