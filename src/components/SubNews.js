@@ -15,7 +15,7 @@ const SubNews = props => {
         >
           <Link
             href="[category]/[slug]/[id]"
-            as={Helper.getCategoryByKey(news.category)+ '/' + slugify(news.caption) + '/' + news.id }
+            as={Helper.getCategoryToByKey(news.category)+ '/' + slugify(news.caption) + '/' + news.id }
           >
             <a>
               <LazyLoadImage

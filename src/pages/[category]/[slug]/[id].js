@@ -2,9 +2,11 @@ import { useState } from "react"
 import Share from "../../../components/Share"
 import * as API from "../../../utils/api"
 import * as Const from "../../../utils/constant"
+import * as Helper from "../../../utils/helper"
 import Layout from "../../../components/Layout"
 import Head from "next/head"
 import { useRouter } from 'next/router'
+import slugify from 'slugify'
 
 const NewsDetail = (props) => {
   const [news, setNews] = useState(props.news)
@@ -66,9 +68,9 @@ export async function getStaticPaths() {
   let paths = []
   if (newsList && newsList.id && newsList.category && newsList.caption)
     paths = newsList.map((news) => ({
-      params: { category: 'new', slug:'Test', id: news.id }
+      params: { category: Helper.getCategoryToByKey(), slug: slugify(news.caption), id: news.id }
     }))
-  paths.push({ params: {  category: 'new', slug:'Test', id: 'new' } })
+  paths.push({ params: { category: 'new', slug: 'new', id: 'new' } })
   return { paths, fallback: true }
 }
 

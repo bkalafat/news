@@ -30,34 +30,36 @@ const SliderPage = props => {
       return Paging(index, currentIndex)
     }
   }
-
+  debugger
   return (
+
     <div style={{ marginBottom: 5 }}>
+
       <Slider {...settings}>
         {props.newsList.map(news => (
           <div key={news.id} className="ratio">
             <Link
               href="[category]/[slug]/[id]"
-              as={Helper.getCategoryByKey(news.category)+ '/' + slugify(news.caption) + '/' + news.id }
+              as={Helper.getCategoryToByKey(news.category) + '/' + slugify(news.caption) + '/' + news.id}
               key={news.id}
             >
               <a>
-            <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
+                <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
 
-              <div className="header-text">
-                <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
-                  <BrowserView>
-                    <h4>
-                      <span className="beyaz-manset">{news.caption}</span>
-                    </h4>
-                  </BrowserView>
-                  <MobileView>
-                    <h7>
-                      <span className="beyaz-manset">{news.caption}</span>
-                    </h7>
-                  </MobileView>
+                <div className="header-text">
+                  <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">
+                    <BrowserView>
+                      <h4>
+                        <span className="beyaz-manset">{news.caption}</span>
+                      </h4>
+                    </BrowserView>
+                    <MobileView>
+                      <h7>
+                        <span className="beyaz-manset">{news.caption}</span>
+                      </h7>
+                    </MobileView>
+                  </div>
                 </div>
-              </div>
               </a>
             </Link>
           </div>

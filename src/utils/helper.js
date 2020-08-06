@@ -23,7 +23,7 @@ export const getDummyNews = () => {
   for (var index = 0; index < 13; index++) {
     news.push({
       id: index,
-      category: "Placeholder",
+      category: "General",
       type: "news",
       caption: "Haberibul.com",
       summary: "Haberibul.com",
@@ -45,7 +45,7 @@ export const getDummyNews = () => {
   for (var subIndex = 0; subIndex < 12; subIndex++) {
     news.push({
       id: subIndex,
-      category: "Placeholder",
+      category: "General",
       type: "subNews",
       caption: "Haberibul.com",
       summary: "Haberibul.com",
@@ -72,13 +72,8 @@ export const getCategoryByTo = to => {
   return Object.values(Const.Categories).find(c => c.to === to)
 }
 
-export const getCategoryByKey = key => {
-
-  const categories =  Object.values(Const.Categories)
-
-  if(categories.includes(c => c.key === key)) {
-    return categories.find(c => c.key === key)
-  }
-
-  return "new"
+export const getCategoryToByKey = key => {
+  const categories = Object.values(Const.Categories)
+  const category = categories.find(c => c.key === key)
+  return category ? category.to : "new"
 }

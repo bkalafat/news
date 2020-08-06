@@ -25,7 +25,7 @@ const SubSliderPage = props => {
           <div key={news.id} className="ratio">
             <Link
               href="[category]/[slug]/[id]"
-              as={Helper.getCategoryByKey(news.category)+ '/' + slugify(news.caption) + '/' + news.id }
+              as={Helper.getCategoryToByKey(news.category)+ '/' + slugify(news.caption) + '/' + news.id }
               key={news.id}
             >
               <a>
