@@ -54,17 +54,17 @@ const CategoryNews = () => {
           <title>{category}</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="title" content="Haberibul.com" />
-          <meta name="description" content={ categoryObj.value + "haberlerini bulabileceğiniz haberi bul sayfası."} />
+          <meta name="description" content={ categoryObj.value + " haberlerini bulabileceğiniz haberi bul sayfası."} />
           <meta property="og:image" content="/logo512.png" />
           <meta property="og:url" content={"https://haberibul.com/" + categoryObj.to} />
           <meta property="og:type" content="website" />
           <meta property="og:url" content={"https://haberibul.com" + categoryObj.to} />
           <meta property="og:title" content="Haberibul.com" />
-          <meta property="og:description" content="Ulusal Spor Magazin Ekonomi Futbol Canlı Son Dakika haberlerini bulabileceğiniz haberi bul sayfası." />
+          <meta property="og:description" content={ categoryObj.value + " haberlerini bulabileceğiniz haberi bul sayfası."} />
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:url" content={"https://haberibul.com/" + categoryObj.to} />
           <meta property="twitter:title" content="Haberibul.com" />
-          <meta property="twitter:description" content="Ulusal Spor Magazin Ekonomi Futbol Canlı Son Dakika haberlerini bulabileceğiniz haberi bul sayfası." />
+          <meta property="twitter:description" content={ categoryObj.value + " haberlerini bulabileceğiniz haberi bul sayfası."}  />
         </Head>
         <div className="center">
           <h2>{categoryObj.value}</h2>
