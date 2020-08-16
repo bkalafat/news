@@ -2,11 +2,9 @@ import { useState, useEffect, useRef } from "react"
 import { Form, Button } from "react-bootstrap"
 import * as Const from "../../utils/constant"
 import * as API from "../../utils/api"
-import * as Helper from "../../utils/helper"
 import Resizer from "react-image-file-resizer"
 import UploadAdapter from "../../utils/UploadAdapter"
 import Router, { useRouter } from 'next/router'
-import useSWR from 'swr'
 
 const NewsEditor = () => {
 
@@ -15,17 +13,9 @@ const NewsEditor = () => {
   const { id } = router.query
   let dummyNews = Const.DEFAULT_NEWS;
   const isUpdate = id && id != 'new';
+  debugger
   const [newNews, setNews] = useState(dummyNews)
-  if (isUpdate) {
-    API.getNews(id).then(
-      res => {
-        setNews(res)
-      },
-      error => {
-        console.log(error)
-      }
-    )
-  }
+
 
   function urlToFile(url, filename, mimeType) {
     return fetch(url)
@@ -45,7 +35,7 @@ const NewsEditor = () => {
   }
 
   const [isSubmitting, setSubmitting] = useState(false)
-  const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedFile, setSelectedFile] = useState({})
 
   const editorRef = useRef()
   const [editorLoaded, setEditorLoaded] = useState(false)
@@ -56,20 +46,34 @@ const NewsEditor = () => {
       CKEditor: require('@ckeditor/ckeditor5-react'),
       ClassicEditor: require('@ckeditor/ckeditor5-build-classic')
     }
+    debugger
+
+    if (isUpdate && !newNews.id) {
+      API.getNews(id).then(
+        res => {
+          setNews(res)
+        },
+        error => {
+          console.log(error)
+        }
+      )
+    }
+
     setEditorLoaded(true)
     if (isSubmitting) {
       if ("id" in newNews) {
-        API.updateNews(newNews).then(res => {
+        debugger
+        API.updateNews(newNews).then(() => {
           Router.push("/adminpanel")
         })
       } else {
-        API.createNews(newNews).then(res => {
+        API.createNews(newNews).then(() => {
           Router.push("/adminpanel")
         })
       }
     }
     if (isSubmitting) setSubmitting(false)
-  }, [isSubmitting, newNews])
+  }, [isSubmitting, newNews, id])
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -124,7 +128,7 @@ const NewsEditor = () => {
               as="select"
             >
               {Object.values(Const.Categories).map(c => (
-                <option value={c.key}>{c.value}</option>
+                <option key={c.key} value={c.key}>{c.value}</option>
               ))}
             </Form.Control>
           </Form.Group>
@@ -203,7 +207,7 @@ const NewsEditor = () => {
             <Form.Label>Durum</Form.Label>
             <Form.Control
               value={newNews.isActive}
-              onChange={e => setNews({ ...newNews, isActive: e.target.value })}
+              onChange={e => setNews({ ...newNews, isActive: e.target.value === "true" })}
               as="select"
             >
               <option value={true}>Aktif</option>
