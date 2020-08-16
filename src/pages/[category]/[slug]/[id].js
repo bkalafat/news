@@ -65,12 +65,14 @@ const NewsDetail = (props) => {
 
 export async function getStaticPaths() {
   const newsList = await API.getNewsList()
+  //console.log("NEWSLIST XKARAMBAX: " + JSON.stringify(newsList))
   let paths = []
-  if (newsList && newsList.id && newsList.category && newsList.caption)
-    paths = newsList.map((news) => ({
-      params: { category: Helper.getCategoryToByKey(), slug: slugify(news.caption), id: news.id }
-    }))
+
+  paths = newsList.map((news) => ({
+    params: { category: Helper.getCategoryToByKey(), slug: slugify(news.caption), id: news.id }
+  }))
   paths.push({ params: { category: 'new', slug: 'new', id: 'new' } })
+  console.log("PATHS XKARAMBAX: " + JSON.stringify(paths))
   return { paths, fallback: true }
 }
 
