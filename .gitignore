@@ -55,6 +55,8 @@ obj\
 _ReSharper.*
 bin
 obj
+.next
+out
 packages
 **/*.firebaserc
 backend/newsApi/newsApi/appsettings.json

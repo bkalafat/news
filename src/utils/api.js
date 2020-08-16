@@ -1,5 +1,6 @@
 import { getEnvironmentUrl, setDefaultValues } from "./helper"
 import axios from "axios"
+import fetch from 'isomorphic-unfetch'
 import * as Const from "./constant"
 
 export const getNewsList = () => {
@@ -11,7 +12,7 @@ export const getNews = id => {
 }
 
 export const getNewsByUrl = url => {
-  return fetch(getEnvironmentUrl() + "news/" + url).then(res => res.json())
+    return fetch(getEnvironmentUrl() + "news/" + url).then(res => res.json())
 }
 
 export function createNews(news) {

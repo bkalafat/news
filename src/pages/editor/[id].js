@@ -1,19 +1,21 @@
-import React, { useState, useEffect, useRef } from "react"
-import { useLocation } from "react-router-dom"
+import { useState, useEffect, useRef } from "react"
 import { Form, Button } from "react-bootstrap"
 import * as Const from "../../utils/constant"
 import * as API from "../../utils/api"
-import { useHistory } from "react-router-dom"
 import Resizer from "react-image-file-resizer"
-import CKEditor from "@ckeditor/ckeditor5-react"
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
 import UploadAdapter from "../../utils/UploadAdapter"
+import Router, { useRouter } from 'next/router'
 
 const NewsEditor = () => {
+
   const fileInput = useRef(null)
-  const location = useLocation()
-  const history = useHistory()
-  const isUpdate = location.state ? (location.state.news ? true : false) : false
+  const router = useRouter()
+  const { id } = router.query
+  let dummyNews = Const.DEFAULT_NEWS;
+  const isUpdate = id && id != 'new';
+  debugger
+  const [newNews, setNews] = useState(dummyNews)
+
 
   function urlToFile(url, filename, mimeType) {
     return fetch(url)
@@ -32,25 +34,46 @@ const NewsEditor = () => {
       })
   }
 
-  const { news } = isUpdate ? location.state : Const.DEFAULT_NEWS
   const [isSubmitting, setSubmitting] = useState(false)
-  const [newNews, setNews] = useState(news)
-  const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedFile, setSelectedFile] = useState({})
+
+  const editorRef = useRef()
+  const [editorLoaded, setEditorLoaded] = useState(false)
+  const { CKEditor, ClassicEditor } = editorRef.current || {}
 
   useEffect(() => {
+    editorRef.current = {
+      CKEditor: require('@ckeditor/ckeditor5-react'),
+      ClassicEditor: require('@ckeditor/ckeditor5-build-classic')
+    }
+    debugger
+
+    if (isUpdate && !newNews.id) {
+      API.getNews(id).then(
+        res => {
+          setNews(res)
+        },
+        error => {
+          console.log(error)
+        }
+      )
+    }
+
+    setEditorLoaded(true)
     if (isSubmitting) {
       if ("id" in newNews) {
-        API.updateNews(newNews).then(res => {
-          history.push("/AdminPanel")
+        debugger
+        API.updateNews(newNews).then(() => {
+          Router.push("/adminpanel")
         })
       } else {
-        API.createNews(newNews).then(res => {
-          history.push("/AdminPanel")
+        API.createNews(newNews).then(() => {
+          Router.push("/adminpanel")
         })
       }
     }
     if (isSubmitting) setSubmitting(false)
-  }, [isSubmitting, newNews, history])
+  }, [isSubmitting, newNews, id])
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -63,7 +86,7 @@ const NewsEditor = () => {
         100,
         0,
         uri => {
-          urlToFile(uri, selectedFile.name, "image/jpeg").then(() => {})
+          urlToFile(uri, selectedFile.name, "image/jpeg").then(() => { })
         },
         "base64"
       )
@@ -105,7 +128,7 @@ const NewsEditor = () => {
               as="select"
             >
               {Object.values(Const.Categories).map(c => (
-                <option value={c.key}>{c.value}</option>
+                <option key={c.key} value={c.key}>{c.value}</option>
               ))}
             </Form.Control>
           </Form.Group>
@@ -157,7 +180,7 @@ const NewsEditor = () => {
 
           <Form.Group>
             <Form.Label>İçerik</Form.Label>
-            <CKEditor
+            {editorLoaded ? (<CKEditor
               editor={ClassicEditor}
               data={newNews.content}
               onInit={editor => {
@@ -170,14 +193,21 @@ const NewsEditor = () => {
               onChange={(_e, editor) => {
                 setNews({ ...newNews, content: editor.getData() })
               }}
-            />
+            />) : (
+                <Form.Control
+                  value={newNews.content}
+                  onChange={e => setNews({ ...newNews, content: e.target.value })}
+                  as="textarea"
+                  rows="2"
+                />
+              )}
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Durum</Form.Label>
             <Form.Control
               value={newNews.isActive}
-              onChange={e => setNews({ ...newNews, isActive: e.target.value })}
+              onChange={e => setNews({ ...newNews, isActive: e.target.value === "true" })}
               as="select"
             >
               <option value={true}>Aktif</option>
@@ -199,11 +229,11 @@ const NewsEditor = () => {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button style={{ marginRight: 7 }} variant="primary" type="submit">
             {isUpdate ? "Güncelle" : "Ekle"}
           </Button>
 
-          <Button variant="warning" onClick={() => history.push("/AdminPanel")}>
+          <Button style={{ marginRight: 7 }} variant="warning" onClick={() => Router.push('/adminpanel')}>
             Geri
           </Button>
 
@@ -212,7 +242,7 @@ const NewsEditor = () => {
               variant="danger"
               onClick={() =>
                 API.deleteNews(newNews.id).then(function (res) {
-                  history.push("/AdminPanel")
+                  Router.push("/adminpanel")
                 })
               }
             >

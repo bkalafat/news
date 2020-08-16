@@ -1,34 +1,34 @@
-import React from "react"
-import SubSliderPage from "./SubSliderPage"
-import { useLocation } from "react-router-dom"
-import SubNews from "./SubNews"
+import { useState, useEffect } from "react"
+import SubSliderPage from "../components/SubSliderPage"
+import SubNews from "../components/SubNews"
 import {
   HEADLINE,
   NEWS_TYPE,
   SUB_NEWS_TYPE
 } from "../utils/constant"
-import { getEnvironmentUrl, getDummyNews, getCategoryByTo } from "../utils/helper"
-import { Helmet } from "react-helmet"
+import { getEnvironmentUrl, getCategoryByTo } from "../utils/helper"
 import useSWR from "swr"
+import Head from "next/head"
+import { useRouter } from 'next/router'
+
 
 const CategoryNews = () => {
-  let location = useLocation()
   const { data, error } = useSWR(getEnvironmentUrl() + "news")
-  const dummyNews = getDummyNews()
-  if (error || !data) {
+  const router = useRouter()
+  const { category } = router.query
+  console.log(category)
+
+  if (error || !data || category == undefined) {
     return (
-      <div>
-        <div className="col-md-10 col-xl-10 noPadding">
-          <SubSliderPage newsList={dummyNews.slice(0, 13)} />
-        </div>
-        <SubNews newsList={dummyNews.slice(0, 13)}></SubNews>
-      </div>
+      <div><Head>{category}</Head><div>Yükleniyor...</div></div>
     )
-  } else {
-    if (!data && data.length === 0) return <div />
-    const to = location.pathname.split("/")[1]
-    const category = getCategoryByTo(to)
-    const newsList = data.filter(news => news.category === category.key)
+  }
+  else {
+    if (!data && data.length === 0)
+      return (<div><Head>{category}</Head><div>Haber bulunamadı</div></div>)
+
+    const categoryObj = getCategoryByTo(category)
+    const newsList = data.filter(news => news.category === categoryObj.key)
     const mainNews = newsList
       .filter(
         news =>
@@ -48,40 +48,13 @@ const CategoryNews = () => {
         return a.priority - b.priority
       })
     const subNewsList = tempNewsList
-
     return (
       <div>
-        <div className = "center">
-          <h2>{category.value}</h2>
+        <Head>{category}</Head>
+        <div className="center">
+          <h2>{categoryObj.value}</h2>
         </div>
         <div className="centerFlex">
-          <Helmet>
-            <title>{category.value ? category.value : " Haberibul.com"}</title>
-            <meta
-              name="description"
-              content={
-                category.value +
-                " Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
-              }
-            />
-            <meta charSet="utf-8" />
-            <meta
-              property="url"
-              content={"https://haberibul.com/" + category.to}
-            />
-            <meta
-              property="og:url"
-              content={"https://haberibul.com/" + category.to}
-            />
-            <meta
-              property="og:description"
-              content={
-                category.value +
-                " Güncel en son dakika canlı gündem spor magazin flash haber ve haberler ajans HaberiBul.com"
-              }
-            />
-          </Helmet>
-
           <div className="col-md-10 col-xl-10 noPadding">
             <SubSliderPage newsList={sliderNewsList.slice(0, 13)} />
           </div>

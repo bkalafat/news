@@ -1,4 +1,3 @@
-import React from "react"
 import Pagination from "react-bootstrap/Pagination"
 
 export const Arrow = props => {
@@ -8,7 +7,7 @@ export const Arrow = props => {
       className={className}
       style={{ ...style }}
       alt={`${direction} arrow`}
-      src={`${process.env.PUBLIC_URL}/${direction}Arrow.png`}
+      src={`/${direction}Arrow.png`}
       onClick={onClick}
     />
   )
@@ -26,8 +25,10 @@ export function Dots() {
 
 export const Paging = (index, currentSlide) => {
   return (
-    <Pagination.Item key={index} active={index === currentSlide}>
-      {index + 1}
-    </Pagination.Item>
+    <ul style={{ listStyle: "none" }} >
+      <Pagination.Item key={index} active={index === currentSlide}>
+        {index + 1}
+      </Pagination.Item>
+    </ul>
   )
 }

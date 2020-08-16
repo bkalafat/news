@@ -1,47 +1,21 @@
 import * as Const from "./constant"
 
 export function getEnvironmentUrl() {
-  let url = "https://localhost:5001/api/"
-
-  if (process.env.NODE_ENV === "production") {
-    url = "https://haberibul-api.herokuapp.com/api/"
-  }
-
-  return url
+  return process.env.NEXT_PUBLIC_API_PATH
 }
 
 export function setDefaultValues(news) {
-  news.subjects = ["Covid", "Türkiye"]
-  news.authors = ["Mustafa Çolakoğlu", "Burak Kalafat"]
-  news.url = getCategory(news).to + "/" + replaceNonWordsWith(news.caption, "-")
+  news.subjects = ["haber"]
+  news.authors = ["Mustafa Çolakoğlu"]
   news.createDate = new Date().toISOString()
   news.updateDate = new Date().toISOString()
   news.expireDate = new Date().toISOString()
+  news.url = "#"
   news.viewCount = 0
 
   return news
 }
 
-export const replaceNonWordsWith = (text, char) => {
-  return text
-    ? text
-        .replace(/Ğ/gim, "g")
-        .replace(/Ü/gim, "u")
-        .replace(/Ş/gim, "s")
-        .replace(/I/gim, "i")
-        .replace(/İ/gim, "i")
-        .replace(/Ö/gim, "o")
-        .replace(/Ç/gim, "c")
-        .replace(/ğ/gim, "g")
-        .replace(/ü/gim, "u")
-        .replace(/ş/gim, "s")
-        .replace(/ı/gim, "i")
-        .replace(/ö/gim, "o")
-        .replace(/ç/gim, "c")
-        .replace(/[^A-Za-z0-9]/g, char)
-        .toLowerCase()
-    : ""
-}
 
 export const getDummyNews = () => {
   let news = []
@@ -49,7 +23,7 @@ export const getDummyNews = () => {
   for (var index = 0; index < 13; index++) {
     news.push({
       id: index,
-      category: "Placeholder",
+      category: "General",
       type: "news",
       caption: "Haberibul.com",
       summary: "Haberibul.com",
@@ -71,7 +45,7 @@ export const getDummyNews = () => {
   for (var subIndex = 0; subIndex < 12; subIndex++) {
     news.push({
       id: subIndex,
-      category: "Placeholder",
+      category: "General",
       type: "subNews",
       caption: "Haberibul.com",
       summary: "Haberibul.com",
@@ -83,7 +57,7 @@ export const getDummyNews = () => {
       createdDate: "2020-04-23T18:25:43.511Z",
       updateDate: "2020-05-01T14:35:43.511Z",
       expressDate: "2020-05-01T14:35:43.511Z",
-      viewCount:1,
+      viewCount: 1,
       priority: 1,
       isActive: true,
       url: "#"
@@ -93,10 +67,13 @@ export const getDummyNews = () => {
   return news
 }
 
-const getCategory = news => {
-  return Object.values(Const.Categories).find(c => c.key === news.category)
-}
 
 export const getCategoryByTo = to => {
   return Object.values(Const.Categories).find(c => c.to === to)
+}
+
+export const getCategoryToByKey = key => {
+  const categories = Object.values(Const.Categories)
+  const category = categories.find(c => c.key === key)
+  return category ? category.to : "new"
 }

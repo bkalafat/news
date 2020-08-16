@@ -1,4 +1,3 @@
-import React from "react"
 import News from "./News"
 import { getDummyNews } from "../utils/helper"
 import useSWR from "swr"

@@ -1,7 +1,9 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import { BrowserView, MobileView, isMobile } from "react-device-detect"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import * as Helper from '../utils/helper'
+import slugify from 'slugify'
 
 const SubNews = props => {
   return (
@@ -12,33 +14,31 @@ const SubNews = props => {
           key={news.id}
         >
           <Link
-            to={{
-              pathname: news.url.includes("/") ? news.url : "detay/" + news.url,
-              state: { news: news }
-            }}
-            target={isMobile ? "_self" : "_blank"}
+            href="[category]/[slug]/[id]"
+            as={Helper.getCategoryToByKey(news.category)+ '/' + slugify(news.caption) + '/' + news.id }
           >
-            <LazyLoadImage
-              className="stretchImg shadow"
-              alt={news.imgAlt}
-              src={news.imgPath}
-            />
+            <a>
+              <LazyLoadImage
+                className="stretchImg shadow"
+                alt={news.imgAlt}
+                src={news.imgPath}
+              />
+              <div className="sub-header-text">
+                <div className={isMobile ? "text-center" : "col-md-12 text-center"}>
+                  <BrowserView>
+                    <h2 className="h4">
+                      <span>{news.caption}</span>
+                    </h2>
+                  </BrowserView>
+                  <MobileView>
+                    <h5>
+                      <span>{news.caption}</span>
+                    </h5>
+                  </MobileView>
+                </div>
+              </div>
+            </a>
           </Link>
-
-          <div className="sub-header-text">
-            <div className={isMobile ? "text-center" : "col-md-12 text-center"}>
-              <BrowserView>
-                <h2 className="h4">
-                  <span>{news.caption}</span>
-                </h2>
-              </BrowserView>
-              <MobileView>
-                <h5>
-                  <span>{news.caption}</span>
-                </h5>
-              </MobileView>
-            </div>
-          </div>
         </div>
       ))}
     </div>
