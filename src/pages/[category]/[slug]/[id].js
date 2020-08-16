@@ -26,7 +26,7 @@ const NewsDetail = (props) => {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(y, m - 1, d, hh, mm, ss, ms))
     let formatted = date.toLocaleString()
-    const url = "https://haberibul.com/" + slugify(news.caption) + "/" + news.id
+    const url = getUrl(news)
     return (
       <Layout>
         <Head>
@@ -101,7 +101,7 @@ export async function getStaticPaths() {
   let paths = []
 
   paths = newsList.map((news) => ({
-    params: { category: Helper.getCategoryToByKey(), slug: slugify(news.caption), id: news.id }
+    params: { category: Helper.getCategoryToByKey(news.category), slug: slugify(news.caption), id: news.id }
   }))
   paths.push({ params: { category: 'new', slug: 'new', id: 'new' } })
   console.log("PATHS XKARAMBAX: " + JSON.stringify(paths))
