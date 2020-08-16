@@ -1,6 +1,7 @@
 {
   "short_name": "Haberibul",
-  "name": "Haberi Bul",
+  "name": "Haberibul",
+  "description": " Son Dakika güncel ekonomi haber ve haberleri haberibul haberibul.com ",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,7 +20,7 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
+  "display": "fullscreen",
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }

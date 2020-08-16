@@ -1,25 +1,19 @@
-import React from "react"
 import News from "./News"
-import NewsList from "./Admin/NewsList"
-import ReactLoading from "react-loading"
+import { getDummyNews } from "../utils/helper"
 import useSWR from "swr"
 import { getEnvironmentUrl } from "../utils/helper"
 
-const Content = props => {
+const Content = () => {
   const { data, error } = useSWR(getEnvironmentUrl() + "news")
+  const dummyNews = getDummyNews()
 
   if (error) {
     console.log(error.message)
-    return <div className="centerFlex">Haberler getirilemedi.</div>
+    return <News newsList={dummyNews} />
   } else if (!data) {
-    return (
-      <div className="centerFlex">
-        <ReactLoading type="spokes" color="#099FEF" />
-      </div>
-    )
+    return <News newsList={dummyNews} />
   } else {
-    if (props.isAdmin) return <NewsList newsList={data} />
-    else return <News newsList={data} />
+    return <News newsList={data} />
   }
 }
 

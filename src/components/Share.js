@@ -11,34 +11,40 @@ import {
 } from "react-share"
 
 const Share = props => {
-  if (props.news) {
+  if (props.news && props.news.url) {
+    const url = props.news.url.includes("/")
+      ? props.news.url
+      : "detay/" + props.news.url
     return (
       <div>
         <FacebookShareButton
-          url={"https://haberibul.web.app/detay/" + props.news.id}
+          url={"https://haberibul.com/" + url}
           quote={props.news.caption}
-          imageURL={props.news.imgPath}
+          imageurl={props.news.imgPath}
           hashtag={"#" + props.news.caption}
           media={props.news.imgPath}
         >
-          <FacebookIcon size="2.5rem" logoFillColor="white" />
+          <FacebookIcon size="2.5rem" />
         </FacebookShareButton>
         <TwitterShareButton
-          url={"https://haberibul.web.app/detay/" + props.news.id}
+          imageurl={props.news.imgPath}
+          url={"https://haberibul.com/" + url}
           title={props.news.caption}
           media={props.news.imgPath}
         >
           <TwitterIcon size="2.5rem" />
         </TwitterShareButton>
         <WhatsappShareButton
-          url={"https://haberibul.web.app/detay/" + props.news.id}
+          imageurl={props.news.imgPath}
+          url={"https://haberibul.com/" + url}
           title={props.news.caption}
           media={props.news.imgPath}
         >
           <WhatsappIcon size="2.5rem" />
         </WhatsappShareButton>
         <TelegramShareButton
-          url={"https://haberibul.web.app/detay/" + props.news.id}
+          imageurl={props.news.imgPath}
+          url={"https://haberibul.com/" + url}
           title={props.news.caption}
           media={props.news.imgPath}
         >
