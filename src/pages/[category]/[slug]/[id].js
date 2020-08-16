@@ -26,7 +26,7 @@ const NewsDetail = (props) => {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(y, m - 1, d, hh, mm, ss, ms))
     let formatted = date.toLocaleString()
-    const url = getUrl(news)
+    const url = Helper.getUrl(news)
     return (
       <Layout>
         <Head>
