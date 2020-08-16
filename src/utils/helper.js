@@ -77,3 +77,7 @@ export const getCategoryToByKey = key => {
   const category = categories.find(c => c.key === key)
   return category ? category.to : "new"
 }
+
+export const getUrl = news => {
+  return "https://haberibul.com/" + getCategoryToByKey(news.category) + "/" + slugify(news.caption) + "/" + news.id
+}
