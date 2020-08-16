@@ -5,7 +5,7 @@ const Category = () => {
 
   return (
     <Layout>
-        <CategoryNews />
+      <CategoryNews />
     </Layout>
   )
 }

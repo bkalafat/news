@@ -26,10 +26,42 @@ const NewsDetail = (props) => {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(y, m - 1, d, hh, mm, ss, ms))
     let formatted = date.toLocaleString()
+    const url = "https://haberibul.com/" + slugify(news.caption) + "/" + news.id
     return (
       <Layout>
         <Head>
           <title>{news.caption}</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta name="title" content={news.caption} />
+          <meta name="description" content={news.summary} />
+          <meta property="og:image" content={news.imgPath} />
+          <meta property="og:url" content={url} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={url} />
+          <meta property="og:title" content={news.caption} />
+          <meta property="og:description" content={news.summary} />
+
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:url" content={url} />
+          <meta property="twitter:title" content={news.caption} />
+          <meta property="twitter:description" content={news.summary} />
+
+
+          <script async src='https://www.googletagmanager.com/gtag/js?id=G-9SC61J35JK'></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments)}
+            gtag('js', new Date());
+
+            gtag('config', 'G-9SC61J35JK');
+              `
+          }}>
+        </script>
+
+
+
         </Head>
         <div className="newsDetail">
           <h1 className="spaceAround">{news.caption}</h1>
