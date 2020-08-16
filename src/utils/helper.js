@@ -1,4 +1,5 @@
 import * as Const from "./constant"
+import slugify from "slugify"
 
 export function getEnvironmentUrl() {
   return process.env.NEXT_PUBLIC_API_PATH
