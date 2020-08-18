@@ -17,7 +17,6 @@ function Index() {
         <meta property="og:url" content="https://haberibul.com" />
         <meta property="og:title" content="Haberibul.com" />
         <meta property="og:description" content="Ulusal Spor Magazin Ekonomi Futbol Canlı Son Dakika haberlerini bulabileceğiniz haberi bul sayfası." />
-        <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://haberibul.com" />
         <meta property="twitter:title" content="Haberibul.com" />
         <meta property="twitter:description" content="Ulusal Spor Magazin Ekonomi Futbol Canlı Son Dakika haberlerini bulabileceğiniz haberi bul sayfası." />

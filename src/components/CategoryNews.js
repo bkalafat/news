@@ -52,6 +52,7 @@ const CategoryNews = () => {
       <div>
         <Head>
           <title>{category}</title>
+          <link rel="shortcut icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="title" content="Haberibul.com" />
           <meta name="description" content={ categoryObj.value + " haberlerini bulabileceğiniz haberi bul sayfası."} />
