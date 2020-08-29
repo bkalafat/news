@@ -11,24 +11,24 @@ import Head from "next/head"
 import { useRouter } from 'next/router'
 
 
-const CategoryNews = props => {
-  const { newsList } = props
-
+const CategoryNews = () => {
+  const { data, error } = useSWR(getEnvironmentUrl() + "news")
   const router = useRouter()
   const { category } = router.query
+  console.log(category)
 
-  if (!newsList || category == undefined) {
+  if (error || !data || category == undefined) {
     return (
       <div><Head>{category}</Head><div>Yükleniyor...</div></div>
     )
   }
   else {
-    if (!newsList && newsList.length === 0)
+    if (!data && data.length === 0)
       return (<div><Head>{category}</Head><div>Haber bulunamadı</div></div>)
 
     const categoryObj = getCategoryByTo(category)
-    const categoryNews = newsList.filter(news => news.category === categoryObj.key)
-    const mainNews = categoryNews
+    const newsList = data.filter(news => news.category === categoryObj.key)
+    const mainNews = newsList
       .filter(
         news =>
           news.isActive && (news.type === NEWS_TYPE || news.type === HEADLINE)
@@ -40,7 +40,7 @@ const CategoryNews = props => {
 
     const extraNews = mainNews.slice(13, 26)
 
-    const tempNewsList = categoryNews
+    const tempNewsList = newsList
       .filter(news => news.isActive && news.type === SUB_NEWS_TYPE)
       .concat(extraNews)
       .sort(function (a, b) {

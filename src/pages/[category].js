@@ -1,23 +1,13 @@
 import CategoryNews from "../components/CategoryNews"
 import Layout from "../components/Layout"
 
-const Category = (props) => {
+const Category = () => {
 
   return (
     <Layout>
-      <CategoryNews newsList={props.newsList} />
+      <CategoryNews />
     </Layout>
   )
-}
-
-export const getStaticProps = async () => {
-  const newsList = await API.getNewsList()
-  return {
-    revalidate: 150,
-    props: {
-      newsList
-    }
-  }
 }
 
 export default Category
