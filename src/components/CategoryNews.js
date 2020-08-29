@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import SubSliderPage from "../components/SubSliderPage"
 import SubNews from "../components/SubNews"
 import {
