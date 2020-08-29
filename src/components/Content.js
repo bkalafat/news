@@ -1,19 +1,12 @@
 import News from "./News"
-import { getDummyNews } from "../utils/helper"
-import useSWR from "swr"
-import { getEnvironmentUrl } from "../utils/helper"
 
-const Content = () => {
-  const { data, error } = useSWR(getEnvironmentUrl() + "news")
-  const dummyNews = getDummyNews()
+const Content = props => {
+  const { newsList } = props
 
-  if (error) {
-    console.log(error.message)
-    return <News newsList={dummyNews} />
-  } else if (!data) {
-    return <News newsList={dummyNews} />
+  if (!newsList) {
+    return <div>Loading</div>
   } else {
-    return <News newsList={data} />
+    return <News newsList={newsList} />
   }
 }
 

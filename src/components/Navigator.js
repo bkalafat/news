@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { Categories } from "../utils/constant"
-import { isMobile } from "react-device-detect"
 
 const Navigator = () => {
   return (
