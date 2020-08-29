@@ -40,13 +40,11 @@ const NewsDetail = (props) => {
           <meta property="og:url" content={url} />
           <meta property="og:title" content={news.caption} />
           <meta property="og:description" content={news.summary} />
-
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:url" content={url} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:url" content={url} />
           <meta property="twitter:title" content={news.caption} />
-          <meta property="twitter:description" content={news.summary} />
-
-
+          <meta property="twitter:description" content={news.summary + " #haberibul"} />
+          <meta name="keywords" content={news.caption.split(' ').join(', ')} />
           <script async src='https://www.googletagmanager.com/gtag/js?id=G-9SC61J35JK'></script>
         <script
           dangerouslySetInnerHTML={{
@@ -97,14 +95,12 @@ const NewsDetail = (props) => {
 
 export async function getStaticPaths() {
   const newsList = await API.getNewsList()
-  //console.log("NEWSLIST XKARAMBAX: " + JSON.stringify(newsList))
   let paths = []
 
   paths = newsList.map((news) => ({
     params: { category: Helper.getCategoryToByKey(news.category), slug: slugify(news.caption), id: news.id }
   }))
   paths.push({ params: { category: 'new', slug: 'new', id: 'new' } })
-  console.log("PATHS XKARAMBAX: " + JSON.stringify(paths))
   return { paths, fallback: true }
 }
 
@@ -114,7 +110,7 @@ export const getStaticProps = async ({ params }) => {
     news = await API.getNews(params.id)
   }
   return {
-    revalidate: 1,
+    revalidate: 10,
     props: {
       news
     }

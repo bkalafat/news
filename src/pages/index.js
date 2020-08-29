@@ -4,7 +4,7 @@ import Layout from "../components/Layout"
 import Head from 'next/head'
 import * as API from "../utils/api"
 
-const Index = (props) =>  {
+const Index = (props) => {
   return (
     <Layout>
       <Head>
@@ -18,9 +18,12 @@ const Index = (props) =>  {
         <meta property="og:url" content="https://haberibul.com" />
         <meta property="og:title" content="Haberibul.com" />
         <meta property="og:description" content="Ulusal Spor Magazin Ekonomi Futbol Canlı Son Dakika haberlerini bulabileceğiniz haberi bul sayfası." />
-        <meta property="twitter:url" content="https://haberibul.com" />
-        <meta property="twitter:title" content="Haberibul.com" />
-        <meta property="twitter:description" content="Ulusal Spor Magazin Ekonomi Futbol Canlı Son Dakika haberlerini bulabileceğiniz haberi bul sayfası." />
+        <meta name="twitter:url" content="https://haberibul.com" />
+        <meta name="twitter:title" content="Haberibul.com" />
+        <meta name="twitter:description" content="Ulusal Spor Magazin Ekonomi Futbol Canlı Son Dakika haberlerini bulabileceğiniz haberi bul sayfası." />
+        <meta name="twitter:site" content="@HaberibulCom" />
+        <meta name="twitter:creator" content="@HaberibulCom" />
+        <meta name="keywords" content="haber, güncel haberler, haberibul, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, haberibul, gazete manşetleri"></meta>
       </Head>
       <Content newsList={props.newsList} />
     </Layout>
@@ -30,7 +33,7 @@ const Index = (props) =>  {
 export const getStaticProps = async () => {
   const newsList = await API.getNewsList()
   return {
-    revalidate: 5,
+    revalidate: 150,
     props: {
       newsList
     }
