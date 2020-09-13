@@ -13,6 +13,7 @@ export function setDefaultValues(news) {
   news.expireDate = new Date().toISOString()
   news.url = "#"
   news.viewCount = 0
+  news.priority = 300
 
   return news
 }
@@ -59,7 +60,7 @@ export const getDummyNews = () => {
       updateDate: "2020-05-01T14:35:43.511Z",
       expressDate: "2020-05-01T14:35:43.511Z",
       viewCount: 1,
-      priority: 1,
+      priority: 300,
       isActive: true,
       url: "#"
     })

@@ -45,8 +45,8 @@ const AdminPanel = (props) => {
       text: "Kategori"
     },
     {
-      dataField: "priority",
-      text: "Öncelik",
+      dataField: "createDate",
+      text: "Oluşturma tarihi",
       sort: true
     },
     {
@@ -57,8 +57,8 @@ const AdminPanel = (props) => {
 
   const defaultSorted = [
     {
-      dataField: "priority",
-      order: "asc"
+      dataField: "createDate",
+      order: "desc"
     }
   ]
 
