@@ -169,6 +169,24 @@ const NewsEditor = () => {
           </Form.Group>
 
           <Form.Group>
+            <Form.Label>Keywords</Form.Label>
+            <Form.Control
+              placeholder="haber, keyword, vb.. şeklinde virgülle ayır."
+              value={newNews.keywords}
+              onChange={e => setNews({ ...newNews, keywords: e.target.value })}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Sosyal Tag</Form.Label>
+            <Form.Control
+              placeholder="#gundem #twitterTag #bilmemne şeklinde # ile tag girişi yapılabilir."
+              value={newNews.socialTags}
+              onChange={e => setNews({ ...newNews, socialTags: e.target.value })}
+            />
+          </Form.Group>
+
+          <Form.Group>
             <Form.Label>Özet</Form.Label>
             <Form.Control
               value={newNews.summary}
@@ -213,20 +231,6 @@ const NewsEditor = () => {
               <option value={true}>Aktif</option>
               <option value={false}>Pasif</option>
             </Form.Control>
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label>Öncelik</Form.Label>
-            <Form.Control
-              type="number"
-              value={newNews.priority}
-              onChange={e =>
-                setNews({
-                  ...newNews,
-                  priority: Number.parseInt(e.target.value)
-                })
-              }
-            />
           </Form.Group>
 
           <Button style={{ marginRight: 7 }} variant="primary" type="submit">
