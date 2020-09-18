@@ -34,7 +34,7 @@ const CategoryNews = () => {
           news.isActive && (news.type === NEWS_TYPE || news.type === HEADLINE)
       )
       .sort(function (a, b) {
-        return a.createDate - b.createDate
+        return b.createDate - a.createDate
       })
     const sliderNewsList = mainNews
 
@@ -44,7 +44,7 @@ const CategoryNews = () => {
       .filter(news => news.isActive && news.type === SUB_NEWS_TYPE)
       .concat(extraNews)
       .sort(function (a, b) {
-        return a.createDate - b.createDate
+        return b.createDate - a.createDate
       })
     const subNewsList = tempNewsList
     return (
