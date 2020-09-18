@@ -83,3 +83,9 @@ export const getCategoryToByKey = key => {
 export const getUrl = news => {
   return "https://haberibul.com/" + getCategoryToByKey(news.category) + "/" + slugify(news.caption) + "/" + news.id
 }
+
+export const sortCreateDateDesc = () => {
+  return function (a, b) {
+    return new Date(b.createDate) - new Date(a.createDate)
+  }
+}

@@ -5,7 +5,7 @@ import {
   NEWS_TYPE,
   SUB_NEWS_TYPE
 } from "../utils/constant"
-import { getEnvironmentUrl, getCategoryByTo } from "../utils/helper"
+import { getEnvironmentUrl, getCategoryByTo, sortCreateDateDesc } from "../utils/helper"
 import useSWR from "swr"
 import Head from "next/head"
 import { useRouter } from 'next/router'
@@ -33,9 +33,7 @@ const CategoryNews = () => {
         news =>
           news.isActive && (news.type === NEWS_TYPE || news.type === HEADLINE)
       )
-      .sort(function (a, b) {
-        return b.createDate - a.createDate
-      })
+      .sort(sortCreateDateDesc())
     const sliderNewsList = mainNews
 
     const extraNews = mainNews.slice(13, 26)
@@ -43,9 +41,7 @@ const CategoryNews = () => {
     const tempNewsList = newsList
       .filter(news => news.isActive && news.type === SUB_NEWS_TYPE)
       .concat(extraNews)
-      .sort(function (a, b) {
-        return b.createDate - a.createDate
-      })
+      .sort(sortCreateDateDesc())
     const subNewsList = tempNewsList
     return (
       <div>
