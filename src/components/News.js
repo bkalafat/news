@@ -17,7 +17,7 @@ const News = props => {
         news.type === constant.NEWS_TYPE
     )
     .sort(function (a, b) {
-      return a.priority - b.priority
+      return a.createDate - b.createDate
     })
 
   const headlines = newsList
@@ -26,7 +26,7 @@ const News = props => {
         !news.isSecondPageNews && news.isActive && news.type === constant.HEADLINE
     )
     .sort(function (a, b) {
-      return a.priority - b.priority
+      return a.createDate - b.createDate
     })
   const sliderNewsList = mainNews.slice(0, 13)
 
@@ -38,7 +38,7 @@ const News = props => {
         news.type === constant.SUB_NEWS_TYPE
     )
     .sort(function (a, b) {
-      return a.priority - b.priority
+      return a.createDate - b.createDate
     })
     .slice(0, 32)
   const extraNews = mainNews.slice(13, 26)
