@@ -37,7 +37,7 @@ export const getDummyNews = () => {
       createdDate: "2020-04-23T18:25:43.511Z",
       updateDate: "2020-05-01T14:35:43.511Z",
       expressDate: "2020-05-01T14:35:43.511Z",
-      priority: 1,
+      priority: 300,
       viewCount: 5,
       isActive: true,
       url: "#"
@@ -82,4 +82,10 @@ export const getCategoryToByKey = key => {
 
 export const getUrl = news => {
   return "https://haberibul.com/" + getCategoryToByKey(news.category) + "/" + slugify(news.caption) + "/" + news.id
+}
+
+export const sortCreateDateDesc = () => {
+  return function (a, b) {
+    return new Date(b.createDate) - new Date(a.createDate)
+  }
 }
