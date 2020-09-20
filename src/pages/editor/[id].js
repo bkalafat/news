@@ -77,7 +77,7 @@ const NewsEditor = () => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    if (selectedFile) {
+    if (selectedFile && selectedFile.name) {
       Resizer.imageFileResizer(
         selectedFile,
         900,
