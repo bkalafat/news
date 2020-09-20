@@ -1,6 +1,6 @@
 import React from "react"
-import SliderPage from "./SliderPage"
-import SubSliderPage from "./SubSliderPage"
+import CustomSlider from "./CustomSlider"
+import SubSlider from "./SubSlider"
 import SubNews from "./SubNews"
 import * as constant from "../utils/constant"
 import * as Helper from '../utils/helper'
@@ -42,8 +42,8 @@ const News = props => {
   return (
     <div className="centerFlex">
       <div className="col-md-10 col-xl-10 noPadding">
-        <SliderPage newsList={sliderNewsList} />
-        <SubSliderPage newsList={subSliderNews} />
+        <CustomSlider newsList={sliderNewsList} />
+        <SubSlider newsList={subSliderNews} />
       </div>
       <SubNews newsList={subNewsList}></SubNews>
     </div>

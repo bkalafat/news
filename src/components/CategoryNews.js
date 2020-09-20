@@ -1,4 +1,4 @@
-import SubSliderPage from "../components/SubSliderPage"
+import SubSlider from "../components/SubSlider"
 import SubNews from "../components/SubNews"
 import {
   HEADLINE,
@@ -67,7 +67,7 @@ const CategoryNews = () => {
         </div>
         <div className="centerFlex">
           <div className="col-md-10 col-xl-10 noPadding">
-            <SubSliderPage newsList={sliderNewsList.slice(0, 13)} />
+            <SubSlider newsList={sliderNewsList.slice(0, 13)} />
           </div>
           <SubNews newsList={subNewsList.slice(0, 32)}></SubNews>
         </div>
