@@ -8,10 +8,11 @@ const Index = (props) => {
   return (
     <Layout>
       <Head>
-        <title>Ana Sayfa</title>
+        <title>Haberibul - Haber, Son Dakika Haberler, Güncel Gazete Haberleri</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="canonical" href="https://www.haberibul.com"></link>
         <meta name="title" content="Haberibul.com" />
-        <meta name="description" content="Ulusal Spor Magazin Ekonomi Futbol Canlı Son Dakika haberlerini bulabileceğiniz haberi bul sayfası." />
+        <meta name="description" content="Ulusal Spor Magazin Ekonomi Futbol Canlı Son Dakika haberlerini bulabileceğiniz haber sayfası." />
         <meta property="og:image" content="/logo512.png" />
         <meta property="og:url" content="https://haberibul.com" />
         <meta property="og:type" content="website" />

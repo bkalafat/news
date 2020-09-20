@@ -35,7 +35,7 @@ const News = props => {
         news.type === constant.SUB_NEWS_TYPE
     )
     .sort(Helper.sortCreateDateDesc())
-    .slice(0, 32)
+    .slice(0, 64)
   const extraNews = mainNews.slice(13, 26)
   const subSliderNews = headlines.concat(extraNews).slice(0, 13)
 
