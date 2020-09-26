@@ -1,6 +1,6 @@
 import React from "react"
-import SliderPage from "./SliderPage"
-import SubSliderPage from "./SubSliderPage"
+import CustomSlider from "./CustomSlider"
+import SubSlider from "./SubSlider"
 import SubNews from "./SubNews"
 import * as constant from "../utils/constant"
 import * as Helper from '../utils/helper'
@@ -37,15 +37,17 @@ const News = props => {
     .sort(Helper.sortCreateDateDesc())
     .slice(0, 64)
   const extraNews = mainNews.slice(13, 26)
-  const subSliderNews = headlines.concat(extraNews).slice(0, 13)
+  const subSliderNews = headlines.concat(extraNews).slice(0, 12)
 
   return (
     <div className="centerFlex">
       <div className="col-md-10 col-xl-10 noPadding">
-        <SliderPage newsList={sliderNewsList} />
-        <SubSliderPage newsList={subSliderNews} />
+        <CustomSlider newsList={sliderNewsList} />
+        <SubSlider newsList={subSliderNews} />
       </div>
-      <SubNews newsList={subNewsList}></SubNews>
+      <div>
+        <SubNews newsList={subNewsList}></SubNews>
+      </div>
     </div>
   )
 }

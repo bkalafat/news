@@ -27,7 +27,8 @@ const Share = props => {
         <TwitterShareButton
           imageurl={props.news.imgPath}
           url={Helper.getUrl(props.news)}
-          title={props.news.caption + ' ' + props.news.socialTags}
+          title={props.news.caption}
+          hashtags={props.news.socialTags}
           media={props.news.imgPath}
         >
           <TwitterIcon size="2.5rem" />
