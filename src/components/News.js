@@ -45,7 +45,9 @@ const News = props => {
         <CustomSlider newsList={sliderNewsList} />
         <SubSlider newsList={subSliderNews} />
       </div>
-      <SubNews newsList={subNewsList}></SubNews>
+      <div>
+        <SubNews newsList={subNewsList}></SubNews>
+      </div>
     </div>
   )
 }
