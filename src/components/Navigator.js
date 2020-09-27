@@ -33,7 +33,6 @@ const Navigator = () => {
         <Link href="/">
           <a><img className="logo" src="/haberibul.png" alt="image" /></a>
         </Link>
-        <p> Haber ve haberleri bul haberibul.com </p>
       </div>
     </div>
   )

@@ -24,7 +24,7 @@ const Index = (props) => {
         <meta name="twitter:description" content="Ulusal Spor Magazin Ekonomi Futbol Canlı Son Dakika haberlerini bulabileceğiniz haberi bul sayfası." />
         <meta name="twitter:site" content="@HaberibulCom" />
         <meta name="twitter:creator" content="@HaberibulCom" />
-        <meta name="keywords" content="haber, güncel haberler, haberibul, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, haberibul, gazete manşetleri"></meta>
+        <meta name="keywords" content="haberi bul, haber bul, haberibul, haberbul, haber, güncel haberler, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, gazete manşetleri"></meta>
       </Head>
       <Content newsList={props.newsList} />
     </Layout>
