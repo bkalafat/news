@@ -23,7 +23,7 @@ const NewsEditor = () => {
         return res.arrayBuffer()
       })
       .then(buf => {
-        return new File([buf], filename, { type: mimeType })
+        return new File([buf], "haberibul-" + filename, { type: mimeType })
       })
       .then(file => {
         return API.uploadFile(file)
