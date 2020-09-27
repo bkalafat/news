@@ -17,9 +17,8 @@ const Share = props => {
       <div>
         <FacebookShareButton
           url={Helper.getUrl(props.news)}
-          quote={props.news.caption + ' ' + props.news.socialTags}
+          quote={props.news.caption}
           imageurl={props.news.imgPath}
-          hashtag={props.news.socialTags}
           media={props.news.imgPath}
         >
           <FacebookIcon size="2.5rem" />
@@ -28,7 +27,7 @@ const Share = props => {
           imageurl={props.news.imgPath}
           url={Helper.getUrl(props.news)}
           title={props.news.caption}
-          hashtags={props.news.socialTags}
+          hashtags={props.news.socialTags ? props.news.socialTags : ""}
           media={props.news.imgPath}
         >
           <TwitterIcon size="2.5rem" />

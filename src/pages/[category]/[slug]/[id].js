@@ -45,7 +45,7 @@ const NewsDetail = (props) => {
           <meta name="twitter:url" content={url} />
           <meta property="twitter:title" content={news.caption} />
           <meta property="twitter:description" content={news.summary + " #haberibul"} />
-          <meta name="keywords" content={news.keywords ? genericKeywords + news.keywords : genericKeywords +  news.caption.split(' ').join(', ')} />
+          <meta name="keywords" content={news.keywords ? news.keywords + genericKeywords  : news.caption.split(' ').join(', ') + genericKeywords} />
           <script async src='https://www.googletagmanager.com/gtag/js?id=G-9SC61J35JK'></script>
         <script
           dangerouslySetInnerHTML={{
