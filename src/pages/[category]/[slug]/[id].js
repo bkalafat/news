@@ -8,6 +8,7 @@ import Head from "next/head"
 import { useRouter } from 'next/router'
 import slugify from 'slugify'
 
+const genericKeywords = "haberi bul, haber bul, haberibul, haberbul, haber, güncel haberler, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, gazete manşetleri, "
 const NewsDetail = (props) => {
   const [news, setNews] = useState(props.news)
   const router = useRouter()
@@ -44,7 +45,7 @@ const NewsDetail = (props) => {
           <meta name="twitter:url" content={url} />
           <meta property="twitter:title" content={news.caption} />
           <meta property="twitter:description" content={news.summary + " #haberibul"} />
-          <meta name="keywords" content={news.keywords ? news.keywords : news.caption.split(' ').join(', ')} />
+          <meta name="keywords" content={news.keywords ? genericKeywords + news.keywords : genericKeywords +  news.caption.split(' ').join(', ')} />
           <script async src='https://www.googletagmanager.com/gtag/js?id=G-9SC61J35JK'></script>
         <script
           dangerouslySetInnerHTML={{
