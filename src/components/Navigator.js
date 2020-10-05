@@ -1,21 +1,21 @@
 import Link from "next/link"
 import { Categories } from "../utils/constant"
+import Navbar from "react-bootstrap/Navbar";
+
 
 const Navigator = () => {
   return (
     <div>
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg" >
-        <Link href="/"><a className="navbar-brand" >
+      <Navbar collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
+        <Link href="/"><Navbar.Brand className="navbar-brand">
           <img
             src={`/circleLogo.png`}
             alt="haberibul"
             style={{ width: 80, height: 50, marginTop: -7 }}
           />
-        </a></Link>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        </Navbar.Brand></Link>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
           <ul className="navbar-nav mr-auto">
             {Object.values(Categories).map(c => (
               <li key={c.key} className="nav-item">
@@ -27,8 +27,8 @@ const Navigator = () => {
             <input className="form-control mr-sm-2" type="search" placeholder="Haberi" aria-label="Search" />
             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Bul</button>
           </form>
-        </div>
-      </nav>
+        </Navbar.Collapse>
+      </Navbar>
       <div className="center">
         <Link href="/">
           <a><img className="logo" src="/haberibul.png" alt="image" /></a>
