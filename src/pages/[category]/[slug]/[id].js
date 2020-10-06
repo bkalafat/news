@@ -1,28 +1,14 @@
-import { useState } from "react"
 import Share from "../../../components/Share"
 import * as API from "../../../utils/api"
 import * as Const from "../../../utils/constant"
 import * as Helper from "../../../utils/helper"
 import Layout from "../../../components/Layout"
 import Head from "next/head"
-import { useRouter } from 'next/router'
 import slugify from 'slugify'
 
 const genericKeywords = "haberi bul, haber bul, haberibul, haberbul, haber, güncel haberler, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, gazete manşetleri, "
 const NewsDetail = (props) => {
-  const [news, setNews] = useState(props.news)
-  const router = useRouter()
-  const { id } = router.query
-  if (news == null || news.length < 1)
-    API.getNews(id).then(
-      news => {
-        setNews(news)
-        API.increaseViewCount(news)
-      },
-      error => {
-        console.log(error)
-      }
-    )
+  const news = props.news
   if (news && news.createDate) {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(y, m - 1, d, hh, mm, ss, ms))
@@ -45,19 +31,19 @@ const NewsDetail = (props) => {
           <meta name="twitter:url" content={url} />
           <meta property="twitter:title" content={news.caption} />
           <meta property="twitter:description" content={news.summary + " #haberibul"} />
-          <meta name="keywords" content={news.keywords ? news.keywords + genericKeywords  : news.caption.split(' ').join(', ') + genericKeywords} />
+          <meta name="keywords" content={news.keywords ? news.keywords + genericKeywords : news.caption.split(' ').join(', ') + genericKeywords} />
           <script async src='https://www.googletagmanager.com/gtag/js?id=G-9SC61J35JK'></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments)}
             gtag('js', new Date());
 
             gtag('config', 'G-9SC61J35JK');
               `
-          }}>
-        </script>
+            }}>
+          </script>
 
 
 
@@ -83,7 +69,7 @@ const NewsDetail = (props) => {
           }}
         />
         <div className='container content center-item  text-center'>
-          <time className="time" dateTime={news.createDate}>Haber Giriş:{formatted} - Görüntülenme Sayısı:{news.viewCount ? news.viewCount : 1}</time>
+          <time className="time" dateTime={news.createDate}>Haber Giriş: {formatted}</time>
         </div>
       </Layout>
     )
