@@ -32,21 +32,6 @@ const NewsDetail = (props) => {
           <meta property="twitter:title" content={news.caption} />
           <meta property="twitter:description" content={news.summary + " #haberibul"} />
           <meta name="keywords" content={news.keywords ? news.keywords + genericKeywords : news.caption.split(' ').join(', ') + genericKeywords} />
-          <script async src='https://www.googletagmanager.com/gtag/js?id=G-9SC61J35JK'></script>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments)}
-            gtag('js', new Date());
-
-            gtag('config', 'G-9SC61J35JK');
-              `
-            }}>
-          </script>
-
-
-
         </Head>
         <div className="newsDetail">
           <h1 className="spaceAround">{news.caption}</h1>
