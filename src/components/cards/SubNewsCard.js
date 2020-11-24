@@ -7,7 +7,7 @@ import slugify from 'slugify';
 
 const SubNewsCard = news => {
   return <div
-    className="col-xs-12 col-sm-12 col-md-3 subNews-child relativeDiv"
+    className="col-xs-12 col-sm-12 col-md-4 subNews-child relativeDiv"
     key={news.id}
   >
     <Link

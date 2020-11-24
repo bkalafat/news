@@ -18,6 +18,11 @@ code {
   margin-bottom: 81;
 }
 
+.containerDesktop {
+  max-width: 1200px;
+  margin: auto;
+}
+
 .noPadding {
   padding-right: 0 !important;
   padding-left: 0 !important;
