@@ -27,7 +27,7 @@ const Index = (props) => {
         <meta name="twitter:creator" content="@HaberibulCom" />
         <meta name="keywords" content="haberi bul, haber bul, haberibul, haberbul, haber, güncel haberler, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, gazete manşetleri"></meta>
       </Head>
-      <div className={isBrowser ? "containerDesktop" : ""} >
+      <div className="containerDesktop">
         <Content newsList={props.newsList} />
       </div>
     </Layout>
