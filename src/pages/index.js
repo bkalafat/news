@@ -2,6 +2,7 @@
 import Content from "../components/Content"
 import Layout from "../components/Layout"
 import Head from 'next/head'
+import { isBrowser } from "react-device-detect"
 import * as API from "../utils/api"
 
 const Index = (props) => {
@@ -26,7 +27,9 @@ const Index = (props) => {
         <meta name="twitter:creator" content="@HaberibulCom" />
         <meta name="keywords" content="haberi bul, haber bul, haberibul, haberbul, haber, güncel haberler, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, gazete manşetleri"></meta>
       </Head>
-      <Content newsList={props.newsList} />
+      <div className={isBrowser ? "containerDesktop" : ""} >
+        <Content newsList={props.newsList} />
+      </div>
     </Layout>
   )
 }

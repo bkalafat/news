@@ -41,7 +41,7 @@ const News = props => {
 
   return (
     <div className="centerFlex">
-      <div className="col-md-10 col-xl-10 noPadding">
+      <div className="col-md-10 col-xl-10 noPadding ">
         <CustomSlider newsList={sliderNewsList} />
         <SubSlider newsList={subSliderNews} />
       </div>
