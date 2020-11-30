@@ -11,7 +11,7 @@ const Navigator = () => {
           <img
             src={`/circleLogo.png`}
             alt="haberibul"
-            style={{ width: 65, height: 65, marginTop: -7 }}
+            style={{ width: 80, height: 50, marginTop: -7 }}
           />
         </Navbar.Brand></Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
