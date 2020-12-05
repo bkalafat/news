@@ -6,13 +6,13 @@ const size = 33
 const Footer = () => {
   return (
     <article>
-      <div className="center">
-        <Link href="/">
-          <a><img className="logo" src="/haberibul.png" alt="image" /></a>
-        </Link>
-      </div>
       <footer>
-        <div className="centerFlex ">
+        <div className="center">
+          <Link href="/">
+            <a><img className="logo" src="/haberibul.png" alt="image" /></a>
+          </Link>
+        </div>
+        <div className="centerFlex">
           <div className="spaceAround">
             <SocialIcon
               rel="noopener noreferrer nofollow"
@@ -41,9 +41,6 @@ const Footer = () => {
             />
           </div>
         </div>
-        <p>
-          © 2020 <a href="https://haberibul.com">Haberibul.com</a>
-        </p>
       </footer>
     </article>
   )
