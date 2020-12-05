@@ -9,7 +9,7 @@ const Navigator = () => {
       <Navbar style={{paddingTop:0, paddingBottom:0}} collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
         <Link href="/"><Navbar.Brand className="navbar-brand">
           <img
-            src={`/nav-brand.png`}
+            src={`/apple-icon-57x57.png`}
             alt="haberibul"
           />
         </Navbar.Brand></Link>
