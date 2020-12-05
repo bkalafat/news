@@ -5,13 +5,12 @@ import Navbar from "react-bootstrap/Navbar";
 
 const Navigator = () => {
   return (
-    <div>
-      <Navbar collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
+    <div style={{marginBottom:8}}>
+      <Navbar style={{paddingTop:0, paddingBottom:0}} collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
         <Link href="/"><Navbar.Brand className="navbar-brand">
           <img
-            src={`/circleLogo.png`}
+            src={`/nav-brand.png`}
             alt="haberibul"
-            style={{ width: 80, height: 50, marginTop: -7 }}
           />
         </Navbar.Brand></Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -29,11 +28,6 @@ const Navigator = () => {
           </form>
         </Navbar.Collapse>
       </Navbar>
-      <div className="center">
-        <Link href="/">
-          <a><img className="logo" src="/haberibul.png" alt="image" /></a>
-        </Link>
-      </div>
     </div>
   )
 }

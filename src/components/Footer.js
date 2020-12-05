@@ -1,12 +1,16 @@
 import React from "react"
 import { SocialIcon } from "react-social-icons"
+import Link from "next/link"
 
 const size = 33
 const Footer = () => {
   return (
     <article>
-      <h1>Haberibul.com</h1>
-      <h3>"Doğru" haberi bulmanın en kolay yolu</h3>
+      <div className="center">
+        <Link href="/">
+          <a><img className="logo" src="/haberibul.png" alt="image" /></a>
+        </Link>
+      </div>
       <footer>
         <div className="centerFlex ">
           <div className="spaceAround">
