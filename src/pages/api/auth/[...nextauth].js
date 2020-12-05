@@ -2,17 +2,28 @@ import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
 const options = {
-  // Configure one or more authentication providers
   providers: [
+    // OAuth authentication providers...
+    Providers.Apple({
+      clientId: process.env.APPLE_ID,
+      clientSecret: process.env.APPLE_SECRET
+    }),
+    Providers.Facebook({
+      clientId: process.env.FACEBOOK_ID,
+      clientSecret: process.env.FACEBOOK_SECRET
+    }),
     Providers.Google({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET
     }),
-    // ...add more providers here
+    // Passwordless / email sign in
+    Providers.Email({
+      server: process.env.MAIL_SERVER,
+      from: 'NextAuth.js <no-reply@example.com>'
+    }),
   ],
-
-  // A database is optional, but required to persist accounts in a database
-  //database: process.env.DATABASE_URL,
+  // Optional SQL or MongoDB database to persist users
+  database: process.env.DATABASE_URL
 }
 
 export default (req, res) => NextAuth(req, res, options)
