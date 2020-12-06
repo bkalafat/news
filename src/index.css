@@ -272,11 +272,6 @@ footer {
   font-weight: bold;
 }
 
-.navbar-brand {
-  position: absolute;
-  display: flex;
-  align-items: center;
-}
 
 .navbar-brand>img {
   padding: 0px 0px;
