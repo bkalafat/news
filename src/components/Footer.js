@@ -7,11 +7,6 @@ const Footer = () => {
   return (
     <article>
       <footer>
-        <div className="center">
-          <Link href="/">
-            <a><img className="logo" src="/haberibul.png" alt="image" /></a>
-          </Link>
-        </div>
         <div className="centerFlex">
           <div className="spaceAround">
             <SocialIcon
@@ -40,6 +35,11 @@ const Footer = () => {
               network="instagram"
             />
           </div>
+        </div>
+        <div className="center">
+          <Link href="/">
+            <a><img className="logo" src="/haberibul.png" alt="image" /></a>
+          </Link>
         </div>
       </footer>
     </article>
