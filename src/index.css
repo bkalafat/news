@@ -273,6 +273,7 @@ footer {
 }
 
 .navbar-brand {
+  position: absolute;
   display: flex;
   align-items: center;
 }
