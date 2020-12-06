@@ -13,6 +13,11 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+
+          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+          <script type="text/javascript" src="https://paracevirici.com/servis/widget/widget.js"></script>
+          <script src="js/widget.js"></script>
+
         </body>
       </Html>
     )
