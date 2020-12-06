@@ -10,7 +10,7 @@ const Navigator = () => {
       <div className="currency" id="doviz"/>
 
       <Navbar style={{ paddingTop: 0, paddingBottom: 0, marginTop: 7 }} collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
-        <Link href="/"><Navbar.Brand className="navbar-brand">
+        <Link href="/"><Navbar.Brand>
           <img
             src={`/apple-icon-57x57.png`}
             alt="haberibul"
