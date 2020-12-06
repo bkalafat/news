@@ -28,17 +28,19 @@ function Layout({ children }) {
       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
       <meta name="theme-color" content="#ffffff" />
       <script async src='https://www.googletagmanager.com/gtag/js?id=G-9SC61J35JK'></script>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments)}
             gtag('js', new Date());
 
             gtag('config', 'G-9SC61J35JK');
               `
-            }}>
-          </script>
+        }}>
+      </script>
+
+      <script data-ad-client="ca-pub-9881133041867885" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     </Head>
     <Navigator />
