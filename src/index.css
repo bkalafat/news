@@ -77,6 +77,11 @@ code {
   justify-content: space-around;
 }
 
+.currency {
+  margin: auto;
+  width: 80% !important;
+}
+
 .subNews-child {
   margin-bottom: 8px;
 }
