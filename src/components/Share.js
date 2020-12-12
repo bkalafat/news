@@ -1,5 +1,6 @@
 import React from "react"
 import * as Helper from '../utils/helper'
+import Link from 'next/link'
 import {
   FacebookShareButton,
   TelegramShareButton,
@@ -14,7 +15,14 @@ import {
 const Share = props => {
   if (props.news) {
     return (
-      <div>
+      <div className="share">
+        <Link href="https://news.google.com/publications/CAAqBwgKMJy7mgswtsWyAw?hl=tr&gl=TR&ceid=TR%3Atr" >
+          <div className="google-news">
+            <span className="google-news-subscribe" >Abone Ol</span>
+            <a className="google-news-button" rel="noopener noreferrer nofollow"
+              target="_blank"><img src="/google-news.png" alt="image" /></a>
+          </div>
+        </Link>
         <FacebookShareButton
           url={Helper.getUrl(props.news)}
           quote={props.news.caption}
