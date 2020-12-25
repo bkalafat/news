@@ -32,16 +32,13 @@ function Layout({ children }) {
         dangerouslySetInnerHTML={{
           __html: `
           window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-WBPV62273E');
-              `
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-WBPV62273E');
+          `
         }}>
       </script>
-
       <script data-ad-client="ca-pub-9881133041867885" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
     </Head>
     <Navigator />
     <SWRConfig
