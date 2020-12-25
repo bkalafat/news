@@ -6,7 +6,7 @@ const SubNews = props => {
   return (
     <div className="subNews clickable">
       {props.newsList.map((news, index) => (
-        [SubNewsCard(news), index % 3 === 0 && SquareAd()]
+        [SubNewsCard(news), index % 4 === 0 && SquareAd()]
       ))}
     </div>
   )
