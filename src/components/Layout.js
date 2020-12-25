@@ -31,11 +31,11 @@ function Layout({ children }) {
       <script
         dangerouslySetInnerHTML={{
           __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments)}
-            gtag('js', new Date());
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-            gtag('config', 'G-9SC61J35JK');
+          gtag('config', 'G-E3L4WG7D44');
               `
         }}>
       </script>
