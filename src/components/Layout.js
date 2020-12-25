@@ -32,10 +32,10 @@ function Layout({ children }) {
         dangerouslySetInnerHTML={{
           __html: `
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-          gtag('config', 'G-E3L4WG7D44');
+  gtag('config', 'G-WBPV62273E');
               `
         }}>
       </script>
