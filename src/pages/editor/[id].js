@@ -16,7 +16,6 @@ const NewsEditor = () => {
   debugger
   const [newNews, setNews] = useState(dummyNews)
 
-
   function urlToFile(url, filename, mimeType) {
     return fetch(url)
       .then(res => {
@@ -80,8 +79,8 @@ const NewsEditor = () => {
     if (selectedFile && selectedFile.name) {
       Resizer.imageFileResizer(
         selectedFile,
-        1100,
-        700,
+        1300,
+        900,
         "JPEG",
         100,
         0,
