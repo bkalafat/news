@@ -9,6 +9,7 @@ import { getEnvironmentUrl, getCategoryByTo, sortCreateDateDesc } from "../utils
 import useSWR from "swr"
 import Head from "next/head"
 import { useRouter } from 'next/router'
+import SquareAd from "./SquareAd"
 
 
 const CategoryNews = () => {
@@ -73,6 +74,7 @@ const CategoryNews = () => {
           <div className="col-md-10 col-xl-10 noPadding">
             <SubSlider newsList={sliderNewsList.slice(0, 13)} />
           </div>
+          <SquareAd/>
           <SubNews newsList={subNewsList.slice(0, 32)}></SubNews>
         </div>
       </div>

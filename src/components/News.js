@@ -4,6 +4,7 @@ import SubSlider from "./SubSlider"
 import SubNews from "./SubNews"
 import * as constant from "../utils/constant"
 import * as Helper from '../utils/helper'
+import SquareAd from "./SquareAd"
 
 const News = props => {
   const { newsList } = props
@@ -46,7 +47,8 @@ const News = props => {
         <SubSlider newsList={subSliderNews} />
       </div>
       <div>
-        <SubNews newsList={subNewsList}></SubNews>
+        <SquareAd/>
+        <SubNews newsList={subNewsList}/>
       </div>
     </div>
   )
