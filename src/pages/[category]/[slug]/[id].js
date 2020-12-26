@@ -5,7 +5,7 @@ import * as Helper from "../../../utils/helper"
 import Layout from "../../../components/Layout"
 import Head from "next/head"
 import slugify from 'slugify'
-import SquareAd from './SquareAd'
+import SquareAd from "../../../components/SquareAd"
 
 const genericKeywords = "haberi bul, haber bul, haberibul, haberbul, haber, güncel haberler, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, gazete manşetleri, "
 const NewsDetail = (props) => {
