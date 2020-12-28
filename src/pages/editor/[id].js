@@ -81,9 +81,8 @@ const NewsEditor = () => {
   const handleSubmit = event => {
     event.preventDefault()
     if (selectedFile && selectedFile.name) {
-      debugger
       watermark([selectedFile])
-        .blob(watermark.text.upperRight('Haberibul.com', '28px serif', '#fff', 0.5))
+        .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#fff', 0.5))
         .then(function (img) {
           debugger
           Resizer.imageFileResizer(
@@ -99,7 +98,6 @@ const NewsEditor = () => {
             "base64"
           )
         });
-        debugger
 
     } else if (isUpdate) {
       setSubmitting(true)
