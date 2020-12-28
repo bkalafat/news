@@ -13,7 +13,6 @@ const NewsEditor = () => {
   const { id } = router.query
   let dummyNews = Const.DEFAULT_NEWS;
   const isUpdate = id && id != 'new';
-  debugger
   const [newNews, setNews] = useState(dummyNews)
 
   function urlToFile(url, filename, mimeType) {
@@ -40,12 +39,18 @@ const NewsEditor = () => {
   const [editorLoaded, setEditorLoaded] = useState(false)
   const { CKEditor, ClassicEditor } = editorRef.current || {}
 
+  const watermarkRef = useRef()
+  const { watermark } = watermarkRef.current || {}
+
   useEffect(() => {
     editorRef.current = {
       CKEditor: require('@ckeditor/ckeditor5-react'),
       ClassicEditor: require('@ckeditor/ckeditor5-build-classic')
     }
-    debugger
+
+    watermarkRef.current = {
+      watermark: require('watermarkjs')
+    }
 
     if (isUpdate && !newNews.id) {
       API.getNews(id).then(
@@ -61,7 +66,6 @@ const NewsEditor = () => {
     setEditorLoaded(true)
     if (isSubmitting) {
       if ("id" in newNews) {
-        debugger
         API.updateNews(newNews).then(() => {
           Router.push("/adminpanel")
         })
@@ -77,18 +81,26 @@ const NewsEditor = () => {
   const handleSubmit = event => {
     event.preventDefault()
     if (selectedFile && selectedFile.name) {
-      Resizer.imageFileResizer(
-        selectedFile,
-        1300,
-        900,
-        "JPEG",
-        100,
-        0,
-        uri => {
-          urlToFile(uri, selectedFile.name, "image/jpeg").then(() => { })
-        },
-        "base64"
-      )
+      debugger
+      watermark([selectedFile])
+        .blob(watermark.text.upperRight('Haberibul.com', '28px serif', '#fff', 0.5))
+        .then(function (img) {
+          debugger
+          Resizer.imageFileResizer(
+            img,
+            1500,
+            1000,
+            "JPEG",
+            100,
+            0,
+            uri => {
+              urlToFile(uri, selectedFile.name+'.webp', "WEBP").then(() => { })
+            },
+            "base64"
+          )
+        });
+        debugger
+
     } else if (isUpdate) {
       setSubmitting(true)
     }

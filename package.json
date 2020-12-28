@@ -40,7 +40,8 @@
     "slick-carousel": "^1.8.1",
     "slugify": "^1.4.6",
     "styled-components": "^5.2.1",
-    "swr": "^0.2.3"
+    "swr": "^0.2.3",
+    "watermarkjs": "^2.1.1"
   },
   "scripts": {
     "debug": "cross-env NODE_OPTIONS='--inspect' next dev",
