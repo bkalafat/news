@@ -24,7 +24,7 @@ export default class UploadAdapter {
       100,
       0,
       uri => {
-        return this.urlToFile(resolve, uri, file.name, "image/jpeg")
+        return this.urlToFile(resolve, uri, file.name + '.webp', "WEBP")
       },
       "base64"
     )
