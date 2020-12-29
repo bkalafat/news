@@ -2,7 +2,6 @@
 import Content from "../components/Content"
 import Layout from "../components/Layout"
 import Head from 'next/head'
-import { isBrowser } from "react-device-detect"
 import * as API from "../utils/api"
 
 const Index = (props) => {
