@@ -82,7 +82,7 @@ const NewsEditor = () => {
     event.preventDefault()
     if (selectedFile && selectedFile.name) {
       watermark([selectedFile])
-        .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#fff', 0.5))
+        .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
         .then(function (img) {
           debugger
           Resizer.imageFileResizer(
