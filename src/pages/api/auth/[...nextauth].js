@@ -1,28 +1,26 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
+
 const options = {
+  site: process.env.NEXTAUTH_URL,
   providers: [
-    // OAuth authentication providers...
-    Providers.Apple({
-      clientId: process.env.APPLE_ID,
-      clientSecret: process.env.APPLE_SECRET
-    }),
-    Providers.Facebook({
-      clientId: process.env.FACEBOOK_ID,
-      clientSecret: process.env.FACEBOOK_SECRET
-    }),
-    Providers.Google({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET
-    }),
-    // Passwordless / email sign in
     Providers.Email({
-      server: process.env.MAIL_SERVER,
-      from: 'NextAuth.js <no-reply@example.com>'
-    }),
+      server: {
+        port: 465,
+        host: 'smtp.gmail.com',
+        secure: true,
+        auth: {
+          user: process.env.EMAIL_USERNAME,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+        tls: {
+          rejectUnauthorized: false,
+        },
+      },
+      from: process.env.EMAIL_FROM,
+    })
   ],
-  // Optional SQL or MongoDB database to persist users
   database: process.env.DATABASE_URL
 }
 
