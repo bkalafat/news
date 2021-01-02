@@ -5,21 +5,21 @@ import * as Const from "./constant"
 import { NewsType } from "../types/NewsType"
 
 export const getNewsList = (): Promise<NewsType[]> => {
-  return fetch(getEnvironmentUrl() + "news").then(res => res.json())
+  return fetch(getEnvironmentUrl() + "news/get").then(res => res.json())
 }
 
 export const getNews = (id: string): Promise<NewsType> => {
-  return fetch(getEnvironmentUrl() + "news/" + id).then(res => res.json())
+  return fetch(getEnvironmentUrl() + "news/get/" + id).then(res => res.json())
 }
 
-export const getNewsByUrl = url => {
-  return fetch(getEnvironmentUrl() + "news/" + url).then(res => res.json())
+export const getNewsBySlug = slug => {
+  return fetch(getEnvironmentUrl() + "news/GetBySlug/" + slug).then(res => res.json())
 }
 
 export function createNews(news: NewsType) {
   setDefaultValues(news)
 
-  return fetch(getEnvironmentUrl() + "news", {
+  return fetch(getEnvironmentUrl() + "news/post", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -39,7 +39,7 @@ export function createNews(news: NewsType) {
 export function updateNews(news : NewsType) {
   news.updateDate = new Date().toISOString()
 
-  return fetch(getEnvironmentUrl() + "news/" + news.id, {
+  return fetch(getEnvironmentUrl() + "news/put/" + news.id, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -55,7 +55,7 @@ export function updateNews(news : NewsType) {
 }
 
 export function deleteNews(id : string) {
-  return fetch(getEnvironmentUrl() + "news/" + id, {
+  return fetch(getEnvironmentUrl() + "news/delete/" + id, {
     method: "DELETE"
   })
     .then(response => {

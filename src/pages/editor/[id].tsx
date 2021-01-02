@@ -58,14 +58,27 @@ const NewsEditor = () => {
     }
 
     if (isUpdate && !newNews.id) {
-      API.getNews(urlId).then(
-        res => {
-          setNews(res)
-        },
-        error => {
-          console.log(error)
-        }
-      )
+
+      if (urlId.includes('$')) {
+        API.getNewsBySlug(urlId.slice(0, -1)).then(
+          res => {
+            setNews(res)
+          },
+          error => {
+            console.log(error)
+          }
+        )
+      }
+      else {
+        API.getNews(urlId).then(
+          res => {
+            setNews(res)
+          },
+          error => {
+            console.log(error)
+          }
+        )
+      }
     }
 
     setEditorLoaded(true)

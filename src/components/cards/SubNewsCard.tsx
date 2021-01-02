@@ -12,8 +12,8 @@ const SubNewsCard = (news : NewsType) => {
     key={news.id}
   >
     <Link
-      href="[category]/[slug]/[id]"
-      as={Helper.getCategoryToByKey(news.category) + '/' + slugify(news.caption) + '/' + news.id}
+      href={Helper.getHrefModel(news.url.length)}
+      as={Helper.getFullSlug(news)}
     >
       <a>
         <LazyLoadImage

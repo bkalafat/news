@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { BrowserView, MobileView } from "react-device-detect";
 import * as Helper from '../../utils/helper';
-import slugify from 'slugify';
 import { NewsType } from "../../types/NewsType";
 
-const SliderCard = (news : NewsType) => {
+const SliderCard = (news: NewsType) => {
+
   return <div key={news.id} className="ratio">
     <Link
-      href="[category]/[slug]/[id]"
-      as={Helper.getCategoryToByKey(news.category) + '/' + slugify(news.caption) + '/' + news.id}
+      href={Helper.getHrefModel(news.url.length)}
+      as={Helper.getFullSlug(news)}
       key={news.id}
     >
       <a>
