@@ -1,16 +1,17 @@
 import * as Const from "./constant"
 import slugify from "slugify"
+import { NewsType } from "../types/NewsType"
 
 export function getEnvironmentUrl() {
   return process.env.NEXT_PUBLIC_API_PATH
 }
 
-export function setDefaultValues(news) {
+export function setDefaultValues(news: NewsType) {
   news.subjects = ["haber"]
   news.authors = ["Mustafa Çolakoğlu"]
   news.createDate = new Date().toISOString()
   news.updateDate = new Date().toISOString()
-  news.expireDate = new Date().toISOString()
+  news.expressDate = new Date().toISOString()
   news.url = "#"
   news.viewCount = 0
   news.priority = 300
@@ -18,69 +19,17 @@ export function setDefaultValues(news) {
   return news
 }
 
-
-export const getDummyNews = () => {
-  let news = []
-
-  for (var index = 0; index < 13; index++) {
-    news.push({
-      id: index,
-      category: "General",
-      type: "news",
-      caption: "Haberibul.com",
-      summary: "Haberibul.com",
-      imgPath: "https://via.placeholder.com/300x180?text=Haberibul.com",
-      imgAlt: "Haberi bul",
-      content: "Haberi bul",
-      subjects: ["haberi bul"],
-      authors: ["Mustafa Çolakoğlu", "Burak Kalafat"],
-      createdDate: "2020-04-23T18:25:43.511Z",
-      updateDate: "2020-05-01T14:35:43.511Z",
-      expressDate: "2020-05-01T14:35:43.511Z",
-      priority: 300,
-      viewCount: 5,
-      isActive: true,
-      url: "#"
-    })
-  }
-
-  for (var subIndex = 0; subIndex < 12; subIndex++) {
-    news.push({
-      id: subIndex,
-      category: "General",
-      type: "subNews",
-      caption: "Haberibul.com",
-      summary: "Haberibul.com",
-      imgPath: "https://via.placeholder.com/300x180?text=Haberibul.com",
-      imgAlt: "Haberi bul",
-      content: "Haberi bul",
-      subjects: ["haberi bul"],
-      authors: ["Mustafa Çolakoğlu", "Burak Kalafat"],
-      createdDate: "2020-04-23T18:25:43.511Z",
-      updateDate: "2020-05-01T14:35:43.511Z",
-      expressDate: "2020-05-01T14:35:43.511Z",
-      viewCount: 1,
-      priority: 300,
-      isActive: true,
-      url: "#"
-    })
-  }
-
-  return news
-}
-
-
 export const getCategoryByTo = (to: string) => {
   return Object.values(Const.Categories).find(c => c.to === to)
 }
 
-export const getCategoryToByKey = key => {
+export const getCategoryToByKey = (key: string) => {
   const categories = Object.values(Const.Categories)
   const category = categories.find(c => c.key === key)
   return category ? category.to : "new"
 }
 
-export const getUrl = news => {
+export const getUrl = (news: NewsType) => {
   return "https://haberibul.com/" + getCategoryToByKey(news.category) + "/" + slugify(news.caption) + "/" + news.id
 }
 

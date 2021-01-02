@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ChangeEvent, FormEvent } from "react"
+import { useState, useEffect, useRef, ChangeEvent } from "react"
 import { Form, Button } from "react-bootstrap"
 import * as Const from "../../utils/constant"
 import * as API from "../../utils/api"
@@ -89,22 +89,20 @@ const NewsEditor = () => {
   const handleSubmit = event => {
     event.preventDefault()
     if (selectedFile && selectedFile.name) {
-      watermark([selectedFile])
-        .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
-        .then((img : Blob) => {
-            Resizer.imageFileResizer(
-              img,
-              1500,
-              1000,
-              "JPEG",
-              100,
-              0,
-              uri => {
-                urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
-              },
-              "base64"
-            )
-          });
+
+      Resizer.imageFileResizer(
+        selectedFile,
+        1500,
+        1000,
+        "JPEG",
+        100,
+        0,
+        uri => {
+          urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
+        },
+        "base64"
+      )
+
 
     } else if (isUpdate) {
       setSubmitting(true)
