@@ -29,14 +29,11 @@ const NewsEditor = () => {
         return new File([buf], "haberibul-" + filename, { type: mimeType })
       })
       .then(file => {
-        watermark([file])
-          .blob(watermark.text.upperRight('Haberibul.com', '28px serif', '#FF0000', 0.5)).then(file => {
-            return API.uploadFile(file)
-          })
-          .then(res => {
-            setNews({ ...newNews, imgPath: res.data.fileUrl })
-            setSubmitting(true)
-          })
+        return API.uploadFile(file)
+      })
+      .then(res => {
+        setNews({ ...newNews, imgPath: res.data.fileUrl })
+        setSubmitting(true)
       })
   }
 
@@ -45,10 +42,10 @@ const NewsEditor = () => {
 
   const editorRef = useRef<any>()
   const [editorLoaded, setEditorLoaded] = useState(false)
-  const CKEditor = editorRef?.current?.CKEditor
-  const ClassicEditor = editorRef?.current?.ClassicEditor
+  const { CKEditor, ClassicEditor } = editorRef.current || {}
+
   const watermarkRef = useRef<any>()
-  const watermark = watermarkRef?.current?.watermark
+  const { watermark } = watermarkRef.current || {}
 
   useEffect(() => {
     editorRef.current = {
@@ -89,20 +86,22 @@ const NewsEditor = () => {
   const handleSubmit = event => {
     event.preventDefault()
     if (selectedFile && selectedFile.name) {
-
-      Resizer.imageFileResizer(
-        selectedFile,
-        1500,
-        1000,
-        "JPEG",
-        100,
-        0,
-        uri => {
-          urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
-        },
-        "base64"
-      )
-
+      watermark([selectedFile])
+        .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
+        .then(function (img) {
+          Resizer.imageFileResizer(
+            img,
+            1500,
+            1000,
+            "JPEG",
+            100,
+            0,
+            uri => {
+              urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
+            },
+            "base64"
+          )
+        });
 
     } else if (isUpdate) {
       setSubmitting(true)
