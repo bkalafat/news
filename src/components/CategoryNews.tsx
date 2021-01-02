@@ -1,5 +1,5 @@
-import SubSlider from "../components/SubSlider"
-import SubNews from "../components/SubNews"
+import SubSlider from "./SubSlider"
+import SubNews from "./SubNews"
 import {
   HEADLINE,
   NEWS_TYPE,
@@ -10,24 +10,25 @@ import useSWR from "swr"
 import Head from "next/head"
 import { useRouter } from 'next/router'
 import SquareAd from "./SquareAd"
+import { NewsType } from "../types/NewsType"
 
 
 const CategoryNews = () => {
-  const { data, error } = useSWR(getEnvironmentUrl() + "news")
+  const { data, error } = useSWR<NewsType[], any>(getEnvironmentUrl() + "news")
   const router = useRouter()
-  const { category } = router.query
-  console.log(category)
+  const { category }  = router.query
+  const categoryUrl = Array.isArray(category) ? category[0] : category;
 
-  if (error || !data || category == undefined) {
+  if (error || !data || categoryUrl == undefined) {
     return (
-      <div><Head>{category}</Head><div>Yükleniyor...</div></div>
+      <div><Head>{categoryUrl}</Head><div>Yükleniyor...</div></div>
     )
   }
   else {
     if (!data && data.length === 0)
-      return (<div><Head>{category}</Head><div>Haber bulunamadı</div></div>)
+      return (<div><Head>{categoryUrl}</Head><div>Haber bulunamadı</div></div>)
 
-    const categoryObj = getCategoryByTo(category)
+    const categoryObj = getCategoryByTo(categoryUrl)
     const newsList = data.filter(news => news.category === categoryObj.key)
     const mainNews = newsList
       .filter(
@@ -45,7 +46,7 @@ const CategoryNews = () => {
       .sort(sortCreateDateDesc())
     const subNewsList = tempNewsList
 
-    let upperCaseCategory = category;
+    let upperCaseCategory = categoryUrl;
     upperCaseCategory = `${upperCaseCategory[0].toUpperCase()}${upperCaseCategory.substring(1)}`;
 
     return (
@@ -74,7 +75,7 @@ const CategoryNews = () => {
           <div className="col-md-10 col-xl-10 noPadding">
             <SubSlider newsList={sliderNewsList.slice(0, 13)} />
           </div>
-          <SquareAd/>
+          <SquareAd />
           <SubNews newsList={subNewsList.slice(0, 32)}></SubNews>
         </div>
       </div>

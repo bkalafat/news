@@ -11,9 +11,13 @@ import {
   TwitterIcon,
   WhatsappIcon
 } from "react-share"
+import { NewsType } from "../types/NewsType"
 
 const Share = props => {
-  if (props.news) {
+
+  const news : NewsType = props.news
+
+  if (news) {
     return (
       <div className="share">
         <Link href="https://news.google.com/publications/CAAqBwgKMJy7mgswtsWyAw?hl=tr&gl=TR&ceid=TR%3Atr" >
@@ -24,34 +28,29 @@ const Share = props => {
           </div>
         </Link>
         <FacebookShareButton
-          url={Helper.getUrl(props.news)}
-          quote={props.news.caption}
-          imageurl={props.news.imgPath}
-          media={props.news.imgPath}
+          url={Helper.getUrl(news)}
+          quote={news.caption}
+          hashtag={news.socialTags}
         >
           <FacebookIcon size="2.5rem" />
         </FacebookShareButton>
         <TwitterShareButton
-          imageurl={props.news.imgPath}
-          url={Helper.getUrl(props.news)}
-          title={props.news.caption}
-          media={props.news.imgPath}
+          via="@HaberibulCom"
+          url={Helper.getUrl(news)}
+          title={news.caption}
+          hashtags={news.socialTags?.split(',')}
         >
           <TwitterIcon size="2.5rem" />
         </TwitterShareButton>
         <WhatsappShareButton
-          imageurl={props.news.imgPath}
-          url={Helper.getUrl(props.news)}
-          title={props.news.caption}
-          media={props.news.imgPath}
+          url={Helper.getUrl(news)}
+          title={news.caption}
         >
           <WhatsappIcon size="2.5rem" />
         </WhatsappShareButton>
         <TelegramShareButton
-          imageurl={props.news.imgPath}
           url={Helper.getUrl(props.news)}
           title={props.news.caption}
-          media={props.news.imgPath}
         >
           <TelegramIcon size="2.5rem" />
         </TelegramShareButton>

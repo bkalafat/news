@@ -1,6 +1,7 @@
 import React from "react"
 import { isMobile } from "react-device-detect"
 import Slider from "react-slick"
+import { NewsType } from "../types/NewsType"
 import { Arrow } from "../utils/sliderItem"
 import SubSliderCard from "./cards/SubSliderCard"
 
@@ -16,10 +17,11 @@ const SubSlider = props => {
     prevArrow: <Arrow direction="left" />
   }
 
+  const newsList : NewsType[] = props.newsList
   return (
     <div style={{ marginBottom: 40 }}>
       <Slider {...settings}>
-        {props.newsList.map(news => (
+        {newsList.map(news => (
           SubSliderCard(news)
         ))}
       </Slider>

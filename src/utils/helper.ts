@@ -70,7 +70,7 @@ export const getDummyNews = () => {
 }
 
 
-export const getCategoryByTo = to => {
+export const getCategoryByTo = (to: string) => {
   return Object.values(Const.Categories).find(c => c.to === to)
 }
 

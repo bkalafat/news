@@ -1,7 +1,8 @@
+import { NewsType } from "../types/NewsType"
 import News from "./News"
 
 const Content = props => {
-  const { newsList } = props
+  const newsList: NewsType[] = props.newsList
 
   if (!newsList) {
     return <div>Loading</div>

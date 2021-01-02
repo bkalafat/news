@@ -4,8 +4,9 @@ import { BrowserView, MobileView, isMobile } from "react-device-detect";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import * as Helper from '../../utils/helper';
 import slugify from 'slugify';
+import { NewsType } from "../../types/NewsType";
 
-const SubNewsCard = news => {
+const SubNewsCard = (news : NewsType) => {
   return <div
     className="col-xs-12 col-sm-12 col-md-4 subNews-child relativeDiv"
     key={news.id}

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, ChangeEvent, FormEvent } from "react"
 import { Form, Button } from "react-bootstrap"
 import * as Const from "../../utils/constant"
 import * as API from "../../utils/api"
@@ -7,6 +7,7 @@ import UploadAdapter from "../../utils/UploadAdapter"
 import Router, { useRouter } from 'next/router'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { getAdmins } from "../../utils/helper"
+import { NewsType } from "../../types/NewsType"
 
 const NewsEditor = () => {
 
@@ -14,8 +15,9 @@ const NewsEditor = () => {
   const fileInput = useRef(null)
   const router = useRouter()
   const { id } = router.query
-  let dummyNews = Const.DEFAULT_NEWS;
-  const isUpdate = id && id != 'new';
+  const urlId = Array.isArray(id) ? id[0] : id;
+  let dummyNews: NewsType = Const.DEFAULT_NEWS;
+  const isUpdate = urlId && urlId != 'new';
   const [newNews, setNews] = useState(dummyNews)
 
   function urlToFile(url, filename, mimeType) {
@@ -39,7 +41,7 @@ const NewsEditor = () => {
   }
 
   const [isSubmitting, setSubmitting] = useState(false)
-  const [selectedFile, setSelectedFile] = useState({})
+  const [selectedFile, setSelectedFile] = useState<File>(null)
 
   const editorRef = useRef()
   const [editorLoaded, setEditorLoaded] = useState(false)
@@ -59,7 +61,7 @@ const NewsEditor = () => {
     }
 
     if (isUpdate && !newNews.id) {
-      API.getNews(id).then(
+      API.getNews(urlId).then(
         res => {
           setNews(res)
         },
@@ -82,34 +84,34 @@ const NewsEditor = () => {
       }
     }
     if (isSubmitting) setSubmitting(false)
-  }, [isSubmitting, newNews, id])
+  }, [isSubmitting, newNews, urlId])
 
   const handleSubmit = event => {
     event.preventDefault()
     if (selectedFile && selectedFile.name) {
       watermark([selectedFile])
         .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
-        .then(function (img) {
-          Resizer.imageFileResizer(
-            img,
-            1500,
-            1000,
-            "JPEG",
-            100,
-            0,
-            uri => {
-              urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
-            },
-            "base64"
-          )
-        });
+        .then((img : Blob) => {
+            Resizer.imageFileResizer(
+              img,
+              1500,
+              1000,
+              "JPEG",
+              100,
+              0,
+              uri => {
+                urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
+              },
+              "base64"
+            )
+          });
 
     } else if (isUpdate) {
       setSubmitting(true)
     }
   }
 
-  const fileSelectorHandler = event => {
+  const fileSelectorHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedFile(event.target.files[0])
   }
   const admins = getAdmins();
@@ -213,7 +215,7 @@ const NewsEditor = () => {
                 value={newNews.summary}
                 onChange={e => setNews({ ...newNews, summary: e.target.value })}
                 as="textarea"
-                rows="2"
+                rows={2}
               />
             </Form.Group>
 
@@ -237,7 +239,7 @@ const NewsEditor = () => {
                     value={newNews.content}
                     onChange={e => setNews({ ...newNews, content: e.target.value })}
                     as="textarea"
-                    rows="2"
+                    rows={2}
                   />
                 )}
             </Form.Group>

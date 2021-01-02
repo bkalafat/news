@@ -2,17 +2,18 @@ import { getEnvironmentUrl, setDefaultValues } from "./helper"
 import axios from "axios"
 import fetch from 'isomorphic-unfetch'
 import * as Const from "./constant"
+import { NewsType } from "../types/NewsType"
 
-export const getNewsList = () => {
+export const getNewsList = (): Promise<NewsType[]> => {
   return fetch(getEnvironmentUrl() + "news").then(res => res.json())
 }
 
-export const getNews = id => {
+export const getNews = (id: string): Promise<NewsType> => {
   return fetch(getEnvironmentUrl() + "news/" + id).then(res => res.json())
 }
 
 export const getNewsByUrl = url => {
-    return fetch(getEnvironmentUrl() + "news/" + url).then(res => res.json())
+  return fetch(getEnvironmentUrl() + "news/" + url).then(res => res.json())
 }
 
 export function createNews(news) {
@@ -36,7 +37,7 @@ export function createNews(news) {
 }
 
 export function increaseViewCount(news) {
-  if("viewCount" in news){
+  if ("viewCount" in news) {
     news.viewCount += 1
   } else {
     news.viewCount = 0

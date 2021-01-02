@@ -1,9 +1,11 @@
+import { NewsType } from "../types/NewsType"
+
 export const NEWS_TYPE = "news"
 export const HEADLINE = "headline"
 export const SUB_NEWS_TYPE = "subNews"
 export const UPLOAD_FILE_PATH =
   "https://us-central1-news-26417.cloudfunctions.net/uploadFile"
-export const DEFAULT_NEWS = {
+export const DEFAULT_NEWS : NewsType = {
     type: "news",
     category: "General",
     caption: "",
@@ -14,7 +16,17 @@ export const DEFAULT_NEWS = {
     priority: 300,
     imgPath: "https://via.placeholder.com/500x250?text=HABER",
     imgAlt: "haber",
-    url: "new/new"
+    url: "new/new",
+    authors: [""],
+    createDate: "",
+    updateDate: "",
+    expressDate: "",
+    id: "",
+    isSecondPageNews: false,
+    subjects: [""],
+    viewCount: 0,
+    keywords: "",
+    socialTags: "",
 }
 
 export const Categories = Object.freeze({

@@ -6,13 +6,14 @@ import Layout from "../../../components/Layout"
 import Head from "next/head"
 import slugify from 'slugify'
 import SquareAd from "../../../components/SquareAd"
+import { NewsType } from "../../../types/NewsType"
 
 const genericKeywords = "haberi bul, haber bul, haberibul, haberbul, haber, güncel haberler, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, gazete manşetleri, "
 const NewsDetail = (props) => {
-  const news = props.news
+  const news : NewsType = props.news
   if (news && news.createDate) {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
-    let date = new Date(Date.UTC(y, m - 1, d, hh, mm, ss, ms))
+    let date = new Date(Date.UTC(+y, +m - 1, +d, +hh, +mm, +ss, +ms))
     let formatted = date.toLocaleString()
     const url = Helper.getUrl(news)
     return (

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { isMobile } from "react-device-detect"
 import Slider from "react-slick"
+import { NewsType } from "../types/NewsType"
 import { Arrow, Dots, Paging } from "../utils/sliderItem"
 import SliderCard from "./cards/SliderCard"
 
@@ -28,12 +29,13 @@ const CustomSlider = props => {
       return Paging(index, currentIndex)
     }
   }
+
+  const newsList : NewsType[] = props.newsList
+
   return (
-
     <div style={{ marginBottom: 5 }}>
-
       <Slider {...settings}>
-        {props.newsList.map(news => (
+        {newsList.map(news => (
           SliderCard(news)
         ))}
       </Slider>
@@ -42,4 +44,3 @@ const CustomSlider = props => {
 }
 
 export default CustomSlider
-

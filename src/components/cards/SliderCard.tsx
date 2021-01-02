@@ -2,8 +2,9 @@ import Link from "next/link";
 import { BrowserView, MobileView } from "react-device-detect";
 import * as Helper from '../../utils/helper';
 import slugify from 'slugify';
+import { NewsType } from "../../types/NewsType";
 
-const SliderCard = news => {
+const SliderCard = (news : NewsType) => {
   return <div key={news.id} className="ratio">
     <Link
       href="[category]/[slug]/[id]"
@@ -21,9 +22,9 @@ const SliderCard = news => {
               </h4>
             </BrowserView>
             <MobileView>
-              <h7>
+              <h6>
                 <span className="beyaz-manset">{news.caption}</span>
-              </h7>
+              </h6>
             </MobileView>
           </div>
         </div>
