@@ -35,7 +35,7 @@ const Share = props => {
           <FacebookIcon size="2.5rem" />
         </FacebookShareButton>
         <TwitterShareButton
-          via="@HaberibulCom"
+          via="HaberibulCom"
           url={Helper.getUrl(news)}
           title={news.caption}
           hashtags={news.socialTags?.split(',')}
