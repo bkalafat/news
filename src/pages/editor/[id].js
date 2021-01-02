@@ -24,11 +24,14 @@ const NewsEditor = () => {
         return new File([buf], "haberibul-" + filename, { type: mimeType })
       })
       .then(file => {
-        return API.uploadFile(file)
-      })
-      .then(res => {
-        setNews({ ...newNews, imgPath: res.data.fileUrl })
-        setSubmitting(true)
+        watermark([file])
+          .blob(watermark.text.upperRight('Haberibul.com', '28px serif', '#FF0000', 0.5)).then(file => {
+            return API.uploadFile(file)
+          })
+          .then(res => {
+            setNews({ ...newNews, imgPath: res.data.fileUrl })
+            setSubmitting(true)
+          })
       })
   }
 
@@ -84,7 +87,6 @@ const NewsEditor = () => {
       watermark([selectedFile])
         .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
         .then(function (img) {
-          debugger
           Resizer.imageFileResizer(
             img,
             1500,
@@ -93,7 +95,7 @@ const NewsEditor = () => {
             100,
             0,
             uri => {
-              urlToFile(uri, selectedFile.name+'.webp', "WEBP").then(() => { })
+              urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
             },
             "base64"
           )
