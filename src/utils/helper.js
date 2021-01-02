@@ -89,3 +89,7 @@ export const sortCreateDateDesc = () => {
     return new Date(b.createDate) - new Date(a.createDate)
   }
 }
+
+export const getAdmins = () => {
+  return ["kalafatburak@gmail.com", "mircolakoglu@gmail.com"];
+}
