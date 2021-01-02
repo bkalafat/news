@@ -16,6 +16,8 @@ export function setDefaultValues(news: NewsType) {
   news.viewCount = 0
   news.priority = 300
 
+  delete news['id']
+
   return news
 }
 
