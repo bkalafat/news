@@ -3,15 +3,18 @@ import BootstrapTable from "react-bootstrap-table-next"
 import { NEWS_TYPE } from "../utils/constant"
 import * as API from "../utils/api"
 import Router from 'next/router'
+import { signIn, signOut, useSession } from 'next-auth/client'
+import { getAdmins } from "../utils/helper"
 
 const AdminPanel = (props) => {
+  const [session] = useSession()
   const [newsList, setNewsList] = useState(props.newsList)
 
   useEffect(() => {
     API.getNewsList().then(result => {
       setNewsList(result)
     })
-  },[])
+  }, [])
 
   const navigateForCreate = () => Router.push("/editor/new")
   const navigateForUpdate = news => Router.push("/editor/" + news.id)
@@ -68,8 +71,16 @@ const AdminPanel = (props) => {
     }
   }
   if (newsList) {
-    return (
-      <div className="center-item">
+    const admins = getAdmins();
+    return <div className="center-item">
+      {!session &&  <>
+        Not admins signed in <br />
+        <button onClick={signIn}>Sign in</button>
+      </>}
+      {session && admins.includes(session.user.email) && <>
+        Signed in as {session.user.email} <br />
+        <button onClick={signOut}>Sign out</button> <br />
+
         <input
           onClick={navigateForCreate}
           type="submit"
@@ -85,9 +96,9 @@ const AdminPanel = (props) => {
           striped
           hover
           condensed
-        />
-      </div>
-    )
+        /></>}
+    </div>
+
   }
 }
 
