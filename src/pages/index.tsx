@@ -3,8 +3,10 @@ import Content from "../components/Content"
 import Layout from "../components/Layout"
 import Head from 'next/head'
 import * as API from "../utils/api"
+import { NewsType } from "../types/NewsType"
 
 const Index = (props) => {
+  const newsList : NewsType[] = props.newsList
   return (
     <Layout>
       <Head>
@@ -27,7 +29,7 @@ const Index = (props) => {
         <meta name="keywords" content="haberi bul, haber bul, haberibul, haberbul, haber, güncel haberler, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, gazete manşetleri"></meta>
       </Head>
       <div className="containerDesktop">
-        <Content newsList={props.newsList} />
+        <Content newsList={newsList} />
       </div>
     </Layout>
   )

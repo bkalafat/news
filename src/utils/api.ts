@@ -2,20 +2,21 @@ import { getEnvironmentUrl, setDefaultValues } from "./helper"
 import axios from "axios"
 import fetch from 'isomorphic-unfetch'
 import * as Const from "./constant"
+import { NewsType } from "../types/NewsType"
 
-export const getNewsList = () => {
+export const getNewsList = (): Promise<NewsType[]> => {
   return fetch(getEnvironmentUrl() + "news").then(res => res.json())
 }
 
-export const getNews = id => {
+export const getNews = (id: string): Promise<NewsType> => {
   return fetch(getEnvironmentUrl() + "news/" + id).then(res => res.json())
 }
 
 export const getNewsByUrl = url => {
-    return fetch(getEnvironmentUrl() + "news/" + url).then(res => res.json())
+  return fetch(getEnvironmentUrl() + "news/" + url).then(res => res.json())
 }
 
-export function createNews(news) {
+export function createNews(news: NewsType) {
   setDefaultValues(news)
 
   return fetch(getEnvironmentUrl() + "news", {
@@ -35,17 +36,7 @@ export function createNews(news) {
     })
 }
 
-export function increaseViewCount(news) {
-  if("viewCount" in news){
-    news.viewCount += 1
-  } else {
-    news.viewCount = 0
-  }
-
-  updateNews(news)
-}
-
-export function updateNews(news) {
+export function updateNews(news : NewsType) {
   news.updateDate = new Date().toISOString()
 
   return fetch(getEnvironmentUrl() + "news/" + news.id, {
@@ -63,7 +54,7 @@ export function updateNews(news) {
     })
 }
 
-export function deleteNews(id) {
+export function deleteNews(id : string) {
   return fetch(getEnvironmentUrl() + "news/" + id, {
     method: "DELETE"
   })
@@ -75,7 +66,7 @@ export function deleteNews(id) {
     })
 }
 
-export const uploadFile = file => {
+export const uploadFile = (file: File) => {
   const formData = new FormData()
   formData.append("image", file, file.name)
   return axios.post(Const.UPLOAD_FILE_PATH, formData).then(res => {

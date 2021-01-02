@@ -5,9 +5,10 @@ import SubNews from "./SubNews"
 import * as constant from "../utils/constant"
 import * as Helper from '../utils/helper'
 import SquareAd from "./SquareAd"
+import { NewsType } from "../types/NewsType"
 
 const News = props => {
-  const { newsList } = props
+  const newsList : NewsType[] = props.newsList
 
   if (!newsList && newsList.length === 0) return <div />
 

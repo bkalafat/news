@@ -3,8 +3,9 @@ import Link from "next/link";
 import { isMobile } from "react-device-detect";
 import * as Helper from '../../utils/helper';
 import slugify from 'slugify';
+import { NewsType } from "../../types/NewsType";
 
-const SubSliderCard = news => {
+const SubSliderCard = (news : NewsType) => {
   return <div key={news.id} >
     <Link
       href="[category]/[slug]/[id]"
