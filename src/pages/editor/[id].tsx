@@ -70,7 +70,7 @@ const NewsEditor = () => {
 
     setEditorLoaded(true)
     if (isSubmitting) {
-      if ("id" in newNews) {
+      if ("id" in newNews && newNews.id && newNews.id.length > 0) {
         API.updateNews(newNews).then(() => {
           Router.push("/adminpanel")
         })
