@@ -24,6 +24,9 @@ const Navigator = () => {
                 <Link href="/[category]" as={"/" + c.to}><a className="nav-link" >{c.value}</a></Link>
               </li>
             ))}
+            <li key="pp" className="nav-item">
+                <Link href="/privacypolicy" as={"/privacypolicy"}><a className="nav-link" >Privacy Policy</a></Link>
+              </li>
           </ul>
         </Navbar.Collapse>
       </Navbar>
