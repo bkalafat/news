@@ -43,12 +43,12 @@ const NewsEditor = () => {
   const [isSubmitting, setSubmitting] = useState(false)
   const [selectedFile, setSelectedFile] = useState<File>(null)
 
-  const editorRef = useRef()
+  const editorRef = useRef<any>()
   const [editorLoaded, setEditorLoaded] = useState(false)
-  const { CKEditor, ClassicEditor } = editorRef.current || {}
-
-  const watermarkRef = useRef()
-  const { watermark } = watermarkRef.current || {}
+  const CKEditor = editorRef?.current?.CKEditor
+  const ClassicEditor = editorRef?.current?.ClassicEditor
+  const watermarkRef = useRef<any>()
+  const watermark = watermarkRef?.current?.watermark
 
   useEffect(() => {
     editorRef.current = {
@@ -169,7 +169,7 @@ const NewsEditor = () => {
 
             <Form.Group>
               <Form.Check
-                onChange={e =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setNews({
                     ...newNews,
                     isSecondPageNews: e.target.checked
@@ -245,12 +245,12 @@ const NewsEditor = () => {
             <Form.Group>
               <Form.Label>Durum</Form.Label>
               <Form.Control
-                value={newNews.isActive}
+                value={Number(newNews.isActive)}
                 onChange={e => setNews({ ...newNews, isActive: e.target.value === "true" })}
                 as="select"
               >
-                <option value={true}>Aktif</option>
-                <option value={false}>Pasif</option>
+                <option value="true">Aktif</option>
+                <option value="false">Pasif</option>
               </Form.Control>
             </Form.Group>
 

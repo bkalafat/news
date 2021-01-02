@@ -34,8 +34,8 @@ export const getUrl = (news: NewsType) => {
 }
 
 export const sortCreateDateDesc = () => {
-  return function (a, b) {
-    return new Date(b.createDate) - new Date(a.createDate)
+  return function (a: NewsType, b: NewsType) {
+    return new Date(b.createDate).getTime() - new Date(a.createDate).getTime()
   }
 }
 
