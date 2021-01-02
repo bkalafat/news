@@ -21,7 +21,7 @@ export const DEFAULT_NEWS : NewsType = {
     createDate: "",
     updateDate: "",
     expressDate: "",
-    id: "",
+    id: undefined,
     isSecondPageNews: false,
     subjects: [""],
     viewCount: 0,
