@@ -1,6 +1,7 @@
 import { NewsType } from "../types/NewsType"
 
 export const NEWS_TYPE = "news"
+export const MIN_SLUG_LENGTH = 8
 export const HEADLINE = "headline"
 export const SUB_NEWS_TYPE = "subNews"
 export const UPLOAD_FILE_PATH =
@@ -16,6 +17,7 @@ export const DEFAULT_NEWS : NewsType = {
     priority: 300,
     imgPath: "https://via.placeholder.com/500x250?text=HABER",
     imgAlt: "haber",
+    slug: "new",
     url: "new/new",
     authors: [""],
     createDate: "",

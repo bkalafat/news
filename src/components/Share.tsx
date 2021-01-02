@@ -28,7 +28,7 @@ const Share = props => {
           </div>
         </Link>
         <FacebookShareButton
-          url={Helper.getUrl(news)}
+          url={Helper.getFullUrl(news)}
           quote={news.caption}
           hashtag={news.socialTags}
         >
@@ -36,20 +36,20 @@ const Share = props => {
         </FacebookShareButton>
         <TwitterShareButton
           via="HaberibulCom"
-          url={Helper.getUrl(news)}
+          url={Helper.getFullUrl(news)}
           title={news.caption}
           hashtags={news.socialTags?.split(',')}
         >
           <TwitterIcon size="2.5rem" />
         </TwitterShareButton>
         <WhatsappShareButton
-          url={Helper.getUrl(news)}
+          url={Helper.getFullUrl(news)}
           title={news.caption}
         >
           <WhatsappIcon size="2.5rem" />
         </WhatsappShareButton>
         <TelegramShareButton
-          url={Helper.getUrl(props.news)}
+          url={Helper.getFullUrl(props.news)}
           title={props.news.caption}
         >
           <TelegramIcon size="2.5rem" />

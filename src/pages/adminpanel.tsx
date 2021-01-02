@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
 import BootstrapTable from "react-bootstrap-table-next"
-import { NEWS_TYPE } from "../utils/constant"
+import { MIN_SLUG_LENGTH, NEWS_TYPE } from "../utils/constant"
 import * as API from "../utils/api"
 import Router from 'next/router'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { getAdmins } from "../utils/helper"
+import { NewsType } from "../types/NewsType"
 
 const AdminPanel = (props) => {
   const [session] = useSession()
@@ -17,7 +18,7 @@ const AdminPanel = (props) => {
   }, [])
 
   const navigateForCreate = () => Router.push("/editor/new")
-  const navigateForUpdate = news => Router.push("/editor/" + news.id)
+  const navigateForUpdate = (news : NewsType) => news.slug?.length > MIN_SLUG_LENGTH ? Router.push("/editor/" + news.slug + "$") : Router.push("/editor/" + news.id)
 
   function typeFormatter(cell) {
     if (cell === NEWS_TYPE) {

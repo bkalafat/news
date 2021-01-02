@@ -1,11 +1,11 @@
-import Share from "../../../components/Share"
-import * as API from "../../../utils/api"
-import * as Const from "../../../utils/constant"
-import * as Helper from "../../../utils/helper"
-import Layout from "../../../components/Layout"
+import Share from "../../components/Share"
+import * as API from "../../utils/api"
+import * as Const from "../../utils/constant"
+import * as Helper from "../../utils/helper"
+import Layout from "../../components/Layout"
 import Head from "next/head"
-import SquareAd from "../../../components/SquareAd"
-import { NewsType } from "../../../types/NewsType"
+import SquareAd from "../../components/SquareAd"
+import { NewsType } from "../../types/NewsType"
 
 const genericKeywords = "haberi bul, haber bul, haberibul, haberbul, haber, güncel haberler, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, gazete manşetleri, "
 const NewsDetail = (props) => {
@@ -14,7 +14,7 @@ const NewsDetail = (props) => {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(+y, +m - 1, +d, +hh, +mm, +ss, +ms))
     let formatted = date.toLocaleString()
-    const url = Helper.getUrlWithId(news)
+    const url = Helper.generateUrlWithoutId(news)
     return (
       <Layout>
         <Head>
@@ -72,17 +72,17 @@ export async function getStaticPaths() {
   const newsList = await API.getNewsList()
   let paths = []
 
-  paths = newsList.filter(n => n.url.length < Const.MIN_SLUG_LENGTH).map((news) => ({
-    params: { category: Helper.getCategoryToByKey(news.category), slug: Helper.getSlug(news), id: news.id }
+  paths = newsList.filter(n => n.slug?.length >= Const.MIN_SLUG_LENGTH).map((news) => ({
+    params: { category: Helper.getCategoryToByKey(news.category), slug: news.slug }
   }))
-  paths.push({ params: { category: 'new', slug: 'new', id: 'new' } })
+  paths.push({ params: { category: 'new', slug: 'new' } })
   return { paths, fallback: true }
 }
 
 export const getStaticProps = async ({ params }) => {
   let news = Const.DEFAULT_NEWS;
-  if (params.id && params.id != 'new') {
-    news = await API.getNews(params.id)
+  if (params.slug && params.slug != 'new') {
+    news = await API.getNewsBySlug(params.slug)
   }
   return {
     revalidate: 10,

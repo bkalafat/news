@@ -16,6 +16,7 @@ export type NewsType = {
   viewCount: number;
   isActive: boolean;
   isSecondPageNews: boolean;
+  slug: string;
   url: string;
   keywords: string;
   socialTags: string;

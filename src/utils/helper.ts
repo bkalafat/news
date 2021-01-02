@@ -12,7 +12,8 @@ export function setDefaultValues(news: NewsType) {
   news.createDate = new Date().toISOString()
   news.updateDate = new Date().toISOString()
   news.expressDate = new Date().toISOString()
-  news.url = "#"
+  news.slug = slugify(news.caption)
+  news.url = generateUrlWithoutId(news)
   news.viewCount = 0
   news.priority = 300
 
@@ -31,8 +32,28 @@ export const getCategoryToByKey = (key: string) => {
   return category ? category.to : "new"
 }
 
-export const getUrl = (news: NewsType) => {
-  return "https://haberibul.com/" + getCategoryToByKey(news.category) + "/" + slugify(news.caption) + "/" + news.id
+export const getUrlWithId = (news: NewsType) => {
+  return "https://haberibul.com/" + getCategoryToByKey(news.category) + "/" + getSlug(news) + "/" + news.id
+}
+
+export const getFullUrl = (news: NewsType) => {
+  return news.url.length >= Const.MIN_SLUG_LENGTH ? news.url : getUrlWithId(news)
+}
+
+export const getHrefModel = (urlLength: number) => {
+  return urlLength < Const.MIN_SLUG_LENGTH ? "[category]/[slug]/[id]" : "[category]/[slug]";
+}
+
+export const getSlug = (news: NewsType) => {
+  return news.slug?.length > Const.MIN_SLUG_LENGTH ? news.slug : slugify(news.caption);
+}
+
+export const getFullSlug = (news: NewsType) => {
+  return news.slug?.length > Const.MIN_SLUG_LENGTH ? getCategoryToByKey(news.category) + "/" + getSlug(news) : getCategoryToByKey(news.category) + "/" + getSlug(news) + "/" + news.id
+}
+
+export const generateUrlWithoutId = (news: NewsType) => {
+  return "https://haberibul.com/" + getCategoryToByKey(news.category) + "/" + getSlug(news)
 }
 
 export const sortCreateDateDesc = () => {
