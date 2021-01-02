@@ -5,7 +5,7 @@ const PrivacyPolicy = () => {
 
     <Layout>
 
-      <h1 class="text-center">Privacy Policy</h1>
+      <h1 className="text-center">Privacy Policy</h1>
 
 
       <p><strong>Effective Date: 02-01-2021</strong></p>

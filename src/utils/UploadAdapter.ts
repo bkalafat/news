@@ -3,6 +3,7 @@ import axios from "axios"
 import * as Const from "./constant"
 
 export default class UploadAdapter {
+  loader: any
   constructor(loader) {
     this.loader = loader
   }
