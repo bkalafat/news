@@ -21,7 +21,18 @@ const options = {
       from: process.env.EMAIL_FROM,
     })
   ],
-  database: process.env.DATABASE_URL
+  database: process.env.DATABASE_URL,
+
+  callbacks: {
+    /**
+     * @param  {string} url      URL provided as callback URL by the client
+     * @param  {string} baseUrl  Default base URL of site (can be used as fallback)
+     * @return {string}          URL the client will be redirect to
+     */
+    redirect: async (url, baseUrl) => {
+      return "https://haberibul.com/adminpanel";
+    }
+  }
 }
 
 export default (req, res) => NextAuth(req, res, options)

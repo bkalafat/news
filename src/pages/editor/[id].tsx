@@ -131,7 +131,7 @@ const NewsEditor = () => {
         Not admins signed in <br></br>
         <button onClick={signIn}>Sign in</button>
       </>}
-      {session && admins.includes(session.user.email) && <>
+      {session && admins.includes(session.user.email.toLowerCase()) && <>
         Signed in as {session.user.email} <br />
         <button onClick={signOut}>Sign out</button> <br />
         <div className="center">

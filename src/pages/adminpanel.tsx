@@ -78,7 +78,7 @@ const AdminPanel = (props) => {
         Not admins signed in <br />
         <button onClick={signIn}>Sign in</button>
       </>}
-      {session && admins.includes(session.user.email) && <>
+      {session && admins.includes(session.user.email.toLowerCase()) && <>
         Signed in as {session.user.email} <br />
         <button onClick={signOut}>Sign out</button> <br />
 
