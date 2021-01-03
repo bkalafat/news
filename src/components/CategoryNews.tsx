@@ -14,7 +14,7 @@ import { NewsType } from "../types/NewsType"
 
 
 const CategoryNews = () => {
-  const { data, error } = useSWR<NewsType[], any>(getEnvironmentUrl() + "news")
+  const { data, error } = useSWR<NewsType[], any>(getEnvironmentUrl() + "news/get")
   const router = useRouter()
   const { category }  = router.query
   const categoryUrl = Array.isArray(category) ? category[0] : category;
