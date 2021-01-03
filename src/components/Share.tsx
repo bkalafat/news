@@ -38,7 +38,7 @@ const Share = props => {
           via="HaberibulCom"
           url={Helper.getFullUrl(news)}
           title={news.caption}
-          hashtags={news.socialTags?.split(',')}
+          hashtags={news.socialTags?.split(",").map((item: string) => item.trim())}
         >
           <TwitterIcon size="2.5rem" />
         </TwitterShareButton>

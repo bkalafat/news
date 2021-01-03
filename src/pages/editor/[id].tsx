@@ -204,7 +204,7 @@ const NewsEditor = () => {
             <Form.Group>
               <Form.Label>Keywords</Form.Label>
               <Form.Control
-                placeholder="haber, keyword, vb.. şeklinde virgülle ayır."
+                placeholder="haber, keyword, seo"
                 value={newNews.keywords}
                 onChange={e => setNews({ ...newNews, keywords: e.target.value })}
               />
@@ -213,7 +213,7 @@ const NewsEditor = () => {
             <Form.Group>
               <Form.Label>Sosyal Tag</Form.Label>
               <Form.Control
-                placeholder="#gundem #twitterTag #bilmemne şeklinde # ile tag girişi yapılabilir."
+                placeholder="facebooktag, gundem, twitterTag"
                 value={newNews.socialTags}
                 onChange={e => setNews({ ...newNews, socialTags: e.target.value })}
               />
