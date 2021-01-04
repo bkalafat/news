@@ -1,17 +1,19 @@
 import Link from "next/link"
 import { Categories } from "../utils/constant"
 import Navbar from "react-bootstrap/Navbar";
-
+import Image from "next/image"
 
 const Navigator = () => {
   return (
     <div style={{ marginBottom: 8 }}>
 
-      <div className="currency" id="doviz"/>
+      <div className="currency" id="doviz" />
 
       <Navbar style={{ paddingTop: 0, paddingBottom: 0, marginTop: 7 }} collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
         <Link href="/"><Navbar.Brand>
-          <img
+          <Image
+            height="57"
+            width="57"
             src={`/apple-icon-57x57.png`}
             alt="haberibul"
           />
@@ -25,8 +27,8 @@ const Navigator = () => {
               </li>
             ))}
             <li key="pp" className="nav-item">
-                <Link href="/privacypolicy" as={"/privacypolicy"}><a className="nav-link" >Privacy Policy</a></Link>
-              </li>
+              <Link href="/privacypolicy" as={"/privacypolicy"}><a className="nav-link" >Privacy Policy</a></Link>
+            </li>
           </ul>
         </Navbar.Collapse>
       </Navbar>
