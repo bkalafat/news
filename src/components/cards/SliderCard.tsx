@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BrowserView, MobileView } from "react-device-detect";
 import * as Helper from '../../utils/helper';
 import { NewsType } from "../../types/NewsType";
+import Image from 'next/image'
 
 const SliderCard = (news: NewsType) => {
 
@@ -12,7 +13,7 @@ const SliderCard = (news: NewsType) => {
       key={news.id}
     >
       <a>
-        <img className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
+        <Image width="1500" height="1000" className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
 
         <div className="header-text">
           <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">

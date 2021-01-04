@@ -1,9 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { BrowserView, MobileView, isMobile } from "react-device-detect";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import Image from "next/image";
 import * as Helper from '../../utils/helper';
-import slugify from 'slugify';
 import { NewsType } from "../../types/NewsType";
 
 const SubNewsCard = (news : NewsType) => {
@@ -16,7 +15,7 @@ const SubNewsCard = (news : NewsType) => {
       as={Helper.getFullSlug(news)}
     >
       <a>
-        <LazyLoadImage
+      <Image width="1500" height="1000"
           className="stretchImg shadow"
           alt={news.imgAlt}
           src={news.imgPath} />

@@ -1,6 +1,7 @@
 import React from "react"
 import { SocialIcon } from "react-social-icons"
 import Link from "next/link"
+import Image from "next/image"
 
 const size = 33
 const Footer = () => {
@@ -38,7 +39,7 @@ const Footer = () => {
         </div>
         <div className="center">
           <Link href="/">
-            <a><img className="logo" src="/haberibul.png" alt="image" /></a>
+            <a><Image width="557" height="75" className="logo" src="/haberibul.png" alt="haberibul" /></a>
           </Link>
         </div>
       </footer>

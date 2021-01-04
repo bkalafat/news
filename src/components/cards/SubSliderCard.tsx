@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { isMobile } from "react-device-detect";
 import * as Helper from '../../utils/helper';
-import slugify from 'slugify';
+import Image from "next/image";
 import { NewsType } from "../../types/NewsType";
 
 const SubSliderCard = (news : NewsType) => {
@@ -15,7 +15,7 @@ const SubSliderCard = (news : NewsType) => {
 
       <a>
         <div className="spaceAround">
-          <img
+        <Image width="1500" height="1000"
             className={isMobile ? "sameSizeImgMobile" : "sameSizeImgBrowser"}
             src={news.imgPath}
             alt={news.imgAlt} />
