@@ -5,7 +5,7 @@ import * as Helper from '../../utils/helper';
 import Image from "next/image";
 import { NewsType } from "../../types/NewsType";
 
-const SubSliderCard = (news : NewsType) => {
+const SubSliderCard = (news: NewsType) => {
   return <div key={news.id} >
     <Link
       href={Helper.getHrefModel(news.url.length)}
@@ -15,12 +15,13 @@ const SubSliderCard = (news : NewsType) => {
 
       <a>
         <div className="spaceAround">
-        <Image width="1500" height="1000"
+          <Image layout="intrinsic"
+            width="1500" height="1000"
             className={isMobile ? "sameSizeImgMobile" : "sameSizeImgBrowser"}
             src={news.imgPath}
             alt={news.imgAlt} />
           <div className="text ellipsis text-center">
-            <span style= {{fontSize: isMobile ? "large" : "xx-large" }} className="text-concat">{news.caption}</span>
+            <span style={{ fontSize: isMobile ? "large" : "xx-large" }} className="text-concat">{news.caption}</span>
           </div>
         </div>
       </a>

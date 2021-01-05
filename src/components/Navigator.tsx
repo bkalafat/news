@@ -12,6 +12,7 @@ const Navigator = () => {
       <Navbar style={{ paddingTop: 0, paddingBottom: 0, marginTop: 7 }} collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
         <Link href="/"><Navbar.Brand>
           <Image
+            layout="intrinsic"
             height="57"
             width="57"
             src={`/apple-icon-57x57.png`}

@@ -15,7 +15,9 @@ const SubNewsCard = (news : NewsType) => {
       as={Helper.getFullSlug(news)}
     >
       <a>
-      <Image width="1500" height="1000"
+      <Image
+      layout="intrinsic"
+       width="1500" height="1000"
           className="stretchImg shadow"
           alt={news.imgAlt}
           src={news.imgPath} />
