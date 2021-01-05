@@ -18,6 +18,9 @@ module.exports = withOffline({
       },
     ],
   },
+  images: {
+    domains: ['firebasestorage.googleapis.com'],
+  },
   async rewrites() {
     return [
       {

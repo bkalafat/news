@@ -25,7 +25,7 @@ const Share = props => {
           <div className="google-news">
             <span className="google-news-subscribe" >Abone Ol</span>
             <a className="google-news-button" rel="noopener noreferrer nofollow"
-              target="_blank"><Image width="68" height="12" src="/google-news.png" alt="image" /></a>
+              target="_blank"><Image layout="intrinsic" width="68" height="12" src="/google-news.png" alt="image" /></a>
           </div>
         </Link>
         <FacebookShareButton
