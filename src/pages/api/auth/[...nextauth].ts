@@ -3,6 +3,7 @@ import Providers from 'next-auth/providers'
 
 const options = {
   site: process.env.NEXTAUTH_URL,
+  debug: true,
   providers: [
     Providers.Email({
       server: {
@@ -23,12 +24,7 @@ const options = {
   database: process.env.DATABASE_URL,
 
   callbacks: {
-    /**
-     * @param  {string} url      URL provided as callback URL by the client
-     * @param  {string} baseUrl  Default base URL of site (can be used as fallback)
-     * @return {string}          URL the client will be redirect to
-     */
-    redirect: async (url, baseUrl) => {
+    redirect: async () => {
       return "https://haberibul.com/adminpanel";
     }
   }
