@@ -13,7 +13,7 @@ const SliderCard = (news: NewsType) => {
       key={news.id}
     >
       <a>
-        <Image layout="intrinsic" width="1500" height="1000" className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
+        <Image layout="responsive" width="1920" height="1080" className="imgRatio" src={news.imgPath} alt={news.imgAlt} />
 
         <div className="header-text">
           <div className="col-md-12 col-sm-8 col-xs-8 noPadding text-center">

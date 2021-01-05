@@ -15,7 +15,7 @@ const SubSliderCard = (news: NewsType) => {
 
       <a>
         <div className="spaceAround">
-          <Image layout="intrinsic"
+          <Image layout="responsive"
             width="1500" height="1000"
             className={isMobile ? "sameSizeImgMobile" : "sameSizeImgBrowser"}
             src={news.imgPath}

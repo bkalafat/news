@@ -38,12 +38,13 @@ const NewsDetail = (props) => {
         <div className="newsDetail">
           <h1 className="spaceAround">{news.caption}</h1>
           <p className="lead spaceAround">{news.summary}</p>
-          <Image layout="intrinsic"
-            width="1500" height="1000"
-            className="col-md-6 col-xs-12 col-sm-12 detailImg"
-            src={news.imgPath}
-            alt={news.imgAlt}
-          />
+          <div className="center-item col-md-6 col-xs-12 col-sm-12 ">
+            <Image
+              width="1500" height="1000"
+              className="detailImg"
+              src={news.imgPath}
+              alt={news.imgAlt}
+            /></div>
           <Share news={news}></Share>
           <SquareAd />
         </div>
