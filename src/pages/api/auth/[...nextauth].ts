@@ -3,7 +3,6 @@ import Providers from 'next-auth/providers'
 
 const options = {
   site: process.env.NEXTAUTH_URL,
-  debug: true,
   providers: [
     Providers.Email({
       server: {

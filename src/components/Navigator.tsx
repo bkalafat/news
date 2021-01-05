@@ -6,13 +6,10 @@ import Image from "next/image"
 const Navigator = () => {
   return (
     <div style={{ marginBottom: 8 }}>
-
-      <div className="currency" id="doviz" />
-
       <Navbar style={{ paddingTop: 0, paddingBottom: 0, marginTop: 7 }} collapseOnSelect={true} bg="dark" variant="dark" expand="lg">
-        <Link href="/"><Navbar.Brand>
+        <Link href="/"><Navbar.Brand style={{ paddingTop: 0, paddingBottom: 0, width: 57, height: 57 }}>
+
           <Image
-            layout="intrinsic"
             height="57"
             width="57"
             src={`/apple-icon-57x57.png`}

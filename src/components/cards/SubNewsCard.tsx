@@ -5,7 +5,7 @@ import Image from "next/image";
 import * as Helper from '../../utils/helper';
 import { NewsType } from "../../types/NewsType";
 
-const SubNewsCard = (news : NewsType) => {
+const SubNewsCard = (news: NewsType) => {
   return <div
     className="col-xs-12 col-sm-12 col-md-4 subNews-child relativeDiv"
     key={news.id}
@@ -15,9 +15,8 @@ const SubNewsCard = (news : NewsType) => {
       as={Helper.getFullSlug(news)}
     >
       <a>
-      <Image
-      layout="intrinsic"
-       width="1500" height="1000"
+        <Image
+          width="1920" height="1080"
           className="stretchImg shadow"
           alt={news.imgAlt}
           src={news.imgPath} />
