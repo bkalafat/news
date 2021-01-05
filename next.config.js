@@ -21,6 +21,12 @@ module.exports = withOffline({
   images: {
     domains: ['firebasestorage.googleapis.com'],
   },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      require('./scripts/generate-sitemap');
+    }
+    return config;
+  },
   async rewrites() {
     return [
       {
