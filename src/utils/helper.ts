@@ -16,6 +16,7 @@ export function setDefaultValues(news: NewsType) {
   news.url = generateUrlWithoutId(news)
   news.viewCount = 0
   news.priority = 300
+  news.imgAlt = news.caption;
 
   delete news['id']
 
