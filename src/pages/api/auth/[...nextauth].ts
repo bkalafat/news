@@ -19,13 +19,25 @@ const options = {
         },
       },
       from: process.env.EMAIL_FROM,
+    }),
+    Providers.Twitter({
+      clientId: process.env.TWITTER_CLIENT_KEY,
+      clientSecret: process.env.TWITTER_CLIENT_SECRET
     })
   ],
+
   database: process.env.DATABASE_URL,
 
   callbacks: {
-    redirect: async () => {
-      return "https://haberibul.com/adminpanel";
+    /**
+     * @param  {string} url      URL provided as callback URL by the client
+     * @param  {string} baseUrl  Default base URL of site (can be used as fallback)
+     * @return {string}          URL the client will be redirect to
+     */
+    redirect: async (url, baseUrl) => {
+      return url.startsWith(baseUrl)
+        ? Promise.resolve(url)
+        : Promise.resolve(baseUrl)
     }
   }
 }
