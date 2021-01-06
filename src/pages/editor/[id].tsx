@@ -15,8 +15,8 @@ const NewsEditor = () => {
   const fileInput = useRef(null)
   const router = useRouter()
   const { id } = router.query
-  const urlId = Array.isArray(id) ? id[0] : id;
-  let dummyNews: NewsType = Const.DEFAULT_NEWS;
+  const urlId = Array.isArray(id) ? id[0] : id
+  let dummyNews: NewsType = Const.DEFAULT_NEWS
   const isUpdate = urlId && urlId != 'new';
   const [newNews, setNews] = useState(dummyNews)
 
@@ -49,7 +49,7 @@ const NewsEditor = () => {
 
   useEffect(() => {
     editorRef.current = {
-      CKEditor: require('@ckeditor/ckeditor5-react'),
+      CKEditor: require('@ckeditor/ckeditor5-react').CKEditor,
       ClassicEditor: require('@ckeditor/ckeditor5-build-classic')
     }
 
@@ -234,7 +234,7 @@ const NewsEditor = () => {
               {editorLoaded ? (<CKEditor
                 editor={ClassicEditor}
                 data={newNews.content}
-                onInit={editor => {
+                onReady={editor => {
                   editor.plugins.get(
                     "FileRepository"
                   ).createUploadAdapter = loader => {
