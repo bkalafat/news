@@ -220,6 +220,10 @@ code {
   text-align: center;
 }
 
+.text-justify {
+  text-align: left;
+}
+
 .beyaz-manset {
   font-family: GothamNarrow-Black;
   font-weight: 900;

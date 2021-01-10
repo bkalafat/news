@@ -36,8 +36,9 @@ export function createNews(news: NewsType) {
     })
 }
 
-export function updateNews(news : NewsType) {
+export function updateNews(news: NewsType) {
   news.updateDate = new Date().toISOString()
+  news.imgAlt = news.caption
 
   return fetch(getEnvironmentUrl() + "news/put/" + news.id, {
     method: "PUT",
@@ -54,7 +55,7 @@ export function updateNews(news : NewsType) {
     })
 }
 
-export function deleteNews(id : string) {
+export function deleteNews(id: string) {
   return fetch(getEnvironmentUrl() + "news/delete/" + id, {
     method: "DELETE"
   })

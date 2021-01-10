@@ -104,10 +104,10 @@ const NewsEditor = () => {
         .then(function (img) {
           Resizer.imageFileResizer(
             img,
-            1500,
-            1000,
+            1280,
+            800,
             "JPEG",
-            100,
+            90,
             0,
             uri => {
               urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
