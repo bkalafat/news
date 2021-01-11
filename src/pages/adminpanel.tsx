@@ -9,7 +9,7 @@ import { NewsType } from "../types/NewsType"
 
 const AdminPanel = (props) => {
   const [session] = useSession()
-  const [newsList, setNewsList] = useState(props.newsList)
+  const [newsList, setNewsList] = useState<NewsType[]>(props.newsList)
 
   useEffect(() => {
     API.getNewsList().then(result => {
@@ -29,11 +29,6 @@ const AdminPanel = (props) => {
   }
 
   const columns = [
-    {
-      dataField: "viewCount",
-      text: "Görüntülenme",
-      sort: true
-    },
     {
       dataField: "caption",
       text: "Başık",
