@@ -14,7 +14,7 @@ import {
 import { NewsType } from "../types/NewsType"
 import Image from "next/image"
 
-export interface IShareProps {
+interface IShareProps {
   news: NewsType
 }
 

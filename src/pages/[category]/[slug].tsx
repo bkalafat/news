@@ -8,7 +8,7 @@ import SquareAd from "../../components/SquareAd"
 import { NewsType } from "../../types/NewsType"
 import Image from "next/image";
 
-export interface INewsDetailProps {
+interface INewsDetailProps {
   news: NewsType
 }
 

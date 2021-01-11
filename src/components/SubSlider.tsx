@@ -5,7 +5,7 @@ import { NewsType } from "../types/NewsType"
 import { Arrow } from "../utils/sliderItem"
 import SubSliderCard from "./cards/SubSliderCard"
 
-export interface ISubSliderProps {
+interface ISubSliderProps {
   newsList: NewsType[]
 }
 

@@ -1,7 +1,7 @@
 import { NewsType } from "../types/NewsType"
 import News from "./News"
 
-export interface IContentProps {
+interface IContentProps {
   newsList: NewsType[]
 }
 
