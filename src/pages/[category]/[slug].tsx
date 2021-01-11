@@ -8,7 +8,7 @@ import SquareAd from "../../components/SquareAd"
 import { NewsType } from "../../types/NewsType"
 import Image from "next/image";
 
-const genericKeywords = "haberi bul, haber bul, haberibul, haberbul, haber, güncel haberler, son dakika haberleri, en son haber, Türkiye, siyaset, güncel, spor, ekonomi, gazete manşetleri, "
+const genericKeywords = "haberibul, "
 const NewsDetail = (props) => {
   const news: NewsType = props.news
   if (news && news.createDate) {
@@ -53,13 +53,13 @@ const NewsDetail = (props) => {
           onContextMenu={e => e.preventDefault()}
           dangerouslySetInnerHTML={{
             __html:
-              "<div class='container content center-item  text-justify'" +
+              "<div class='container content center-item text-justify'" +
               news.content +
               "</div>"
           }}
         />
-        <SquareAd />
         <div className='container content center-item  text-center'>
+          <SquareAd />
           <time className="time" dateTime={news.createDate}>Haber Giriş: {formatted}</time>
         </div>
       </Layout>
