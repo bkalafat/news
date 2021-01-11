@@ -7,8 +7,12 @@ import * as Helper from '../utils/helper'
 import SquareAd from "./SquareAd"
 import { NewsType } from "../types/NewsType"
 
-const News = props => {
-  const newsList : NewsType[] = props.newsList
+export interface INewsProps {
+  newsList: NewsType[]
+}
+
+const News = (props: INewsProps) => {
+  const { newsList } = props
 
   if (!newsList && newsList.length === 0) return <div />
 
@@ -48,8 +52,8 @@ const News = props => {
         <SubSlider newsList={subSliderNews} />
       </div>
       <div>
-        <SquareAd/>
-        <SubNews newsList={subNewsList}/>
+        <SquareAd />
+        <SubNews newsList={subNewsList} />
       </div>
     </div>
   )

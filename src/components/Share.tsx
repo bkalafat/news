@@ -14,10 +14,12 @@ import {
 import { NewsType } from "../types/NewsType"
 import Image from "next/image"
 
-const Share = props => {
+export interface IShareProps {
+  news: NewsType
+}
 
-  const news : NewsType = props.news
-
+const Share = (props: IShareProps) => {
+  const { news } = props
   if (news) {
     return (
       <div className="share">
