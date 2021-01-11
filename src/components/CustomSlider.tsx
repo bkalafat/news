@@ -5,7 +5,11 @@ import { NewsType } from "../types/NewsType"
 import { Arrow, Dots, Paging } from "../utils/sliderItem"
 import SliderCard from "./cards/SliderCard"
 
-const CustomSlider = props => {
+export interface ICustomSlider {
+  newsList: NewsType[]
+}
+
+const CustomSlider = (props: ICustomSlider) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   var settings = {
@@ -30,7 +34,7 @@ const CustomSlider = props => {
     }
   }
 
-  const newsList : NewsType[] = props.newsList
+  const { newsList } = props
 
   return (
     <div style={{ marginBottom: 5 }}>

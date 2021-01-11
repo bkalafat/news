@@ -1,6 +1,14 @@
+import { CSSProperties } from "react"
 import Pagination from "react-bootstrap/Pagination"
 
-export const Arrow = props => {
+export interface IArrowProps {
+  className?: string,
+  style?: CSSProperties,
+  onClick?: any,
+  direction: string
+}
+
+export const Arrow = (props: IArrowProps) => {
   const { className, style, onClick, direction } = props
   return (
     <img
@@ -13,7 +21,7 @@ export const Arrow = props => {
   )
 }
 
-export function Dots() {
+export const Dots = () => {
   return dots => {
     return (
       <Pagination className="centerFlex" size="sm">
@@ -23,7 +31,7 @@ export function Dots() {
   }
 }
 
-export const Paging = (index, currentSlide) => {
+export const Paging = (index: number, currentSlide: number) => {
   return (
     <ul style={{ listStyle: "none" }} >
       <Pagination.Item key={index} active={index === currentSlide}>
