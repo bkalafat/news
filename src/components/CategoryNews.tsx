@@ -52,7 +52,7 @@ const CategoryNews = () => {
     return (
       <div>
         <Head>
-          <title>{upperCaseCategory + " haberibul Son dakika " + upperCaseCategory + " gelişmeleri"}</title>
+          <title>{upperCaseCategory + " haberi bul, son dakika " + upperCaseCategory + " gelişmeleri"}</title>
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="title" content="Haberibul.com" />
