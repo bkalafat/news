@@ -8,8 +8,11 @@ import SquareAd from "../../components/SquareAd"
 import { NewsType } from "../../types/NewsType"
 import Image from "next/image";
 
-const genericKeywords = "haberibul, "
-const NewsDetail = (props) => {
+interface INewsDetailProps {
+  news: NewsType
+}
+
+const NewsDetail = (props: INewsDetailProps) => {
   const news: NewsType = props.news
   if (news && news.createDate) {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
@@ -33,7 +36,7 @@ const NewsDetail = (props) => {
           <meta name="twitter:url" content={url} />
           <meta property="twitter:title" content={news.caption} />
           <meta property="twitter:description" content={news.summary + " #haberibul"} />
-          <meta name="keywords" content={news.keywords ? news.keywords + genericKeywords : news.caption.split(' ').join(', ') + genericKeywords} />
+          <meta name="keywords" content={news.keywords ? news.keywords : news.caption.split(' ').join(', ')} />
         </Head>
         <div className="newsDetail">
           <h1 className="spaceAround">{news.caption}</h1>
@@ -73,20 +76,15 @@ const NewsDetail = (props) => {
 
 export async function getStaticPaths() {
   const newsList = await API.getNewsList()
-  let paths = []
-
-  paths = newsList.filter(n => n.slug?.length >= Const.MIN_SLUG_LENGTH).map((news) => ({
+  const paths = newsList.filter(n => n.slug?.length >= Const.MIN_SLUG_LENGTH).map((news) => ({
     params: { category: Helper.getCategoryToByKey(news.category), slug: news.slug }
   }))
-  paths.push({ params: { category: 'new', slug: 'new' } })
   return { paths, fallback: true }
 }
 
 export const getStaticProps = async ({ params }) => {
-  let news = Const.DEFAULT_NEWS;
-  if (params.slug && params.slug != 'new') {
-    news = await API.getNewsBySlug(params.slug)
-  }
+  const news = await API.getNewsBySlug(params.slug)
+
   return {
     revalidate: 10,
     props: {

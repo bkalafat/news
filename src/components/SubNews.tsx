@@ -2,7 +2,7 @@ import React from "react"
 import { NewsType } from "../types/NewsType"
 import SubNewsCard from "./cards/SubNewsCard"
 
-export interface ISubNewsProps {
+interface ISubNewsProps {
   newsList: NewsType[]
 }
 

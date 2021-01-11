@@ -7,7 +7,7 @@ import * as Helper from '../utils/helper'
 import SquareAd from "./SquareAd"
 import { NewsType } from "../types/NewsType"
 
-export interface INewsProps {
+interface INewsProps {
   newsList: NewsType[]
 }
 

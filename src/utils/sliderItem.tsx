@@ -1,7 +1,7 @@
 import { CSSProperties } from "react"
 import Pagination from "react-bootstrap/Pagination"
 
-export interface IArrowProps {
+interface IArrowProps {
   className?: string,
   style?: CSSProperties,
   onClick?: any,
