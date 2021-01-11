@@ -12,7 +12,7 @@ export const getNews = (id: string): Promise<NewsType> => {
   return fetch(getEnvironmentUrl() + "news/get/" + id).then(res => res.json())
 }
 
-export const getNewsBySlug = slug => {
+export const getNewsBySlug = (slug: string): Promise<NewsType> => {
   return fetch(getEnvironmentUrl() + "news/GetBySlug/" + slug).then(res => res.json())
 }
 

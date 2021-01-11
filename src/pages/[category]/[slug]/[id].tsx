@@ -8,9 +8,12 @@ import SquareAd from "../../../components/SquareAd"
 import { NewsType } from "../../../types/NewsType"
 import Image from "next/image";
 
-const genericKeywords = "haberibul, "
-const NewsDetail = (props) => {
-  const news: NewsType = props.news
+export interface INewsDetailProps {
+  news: NewsType
+}
+
+const NewsDetail = (props: INewsDetailProps) => {
+  const { news } = props
   if (news && news.createDate) {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(+y, +m - 1, +d, +hh, +mm, +ss, +ms))
@@ -33,7 +36,7 @@ const NewsDetail = (props) => {
           <meta name="twitter:url" content={url} />
           <meta property="twitter:title" content={news.caption} />
           <meta property="twitter:description" content={news.summary + " #haberibul"} />
-          <meta name="keywords" content={news.keywords ? news.keywords + genericKeywords : news.caption.split(' ').join(', ') + genericKeywords} />
+          <meta name="keywords" content={news.keywords ? news.keywords : news.caption.split(' ').join(', ')} />
         </Head>
         <div className="newsDetail">
           <h1 className="spaceAround">{news.caption}</h1>
@@ -71,22 +74,16 @@ const NewsDetail = (props) => {
   </Layout>
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths(): Promise<{ paths: any[]; fallback: boolean }> {
   const newsList = await API.getNewsList()
-  let paths = []
-
-  paths = newsList.filter(n => n.url.length < Const.MIN_SLUG_LENGTH).map((news) => ({
+  const paths = newsList.filter(n => n.url.length < Const.MIN_SLUG_LENGTH).map((news) => ({
     params: { category: Helper.getCategoryToByKey(news.category), slug: Helper.getSlug(news), id: news.id }
   }))
-  paths.push({ params: { category: 'new', slug: 'new', id: 'new' } })
   return { paths, fallback: true }
 }
 
-export const getStaticProps = async ({ params }) => {
-  let news = Const.DEFAULT_NEWS;
-  if (params.id && params.id != 'new') {
-    news = await API.getNews(params.id)
-  }
+export const getStaticProps = async ({ params }): Promise<{ revalidate: number; props: { news: NewsType } }> => {
+  const news = await API.getNews(params.id)
   return {
     revalidate: 10,
     props: {
