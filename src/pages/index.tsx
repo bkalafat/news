@@ -5,8 +5,12 @@ import Head from 'next/head'
 import * as API from "../utils/api"
 import { NewsType } from "../types/NewsType"
 
+export const config = {
+  unstable_runtimeJS: false
+}
+
 const Index = (props) => {
-  const newsList : NewsType[] = props.newsList
+  const newsList: NewsType[] = props.newsList
   return (
     <Layout>
       <Head>
