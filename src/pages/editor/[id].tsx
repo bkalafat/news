@@ -51,6 +51,7 @@ const NewsEditor = () => {
     editorRef.current = {
       CKEditor: require('@ckeditor/ckeditor5-react').CKEditor,
       ClassicEditor: require('@ckeditor/ckeditor5-build-classic')
+
     }
 
     watermarkRef.current = {
