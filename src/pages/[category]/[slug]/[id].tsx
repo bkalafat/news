@@ -61,7 +61,7 @@ const NewsDetail = (props: INewsDetailProps) => {
               "</div>"
           }}
         />
-        <div className='container content center-item  text-center'>
+        <div className='container content'>
           <SquareAd />
           <time className="time" dateTime={news.createDate}>Haber Giriş: {formatted}</time>
         </div>

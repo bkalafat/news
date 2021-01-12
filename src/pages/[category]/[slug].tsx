@@ -56,7 +56,7 @@ const NewsDetail = (props: INewsDetailProps) => {
           onContextMenu={e => e.preventDefault()}
           dangerouslySetInnerHTML={{
             __html:
-              "<div class='container content center-item text-justify'" +
+              "<div class='container content'" +
               news.content +
               "</div>"
           }}
