@@ -36,7 +36,7 @@ const SubNewsCard = (news: NewsType) => {
         </div>
       </a>
     </Link>
-  </div>;
+  </div>
 }
 
 export default SubNewsCard

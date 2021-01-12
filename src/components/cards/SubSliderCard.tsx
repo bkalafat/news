@@ -25,9 +25,8 @@ const SubSliderCard = (news: NewsType) => {
           </div>
         </div>
       </a>
-
     </Link>
-  </div>;
+  </div>
 }
 
 export default SubSliderCard

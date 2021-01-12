@@ -20,7 +20,7 @@ const NewsEditor = () => {
   const isUpdate = urlId && urlId != 'new';
   const [newNews, setNews] = useState(dummyNews)
 
-  function urlToFile(url, filename, mimeType) {
+  function urlToFile(url: any, filename : string, mimeType: string) {
     return fetch(url)
       .then(res => {
         return res.arrayBuffer()
