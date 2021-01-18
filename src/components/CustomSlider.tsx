@@ -29,7 +29,7 @@ const CustomSlider = (props: ICustomSlider) => {
       setCurrentIndex(next)
     },
     appendDots: Dots(),
-    customPaging: index => {
+    customPaging: (index: number) => {
       return Paging(index, currentIndex)
     }
   }

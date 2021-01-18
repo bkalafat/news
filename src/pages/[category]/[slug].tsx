@@ -7,6 +7,7 @@ import Head from "next/head"
 import SquareAd from "../../components/SquareAd"
 import { NewsType } from "../../types/NewsType"
 import Image from "next/image";
+export const config = { amp: true }
 
 interface INewsDetailProps {
   news: NewsType
