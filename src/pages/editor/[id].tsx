@@ -20,7 +20,7 @@ const NewsEditor = () => {
   const isUpdate = urlId && urlId != 'new';
   const [newNews, setNews] = useState(dummyNews)
 
-  function urlToFile(url: any, filename : string, mimeType: string) {
+  function urlToFile(url: any, filename: string, mimeType: string) {
     return fetch(url)
       .then(res => {
         return res.arrayBuffer()
@@ -84,6 +84,7 @@ const NewsEditor = () => {
 
     setEditorLoaded(true)
     if (isSubmitting) {
+
       if ("id" in newNews && newNews.id && newNews.id.length > 0) {
         API.updateNews(newNews).then(() => {
           Router.push("/adminpanel")
@@ -98,29 +99,58 @@ const NewsEditor = () => {
   }, [isSubmitting, newNews, urlId])
 
   const handleSubmit = event => {
-    event.preventDefault()
-    if (selectedFile && selectedFile.name) {
-      watermark([selectedFile])
-        .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
-        .then(function (img) {
-          Resizer.imageFileResizer(
-            img,
-            1280,
-            800,
-            "JPEG",
-            90,
-            0,
-            uri => {
-              urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
-            },
-            "base64"
-          )
-        });
 
-    } else if (isUpdate) {
-      setSubmitting(true)
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
     }
+    setValidated(true);
+    event.preventDefault();
+    if (validateInputs())
+
+      if (selectedFile && selectedFile.name) {
+        watermark([selectedFile])
+          .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
+          .then(function (img) {
+            Resizer.imageFileResizer(
+              img,
+              1280,
+              800,
+              "JPEG",
+              90,
+              0,
+              uri => {
+                urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
+              },
+              "base64"
+            )
+          });
+
+      } else if (isUpdate) {
+        setSubmitting(true)
+      }
   }
+
+  const validateInputs = (): boolean => {
+
+    const validationMessages: string[] = []
+
+
+    if (!selectedFile || !selectedFile.name) {
+      validationMessages.push("Lütfen fotoğraf ekleyiniz!")
+    }
+    if (newNews.content.length <= 45) {
+      validationMessages.push("İçerik 45 karakterden uzun olmalıdır!")
+    }
+    if (validationMessages.length > 0) {
+      console.log(validationMessages)
+      return false;
+    }
+    return true;
+  }
+
+  const [validated, setValidated] = useState(false);
 
   const fileSelectorHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedFile(event.target.files[0])
@@ -153,7 +183,7 @@ const NewsEditor = () => {
         />
 
         <div className="centerFlex">
-          <Form onSubmit={handleSubmit} className="col-md-10 col-xl-10">
+          <Form noValidate validated={validated} onSubmit={handleSubmit} className="col-md-10 col-xl-10">
             <Form.Group>
               <Form.Label>Kategori</Form.Label>
               <Form.Control
@@ -198,6 +228,9 @@ const NewsEditor = () => {
               <Form.Label>Başlık</Form.Label>
               <Form.Control
                 value={newNews.caption}
+                required
+                minLength={8}
+                type="text"
                 onChange={e => setNews({ ...newNews, caption: e.target.value })}
               />
             </Form.Group>
@@ -223,6 +256,8 @@ const NewsEditor = () => {
             <Form.Group>
               <Form.Label>Özet</Form.Label>
               <Form.Control
+                required
+                minLength={15}
                 value={newNews.summary}
                 onChange={e => setNews({ ...newNews, summary: e.target.value })}
                 as="textarea"
@@ -295,3 +330,4 @@ const NewsEditor = () => {
 }
 
 export default NewsEditor
+
