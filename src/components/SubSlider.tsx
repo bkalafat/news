@@ -5,11 +5,7 @@ import { NewsType } from "../types/NewsType"
 import { Arrow } from "../utils/sliderItem"
 import SubSliderCard from "./cards/SubSliderCard"
 
-interface ISubSliderProps {
-  newsList: NewsType[]
-}
-
-const SubSlider = (props: ISubSliderProps) => {
+const SubSlider = ({ newsList }: { newsList: NewsType[] }) => {
   var settings = {
     dots: true,
     arrows: !isMobile,
@@ -21,7 +17,6 @@ const SubSlider = (props: ISubSliderProps) => {
     prevArrow: <Arrow direction="left" />
   }
 
-  const { newsList } = props
   return (
     <div style={{ marginBottom: 40 }}>
       <Slider {...settings}>

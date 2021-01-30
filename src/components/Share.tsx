@@ -14,12 +14,7 @@ import {
 import { NewsType } from "../types/NewsType"
 import Image from "next/image"
 
-interface IShareProps {
-  news: NewsType
-}
-
-const Share = (props: IShareProps) => {
-  const { news } = props
+const Share = ({ news }: { news: NewsType }) => {
   if (news) {
     return (
       <div className="share">
@@ -52,8 +47,8 @@ const Share = (props: IShareProps) => {
           <WhatsappIcon size="2.5rem" />
         </WhatsappShareButton>
         <TelegramShareButton
-          url={Helper.getFullUrl(props.news)}
-          title={props.news.caption}
+          url={Helper.getFullUrl(news)}
+          title={news.caption}
         >
           <TelegramIcon size="2.5rem" />
         </TelegramShareButton>

@@ -1,15 +1,12 @@
 import { CSSProperties } from "react"
 import Pagination from "react-bootstrap/Pagination"
 
-interface IArrowProps {
+export const Arrow = ({ className, style, onClick, direction }: {
   className?: string,
   style?: CSSProperties,
   onClick?: any,
   direction: string
-}
-
-export const Arrow = (props: IArrowProps) => {
-  const { className, style, onClick, direction } = props
+}) => {
   return (
     <img
       className={className}

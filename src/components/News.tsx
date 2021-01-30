@@ -2,18 +2,12 @@ import React from "react"
 import CustomSlider from "./CustomSlider"
 import SubSlider from "./SubSlider"
 import SubNews from "./SubNews"
-import * as constant from "../utils/constant"
-import * as Helper from '../utils/helper'
 import SquareAd from "./SquareAd"
 import { NewsType } from "../types/NewsType"
+import { TYPE } from "../utils/enum"
+import { sortCreateDateDesc } from "../utils/helper"
 
-interface INewsProps {
-  newsList: NewsType[]
-}
-
-const News = (props: INewsProps) => {
-  const { newsList } = props
-
+const News = ({ newsList }: { newsList: NewsType[] }) => {
   if (!newsList && newsList.length === 0) return <div />
 
   const mainNews = newsList
@@ -21,16 +15,16 @@ const News = (props: INewsProps) => {
       news =>
         !news.isSecondPageNews &&
         news.isActive &&
-        news.type === constant.NEWS_TYPE
+        news.type === TYPE.NEWS
     )
-    .sort(Helper.sortCreateDateDesc())
+    .sort(sortCreateDateDesc())
 
   const headlines = newsList
     .filter(
       news =>
-        !news.isSecondPageNews && news.isActive && news.type === constant.HEADLINE
+        !news.isSecondPageNews && news.isActive && news.type === TYPE.HEADLINE
     )
-    .sort(Helper.sortCreateDateDesc())
+    .sort(sortCreateDateDesc())
   const sliderNewsList = mainNews.slice(0, 13)
 
   const subNewsList = newsList
@@ -38,9 +32,9 @@ const News = (props: INewsProps) => {
       news =>
         !news.isSecondPageNews &&
         news.isActive &&
-        news.type === constant.SUB_NEWS_TYPE
+        news.type === TYPE.SUB_NEWS
     )
-    .sort(Helper.sortCreateDateDesc())
+    .sort(sortCreateDateDesc())
     .slice(0, 64)
   const extraNews = mainNews.slice(13, 26)
   const subSliderNews = headlines.concat(extraNews).slice(0, 12)

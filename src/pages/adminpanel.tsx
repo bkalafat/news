@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react"
 import BootstrapTable from "react-bootstrap-table-next"
-import { MIN_SLUG_LENGTH, NEWS_TYPE } from "../utils/constant"
+import { MIN_SLUG_LENGTH } from "../utils/constant"
 import * as API from "../utils/api"
 import Router from 'next/router'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { getAdmins } from "../utils/helper"
 import { NewsType } from "../types/NewsType"
+import { TYPE } from "../utils/enum"
 
-const AdminPanel = (props) => {
+const AdminPanel = ({ newsListParam }: { newsListParam: NewsType[] }) => {
   const [session] = useSession()
-  const [newsList, setNewsList] = useState<NewsType[]>(props.newsList)
+  const [newsList, setNewsList] = useState<NewsType[]>(newsListParam)
 
   useEffect(() => {
     API.getNewsList().then(result => {
@@ -18,10 +19,10 @@ const AdminPanel = (props) => {
   }, [])
 
   const navigateForCreate = () => Router.push("/editor/new")
-  const navigateForUpdate = (news : NewsType) => news.slug?.length > MIN_SLUG_LENGTH ? Router.push("/editor/" + news.slug + "$") : Router.push("/editor/" + news.id)
+  const navigateForUpdate = (news: NewsType) => news.slug?.length > MIN_SLUG_LENGTH ? Router.push("/editor/" + news.slug + "$") : Router.push("/editor/" + news.id)
 
   function typeFormatter(cell) {
-    if (cell === NEWS_TYPE) {
+    if (cell === TYPE.NEWS) {
       return "Ana Haber"
     } else {
       return "Alt Haber"
@@ -69,7 +70,7 @@ const AdminPanel = (props) => {
   if (newsList) {
     const admins = getAdmins();
     return <div className="center-item">
-      {!session &&  <>
+      {!session && <>
         Not admins signed in <br />
         <button onClick={signIn}>Sign in</button>
       </>}

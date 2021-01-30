@@ -1,22 +1,17 @@
 import SubSlider from "./SubSlider"
 import SubNews from "./SubNews"
-import {
-  HEADLINE,
-  NEWS_TYPE,
-  SUB_NEWS_TYPE
-} from "../utils/constant"
 import { getEnvironmentUrl, getCategoryByTo, sortCreateDateDesc } from "../utils/helper"
 import useSWR from "swr"
 import Head from "next/head"
 import { useRouter } from 'next/router'
 import SquareAd from "./SquareAd"
 import { NewsType } from "../types/NewsType"
-
+import { TYPE } from "../utils/enum"
 
 const CategoryNews = () => {
   const { data, error } = useSWR<NewsType[], any>(getEnvironmentUrl() + "news/get")
   const router = useRouter()
-  const { category }  = router.query
+  const { category } = router.query
   const categoryUrl = Array.isArray(category) ? category[0] : category;
 
   if (error || !data || categoryUrl == undefined) {
@@ -33,7 +28,7 @@ const CategoryNews = () => {
     const mainNews = newsList
       .filter(
         news =>
-          news.isActive && (news.type === NEWS_TYPE || news.type === HEADLINE)
+          news.isActive && (news.type === TYPE.NEWS || news.type === TYPE.HEADLINE)
       )
       .sort(sortCreateDateDesc())
     const sliderNewsList = mainNews
@@ -41,7 +36,7 @@ const CategoryNews = () => {
     const extraNews = mainNews.slice(13, 26)
 
     const tempNewsList = newsList
-      .filter(news => news.isActive && news.type === SUB_NEWS_TYPE)
+      .filter(news => news.isActive && news.type === TYPE.SUB_NEWS)
       .concat(extraNews)
       .sort(sortCreateDateDesc())
     const subNewsList = tempNewsList

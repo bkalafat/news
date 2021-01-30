@@ -1,13 +1,7 @@
 import { NewsType } from "../types/NewsType"
 import News from "./News"
 
-interface IContentProps {
-  newsList: NewsType[]
-}
-
-const Content = (props: IContentProps) => {
-  const newsList = props.newsList
-
+const Content = ({ newsList }: { newsList: NewsType[] }) => {
   if (!newsList) {
     return <div>Loading</div>
   } else {
