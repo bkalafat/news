@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import BootstrapTable from "react-bootstrap-table-next"
 import { MIN_SLUG_LENGTH } from "../utils/constant"
 import * as API from "../utils/api"

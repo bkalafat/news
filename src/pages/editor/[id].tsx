@@ -145,6 +145,7 @@ const NewsEditor = () => {
       validationMessages.push("İçerik 45 karakterden uzun olmalıdır!")
     }
     if (validationMessages.length > 0) {
+      //TODO bkalafat show pop up
       console.log(validationMessages)
       return false;
     }
