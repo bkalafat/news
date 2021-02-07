@@ -6,6 +6,12 @@ export function getEnvironmentUrl() {
   return process.env.NEXT_PUBLIC_API_PATH
 }
 
+export const convertFile = async (uri: any, filename: string) => {
+  const response = await fetch(uri)
+  const arrayBuffer = await response.arrayBuffer()
+  return new File([arrayBuffer], filename, { type: "WEBP" })
+}
+
 export function setDefaultValues(news: NewsType) {
   news.subjects = ["haber"]
   news.createDate = new Date().toISOString()
