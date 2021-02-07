@@ -15,7 +15,6 @@ export type NewsType = {
   updateDate: string;
   expressDate: string;
   priority: number;
-  viewCount: number;
   isActive: boolean;
   isSecondPageNews: boolean;
   slug: string;

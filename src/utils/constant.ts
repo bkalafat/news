@@ -24,7 +24,6 @@ export const DEFAULT_NEWS: NewsType = {
   id: null,
   isSecondPageNews: false,
   subjects: [""],
-  viewCount: 0,
   keywords: "",
   socialTags: "",
 }
@@ -49,7 +48,6 @@ export const TEST_NEWS: NewsType = {
   id: null,
   isSecondPageNews: false,
   subjects: [""],
-  viewCount: 0,
   keywords: "",
   socialTags: "",
 }

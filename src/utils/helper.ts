@@ -8,16 +8,13 @@ export function getEnvironmentUrl() {
 
 export function setDefaultValues(news: NewsType) {
   news.subjects = ["haber"]
-  news.authors = ["Mustafa Çolakoğlu"]
   news.createDate = new Date().toISOString()
   news.updateDate = new Date().toISOString()
   news.expressDate = new Date().toISOString()
   news.slug = slugify(news.caption)
   news.url = generateUrlWithoutId(news)
-  news.viewCount = 0
   news.priority = 300
   news.imgAlt = news.caption;
-
   delete news['id']
 
   return news
