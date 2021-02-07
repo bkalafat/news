@@ -52,7 +52,6 @@ const NewsEditor = () => {
     editorRef.current = {
       CKEditor: require('@ckeditor/ckeditor5-react').CKEditor,
       ClassicEditor: require('@ckeditor/ckeditor5-build-classic')
-
     }
 
     watermarkRef.current = {
@@ -60,7 +59,6 @@ const NewsEditor = () => {
     }
 
     if (isUpdate && !newNews.id) {
-
       if (urlId.includes('$')) {
         API.getNewsBySlug(urlId.slice(0, -1)).then(
           res => {
@@ -85,7 +83,6 @@ const NewsEditor = () => {
 
     setEditorLoaded(true)
     if (isSubmitting) {
-
       if ("id" in newNews && newNews.id && newNews.id.length > 0) {
         API.updateNews(newNews).then(() => {
           Router.push("/adminpanel")
@@ -100,7 +97,6 @@ const NewsEditor = () => {
   }, [isSubmitting, newNews, urlId])
 
   const handleSubmit = event => {
-
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -108,8 +104,8 @@ const NewsEditor = () => {
     }
     setValidated(true);
     event.preventDefault();
+    setNews({ ...newNews, authors: [...newNews.authors, session.user.email.toLowerCase()] })
     if (validateInputs())
-
       if (selectedFile && selectedFile.name) {
         watermark([selectedFile])
           .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
@@ -134,10 +130,7 @@ const NewsEditor = () => {
   }
 
   const validateInputs = (): boolean => {
-
     const validationMessages: string[] = []
-
-
     if (!selectedFile || !selectedFile.name) {
       validationMessages.push("Lütfen fotoğraf ekleyiniz!")
     }
@@ -283,13 +276,13 @@ const NewsEditor = () => {
                   setNews({ ...newNews, content: editor.getData() })
                 }}
               />) : (
-                  <Form.Control
-                    value={newNews.content}
-                    onChange={e => setNews({ ...newNews, content: e.target.value })}
-                    as="textarea"
-                    rows={2}
-                  />
-                )}
+                <Form.Control
+                  value={newNews.content}
+                  onChange={e => setNews({ ...newNews, content: e.target.value })}
+                  as="textarea"
+                  rows={2}
+                />
+              )}
             </Form.Group>
 
             <Form.Group>
