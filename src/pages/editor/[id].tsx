@@ -7,11 +7,9 @@ import UploadAdapter from "../../utils/UploadAdapter"
 import Router, { useRouter } from 'next/router'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { getAdmins } from "../../utils/helper"
-import { NewsType } from "../../types/NewsType"
 import { CATEGORY, TYPE } from "../../utils/enum"
 
 const NewsEditor = () => {
-
   const [session] = useSession()
   const fileInput = useRef(null)
   const router = useRouter()
@@ -95,14 +93,14 @@ const NewsEditor = () => {
     if (isSubmitting) setSubmitting(false)
   }, [isSubmitting, newNews, urlId])
 
-  const handleSubmit = event => {
-    const form = event.currentTarget;
+  const handleSubmit = e => {
+    const form = e.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
     }
     setValidated(true);
-    event.preventDefault();
+    e.preventDefault();
     if (!newNews.authors.includes(session.user.email.toLowerCase()))
       setNews({ ...newNews, authors: [...newNews.authors, session.user.email.toLowerCase()] })
     if (validateInputs())
@@ -325,4 +323,3 @@ const NewsEditor = () => {
 }
 
 export default NewsEditor
-
