@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import BootstrapTable from "react-bootstrap-table-next"
 import { MIN_SLUG_LENGTH } from "../utils/constant"
 import * as API from "../utils/api"
@@ -21,8 +21,8 @@ const AdminPanel = ({ newsListParam }: { newsListParam: NewsType[] }) => {
   const navigateForCreate = () => Router.push("/editor/new")
   const navigateForUpdate = (news: NewsType) => news.slug?.length > MIN_SLUG_LENGTH ? Router.push("/editor/" + news.slug + "$") : Router.push("/editor/" + news.id)
 
-  function typeFormatter(cell) {
-    if (cell === TYPE.NEWS) {
+  function typeFormatter(type: string) {
+    if (type === TYPE.NEWS) {
       return "Ana Haber"
     } else {
       return "Alt Haber"
@@ -63,7 +63,7 @@ const AdminPanel = ({ newsListParam }: { newsListParam: NewsType[] }) => {
   ]
 
   const rowEvents = {
-    onClick: (_e, row) => {
+    onClick: (_e, row : NewsType) => {
       navigateForUpdate(row)
     }
   }
@@ -97,6 +97,7 @@ const AdminPanel = ({ newsListParam }: { newsListParam: NewsType[] }) => {
     </div>
 
   }
+  return <></>
 }
 
 export const getStaticProps = async () => {
