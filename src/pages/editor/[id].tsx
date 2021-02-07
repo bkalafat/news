@@ -17,9 +17,8 @@ const NewsEditor = () => {
   const router = useRouter()
   const { id } = router.query
   const urlId = Array.isArray(id) ? id[0] : id
-  let dummyNews: NewsType = Const.DEFAULT_NEWS
   const isUpdate = urlId && urlId != 'new';
-  const [newNews, setNews] = useState(dummyNews)
+  const [newNews, setNews] = useState(Const.DEFAULT_NEWS)
 
   function urlToFile(url: any, filename: string, mimeType: string) {
     return fetch(url)
@@ -39,7 +38,7 @@ const NewsEditor = () => {
   }
 
   const [isSubmitting, setSubmitting] = useState(false)
-  const [selectedFile, setSelectedFile] = useState<File>(null)
+  const [selectedImg, setSelectedImg] = useState<File>(null)
 
   const editorRef = useRef<any>()
   const [editorLoaded, setEditorLoaded] = useState(false)
@@ -104,12 +103,13 @@ const NewsEditor = () => {
     }
     setValidated(true);
     event.preventDefault();
-    setNews({ ...newNews, authors: [...newNews.authors, session.user.email.toLowerCase()] })
+    if (!newNews.authors.includes(session.user.email.toLowerCase()))
+      setNews({ ...newNews, authors: [...newNews.authors, session.user.email.toLowerCase()] })
     if (validateInputs())
-      if (selectedFile && selectedFile.name) {
-        watermark([selectedFile])
+      if (selectedImg && selectedImg.name) {
+        watermark([selectedImg])
           .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
-          .then(function (img) {
+          .then((img: Blob) => {
             Resizer.imageFileResizer(
               img,
               1280,
@@ -118,7 +118,7 @@ const NewsEditor = () => {
               90,
               0,
               uri => {
-                urlToFile(uri, selectedFile.name + '.webp', "WEBP").then(() => { })
+                urlToFile(uri, selectedImg.name + '.webp', "WEBP").then(() => { })
               },
               "base64"
             )
@@ -131,7 +131,7 @@ const NewsEditor = () => {
 
   const validateInputs = (): boolean => {
     const validationMessages: string[] = []
-    if (!selectedFile || !selectedFile.name) {
+    if (!isUpdate && (!selectedImg || !selectedImg.name)) {
       validationMessages.push("Lütfen fotoğraf ekleyiniz!")
     }
     if (newNews.content.length <= 45) {
@@ -148,7 +148,7 @@ const NewsEditor = () => {
   const [validated, setValidated] = useState(false);
 
   const fileSelectorHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedFile(event.target.files[0])
+    setSelectedImg(event.target.files[0])
   }
   const admins = getAdmins();
   return (
@@ -162,12 +162,12 @@ const NewsEditor = () => {
         <button onClick={signOut}>Sign out</button> <br />
         <div className="center">
           <Button
-            variant={selectedFile ? "info" : "primary"}
+            variant={selectedImg ? "info" : "primary"}
             onClick={() => fileInput.current.click()}
           >
             {isUpdate ? "Fotoğrafı Güncelle" : "Fotoğraf Ekle"}
           </Button>
-          <p>{selectedFile ? selectedFile.name : "Fotoğraf Seç"}</p>
+          <p>{selectedImg ? selectedImg.name : "Fotoğraf Seç"}</p>
         </div>
         <input
           ref={fileInput}
