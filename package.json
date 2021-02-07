@@ -11,10 +11,10 @@
     "@ckeditor/ckeditor5-react": "^3.0.0",
     "@popperjs/core": "^2.6.0",
     "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.3",
-    "@testing-library/user-event": "^12.6.2",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.6.3",
     "@types/next": "^9.0.0",
-    "@types/react": "^17.0.0",
+    "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
@@ -23,13 +23,13 @@
     "cross-env": "^7.0.3",
     "isomorphic-unfetch": "^3.1.0",
     "jquery": "^3.5.1",
-    "mongodb": "^3.6.3",
-    "next": "^10.0.5",
-    "next-auth": "^3.1.0",
+    "mongodb": "^3.6.4",
+    "next": "^10.0.6",
+    "next-auth": "^3.2.0",
     "next-offline": "^5.0.3",
-    "next-sitemap": "^1.4.15",
+    "next-sitemap": "^1.4.17",
     "node-sass": "^5.0.0",
-    "npm": "^7.5.0",
+    "npm": "^7.5.2",
     "popper.js": "^1.16.1",
     "prettier": "^2.2.1",
     "react": "^17.0.1",
@@ -38,7 +38,7 @@
     "react-device-detect": "^1.15.0",
     "react-dom": "^17.0.1",
     "react-image-file-resizer": "^0.4.0",
-    "react-scripts": "^4.0.1",
+    "react-scripts": "^4.0.2",
     "react-share": "^4.3.1",
     "react-slick": "^0.28.0",
     "react-social-icons": "^4.1.0",
@@ -55,7 +55,8 @@
     "build": "next build",
     "start": "next start",
     "export": "next export -o build/",
-    "postbuild": "next-sitemap --config next-sitemap.config.js"
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
+    "test": "jest --watch"
   },
   "browserslist": {
     "production": [
@@ -70,7 +71,9 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^14.14.22",
+    "@types/node": "^14.14.25",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
     "typescript": "^4.1.3"
   }
 }

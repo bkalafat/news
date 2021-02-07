@@ -5,12 +5,7 @@ import Head from 'next/head'
 import * as API from "../utils/api"
 import { NewsType } from "../types/NewsType"
 
-interface IIndexProps {
-  newsList: NewsType[]
-}
-
-const Index = (props: IIndexProps) => {
-  const newsList = props.newsList
+const Index = ({newsList}: {newsList: NewsType[]}) => {
   return (
     <Layout>
       <Head>

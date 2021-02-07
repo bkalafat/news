@@ -1,24 +1,19 @@
 import Share from "../../../components/Share"
-import * as API from "../../../utils/api"
-import * as Const from "../../../utils/constant"
-import * as Helper from "../../../utils/helper"
 import Layout from "../../../components/Layout"
 import Head from "next/head"
 import SquareAd from "../../../components/SquareAd"
 import { NewsType } from "../../../types/NewsType"
 import Image from "next/image";
+import { getCategoryToByKey, getSlug, getUrlWithId } from "../../../utils/helper"
+import { getNews, getNewsList } from "../../../utils/api"
+import { MIN_SLUG_LENGTH } from "../../../utils/constant"
 
-interface INewsDetailProps {
-  news: NewsType
-}
-
-const NewsDetail = (props: INewsDetailProps) => {
-  const { news } = props
+const NewsDetail = ({ news }: { news: NewsType }) => {
   if (news && news.createDate) {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(+y, +m - 1, +d, +hh, +mm, +ss, +ms))
     let formatted = date.toLocaleString()
-    const url = Helper.getUrlWithId(news)
+    const url = getUrlWithId(news)
     return (
       <Layout>
         <Head>
@@ -75,15 +70,15 @@ const NewsDetail = (props: INewsDetailProps) => {
 }
 
 export async function getStaticPaths(): Promise<{ paths: any[]; fallback: boolean }> {
-  const newsList = await API.getNewsList()
-  const paths = newsList.filter(n => n.url.length < Const.MIN_SLUG_LENGTH).map((news) => ({
-    params: { category: Helper.getCategoryToByKey(news.category), slug: Helper.getSlug(news), id: news.id }
+  const newsList = await getNewsList()
+  const paths = newsList.filter(n => n.url.length < MIN_SLUG_LENGTH).map((news) => ({
+    params: { category: getCategoryToByKey(news.category), slug: getSlug(news), id: news.id }
   }))
   return { paths, fallback: true }
 }
 
 export const getStaticProps = async ({ params }): Promise<{ revalidate: number; props: { news: NewsType } }> => {
-  const news = await API.getNews(params.id)
+  const news = await getNews(params.id)
   return {
     revalidate: 10,
     props: {

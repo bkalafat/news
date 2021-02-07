@@ -1,7 +1,9 @@
+import { CATEGORY, TYPE } from "../utils/enum";
+
 export type NewsType = {
   id: string;
-  category: string;
-  type: string;
+  category: CATEGORY;
+  type: TYPE;
   caption: string;
   summary: string;
   imgPath: string;

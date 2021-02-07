@@ -1,25 +1,19 @@
 import Share from "../../components/Share"
-import * as API from "../../utils/api"
-import * as Const from "../../utils/constant"
-import * as Helper from "../../utils/helper"
 import Layout from "../../components/Layout"
 import Head from "next/head"
 import SquareAd from "../../components/SquareAd"
 import { NewsType } from "../../types/NewsType"
 import Image from "next/image";
-export const config = { amp: true }
+import { generateUrlWithoutId, getCategoryToByKey } from "../../utils/helper"
+import { getNewsBySlug, getNewsList } from "../../utils/api"
+import { MIN_SLUG_LENGTH } from "../../utils/constant"
 
-interface INewsDetailProps {
-  news: NewsType
-}
-
-const NewsDetail = (props: INewsDetailProps) => {
-  const news: NewsType = props.news
+const NewsDetail = ({ news }: { news: NewsType }) => {
   if (news && news.createDate) {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(+y, +m - 1, +d, +hh, +mm, +ss, +ms))
     let formatted = date.toLocaleString()
-    const url = Helper.generateUrlWithoutId(news)
+    const url = generateUrlWithoutId(news)
     return (
       <Layout>
         <Head>
@@ -76,15 +70,15 @@ const NewsDetail = (props: INewsDetailProps) => {
 }
 
 export async function getStaticPaths() {
-  const newsList = await API.getNewsList()
-  const paths = newsList.filter(n => n.slug?.length >= Const.MIN_SLUG_LENGTH).map((news) => ({
-    params: { category: Helper.getCategoryToByKey(news.category), slug: news.slug }
+  const newsList = await getNewsList()
+  const paths = newsList.filter(n => n.slug?.length >= MIN_SLUG_LENGTH).map((news) => ({
+    params: { category: getCategoryToByKey(news.category), slug: news.slug }
   }))
   return { paths, fallback: true }
 }
 
 export const getStaticProps = async ({ params }) => {
-  const news = await API.getNewsBySlug(params.slug)
+  const news = await getNewsBySlug(params.slug)
 
   return {
     revalidate: 10,

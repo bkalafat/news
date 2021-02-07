@@ -8,6 +8,7 @@ import Router, { useRouter } from 'next/router'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { getAdmins } from "../../utils/helper"
 import { NewsType } from "../../types/NewsType"
+import { CATEGORY, TYPE } from "../../utils/enum"
 
 const NewsEditor = () => {
 
@@ -144,6 +145,7 @@ const NewsEditor = () => {
       validationMessages.push("İçerik 45 karakterden uzun olmalıdır!")
     }
     if (validationMessages.length > 0) {
+      //TODO bkalafat show pop up
       console.log(validationMessages)
       return false;
     }
@@ -188,7 +190,7 @@ const NewsEditor = () => {
               <Form.Label>Kategori</Form.Label>
               <Form.Control
                 value={newNews.category}
-                onChange={e => setNews({ ...newNews, category: e.target.value })}
+                onChange={e => setNews({ ...newNews, category: e.target.value as CATEGORY })}
                 as="select"
               >
                 {Object.values(Const.Categories).map(c => (
@@ -201,12 +203,12 @@ const NewsEditor = () => {
               <Form.Label>Tip</Form.Label>
               <Form.Control
                 value={newNews.type}
-                onChange={e => setNews({ ...newNews, type: e.target.value })}
+                onChange={e => setNews({ ...newNews, type: e.target.value as TYPE })}
                 as="select"
               >
-                <option value={Const.NEWS_TYPE}>Manşet</option>
-                <option value={Const.HEADLINE}>Alt Manşet</option>
-                <option value={Const.SUB_NEWS_TYPE}>Alt Haber</option>
+                <option value={TYPE.NEWS}>Manşet</option>
+                <option value={TYPE.HEADLINE}>Alt Manşet</option>
+                <option value={TYPE.SUB_NEWS}>Alt Haber</option>
               </Form.Control>
             </Form.Group>
 
