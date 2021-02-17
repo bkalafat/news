@@ -2,16 +2,15 @@ import { useState, useEffect, useRef, ChangeEvent } from "react"
 import { Form, Button } from "react-bootstrap"
 import * as Const from "../../utils/constant"
 import * as API from "../../utils/api"
+import * as Helper from "../../utils/helper"
 import Resizer from "react-image-file-resizer"
 import UploadAdapter from "../../utils/UploadAdapter"
 import Router, { useRouter } from 'next/router'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { getAdmins } from "../../utils/helper"
-import { NewsType } from "../../types/NewsType"
 import { CATEGORY, TYPE } from "../../utils/enum"
 
 const NewsEditor = () => {
-
   const [session] = useSession()
   const fileInput = useRef(null)
   const router = useRouter()
@@ -20,23 +19,11 @@ const NewsEditor = () => {
   const isUpdate = urlId && urlId != 'new';
   const [newNews, setNews] = useState(Const.DEFAULT_NEWS)
 
-  function urlToFile(url: any, filename: string, mimeType: string) {
-    return fetch(url)
-      .then(res => {
-        return res.arrayBuffer()
-      })
-      .then(buf => {
-        return new File([buf], "haberibul-" + filename, { type: mimeType })
-      })
-      .then(file => {
-        return API.uploadFile(file)
-      })
-      .then(res => {
-        setNews({ ...newNews, imgPath: res.data.fileUrl })
-        setSubmitting(true)
-      })
+  const handleImage = async (imageUri: any) => {
+    const image = await Helper.convertFile(imageUri, "haberibul-" + selectedImg.name + '.webp')
+    setNews({ ...newNews, imgPath: await API.uploadFile(image) })
+    setSubmitting(true)
   }
-
   const [isSubmitting, setSubmitting] = useState(false)
   const [selectedImg, setSelectedImg] = useState<File>(null)
 
@@ -52,19 +39,14 @@ const NewsEditor = () => {
       CKEditor: require('@ckeditor/ckeditor5-react').CKEditor,
       ClassicEditor: require('@ckeditor/ckeditor5-build-classic')
     }
-
     watermarkRef.current = {
       watermark: require('watermarkjs')
     }
-
     if (isUpdate && !newNews.id) {
       if (urlId.includes('$')) {
         API.getNewsBySlug(urlId.slice(0, -1)).then(
           res => {
             setNews(res)
-          },
-          error => {
-            console.log(error)
           }
         )
       }
@@ -72,63 +54,48 @@ const NewsEditor = () => {
         API.getNews(urlId).then(
           res => {
             setNews(res)
-          },
-          error => {
-            console.log(error)
           }
         )
       }
     }
-
     setEditorLoaded(true)
     if (isSubmitting) {
-      if ("id" in newNews && newNews.id && newNews.id.length > 0) {
-        API.updateNews(newNews).then(() => {
-          Router.push("/adminpanel")
-        })
-      } else {
-        API.createNews(newNews).then(() => {
-          Router.push("/adminpanel")
-        })
-      }
+      API.upsertNews(newNews).then(() => {
+        Router.push("/adminpanel")
+      })
     }
     if (isSubmitting) setSubmitting(false)
   }, [isSubmitting, newNews, urlId])
-
-  const handleSubmit = event => {
-    const form = event.currentTarget;
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+      e.stopPropagation();
     }
     setValidated(true);
-    event.preventDefault();
     if (!newNews.authors.includes(session.user.email.toLowerCase()))
       setNews({ ...newNews, authors: [...newNews.authors, session.user.email.toLowerCase()] })
     if (validateInputs())
       if (selectedImg && selectedImg.name) {
-        watermark([selectedImg])
-          .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
-          .then((img: Blob) => {
-            Resizer.imageFileResizer(
-              img,
-              1280,
-              800,
-              "JPEG",
-              90,
-              0,
-              uri => {
-                urlToFile(uri, selectedImg.name + '.webp', "WEBP").then(() => { })
-              },
-              "base64"
-            )
-          });
-
+        upsertImage(selectedImg)
       } else if (isUpdate) {
         setSubmitting(true)
       }
   }
-
+  const upsertImage = async (selectedImg: File) => {
+    const imgBlob = await putWatermark(selectedImg)
+    resizeImage(imgBlob)
+  }
+  const putWatermark = async (image: File): Promise<Blob> => {
+    return await watermark([image])
+      .blob(watermark.text.upperRight('Haberibul.com', '34px serif', '#FF0000', 0.7))
+  }
+  const resizeImage = (imgBlob: Blob) => {
+    Resizer.imageFileResizer(imgBlob, 1280, 800, "JPEG", 90, 0,
+      uri => handleImage(uri),
+      "base64"
+    )
+  }
   const validateInputs = (): boolean => {
     const validationMessages: string[] = []
     if (!isUpdate && (!selectedImg || !selectedImg.name)) {
@@ -144,9 +111,7 @@ const NewsEditor = () => {
     }
     return true;
   }
-
   const [validated, setValidated] = useState(false);
-
   const fileSelectorHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedImg(event.target.files[0])
   }
@@ -176,7 +141,6 @@ const NewsEditor = () => {
           type="file"
           onChange={fileSelectorHandler}
         />
-
         <div className="centerFlex">
           <Form noValidate validated={validated} onSubmit={handleSubmit} className="col-md-10 col-xl-10">
             <Form.Group>
@@ -191,7 +155,6 @@ const NewsEditor = () => {
                 ))}
               </Form.Control>
             </Form.Group>
-
             <Form.Group>
               <Form.Label>Tip</Form.Label>
               <Form.Control
@@ -204,7 +167,6 @@ const NewsEditor = () => {
                 <option value={TYPE.SUB_NEWS}>Alt Haber</option>
               </Form.Control>
             </Form.Group>
-
             <Form.Group>
               <Form.Check
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -218,7 +180,6 @@ const NewsEditor = () => {
                 label="İkinci sayfa haberi"
               />
             </Form.Group>
-
             <Form.Group>
               <Form.Label>Başlık</Form.Label>
               <Form.Control
@@ -229,7 +190,6 @@ const NewsEditor = () => {
                 onChange={e => setNews({ ...newNews, caption: e.target.value })}
               />
             </Form.Group>
-
             <Form.Group>
               <Form.Label>Keywords</Form.Label>
               <Form.Control
@@ -238,7 +198,6 @@ const NewsEditor = () => {
                 onChange={e => setNews({ ...newNews, keywords: e.target.value })}
               />
             </Form.Group>
-
             <Form.Group>
               <Form.Label>Sosyal Tag</Form.Label>
               <Form.Control
@@ -247,7 +206,6 @@ const NewsEditor = () => {
                 onChange={e => setNews({ ...newNews, socialTags: e.target.value })}
               />
             </Form.Group>
-
             <Form.Group>
               <Form.Label>Özet</Form.Label>
               <Form.Control
@@ -259,7 +217,6 @@ const NewsEditor = () => {
                 rows={2}
               />
             </Form.Group>
-
             <Form.Group>
               <Form.Label>İçerik</Form.Label>
               {editorLoaded ? (<CKEditor
@@ -284,7 +241,6 @@ const NewsEditor = () => {
                 />
               )}
             </Form.Group>
-
             <Form.Group>
               <Form.Label>Durum</Form.Label>
               <Form.Control
@@ -296,20 +252,17 @@ const NewsEditor = () => {
                 <option value="false">Pasif</option>
               </Form.Control>
             </Form.Group>
-
             <Button style={{ marginRight: 7 }} variant="primary" type="submit">
               {isUpdate ? "Güncelle" : "Ekle"}
             </Button>
-
             <Button style={{ marginRight: 7 }} variant="warning" onClick={() => Router.push('/adminpanel')}>
               Geri
           </Button>
-
             {isUpdate && (
               <Button
                 variant="danger"
                 onClick={() =>
-                  API.deleteNews(newNews.id).then(function (res) {
+                  API.deleteNews(newNews.id).then(() => {
                     Router.push("/adminpanel")
                   })
                 }
@@ -325,4 +278,3 @@ const NewsEditor = () => {
 }
 
 export default NewsEditor
-

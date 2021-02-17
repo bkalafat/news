@@ -9,16 +9,23 @@ export const getNewsList = (): Promise<NewsType[]> => {
 }
 
 export const getNews = (id: string): Promise<NewsType> => {
-  return fetch(getEnvironmentUrl() + "news/get/" + id).then(res => res.json())
+  return fetch(getEnvironmentUrl() + "news/get/" + id).then(res => res.json(), error => console.log(error))
 }
 
 export const getNewsBySlug = (slug: string): Promise<NewsType> => {
-  return fetch(getEnvironmentUrl() + "news/GetBySlug/" + slug).then(res => res.json())
+  return fetch(getEnvironmentUrl() + "news/GetBySlug/" + slug).then(res => res.json(), error => console.log(error))
 }
 
-export function createNews(news: NewsType) {
-  setDefaultValues(news)
+export const upsertNews = (newNews: NewsType) => {
+  if ("id" in newNews && newNews.id && newNews.id.length > 0) {
+    return updateNews(newNews)
+  } else {
+    return insertNews(newNews)
+  }
+}
 
+export const insertNews = (news: NewsType) => {
+  setDefaultValues(news)
   return fetch(getEnvironmentUrl() + "news/post", {
     method: "POST",
     headers: {
@@ -26,51 +33,30 @@ export function createNews(news: NewsType) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(news)
-  })
-    .then(res => res.json())
-    .then(response => {
-      return response
-    })
-    .catch(error => {
-      console.log(error)
-    })
+  }).then(()=> "ok", error => console.log(error))
 }
 
-export function updateNews(news: NewsType) {
+export const updateNews = (news: NewsType) => {
   news.updateDate = new Date().toISOString()
   news.imgAlt = news.caption
-
   return fetch(getEnvironmentUrl() + "news/put/" + news.id, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(news)
-  })
-    .then(response => {
-      return response
-    })
-    .catch(error => {
-      console.log(error)
-    })
+  }).then(() => "ok", error => console.log(error))
 }
 
-export function deleteNews(id: string) {
+export const deleteNews = (id: string) => {
   return fetch(getEnvironmentUrl() + "news/delete/" + id, {
     method: "DELETE"
-  })
-    .then(response => {
-      return response
-    })
-    .catch(error => {
-      console.log(error)
-    })
+  }).then(() => "ok", error => console.log(error))
 }
 
-export const uploadFile = (file: File) => {
+export const uploadFile = async (file: File) => {
   const formData = new FormData()
   formData.append("image", file, file.name)
-  return axios.post(Const.UPLOAD_FILE_PATH, formData).then(res => {
-    return res
-  })
+  const res = await axios.post(Const.UPLOAD_FILE_PATH, formData)
+  return res.data.fileUrl
 }
