@@ -80,7 +80,7 @@ export async function getStaticPaths(): Promise<{ paths: any[]; fallback: boolea
 export const getStaticProps = async ({ params }): Promise<{ revalidate: number; props: { news: NewsType } }> => {
   const news = await getNews(params.id)
   return {
-    revalidate: 10,
+    revalidate: 600,
     props: {
       news
     }
