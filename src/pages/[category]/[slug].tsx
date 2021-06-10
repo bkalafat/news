@@ -2,13 +2,14 @@ import Share from "../../components/Share"
 import Layout from "../../components/Layout"
 import Head from "next/head"
 import SquareAd from "../../components/SquareAd"
+import SubNews from "../../components/SubNews"
 import { NewsType } from "../../types/NewsType"
 import Image from "next/image";
 import { generateUrlWithoutId, getCategoryToByKey } from "../../utils/helper"
-import { getNewsBySlug, getNewsList } from "../../utils/api"
+import { getLastNewsList, getNewsBySlug, getNewsList } from "../../utils/api"
 import { MIN_SLUG_LENGTH } from "../../utils/constant"
 
-const NewsDetail = ({ news }: { news: NewsType }) => {
+const NewsDetail = ({ lastNewsList, news }: { lastNewsList: NewsType[], news: NewsType }) => {
   if (news && news.createDate) {
     let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
     let date = new Date(Date.UTC(+y, +m - 1, +d, +hh, +mm, +ss, +ms))
@@ -59,6 +60,11 @@ const NewsDetail = ({ news }: { news: NewsType }) => {
         <div className='container content center-item  text-center'>
           <SquareAd />
           <time className="time" dateTime={news.createDate}>Haber Giriş: {formatted}</time>
+          <SubNews newsList={lastNewsList.filter(
+            n =>
+              n.id != news.id &&
+              n.isActive
+          )} />
         </div>
       </Layout>
     )
@@ -79,10 +85,12 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async ({ params }) => {
   const news = await getNewsBySlug(params.slug)
+  const lastNewsList = await getLastNewsList()
 
   return {
-    revalidate: 10,
+    revalidate: 250,
     props: {
+      lastNewsList,
       news
     }
   }
