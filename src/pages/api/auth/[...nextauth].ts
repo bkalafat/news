@@ -5,21 +5,6 @@ const options = {
   site: process.env.NEXTAUTH_URL,
   debug: true,
   providers: [
-    Providers.Email({
-      server: {
-        port: 465,
-        host: 'smtp.gmail.com',
-        secure: true,
-        auth: {
-          user: process.env.EMAIL_USERNAME,
-          pass: process.env.EMAIL_PASSWORD,
-        },
-        tls: {
-          rejectUnauthorized: false,
-        },
-      },
-      from: process.env.EMAIL_FROM,
-    }),
     Providers.Twitter({
       clientId: process.env.TWITTER_CLIENT_KEY,
       clientSecret: process.env.TWITTER_CLIENT_SECRET
