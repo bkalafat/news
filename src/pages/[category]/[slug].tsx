@@ -58,8 +58,10 @@ const NewsDetail = ({ lastNewsList, news }: { lastNewsList: NewsType[], news: Ne
           }}
         />
         <div className='container content center-item  text-center'>
+          <a href="https://tskulis.com">TS KULİS</a>
           <SquareAd />
           <time className="time" dateTime={news.createDate}>Haber Giriş: {formatted}</time>
+
           <SubNews newsList={lastNewsList.filter(
             n =>
               n.id != news.id &&
