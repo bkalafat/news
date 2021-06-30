@@ -103,7 +103,7 @@ const AdminPanel = ({ newsListParam }: { newsListParam: NewsType[] }) => {
 export const getStaticProps = async () => {
   const newsList = await API.getNewsList()
   return {
-    revalidate: 5,
+    revalidate: 36000,
     props: {
       newsList
     }

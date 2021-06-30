@@ -90,7 +90,7 @@ export const getStaticProps = async ({ params }) => {
   const lastNewsList = await getLastNewsList()
 
   return {
-    revalidate: 250,
+    revalidate: 36000,
     props: {
       lastNewsList,
       news
