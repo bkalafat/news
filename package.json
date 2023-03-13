@@ -25,7 +25,7 @@
     "jquery": "^3.6.0",
     "mongodb": "^3.6.9",
     "next": "^10.2.3",
-    "next-auth": "^3.26.1",
+    "next-auth": "^4.20.1",
     "next-offline": "^5.0.5",
     "next-sitemap": "^1.6.108",
     "node-sass": "^5.0.0",
