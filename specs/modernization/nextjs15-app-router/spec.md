@@ -51,7 +51,6 @@ As a **developer and end user**, I want the news application to have modern, con
 - Q: What should be the approach for custom components? → A: Keep custom components but integrate shadcn/ui design tokens and styling patterns
 - Q: What should be the rollback strategy if critical issues arise? → A: No rollback plan - commit fully to forward-only fixes
 - Q: What should be the primary success metric to validate the modernization? → A: Functional completeness with good styling
-- Q: What should be the approach for custom components? → A: Keep custom components but integrate shadcn/ui design tokens and styling patterns
 
 ## Requirements *(mandatory)*
 
