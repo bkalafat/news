@@ -3,6 +3,7 @@ import Footer from "./Footer"
 import { SWRConfig } from "swr"
 import axios from "axios"
 import Head from 'next/head'
+import Script from 'next/script'
 
 function Layout({ children }: { children: React.ReactNode }) {
   return <div>
@@ -27,19 +28,28 @@ function Layout({ children }: { children: React.ReactNode }) {
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
       <meta name="theme-color" content="#ffffff" />
-      <script async src='https://www.googletagmanager.com/gtag/js?id=G-9SC61J35JK'></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-WBPV62273E');
-          `
-        }}>
-      </script>
-      <script data-ad-client="ca-pub-9881133041867885" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     </Head>
+    
+    {/* Google Analytics */}
+    <Script
+      src="https://www.googletagmanager.com/gtag/js?id=G-9SC61J35JK"
+      strategy="afterInteractive"
+    />
+    <Script id="google-analytics" strategy="afterInteractive">
+      {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WBPV62273E');
+      `}
+    </Script>
+    
+    {/* Google AdSense */}
+    <Script
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+      data-ad-client="ca-pub-9881133041867885"
+      strategy="afterInteractive"
+    />
     <Navigator />
     <SWRConfig
       value={{

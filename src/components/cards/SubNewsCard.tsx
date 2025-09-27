@@ -13,27 +13,25 @@ const SubNewsCard = (news: NewsType) => {
     <Link
       href={"../" + Helper.getFullSlug(news)}
     >
-      <a>
-        <Image
-          width="1920" height="1080"
-          className="stretchImg shadow"
-          alt={news.imgAlt}
-          src={news.imgPath} />
-        <div className="sub-header-text">
-          <div className={isMobile ? "text-center" : "col-md-12 text-center"}>
-            <BrowserView>
-              <h2 className="h4">
-                <span>{news.caption}</span>
-              </h2>
-            </BrowserView>
-            <MobileView>
-              <h5>
-                <span>{news.caption}</span>
-              </h5>
-            </MobileView>
-          </div>
+      <Image
+        width="1920" height="1080"
+        className="stretchImg shadow"
+        alt={news.imgAlt}
+        src={news.imgPath} />
+      <div className="sub-header-text">
+        <div className={isMobile ? "text-center" : "col-md-12 text-center"}>
+          <BrowserView>
+            <h2 className="h4">
+              <span>{news.caption}</span>
+            </h2>
+          </BrowserView>
+          <MobileView>
+            <h5>
+              <span>{news.caption}</span>
+            </h5>
+          </MobileView>
         </div>
-      </a>
+      </div>
     </Link>
   </div>
 }

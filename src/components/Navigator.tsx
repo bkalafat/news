@@ -21,11 +21,11 @@ const Navigator = () => {
           <ul className="navbar-nav ml-auto">
             {Object.values(Categories).map(c => (
               <li key={c.key} className="nav-item">
-                <Link href="/[category]" as={"/" + c.to}><a className="nav-link" >{c.value}</a></Link>
+                <Link href="/[category]" as={"/" + c.to} className="nav-link">{c.value}</Link>
               </li>
             ))}
             <li key="pp" className="nav-item">
-              <Link href="/privacypolicy" as={"/privacypolicy"}><a className="nav-link" >Privacy Policy</a></Link>
+              <Link href="/privacypolicy" as={"/privacypolicy"} className="nav-link">Privacy Policy</Link>
             </li>
           </ul>
         </Navbar.Collapse>

@@ -11,19 +11,16 @@ const SubSliderCard = (news: NewsType) => {
       href={"../" + Helper.getFullSlug(news)}
       key={news.id}
     >
-
-      <a>
-        <div className="spaceAround">
-          <Image layout="responsive"
-            width="1500" height="1000"
-            className={isMobile ? "sameSizeImgMobile" : "sameSizeImgBrowser"}
-            src={news.imgPath}
-            alt={news.imgAlt} />
-          <div className="text ellipsis text-center">
-            <span style={{ fontSize: isMobile ? "large" : "xx-large" }} className="text-concat">{news.caption}</span>
-          </div>
+      <div className="spaceAround">
+        <Image layout="responsive"
+          width="1500" height="1000"
+          className={isMobile ? "sameSizeImgMobile" : "sameSizeImgBrowser"}
+          src={news.imgPath}
+          alt={news.imgAlt} />
+        <div className="text ellipsis text-center">
+          <span style={{ fontSize: isMobile ? "large" : "xx-large" }} className="text-concat">{news.caption}</span>
         </div>
-      </a>
+      </div>
     </Link>
   </div>
 }
