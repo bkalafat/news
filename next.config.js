@@ -1,9 +1,24 @@
-module.exports = {
-
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    // App Router is stable in Next.js 14, no need for experimental flag
+  },
   images: {
-    domains: ['firebasestorage.googleapis.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+      }
+    ]
   },
-  future: {
-    webpack5: true,
+  typescript: {
+    // TypeScript strict mode support
+    ignoreBuildErrors: false,
   },
+  eslint: {
+    // ESLint strict mode
+    ignoreDuringBuilds: false,
+  }
 }
+
+module.exports = nextConfig
