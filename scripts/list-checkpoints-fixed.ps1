@@ -1,10 +1,7 @@
 #!/usr/bin/env powershell
 
 # list-checkpoints.ps1
-# Lists aWrite-Host "Usage:" -ForegroundColor Yellow
-Write-Host "  Create checkpoint:  .\scripts\create-checkpoint.ps1 [name]" -ForegroundColor Cyan
-Write-Host "  Rollback:          .\scripts\rollback-to-checkpoint.ps1 [name]" -ForegroundColor Cyan  
-Write-Host "  Emergency rollback: .\scripts\emergency-rollback.ps1" -ForegroundColor Cyanvailable checkpoints with metadata
+# Lists all available checkpoints with metadata
 
 Write-Host "Available Checkpoints" -ForegroundColor Green
 Write-Host "===================" -ForegroundColor Green
@@ -14,7 +11,7 @@ $checkpoints = Get-ChildItem -Path "." -Filter "checkpoint-*.json" | Sort-Object
 
 if ($checkpoints.Count -eq 0) {
     Write-Host "No checkpoints found." -ForegroundColor Yellow
-    Write-Host "Create a checkpoint with: .\scripts\create-checkpoint.ps1 <name>" -ForegroundColor Cyan
+    Write-Host "Create a checkpoint with: .\scripts\create-checkpoint.ps1 [name]" -ForegroundColor Cyan
     exit 0
 }
 
@@ -38,7 +35,7 @@ foreach ($file in $checkpoints) {
     }
 }
 
-Write-Host "`n" -NoNewline
+Write-Host ""
 Write-Host "Initial Backup Status:" -ForegroundColor Green
 if (Test-Path "package.json.backup") {
     Write-Host "✅ package.json.backup exists" -ForegroundColor Green
@@ -64,6 +61,6 @@ git branch -a | Select-String "checkpoint|backup" | ForEach-Object {
 }
 
 Write-Host "`nUsage:" -ForegroundColor Yellow
-Write-Host "  Create checkpoint:  .\scripts\create-checkpoint.ps1 <name>" -ForegroundColor Cyan
-Write-Host "  Rollback:          .\scripts\rollback-to-checkpoint.ps1 <name>" -ForegroundColor Cyan  
+Write-Host "  Create checkpoint:  .\scripts\create-checkpoint.ps1 [name]" -ForegroundColor Cyan
+Write-Host "  Rollback:          .\scripts\rollback-to-checkpoint.ps1 [name]" -ForegroundColor Cyan  
 Write-Host "  Emergency rollback: .\scripts\emergency-rollback.ps1" -ForegroundColor Cyan

@@ -1,11 +1,24 @@
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import AdminPanel from "../../pages/adminpanel"
-import { signIn, signOut, useSession } from 'next-auth/client'//MOCK'LA
 import { getAdmins } from "../../utils/helper"
 
-jest.mock('next-auth/client')
+// Mock next-auth/client for old version
+vi.mock('next-auth/client', () => ({
+  signIn: vi.fn(),
+  signOut: vi.fn(),
+  useSession: vi.fn(() => ({ data: null, status: 'unauthenticated' }))
+}))
 
-describe('AdminPanel',() => {
+describe('AdminPanel', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
 
-  let expectedSignIn, expectedEmail, expectedPassword
+  it('should be defined', () => {
+    expect(AdminPanel).toBeDefined()
+  })
 
+  it('should import getAdmins helper', () => {
+    expect(getAdmins).toBeDefined()
+  })
 })
