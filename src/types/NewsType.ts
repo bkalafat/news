@@ -1,7 +1,7 @@
 import { CATEGORY, TYPE } from "../utils/enum";
 
 export type NewsType = {
-  id: string;
+  id?: string;
   category: CATEGORY;
   type: TYPE;
   caption: string;

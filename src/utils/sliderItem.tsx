@@ -8,18 +8,29 @@ export const Arrow = ({ className, style, onClick, direction }: {
   direction: string
 }) => {
   return (
-    <img
+    <button
       className={className}
-      style={{ ...style }}
-      alt={`${direction} arrow`}
-      src={`/${direction}Arrow.png`}
+      style={{ 
+        ...style, 
+        background: 'none',
+        border: 'none',
+        padding: 0,
+        cursor: 'pointer'
+      }}
       onClick={onClick}
-    />
+      aria-label={`${direction} arrow`}
+    >
+      <img
+        alt={`${direction} arrow`}
+        src={`/${direction}Arrow.png`}
+        style={{ display: 'block' }}
+      />
+    </button>
   )
 }
 
 export const Dots = () => {
-  return dots => {
+  return (dots: any) => {
     return (
       <Pagination className="centerFlex" size="sm">
         {dots}

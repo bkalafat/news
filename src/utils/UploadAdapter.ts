@@ -4,19 +4,19 @@ import * as Const from "./constant"
 
 export default class UploadAdapter {
   loader: any
-  constructor(loader) {
+  constructor(loader: any) {
     this.loader = loader
   }
   upload() {
     return this.loader.file.then(
-      file =>
+      (file: any) =>
         new Promise(resolve => {
           this.uploadJpeg(resolve, file)
         })
     )
   }
 
-  uploadJpeg(resolve, file) {
+  uploadJpeg(resolve: any, file: any) {
     Resizer.imageFileResizer(
       file,
       900,
@@ -34,12 +34,12 @@ export default class UploadAdapter {
     console.log("aborted")
   }
 
-  uploadFile = file => {
+  uploadFile = (file: any) => {
     const formData = new FormData()
     formData.append("image", file, file.name)
     return axios
       .post(Const.UPLOAD_FILE_PATH, formData, {
-        onUploadProgress: progressEvent => {
+        onUploadProgress: (progressEvent: any) => {
           this.loader.uploadTotal = progressEvent.total
           this.loader.uploaded = progressEvent.loaded
         }
@@ -49,7 +49,7 @@ export default class UploadAdapter {
       })
   }
 
-  urlToFile(resolve, url, filename, mimeType) {
+  urlToFile(resolve: any, url: any, filename: any, mimeType: any) {
     fetch(url)
       .then(res => {
         return res.arrayBuffer()

@@ -3,13 +3,13 @@ import BootstrapTable from "react-bootstrap-table-next"
 import { MIN_SLUG_LENGTH } from "../utils/constant"
 import * as API from "../utils/api"
 import Router from 'next/router'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { signIn, signOut, useSession } from 'next-auth/react'
 import { getAdmins } from "../utils/helper"
 import { NewsType } from "../types/NewsType"
 import { TYPE } from "../utils/enum"
 
 const AdminPanel = ({ newsListParam }: { newsListParam: NewsType[] }) => {
-  const [session] = useSession()
+  const { data: session, status } = useSession()
   const [newsList, setNewsList] = useState<NewsType[]>(newsListParam)
 
   useEffect(() => {
@@ -58,12 +58,12 @@ const AdminPanel = ({ newsListParam }: { newsListParam: NewsType[] }) => {
   const defaultSorted = [
     {
       dataField: "createDate",
-      order: "desc"
+      order: "desc" as const
     }
-  ]
+  ] as const
 
   const rowEvents = {
-    onClick: (_e, row : NewsType) => {
+    onClick: (_e: any, row : NewsType) => {
       navigateForUpdate(row)
     }
   }
@@ -74,7 +74,7 @@ const AdminPanel = ({ newsListParam }: { newsListParam: NewsType[] }) => {
         Not admins signed in <br />
         <button onClick={() => signIn()}>Sign in</button>
       </>}
-      {session && admins.includes(session.user.email.toLowerCase()) && <>
+      {session && session.user?.email && admins.includes(session.user.email.toLowerCase()) && <>
         Signed in as {session.user.email} <br />
         <button onClick={() => signOut()}>Sign out</button> <br />
 
@@ -88,7 +88,7 @@ const AdminPanel = ({ newsListParam }: { newsListParam: NewsType[] }) => {
           keyField="id"
           data={newsList}
           columns={columns}
-          defaultSorted={defaultSorted}
+          defaultSorted={defaultSorted as any}
           rowEvents={rowEvents}
           striped
           hover

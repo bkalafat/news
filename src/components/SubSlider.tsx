@@ -6,10 +6,10 @@ import { Arrow } from "../utils/sliderItem"
 import SubSliderCard from "./cards/SubSliderCard"
 
 const SubSlider = ({ newsList }: { newsList: NewsType[] }) => {
-  var settings = {
+  const settings = {
     dots: true,
     arrows: !isMobile,
-    lazyLoad: true,
+    lazyLoad: 'ondemand' as const,
     infinite: true,
     slidesToShow: isMobile ? 2 : 3,
     slidesToScroll: 1,

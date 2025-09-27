@@ -8,7 +8,7 @@ import { TYPE } from "../utils/enum"
 import { sortCreateDateDesc } from "../utils/helper"
 
 const News = ({ newsList }: { newsList: NewsType[] }) => {
-  if (!newsList && newsList.length === 0) return <div />
+  if (!newsList || newsList.length === 0) return <div />
 
   const mainNews = newsList
     .filter(
