@@ -3,12 +3,17 @@
 Auto-generated from all feature plans. Last updated: 2025-09-27
 
 ## Active Technologies
-- Next.js 15 with App Router and Turbopack development mode
-- React 19 with Server Components and Concurrent Features
-- TypeScript with strict mode and comprehensive type coverage
-- Modern CSS architecture (CSS Modules, Tailwind CSS, or styled-components)
+- Next.js 14 with App Router and Turbopack development mode
+- React 18 with Server Components and Concurrent Features  
+- TypeScript 5.6 with strict mode and comprehensive type coverage
+- Modern CSS architecture (Tailwind CSS with shadcn/ui design system)
 - Vitest for unit testing, Playwright for E2E testing
 - .NET 8 backend integration with REST API patterns
+
+## Package Modernization Context (Active)
+- **Critical Security Upgrades**: axios (0.21.1→1.7.7), MongoDB (3.6.9→6.8.0), NextAuth (3.26.1→5.0.0), TypeORM (0.2.34→0.3.20)
+- **Compatibility Upgrades**: next-sitemap (1.6.108→4.2.3), SWR (0.5.6→2.2.5), CKEditor (28.x→41.x)
+- **Legacy Removal**: Bootstrap 4→Tailwind CSS, jQuery removal, react-scripts cleanup
 
 ## Project Structure
 ```
@@ -60,8 +65,30 @@ npm run analyze        # Bundle analyzer for performance
 - Optimize for Core Web Vitals (LCP < 2.5s, FID < 100ms, CLS < 0.1)
 
 ## Recent Changes
-- constitution-modernization: Established Next.js 15 modernization principles and standards
-- [LAST 2 FEATURES AND WHAT THEY ADDED]
+- constitution-modernization: Established Next.js 14 modernization principles and standards
+- comprehensive-package-modernization: Added security upgrades and compatibility improvements for 60+ npm packages
+
+## Package Modernization Patterns
+
+### Security-Critical Upgrades
+```typescript
+// axios 0.21.1 → 1.7.7 - Enhanced error handling
+const response = await axios.get('/api/data').catch((err: AxiosError) => {
+  console.error(err.response?.data || err.message);
+});
+
+// NextAuth 3.26.1 → 5.0.0 - App Router configuration
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  providers: [GoogleProvider({ /* config */ })]
+});
+
+// TypeORM 0.2.34 → 0.3.20 - Modern entity syntax
+@Entity('users')
+export class User {
+  @OneToMany(() => Post, (post) => post.author)
+  posts: Post[];
+}
+```
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->
