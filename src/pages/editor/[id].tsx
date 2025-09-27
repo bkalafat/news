@@ -6,13 +6,17 @@ import * as Helper from "../../utils/helper"
 import Resizer from "react-image-file-resizer"
 import UploadAdapter from "../../utils/UploadAdapter"
 import Router, { useRouter } from 'next/router'
-import { signIn, signOut, useSession } from 'next-auth/react'
 import { getAdmins } from "../../utils/helper"
 import { CATEGORY, TYPE } from "../../utils/enum"
+import { AuthService, LoginCredentials } from "../../utils/auth"
 
 const NewsEditor = () => {
-  const { data: session, status } = useSession()
   const fileInput = useRef<HTMLInputElement>(null)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [userEmail, setUserEmail] = useState<string | null>(null)
+  const [loginCredentials, setLoginCredentials] = useState<LoginCredentials>({ email: '', password: '' })
+  const [loginError, setLoginError] = useState<string | null>(null)
+  const [isLoggingIn, setIsLoggingIn] = useState(false)
   const router = useRouter()
   const { id } = router.query
   const urlId = Array.isArray(id) ? id[0] : id
@@ -74,6 +78,15 @@ const NewsEditor = () => {
     }
     if (isSubmitting) setSubmitting(false)
   }, [isSubmitting, newNews, urlId])
+
+  // Authentication useEffect
+  useEffect(() => {
+    const user = AuthService.getCurrentUser()
+    if (user) {
+      setIsAuthenticated(true)
+      setUserEmail(user.email)
+    }
+  }, [])
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -81,8 +94,8 @@ const NewsEditor = () => {
       e.stopPropagation();
     }
     setValidated(true);
-    if (session?.user?.email && !newNews.authors.includes(session.user.email.toLowerCase()))
-      setNews({ ...newNews, authors: [...newNews.authors, session.user.email.toLowerCase()] })
+    if (userEmail && !newNews.authors.includes(userEmail.toLowerCase()))
+      setNews({ ...newNews, authors: [...newNews.authors, userEmail.toLowerCase()] })
     if (validateInputs())
       if (selectedImg && selectedImg.name) {
         upsertImage(selectedImg)
@@ -127,15 +140,81 @@ const NewsEditor = () => {
     }
   }
   const admins = getAdmins();
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoggingIn(true)
+    setLoginError(null)
+
+    try {
+      const result = await AuthService.login(loginCredentials)
+      
+      if (result.success && result.user) {
+        setIsAuthenticated(true)
+        setUserEmail(result.user.email)
+        setLoginCredentials({ email: '', password: '' })
+      } else {
+        setLoginError(result.error || 'Login failed')
+      }
+    } catch (error) {
+      console.error('Login error:', error)
+      setLoginError('An unexpected error occurred')
+    } finally {
+      setIsLoggingIn(false)
+    }
+  }
+
+  const handleLogout = () => {
+    AuthService.logout()
+    setIsAuthenticated(false)
+    setUserEmail(null)
+  }
+
   return (
     <div>
-      {!session && <>
-        Not admins signed in <br></br>
-        <button onClick={() => signIn()}>Sign in</button>
-      </>}
-      {session && session.user?.email && admins.includes(session.user.email.toLowerCase()) && <>
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button> <br />
+      {!isAuthenticated && (
+        <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px' }}>
+          <h2>Editor Login</h2>
+          <form onSubmit={handleLogin}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                value={loginCredentials.email}
+                onChange={(e) => setLoginCredentials({ ...loginCredentials, email: e.target.value })}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                value={loginCredentials.password}
+                onChange={(e) => setLoginCredentials({ ...loginCredentials, password: e.target.value })}
+                required
+              />
+            </div>
+            {loginError && (
+              <div className="alert alert-danger" role="alert">
+                {loginError}
+              </div>
+            )}
+            <button 
+              type="submit" 
+              className="btn btn-primary"
+              disabled={isLoggingIn}
+            >
+              {isLoggingIn ? 'Signing in...' : 'Sign in'}
+            </button>
+          </form>
+        </div>
+      )}
+      {isAuthenticated && userEmail && admins.includes(userEmail.toLowerCase()) && <>
+        Signed in as {userEmail} <br />
+        <button onClick={handleLogout}>Sign out</button> <br />
         <div className="center">
           <Button
             variant={selectedImg ? "info" : "primary"}

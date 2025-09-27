@@ -2,11 +2,15 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import AdminPanel from "../../pages/adminpanel"
 import { getAdmins } from "../../utils/helper"
 
-// Mock next-auth/client for old version
-vi.mock('next-auth/client', () => ({
-  signIn: vi.fn(),
-  signOut: vi.fn(),
-  useSession: vi.fn(() => ({ data: null, status: 'unauthenticated' }))
+// Mock JWT auth service
+vi.mock('../../utils/auth', () => ({
+  AuthService: {
+    isAuthenticated: vi.fn(() => false),
+    getCurrentUser: vi.fn(() => null),
+    isAdmin: vi.fn(() => false),
+    setToken: vi.fn(),
+    removeToken: vi.fn()
+  }
 }))
 
 describe('AdminPanel', () => {
