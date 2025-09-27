@@ -6,13 +6,13 @@ import * as Helper from "../../utils/helper"
 import Resizer from "react-image-file-resizer"
 import UploadAdapter from "../../utils/UploadAdapter"
 import Router, { useRouter } from 'next/router'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { signIn, signOut, useSession } from 'next-auth/react'
 import { getAdmins } from "../../utils/helper"
 import { CATEGORY, TYPE } from "../../utils/enum"
 
 const NewsEditor = () => {
-  const [session] = useSession()
-  const fileInput = useRef(null)
+  const { data: session, status } = useSession()
+  const fileInput = useRef<HTMLInputElement>(null)
   const router = useRouter()
   const { id } = router.query
   const urlId = Array.isArray(id) ? id[0] : id
@@ -20,28 +20,37 @@ const NewsEditor = () => {
   const [newNews, setNews] = useState(Const.DEFAULT_NEWS)
 
   const handleImage = async (imageUri: any) => {
-    const image = await Helper.convertFile(imageUri, "haberibul-" + selectedImg.name + '.webp')
-    setNews({ ...newNews, imgPath: await API.uploadFile(image) })
-    setSubmitting(true)
+    if (selectedImg) {
+      const image = await Helper.convertFile(imageUri, "haberibul-" + selectedImg.name + '.webp')
+      setNews({ ...newNews, imgPath: await API.uploadFile(image) })
+      setSubmitting(true)
+    }
   }
   const [isSubmitting, setSubmitting] = useState(false)
-  const [selectedImg, setSelectedImg] = useState<File>(null)
+  const [selectedImg, setSelectedImg] = useState<File | null>(null)
 
-  const editorRef = useRef<any>()
+  const editorRef = useRef<any>(null)
   const [editorLoaded, setEditorLoaded] = useState(false)
   const { CKEditor, ClassicEditor } = editorRef.current || {}
 
-  const watermarkRef = useRef<any>()
+  const watermarkRef = useRef<any>(null)
   const { watermark } = watermarkRef.current || {}
 
   useEffect(() => {
-    editorRef.current = {
-      CKEditor: require('@ckeditor/ckeditor5-react').CKEditor,
-      ClassicEditor: require('@ckeditor/ckeditor5-build-classic')
-    }
-    watermarkRef.current = {
-      watermark: require('watermarkjs')
-    }
+    import('@ckeditor/ckeditor5-react').then(({ CKEditor }) => {
+      import('@ckeditor/ckeditor5-build-classic').then((ClassicEditor) => {
+        editorRef.current = {
+          CKEditor,
+          ClassicEditor: ClassicEditor.default
+        }
+        setEditorLoaded(true)
+      })
+    })
+    import('watermarkjs').then((watermark) => {
+      watermarkRef.current = {
+        watermark: watermark.default
+      }
+    })
     if (isUpdate && !newNews.id) {
       if (urlId.includes('$')) {
         API.getNewsBySlug(urlId.slice(0, -1)).then(
@@ -58,7 +67,6 @@ const NewsEditor = () => {
         )
       }
     }
-    setEditorLoaded(true)
     if (isSubmitting) {
       API.upsertNews(newNews).then(() => {
         Router.push("/adminpanel")
@@ -66,14 +74,14 @@ const NewsEditor = () => {
     }
     if (isSubmitting) setSubmitting(false)
   }, [isSubmitting, newNews, urlId])
-  const handleSubmit = e => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.stopPropagation();
     }
     setValidated(true);
-    if (!newNews.authors.includes(session.user.email.toLowerCase()))
+    if (session?.user?.email && !newNews.authors.includes(session.user.email.toLowerCase()))
       setNews({ ...newNews, authors: [...newNews.authors, session.user.email.toLowerCase()] })
     if (validateInputs())
       if (selectedImg && selectedImg.name) {
@@ -113,7 +121,10 @@ const NewsEditor = () => {
   }
   const [validated, setValidated] = useState(false);
   const fileSelectorHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedImg(event.target.files[0])
+    const file = event.target.files?.[0]
+    if (file) {
+      setSelectedImg(file)
+    }
   }
   const admins = getAdmins();
   return (
@@ -122,13 +133,13 @@ const NewsEditor = () => {
         Not admins signed in <br></br>
         <button onClick={() => signIn()}>Sign in</button>
       </>}
-      {session && admins.includes(session.user.email.toLowerCase()) && <>
+      {session && session.user?.email && admins.includes(session.user.email.toLowerCase()) && <>
         Signed in as {session.user.email} <br />
         <button onClick={() => signOut()}>Sign out</button> <br />
         <div className="center">
           <Button
             variant={selectedImg ? "info" : "primary"}
-            onClick={() => fileInput.current.click()}
+            onClick={() => fileInput.current?.click()}
           >
             {isUpdate ? "Fotoğrafı Güncelle" : "Fotoğraf Ekle"}
           </Button>
@@ -222,14 +233,14 @@ const NewsEditor = () => {
               {editorLoaded ? (<CKEditor
                 editor={ClassicEditor}
                 data={newNews.content}
-                onReady={editor => {
+                onReady={(editor: any) => {
                   editor.plugins.get(
                     "FileRepository"
-                  ).createUploadAdapter = loader => {
+                  ).createUploadAdapter = (loader: any) => {
                     return new UploadAdapter(loader)
                   }
                 }}
-                onChange={(_e, editor) => {
+                onChange={(_e: any, editor: any) => {
                   setNews({ ...newNews, content: editor.getData() })
                 }}
               />) : (
@@ -258,11 +269,11 @@ const NewsEditor = () => {
             <Button style={{ marginRight: 7 }} variant="warning" onClick={() => Router.push('/adminpanel')}>
               Geri
           </Button>
-            {isUpdate && (
+            {isUpdate && newNews.id && (
               <Button
                 variant="danger"
                 onClick={() =>
-                  API.deleteNews(newNews.id).then(() => {
+                  API.deleteNews(newNews.id!).then(() => {
                     Router.push("/adminpanel")
                   })
                 }

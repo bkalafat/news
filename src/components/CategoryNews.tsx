@@ -20,10 +20,13 @@ const CategoryNews = () => {
     )
   }
   else {
-    if (!data && data.length === 0)
+    if (!data || (Array.isArray(data) && data.length === 0))
       return (<div><Head>{categoryUrl}</Head><div>Haber bulunamadı</div></div>)
 
     const categoryObj = getCategoryByTo(categoryUrl)
+    if (!categoryObj) {
+      return (<div><Head>{categoryUrl}</Head><div>Kategori bulunamadı</div></div>)
+    }
     const newsList = data.filter(news => news.category === categoryObj.key)
     const mainNews = newsList
       .filter(
@@ -41,8 +44,9 @@ const CategoryNews = () => {
       .sort(sortCreateDateDesc())
     const subNewsList = tempNewsList
 
-    let upperCaseCategory = categoryUrl;
-    upperCaseCategory = `${upperCaseCategory[0].toUpperCase()}${upperCaseCategory.substring(1)}`;
+    const upperCaseCategory = categoryUrl 
+      ? `${categoryUrl.charAt(0).toUpperCase()}${categoryUrl.substring(1)}`
+      : '';
 
     return (
       <div>

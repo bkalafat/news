@@ -27,7 +27,6 @@ const Share = ({ news }: { news: NewsType }) => {
         </Link>
         <FacebookShareButton
           url={Helper.getFullUrl(news)}
-          quote={news.caption}
           hashtag={news.socialTags}
         >
           <FacebookIcon size="2.5rem" />

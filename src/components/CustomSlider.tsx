@@ -8,11 +8,11 @@ import SliderCard from "./cards/SliderCard"
 const CustomSlider = ({ newsList }: { newsList: NewsType[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  var settings = {
+  const settings = {
     dots: true,
     dotsClass: "dotsClass",
     arrows: !isMobile,
-    lazyLoad: true,
+    lazyLoad: 'ondemand' as const,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -21,7 +21,7 @@ const CustomSlider = ({ newsList }: { newsList: NewsType[] }) => {
     slidesToScroll: 1,
     nextArrow: <Arrow direction="right" />,
     prevArrow: <Arrow direction="left" />,
-    beforeChange: (_prev, next) => {
+    beforeChange: (_prev: number, next: number) => {
       setCurrentIndex(next)
     },
     appendDots: Dots(),

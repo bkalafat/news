@@ -7,12 +7,19 @@ import Image from "next/image";
 import { getCategoryToByKey, getSlug, getUrlWithId } from "../../../utils/helper"
 import { getNews, getNewsList } from "../../../utils/api"
 import { MIN_SLUG_LENGTH } from "../../../utils/constant"
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next"
 
 const NewsDetail = ({ news }: { news: NewsType }) => {
   if (news && news.createDate) {
-    let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
-    let date = new Date(Date.UTC(+y, +m - 1, +d, +hh, +mm, +ss, +ms))
-    let formatted = date.toLocaleString()
+    const matchResult = news.createDate.match(/\d+/g)
+    let formatted = new Date().toLocaleString() // Default fallback
+    if (matchResult && matchResult.length >= 7) {
+      const [y, m, d, hh, mm, ss, ms] = matchResult
+      if (y && m && d && hh && mm && ss && ms) {
+        const date = new Date(Date.UTC(+y, +m - 1, +d, +hh, +mm, +ss, +ms))
+        formatted = date.toLocaleString()
+      }
+    }
     const url = getUrlWithId(news)
     return (
       <Layout>
@@ -77,8 +84,9 @@ export async function getStaticPaths(): Promise<{ paths: any[]; fallback: boolea
   return { paths, fallback: true }
 }
 
-export const getStaticProps = async ({ params }): Promise<{ revalidate: number; props: { news: NewsType } }> => {
-  const news = await getNews(params.id)
+export const getStaticProps: GetStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const id = params?.id as string
+  const news = await getNews(id)
   return {
     revalidate: 36000,
     props: {

@@ -8,12 +8,19 @@ import Image from "next/image";
 import { generateUrlWithoutId, getCategoryToByKey } from "../../utils/helper"
 import { getLastNewsList, getNewsBySlug, getNewsList } from "../../utils/api"
 import { MIN_SLUG_LENGTH } from "../../utils/constant"
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next"
 
 const NewsDetail = ({ lastNewsList, news }: { lastNewsList: NewsType[], news: NewsType }) => {
   if (news && news.createDate) {
-    let [y, m, d, hh, mm, ss, ms] = news.createDate.match(/\d+/g)
-    let date = new Date(Date.UTC(+y, +m - 1, +d, +hh, +mm, +ss, +ms))
-    let formatted = date.toLocaleString()
+    const matchResult = news.createDate.match(/\d+/g)
+    let formatted = new Date().toLocaleString() // Default fallback
+    if (matchResult && matchResult.length >= 7) {
+      const [y, m, d, hh, mm, ss, ms] = matchResult
+      if (y && m && d && hh && mm && ss && ms) {
+        const date = new Date(Date.UTC(+y, +m - 1, +d, +hh, +mm, +ss, +ms))
+        formatted = date.toLocaleString()
+      }
+    }
     const url = generateUrlWithoutId(news)
     return (
       <Layout>
@@ -85,8 +92,9 @@ export async function getStaticPaths() {
   return { paths, fallback: true }
 }
 
-export const getStaticProps = async ({ params }) => {
-  const news = await getNewsBySlug(params.slug)
+export const getStaticProps: GetStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const slug = params?.slug as string
+  const news = await getNewsBySlug(slug)
   const lastNewsList = await getLastNewsList()
 
   return {
